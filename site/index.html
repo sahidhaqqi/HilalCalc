@@ -217,7 +217,8 @@ footer{margin-top:56px;text-align:center;font-family:'DM Mono',monospace;font-si
   </div>
   <div class="month-tabs">
     <button class="mtab on" id="mtab-r" onclick="switchMonth('ramadan')">&#x0631;&#x064E;&#x0645;&#x064E;&#x0636;&#x064E;&#x0627;&#x0646; &nbsp; Ramadan</button>
-    <button class="mtab" id="mtab-all" onclick="switchMonth('semua')"><button class="mtab" id="mtab-s" onclick="switchMonth('syawal')">#128197; Semua Tahun</button>
+    <button class="mtab" id="mtab-all" onclick="switchMonth('semua')">Semua Tahun</button>
+    <button class="mtab" id="mtab-s" onclick="switchMonth('syawal')">
     <button class="mtab" id="mtab-s" onclick="switchMonth('syawal')">&#x0634;&#x064E;&#x0648;&#x064E;&#x0651;&#x0627;&#x0644; &nbsp; Syawal</button>
   </div>
 </div>
@@ -382,38 +383,62 @@ function switchMonth(m){
 
 function renderSemua(){
   var p=document.getElementById('panel-semua');
-  if(!IDX||!IDX.data.length){
-    p.innerHTML='<p style="color:var(--muted);font-family:DM Mono,monospace;font-size:.78rem;padding:20px">Tidak ada data. Jalankan generate_json.py dulu.</p>';
+  if(!IDX||!IDX.data||!IDX.data.length){
+    p.innerHTML='<div style="padding:24px;font-family:DM Mono,monospace;font-size:.78rem;color:var(--muted)">Tidak ada data index. Jalankan generate_json.py dulu.</div>';
     return;
   }
   var rows=IDX.data.map(function(row){
-    var rOk=row.ramadan.mabims;
-    var sOk=row.syawal.mabims;
-    return '<tr onclick="loadYear('+row.tahun+')" title="Klik untuk detail">'
-      +'<td><a onclick="event.stopPropagation();loadYear('+row.tahun+')">'+row.tahun+'</a></td>'
+    if(!row||!row.ramadan||!row.syawal)return '';
+    var r=row.ramadan, s=row.syawal;
+    return '<tr onclick="goYear('+row.tahun+')" style="cursor:pointer">'
+      +'<td><a onclick="event.stopPropagation();goYear('+row.tahun+')">'+row.tahun+' H</a></td>'
       +'<td>'+row.tahun_masehi+'</td>'
-      +'<td>'+fDate(row.ramadan.tanggal)+'</td>'
-      +'<td>'+dotB(rOk)+'</td>'
-      +'<td>'+(row.ramadan.n_lokasi_lolos||0)+'/13</td>'
-      +'<td>'+fNum(row.ramadan.yallop_q,2)+'</td>'
-      +'<td>'+fNum(row.ramadan.odeh_v,2)+'</td>'
-      +'<td>'+fNum(row.ramadan.prob,0,'%')+'</td>'
-      +'<td>'+fDate(row.syawal.tanggal)+'</td>'
-      +'<td>'+dotB(sOk)+'</td>'
-      +'<td>'+(row.syawal.n_lokasi_lolos||0)+'/13</td>'
-      +'<td>'+fNum(row.syawal.yallop_q,2)+'</td>'
-      +'<td>'+fNum(row.syawal.odeh_v,2)+'</td>'
-      +'<td>'+fNum(row.syawal.prob,0,'%')+'</td>'
+      // Ramadan
+      +'<td style="color:var(--gold-lit);font-weight:500">'+fDateShort(r.tanggal)+'</td>'
+      +'<td>'+e(r.ijtimak||'—')+'</td>'
+      +'<td>'+dotB(r.mabims)+'</td>'
+      +'<td style="color:var(--ok)">'+(r.n_lokasi_lolos||0)+' / 13</td>'
+      +'<td>'+fNum(r.yallop_q,2)+'</td>'
+      +'<td>'+fNum(r.odeh_v,2)+'</td>'
+      +'<td>'+fNum(r.prob,0,'%')+'</td>'
+      // Syawal
+      +'<td style="color:var(--gold-lit);font-weight:500">'+fDateShort(s.tanggal)+'</td>'
+      +'<td>'+e(s.ijtimak||'—')+'</td>'
+      +'<td>'+dotB(s.mabims)+'</td>'
+      +'<td style="color:var(--ok)">'+(s.n_lokasi_lolos||0)+' / 13</td>'
+      +'<td>'+fNum(s.yallop_q,2)+'</td>'
+      +'<td>'+fNum(s.odeh_v,2)+'</td>'
+      +'<td>'+fNum(s.prob,0,'%')+'</td>'
       +'</tr>';
   }).join('');
-  p.innerHTML='<div class="all-wrap" style="overflow-x:auto">'
+
+  p.innerHTML=
+    '<div style="padding:16px 20px 0;font-family:DM Mono,monospace">'
+    +'<div style="font-size:.62rem;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-bottom:6px">Rangkuman '+IDX.data.length+' Tahun Hijriyah</div>'
+    +'<div style="font-size:.72rem;color:var(--muted)">Klik baris untuk lihat detail &middot; MAB = MABIMS &middot; Lok = lokasi lolos / 13 &middot; q = Yallop &middot; V = Odeh &middot; P% = Probabilitas</div>'
+    +'</div>'
+    +'<div class="all-wrap" style="overflow-x:auto;margin-top:12px">'
     +'<table><thead><tr>'
-    +'<th>Tahun H</th><th>M</th>'
-    +'<th>1 Ramadan</th><th>MAB</th><th>Lok</th><th>q</th><th>V</th><th>P%</th>'
-    +'<th>1 Syawal</th><th>MAB</th><th>Lok</th><th>q</th><th>V</th><th>P%</th>'
-    +'</tr></thead><tbody>'+rows+'</tbody></table></div>'
-    +'<div style="padding:10px 16px;font-family:DM Mono,monospace;font-size:.65rem;color:var(--muted)">'
-    +'Klik baris untuk lihat detail tahun tersebut. MAB = MABIMS, Lok = jumlah lokasi lolos, q = Yallop q, V = Odeh V, P% = probabilitas terlihat.</div>';
+    +'<th rowspan="2" style="vertical-align:bottom">Tahun</th>'
+    +'<th rowspan="2" style="vertical-align:bottom">M</th>'
+    +'<th colspan="7" style="text-align:center;border-left:1px solid var(--border);color:var(--gold);padding-bottom:4px">&#x0631;&#x064e;&#x0645;&#x064e;&#x0636;&#x064e;&#x0627;&#x0646; RAMADAN</th>'
+    +'<th colspan="7" style="text-align:center;border-left:1px solid var(--border);color:var(--ok);padding-bottom:4px">&#x0634;&#x064e;&#x0648;&#x064e;&#x0651;&#x0627;&#x0644; SYAWAL</th>'
+    +'</tr><tr>'
+    +'<th style="border-left:1px solid var(--border)">1 Ramadan</th><th>Ijtimak</th><th>MAB</th><th>Lok</th><th>q</th><th>V</th><th>P%</th>'
+    +'<th style="border-left:1px solid var(--border)">1 Syawal</th><th>Ijtimak</th><th>MAB</th><th>Lok</th><th>q</th><th>V</th><th>P%</th>'
+    +'</tr></thead>'
+    +'<tbody>'+rows+'</tbody></table></div>';
+}
+
+function goYear(t){
+  switchMonth('ramadan');
+  loadYear(t);
+}
+
+function fDateShort(s){
+  if(!s)return '—';
+  var d=new Date(s+'T12:00:00');
+  return d.toLocaleDateString('id-ID',{day:'numeric',month:'short',year:'numeric'});
 }
 
 function dotB(v){
