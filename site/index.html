@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+	<!DOCTYPE html>
 <html lang="id">
 <head>
 <meta charset="UTF-8">
@@ -772,26 +772,74 @@ function buildMultiChart(){
 // LOKASI LOLOS LIST
 // ══════════════════════════════════════════════════════════════════
 function buildLokasi(rk){
-  var list=rk.lokasi_lolos||[];
+  var lolosList=rk.lokasi_lolos||[];
   var n=rk.n_lokasi_lolos||0;
-  var cards=list.map(function(k){
-    return '<div class="kota-card">'
-      +'<div class="kota-nama"><span style="font-size:.7rem">&#10003;</span>'+e(k.nama)+'</div>'
-      +'<div class="kota-params">'
-      +'<div class="kp"><span class="kl">Altitude</span><span class="kv">'+f(k.alt,2)+'°</span></div>'
-      +'<div class="kp"><span class="kl">Azimuth</span><span class="kv">'+f(k.az,1)+'°</span></div>'
-      +'<div class="kp"><span class="kl">Elong Geo</span><span class="kv">'+f(k.elong_geo,2)+'°</span></div>'
-      +'<div class="kp"><span class="kl">Umur</span><span class="kv">'+f(k.umur_jam,1)+' jam</span></div>'
-      +'<div class="kp"><span class="kl">Lag</span><span class="kv">'+f(k.lag_menit,0)+' mnt</span></div>'
-      +'<div class="kp"><span class="kl">Moonset</span><span class="kv">'+(k.moonset_utc||'—')+' UTC</span></div>'
-      +'</div></div>';
+  var lolosMap={};
+  lolosList.forEach(function(k){lolosMap[k.nama]=k});
+
+  var SEMUA=[
+    'Sabang','Medan','Padang','Jakarta','Bandung','Surabaya',
+    'Banjarmasin','Balikpapan','Makassar','Manado','Kupang','Ambon','Jayapura'
+  ];
+
+  var TH='<th style="padding:7px 10px;text-align:left;color:var(--muted);font-weight:400;font-size:.58rem;text-transform:uppercase;letter-spacing:.08em;white-space:nowrap;border-bottom:1px solid var(--border);background:var(--bg2)">';
+
+  var rows=SEMUA.map(function(nama,idx){
+    var d=lolosMap[nama];
+    var lolos=!!d;
+    var bg=lolos?'background:rgba(78,201,154,.04)':'';
+    var nc='color:'+(lolos?'var(--ok)':'var(--text)');
+    var sc=lolos?'color:var(--ok)':'color:var(--err)';
+    var si=lolos?'&#10003; Lolos':'&#10007; Gagal';
+    var TD='<td style="padding:7px 10px;border-bottom:1px solid var(--border);white-space:nowrap">';
+    if(lolos&&d){
+      var mab=d.mabims||{};
+      return '<tr style="'+bg+' transition:background .1s" onmouseover="this.style.background='rgba(200,146,42,.04)'" onmouseout="this.style.background=''+bg+''">'
+        +TD+'<span style="color:var(--muted);font-size:.62rem">'+(idx+1)+'</span></td>'
+        +TD+'<span style="'+nc+';font-weight:500">'+e(nama)+'</span></td>'
+        +TD+'<span style="'+sc+'">'+si+'</span></td>'
+        +TD+'<span style="color:var(--gold-lit)">'+f(d.alt,2)+'&deg;</span></td>'
+        +TD+f(d.az,1)+'&deg;</td>'
+        +TD+'<span style="color:var(--info)">'+f(d.elong_geo,2)+'&deg;</span></td>'
+        +TD+f(d.umur_jam,1)+' jam</td>'
+        +TD+f(d.lag_menit,0)+' mnt</td>'
+        +TD+(d.maghrib_utc||'&#8212;')+' UTC</td>'
+        +TD+(d.moonset_utc||'&#8212;')+' UTC</td>'
+        +TD+'<span style="color:'+(mab.alt_ok?'var(--ok)':'var(--err)')+'">Alt</span>'
+        +' <span style="color:'+(mab.elong_ok?'var(--ok)':'var(--err)')+'">Elong</span></td>'
+        +'</tr>';
+    } else {
+      var dash='<span style="color:var(--muted)">&#8212;</span>';
+      return '<tr onmouseover="this.style.background='rgba(200,146,42,.03)'" onmouseout="this.style.background=''">'+
+        TD+'<span style="color:var(--muted);font-size:.62rem">'+(idx+1)+'</span></td>'+
+        TD+'<span style="color:var(--muted)">'+e(nama)+'</span></td>'+
+        TD+'<span style="'+sc+'">'+si+'</span></td>'+
+        TD+dash+'</td>'+TD+dash+'</td>'+TD+dash+'</td>'+
+        TD+dash+'</td>'+TD+dash+'</td>'+TD+dash+'</td>'+TD+dash+'</td>'+
+        TD+dash+'</td>'+'</tr>';
+    }
   }).join('');
 
   document.getElementById('lokasi-wrap').innerHTML=
-    '<div class="lw-title">&#9679; Lokasi yang Memenuhi MABIMS</div>'
-    +'<div class="lw-stat"><strong>'+n+'</strong> dari 13 titik memenuhi kriteria</div>'
-    +(cards?'<div class="kota-grid">'+cards+'</div>':'<div style="font-family:\'DM Mono\',monospace;font-size:.78rem;color:var(--muted)">Tidak ada lokasi yang memenuhi MABIMS pada hari ini.</div>');
+    '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px">'
+    +'<div class="lw-title" style="margin-bottom:0">&#9679; Rangkuman 13 Lokasi Representatif Indonesia</div>'
+    +'<div style="font-family:'DM Mono',monospace;font-size:.76rem">'
+    +'<span style="color:var(--ok);font-weight:500">'+n+' Lolos</span>'
+    +' <span style="color:var(--muted)">/</span> '
+    +'<span style="color:var(--err)">'+(13-n)+' Gagal</span>'
+    +'</div></div>'
+    +'<div style="overflow-x:auto;border:1px solid var(--border);border-radius:10px">'
+    +'<table style="width:100%;border-collapse:collapse;font-family:'DM Mono',monospace;font-size:.73rem">'
+    +'<thead><tr>'
+    +TH+'#</th>'+TH+'Kota</th>'+TH+'Status</th>'
+    +TH+'Altitude</th>'+TH+'Azimuth</th>'+TH+'Elong Geo</th>'
+    +TH+'Umur Bulan</th>'+TH+'Lag</th>'
+    +TH+'Maghrib UTC</th>'+TH+'Moonset UTC</th>'
+    +TH+'MABIMS Detail</th>'
+    +'</tr></thead><tbody>'+rows+'</tbody></table></div>';
 }
+
+
 
 // ══════════════════════════════════════════════════════════════════
 // DETAIL ACCORDION
