@@ -218,7 +218,6 @@ footer{margin-top:56px;text-align:center;font-family:'DM Mono',monospace;font-si
   <div class="month-tabs">
     <button class="mtab on" id="mtab-r" onclick="switchMonth('ramadan')">&#x0631;&#x064E;&#x0645;&#x064E;&#x0636;&#x064E;&#x0627;&#x0646; &nbsp; Ramadan</button>
     <button class="mtab" id="mtab-all" onclick="switchMonth('semua')">Semua Tahun</button>
-    <button class="mtab" id="mtab-s" onclick="switchMonth('syawal')">
     <button class="mtab" id="mtab-s" onclick="switchMonth('syawal')">&#x0634;&#x064E;&#x0648;&#x064E;&#x0651;&#x0627;&#x0644; &nbsp; Syawal</button>
   </div>
 </div>
@@ -289,11 +288,12 @@ footer{margin-top:56px;text-align:center;font-family:'DM Mono',monospace;font-si
     <div class="detail-body" id="detail-body"></div>
   </div>
 
-  <div id="panel-semua" style="display:none"></div>
   <div class="disclaimer">
     <strong>Catatan:</strong> Hasil hisab astronomi multi-lokasi (13 titik representatif Indonesia). Awal bulan ditetapkan jika minimal satu lokasi memenuhi kriteria MABIMS 2022 (alt &ge; 3&deg;, elong &ge; 6.4&deg;). Keputusan resmi mengikuti Sidang Isbat Kemenag RI.
   </div>
 </div>
+
+<div id="panel-semua" style="display:none;animation:up .4s ease"></div>
 
 <footer>
   Ephemeris DE440 &middot; Skyfield &middot; MABIMS 2022 &middot; Yallop 1998 &middot; Odeh 2006<br>
@@ -373,11 +373,13 @@ function switchMonth(m){
   var mr=document.getElementById('results');
   if(m==='semua'){
     ps.style.display='block';
-    mr.classList.remove('on');
+    mr.style.display='none';
     renderSemua();
+    document.getElementById('panel-semua').scrollIntoView({behavior:'smooth',block:'start'});
     return;
   }
   ps.style.display='none';
+  mr.style.display='';
   if(CUR){mr.classList.add('on');renderMonth();}
 }
 
@@ -454,12 +456,21 @@ function fNum(v,d,u){
 
 function hideAll(){
   document.getElementById('results').classList.remove('on');
+  document.getElementById('results').style.display='';
+  document.getElementById('panel-semua').style.display='none';
   document.getElementById('err-box').style.display='none';
 }
 
 function render(){
   document.getElementById('loading').classList.remove('on');
+  document.getElementById('panel-semua').style.display='none';
+  document.getElementById('results').style.display='';
   document.getElementById('results').classList.add('on');
+  // Reset tab ke ramadan saat baru load tahun
+  if(MONTH==='semua') MONTH='ramadan';
+  document.getElementById('mtab-r').classList.toggle('on',MONTH==='ramadan');
+  document.getElementById('mtab-s').classList.toggle('on',MONTH==='syawal');
+  document.getElementById('mtab-all').classList.remove('on');
   renderMonth();
   buildMultiChart();
 }
