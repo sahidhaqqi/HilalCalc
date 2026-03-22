@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Hisab Hilal — Awal Bulan Hijriyah</title>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Crimson+Pro:ital,wght@0,300;0,400;0,500;1,300&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#06091a;--bg2:#0a0e24;--card:#0f152e;--card2:#141c38;
+  --gold:#c8922a;--gold-lit:#e8b84b;--gold-dim:rgba(200,146,42,.12);--gold-mid:rgba(200,146,42,.32);
+  --text:#ddd5c0;--muted:#7a7a9a;--ok:#5acea0;--err:#e07878;--info:#78aee0;--warn:#e0c478;
+  --border:rgba(200,146,42,.13);
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:'Crimson Pro',Georgia,serif;font-size:17px;line-height:1.65;min-height:100vh;overflow-x:hidden}
+#sky{position:fixed;inset:0;z-index:0;pointer-events:none}
+.page{position:relative;z-index:1;max-width:960px;margin:0 auto;padding:56px 20px 90px}
+
+/* header */
+header{text-align:center;margin-bottom:48px}
+.moon-svg{width:66px;height:66px;margin:0 auto 24px;animation:float 5s ease-in-out infinite;display:block}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
+h1.arabic{font-family:'Amiri',serif;font-size:2.6rem;color:var(--gold-lit);letter-spacing:.03em;margin-bottom:4px}
+.latin-title{font-family:'Amiri',serif;font-size:.95rem;color:var(--muted);letter-spacing:.2em;text-transform:uppercase;margin-bottom:12px}
+.sub{font-family:'DM Mono',monospace;font-size:.76rem;color:var(--muted);letter-spacing:.06em}
+
+/* divider */
+.div{display:flex;align-items:center;gap:14px;margin:32px 0;opacity:.3}
+.div::before,.div::after{content:'';flex:1;height:1px;background:var(--gold)}
+.div span{color:var(--gold);font-size:.7rem}
+
+/* controls */
+.ctrl{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:28px 32px;margin-bottom:28px}
+.lbl{font-family:'DM Mono',monospace;font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:9px;display:block}
+.qy-row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px}
+.btn-yr{background:var(--bg2);border:1px solid var(--border);border-radius:7px;color:var(--muted);font-family:'DM Mono',monospace;font-size:.79rem;padding:7px 13px;cursor:pointer;transition:all .14s}
+.btn-yr:hover{border-color:var(--gold-mid);color:var(--text)}
+.btn-yr.on{background:var(--gold-dim);border-color:var(--gold);color:var(--gold-lit)}
+.inp-row{display:flex;gap:10px}
+.yr-inp{flex:1;background:var(--bg2);border:1px solid var(--border);border-radius:9px;color:var(--text);font-family:'DM Mono',monospace;font-size:1.35rem;padding:11px 16px;outline:none;transition:border-color .2s;letter-spacing:.1em}
+.yr-inp:focus{border-color:var(--gold-mid)}
+.yr-inp::placeholder{color:#2e2e48}
+.btn-go{background:var(--gold);color:#1a0e00;border:none;border-radius:9px;padding:11px 24px;font-family:'Amiri',serif;font-size:1rem;font-weight:700;cursor:pointer;transition:background .14s,transform .1s;letter-spacing:.04em}
+.btn-go:hover{background:var(--gold-lit)}
+.btn-go:active{transform:scale(.97)}
+.btn-go:disabled{opacity:.45;cursor:not-allowed}
+.loc-row{display:flex;gap:18px;flex-wrap:wrap;padding-top:16px;border-top:1px solid var(--border);margin-top:4px}
+.loc-i{font-family:'DM Mono',monospace;font-size:.72rem;color:var(--muted)}
+.loc-i span{color:var(--info);margin-left:3px}
+
+/* state */
+.loading,.err-box{display:none}
+.loading.on,.err-box.on{display:block}
+.loading{text-align:center;padding:48px 0}
+.cres{width:50px;height:50px;margin:0 auto 18px;animation:spin 2s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.ltxt{font-family:'DM Mono',monospace;font-size:.78rem;color:var(--muted);animation:blink 1.4s ease-in-out infinite}
+@keyframes blink{0%,100%{opacity:.35}50%{opacity:1}}
+.err-box{background:rgba(224,120,120,.07);border:1px solid rgba(224,120,120,.24);border-radius:11px;padding:16px 20px;color:var(--err);font-family:'DM Mono',monospace;font-size:.8rem}
+
+/* results */
+.results{display:none;animation:up .4s ease}
+.results.on{display:block}
+@keyframes up{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+.res-meta{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;margin-bottom:20px;font-family:'DM Mono',monospace;font-size:.75rem;color:var(--muted)}
+.res-meta strong{color:var(--gold)}
+
+/* tabs */
+.tabs{display:flex;gap:6px;margin-bottom:20px}
+.tab{background:var(--bg2);border:1px solid var(--border);border-radius:8px;color:var(--muted);font-family:'DM Mono',monospace;font-size:.78rem;padding:8px 18px;cursor:pointer;transition:all .14s}
+.tab:hover{color:var(--text)}
+.tab.on{background:var(--gold-dim);border-color:var(--gold);color:var(--gold-lit)}
+
+/* panel */
+.panel{display:none}.panel.on{display:block}
+
+/* ── month layout ── */
+.month-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:20px}
+@media(max-width:640px){.month-grid{grid-template-columns:1fr}}
+
+/* summary card */
+.sum-card{background:var(--card);border:1px solid var(--border);border-radius:14px;overflow:hidden}
+.sum-card.ok{border-top:3px solid var(--ok)}
+.sum-card.fail{border-top:3px solid var(--err)}
+.sc-head{padding:16px 20px 12px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:flex-start}
+.sc-name{font-family:'Amiri',serif;font-size:1.3rem;color:var(--gold-lit)}
+.sc-ar{font-family:'Amiri',serif;font-size:.88rem;color:var(--muted)}
+.badge{font-family:'DM Mono',monospace;font-size:.63rem;padding:3px 8px;border-radius:5px;text-transform:uppercase;letter-spacing:.07em}
+.badge.ok{background:rgba(90,206,160,.1);color:var(--ok);border:1px solid rgba(90,206,160,.27)}
+.badge.fail{background:rgba(224,120,120,.1);color:var(--err);border:1px solid rgba(224,120,120,.27)}
+.badge.info{background:rgba(120,174,224,.1);color:var(--info);border:1px solid rgba(120,174,224,.27)}
+.badge.warn{background:rgba(224,196,120,.1);color:var(--warn);border:1px solid rgba(224,196,120,.27)}
+
+.sc-date{padding:14px 20px;border-bottom:1px solid var(--border)}
+.sc-lbl{font-family:'DM Mono',monospace;font-size:.62rem;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-bottom:2px}
+.sc-val{font-family:'Amiri',serif;font-size:1.65rem;color:var(--text);line-height:1.2}
+.sc-sub{font-size:.8rem;color:var(--muted);margin-top:1px}
+
+.sc-times{display:grid;grid-template-columns:1fr 1fr}
+.t-item{padding:11px 17px;border-right:1px solid var(--border);border-bottom:1px solid var(--border)}
+.t-item:nth-child(even){border-right:none}
+.t-item:nth-last-child(-n+2){border-bottom:none}
+.t-lbl{font-family:'DM Mono',monospace;font-size:.6rem;text-transform:uppercase;letter-spacing:.09em;color:var(--muted);margin-bottom:2px}
+.t-val{font-family:'DM Mono',monospace;font-size:.88rem;color:var(--text)}
+.t-val.g{color:var(--gold)}
+
+/* param row */
+.param-row{padding:13px 20px;border-bottom:1px solid var(--border)}
+.param-title{font-family:'DM Mono',monospace;font-size:.6rem;text-transform:uppercase;letter-spacing:.09em;color:var(--muted);margin-bottom:7px}
+.chips{display:flex;gap:7px;flex-wrap:wrap}
+.chip{background:var(--bg2);border:1px solid var(--border);border-radius:6px;padding:6px 10px;font-family:'DM Mono',monospace;font-size:.7rem;display:flex;flex-direction:column;gap:1px;min-width:60px}
+.chip .cl{font-size:.56rem;color:var(--muted);letter-spacing:.08em;text-transform:uppercase}
+.chip .cv{color:var(--text)}
+.chip.ok .cv{color:var(--ok)}
+.chip.fail .cv{color:var(--err)}
+
+/* scores */
+.scores-row{padding:12px 20px;border-bottom:1px solid var(--border)}
+.sc-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:7px}
+.score-b{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:9px 12px}
+.sn{font-family:'DM Mono',monospace;font-size:.6rem;text-transform:uppercase;letter-spacing:.09em;color:var(--muted);margin-bottom:2px}
+.sv{font-family:'DM Mono',monospace;font-size:1.05rem;color:var(--gold-lit);margin-bottom:2px}
+.sk{font-size:.74rem;color:var(--text);line-height:1.3}
+
+/* prob */
+.prob-row{padding:11px 20px}
+.prob-top{display:flex;justify-content:space-between;margin-bottom:6px}
+.prob-lbl{font-family:'DM Mono',monospace;font-size:.6rem;text-transform:uppercase;letter-spacing:.09em;color:var(--muted)}
+.prob-num{font-family:'DM Mono',monospace;font-size:.8rem;color:var(--gold)}
+.track{height:4px;background:var(--bg2);border-radius:2px;overflow:hidden;border:1px solid var(--border)}
+.fill{height:100%;border-radius:2px;background:linear-gradient(90deg,var(--gold),var(--gold-lit));transition:width .65s ease}
+
+/* kontras */
+.kontras-row{padding:11px 20px;border-top:1px solid var(--border)}
+.kval{font-family:'DM Mono',monospace;font-size:.82rem;color:var(--text)}
+.kval span{color:var(--gold);margin-right:8px}
+
+/* ── Detail accordion per hari ── */
+.days-section{margin-top:14px}
+.day-block{background:var(--card2);border:1px solid var(--border);border-radius:10px;margin-bottom:8px;overflow:hidden}
+.day-toggle{width:100%;background:transparent;border:none;padding:12px 18px;display:flex;justify-content:space-between;align-items:center;cursor:pointer;color:var(--text);font-family:'DM Mono',monospace;font-size:.78rem;text-align:left}
+.day-toggle:hover{background:rgba(200,146,42,.06)}
+.day-toggle .arrow{transition:transform .18s;font-size:.7rem;color:var(--muted)}
+.day-toggle.open .arrow{transform:rotate(180deg)}
+.day-body{display:none;padding:14px 18px;border-top:1px solid var(--border)}
+.day-body.open{display:block}
+
+.day-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:8px;margin-bottom:10px}
+.dg-item{background:var(--bg2);border:1px solid var(--border);border-radius:7px;padding:8px 11px}
+.dg-lbl{font-family:'DM Mono',monospace;font-size:.58rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-bottom:2px}
+.dg-val{font-family:'DM Mono',monospace;font-size:.85rem;color:var(--text)}
+.dg-val.ok{color:var(--ok)}.dg-val.fail{color:var(--err)}.dg-val.gold{color:var(--gold)}
+
+.warn-box{background:rgba(224,196,120,.08);border:1px solid rgba(224,196,120,.25);border-radius:7px;padding:9px 13px;font-family:'DM Mono',monospace;font-size:.75rem;color:var(--warn);margin-top:8px}
+
+/* ── Scan indonesia ── */
+.scan-section{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:18px 22px;margin-top:14px}
+.scan-title{font-family:'DM Mono',monospace;font-size:.66rem;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-bottom:12px}
+.scan-stat{font-family:'DM Mono',monospace;font-size:.82rem;color:var(--text);margin-bottom:10px}
+.scan-stat strong{color:var(--gold)}
+.scan-dots{display:flex;flex-wrap:wrap;gap:5px}
+.scan-dot{font-family:'DM Mono',monospace;font-size:.65rem;background:rgba(90,206,160,.08);border:1px solid rgba(90,206,160,.2);color:var(--ok);border-radius:5px;padding:3px 7px}
+
+/* ── Index table ── */
+.idx-wrap{background:var(--card);border:1px solid var(--border);border-radius:13px;overflow:hidden;margin-top:22px}
+.idx-wrap table{width:100%;border-collapse:collapse;font-family:'DM Mono',monospace;font-size:.74rem}
+.idx-wrap th{padding:9px 14px;text-align:left;font-size:.6rem;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);border-bottom:1px solid var(--border);background:var(--bg2);font-weight:400}
+.idx-wrap td{padding:9px 14px;border-bottom:1px solid var(--border);color:var(--text)}
+.idx-wrap tr:last-child td{border-bottom:none}
+.idx-wrap tr:hover td{background:var(--bg2)}
+.idx-wrap td a{color:var(--gold);text-decoration:none;cursor:pointer}
+.idx-wrap td a:hover{color:var(--gold-lit);text-decoration:underline}
+.dot{width:6px;height:6px;border-radius:50%;display:inline-block;margin-right:4px}
+.dot.ok{background:var(--ok)}.dot.fail{background:var(--err)}.dot.na{background:var(--muted)}
+
+footer{margin-top:64px;text-align:center;font-family:'DM Mono',monospace;font-size:.67rem;color:var(--muted);letter-spacing:.04em;opacity:.45;border-top:1px solid var(--border);padding-top:22px}
+</style>
+</head>
+<body>
+<canvas id="sky"></canvas>
+<div class="page">
+
+<header>
+  <svg class="moon-svg" viewBox="0 0 68 68" fill="none">
+    <circle cx="34" cy="34" r="32" stroke="#c8922a" stroke-width="1" opacity=".18"/>
+    <path d="M34 6 C18 6 8 19 8 34 C8 49 18 62 34 62 C22 55 14 45 14 34 C14 23 22 13 34 6Z" fill="#c8922a" opacity=".85"/>
+    <circle cx="44" cy="18" r="2.5" fill="#e8b84b" opacity=".6"/>
+    <circle cx="52" cy="32" r="1.5" fill="#e8b84b" opacity=".38"/>
+    <circle cx="42" cy="44" r="2" fill="#e8b84b" opacity=".5"/>
+  </svg>
+  <h1 class="arabic">&#x647;&#x650;&#x633;&#x064E;&#x627;&#x628; &#x627;&#x644;&#x652;&#x647;&#x650;&#x644;&#x627;&#x644;</h1>
+  <p class="latin-title">Hisab Awal Bulan Hijriyah</p>
+  <p class="sub">MABIMS 2022 &middot; Yallop 1998 &middot; Odeh 2006 &middot; Jakarta (6&deg;S 107&deg;E)</p>
+</header>
+
+<div class="ctrl">
+  <span class="lbl">Pilih Tahun</span>
+  <div class="qy-row" id="qy-row"><span style="font-family:'DM Mono',monospace;font-size:.72rem;color:var(--muted)">Memuat...</span></div>
+  <span class="lbl" style="margin-top:8px">Manual</span>
+  <div class="inp-row">
+    <input type="number" id="yr-inp" class="yr-inp" placeholder="1446" min="1400" max="1500">
+    <button class="btn-go" id="btn-go" onclick="go()">Tampilkan &#9789;</button>
+  </div>
+  <div class="loc-row">
+    <div class="loc-i">Lintang<span>6.21&deg; LS</span></div>
+    <div class="loc-i">Bujur<span>106.85&deg; BT</span></div>
+    <div class="loc-i">Elevasi<span>8 m</span></div>
+    <div class="loc-i">WIB (UTC+7)</div>
+    <div class="loc-i" id="dt-box" style="display:none">&#916;T<span id="dt-val">&#8212;</span></div>
+  </div>
+</div>
+
+<div class="err-box" id="err-box"></div>
+<div class="loading" id="loading">
+  <div class="cres">
+    <svg viewBox="0 0 52 52" fill="none">
+      <path d="M26 3 A23 23 0 0 1 26 49 A15 15 0 0 0 26 3Z" fill="#c8922a" opacity=".9"/>
+      <circle cx="26" cy="26" r="24" stroke="#c8922a" stroke-width="1.2" opacity=".18" fill="none"/>
+    </svg>
+  </div>
+  <p class="ltxt" id="ltxt">Memuat data...</p>
+</div>
+
+<div class="results" id="results">
+  <div class="res-meta">
+    <span>Tahun <strong id="r-th">&#8212;</strong> H / <strong id="r-m">&#8212;</strong> M</span>
+    <span>&#916;T &asymp; <strong id="r-dt">&#8212;</strong> detik</span>
+  </div>
+
+  <div class="tabs">
+    <button class="tab on" onclick="switchTab('ramadan',this)">Ramadan</button>
+    <button class="tab" onclick="switchTab('syawal',this)">Syawal</button>
+    <button class="tab" onclick="switchTab('semua',this)">Semua Tahun</button>
+  </div>
+
+  <div class="panel on" id="panel-ramadan"></div>
+  <div class="panel" id="panel-syawal"></div>
+  <div class="panel" id="panel-semua"></div>
+</div>
+
+<footer>
+  Ephemeris DE440s / DE421 &middot; Skyfield &middot; Data precomputed &middot; Tanpa server<br>
+  Hisab Hilal Indonesia &mdash; Jakarta &middot; T=25&deg;C P=1010 mbar
+</footer>
+</div>
+
+<script>
+// ── Starfield ─────────────────────────────────────────────────────
+(function(){
+  var c=document.getElementById('sky'),ctx=c.getContext('2d'),s=[];
+  function rsz(){c.width=innerWidth;c.height=innerHeight}
+  function init(){s=[];var n=Math.floor(c.width*c.height/5200);for(var i=0;i<n;i++)s.push({x:Math.random()*c.width,y:Math.random()*c.height,r:Math.random()*1.1+.2,a:Math.random(),da:(Math.random()*.004+.001)*(Math.random()<.5?1:-1)})}
+  function draw(){ctx.clearRect(0,0,c.width,c.height);for(var i=0;i<s.length;i++){var p=s[i];p.a=Math.max(.1,Math.min(.88,p.a+p.da));if(p.a<=.1||p.a>=.88)p.da*=-1;ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);ctx.fillStyle='rgba(220,210,190,'+p.a*.42+')';ctx.fill()}requestAnimationFrame(draw)}
+  rsz();init();draw();window.addEventListener('resize',function(){rsz();init()});
+})();
+
+// ── Helpers ───────────────────────────────────────────────────────
+function e(s){return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}
+function f(v,d,u){if(v===null||v===undefined)return '&#8212;';return (+v).toFixed(d||2)+(u?' '+u:'')}
+function fDate(s){if(!s)return '&#8212;';return new Date(s+'T12:00:00').toLocaleDateString('id-ID',{weekday:'long',day:'numeric',month:'long',year:'numeric'})}
+
+// ── State ─────────────────────────────────────────────────────────
+var IDX=null, CUR=null;
+
+// ── Index ─────────────────────────────────────────────────────────
+async function loadIdx(){
+  try{
+    var r=await fetch('data/index.json');
+    if(!r.ok)throw 0;
+    IDX=await r.json();
+    renderQY();renderSemua();
+  }catch(x){
+    document.getElementById('qy-row').innerHTML='<span style="font-family:\'DM Mono\',monospace;font-size:.72rem;color:var(--muted)">Masukkan tahun manual</span>';
+  }
+}
+
+function renderQY(){
+  var w=document.getElementById('qy-row');w.innerHTML='';
+  if(!IDX)return;
+  IDX.tahun_tersedia.forEach(function(t){
+    var b=document.createElement('button');
+    b.className='btn-yr';b.textContent=t+' H';b.setAttribute('data-t',t);
+    b.onclick=function(){go(t)};w.appendChild(b);
+  });
+}
+
+function renderSemua(){
+  var p=document.getElementById('panel-semua');
+  if(!IDX||!IDX.data.length){p.innerHTML='<p style="color:var(--muted);font-family:\'DM Mono\',monospace;font-size:.8rem">Tidak ada data index.</p>';return}
+  var rows=IDX.data.map(function(row){
+    return '<tr>'
+      +'<td><a onclick="go('+row.tahun+')">'+row.tahun+'</a></td>'
+      +'<td>'+row.tahun_masehi+'</td>'
+      +'<td>'+fDate(row.ramadan.tanggal)+'</td>'
+      +'<td>'+dotB(row.ramadan.mabims)+'</td>'
+      +'<td>'+f(row.ramadan.yallop_q,2)+'</td>'
+      +'<td>'+f(row.ramadan.odeh_v,2)+'</td>'
+      +'<td>'+f(row.ramadan.prob,0,'%')+'</td>'
+      +'<td>'+fDate(row.syawal.tanggal)+'</td>'
+      +'<td>'+dotB(row.syawal.mabims)+'</td>'
+      +'<td>'+f(row.syawal.yallop_q,2)+'</td>'
+      +'<td>'+f(row.syawal.odeh_v,2)+'</td>'
+      +'<td>'+f(row.syawal.prob,0,'%')+'</td>'
+      +'</tr>';
+  }).join('');
+  p.innerHTML='<div class="idx-wrap" style="overflow-x:auto"><table>'
+    +'<thead><tr><th>Tahun H</th><th>M</th><th>1 Ramadan</th><th>MAB</th><th>q</th><th>V</th><th>P%</th><th>1 Syawal</th><th>MAB</th><th>q</th><th>V</th><th>P%</th></tr></thead>'
+    +'<tbody>'+rows+'</tbody></table></div>';
+}
+
+function dotB(v){
+  if(v===true)return '<span class="dot ok"></span><span style="color:var(--ok)">&#10003;</span>';
+  if(v===false)return '<span class="dot fail"></span><span style="color:var(--err)">&#10007;</span>';
+  return '<span class="dot na"></span><span style="color:var(--muted)">—</span>';
+}
+
+// ── Load year ─────────────────────────────────────────────────────
+async function go(arg){
+  var inp=document.getElementById('yr-inp');
+  var t=arg||parseInt(inp.value);
+  if(!t||t<1400||t>1500){showErr('Tahun Hijriah harus 1400–1500');return}
+  document.querySelectorAll('.btn-yr').forEach(function(b){b.classList.remove('on')});
+  var ab=document.querySelector('.btn-yr[data-t="'+t+'"]');if(ab)ab.classList.add('on');
+  if(!arg)inp.value=t;
+  hide();setState('loading','Memuat tahun '+t+' H...');
+  try{
+    var r=await fetch('data/'+t+'.json');
+    if(!r.ok)throw new Error('Data '+t+' H belum ada.\nJalankan: python generate_json.py --tahun '+t);
+    CUR=await r.json();
+    render();
+  }catch(ex){setState('error',ex.message)}
+}
+
+// ── Render ────────────────────────────────────────────────────────
+function render(){
+  hide();
+  document.getElementById('r-th').textContent=CUR.tahun;
+  document.getElementById('r-m').textContent=CUR.tahun_masehi;
+  document.getElementById('r-dt').textContent=CUR.delta_t;
+  document.getElementById('dt-box').style.display='';
+  document.getElementById('dt-val').textContent=' '+CUR.delta_t+' dtk';
+  document.getElementById('panel-ramadan').innerHTML=buildMonth(CUR.ramadan,'Ramadan','\u0631\u064e\u0645\u064e\u0636\u064e\u0627\u0646',CUR.tahun);
+  document.getElementById('panel-syawal').innerHTML=buildMonth(CUR.syawal,'Syawal','\u0634\u064e\u0648\u064e\u0651\u0627\u0644',CUR.tahun);
+  document.getElementById('results').classList.add('on');
+  switchTab('ramadan',document.querySelector('.tab.on'));
+  document.getElementById('results').scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+// ── Build month panel ─────────────────────────────────────────────
+function buildMonth(d,name,ar,tahun){
+  if(!d)return '<p style="color:var(--muted)">Data tidak tersedia.</p>';
+  var rk=d.ringkas||{};
+  var ok=d.mabims_lolos;
+  var mBadge=ok?'<span class="badge ok">&#10003; MABIMS Lolos</span>':'<span class="badge fail">&#10007; MABIMS Gagal</span>';
+
+  // Summary card
+  var chips='';
+  if(rk.alt!==undefined){
+    var hari_lolos=d.hari_diperiksa&&d.hari_diperiksa.find(function(h){return h.lolos_mabims});
+    var dd=hari_lolos&&hari_lolos.mabims||{};
+    chips=[
+      {l:'Altitude',   v:f(dd.alt,2,'&deg;'),       ok2:dd.alt_ok},
+      {l:'Elong Geo',  v:f(dd.elong_geo,2,'&deg;'),  ok2:dd.elong_ok},
+      {l:'Umur Bulan', v:f(dd.umur,1,' jam'),        ok2:dd.umur_ok},
+      {l:'ARCV',       v:f(rk.arcv,2,'&deg;'),       ok2:null},
+      {l:'Elongasi',   v:f(rk.elongasi_top,2,'&deg;'),ok2:null},
+      {l:'Lebar Sabit',v:f(rk.lebar_sabit,2,'&prime;'),ok2:null},
+      {l:'Illuminasi', v:f(rk.illumination,2,'%'),   ok2:null},
+    ].map(function(c){return '<div class="chip '+(c.ok2===true?'ok':c.ok2===false?'fail':'')+'"><span class="cl">'+c.l+'</span><span class="cv">'+c.v+'</span></div>'}).join('');
+  }
+
+  var kontrasRow='';
+  if(rk.kontras){
+    kontrasRow='<div class="kontras-row"><span class="t-lbl">Kontras</span>&nbsp;&nbsp;'
+      +'<span class="kval"><span>'+f(rk.kontras.nilai,4)+'</span>'+e(rk.kontras.keterangan||'')+'</span></div>';
+  }
+
+  var prob=rk.prob||0;
+  var scanHtml=buildScan(d);
+  var daysHtml=buildDays(d.hari_diperiksa||[]);
+
+  return '<div class="month-grid">'
+    // Left: summary card
+    +'<div class="sum-card '+(ok?'ok':'fail')+'">'
+    +'<div class="sc-head"><div><div class="sc-name">'+name+'</div><div class="sc-ar">'+ar+'</div></div>'+mBadge+'</div>'
+    +'<div class="sc-date"><div class="sc-lbl">1 '+name+' '+tahun+' H</div><div class="sc-val">'+fDate(d.tanggal_awal)+'</div><div class="sc-sub">Ijtimak: '+e(d.ijtimak_wib||'&#8212;')+'</div></div>'
+    +'<div class="sc-times">'
+    +'<div class="t-item"><div class="t-lbl">Maghrib</div><div class="t-val g">'+(rk.maghrib||'&#8212;')+'</div></div>'
+    +'<div class="t-item"><div class="t-lbl">Moonset</div><div class="t-val">'+(rk.moonset||'&#8212;')+'</div></div>'
+    +'<div class="t-item" style="border-bottom:none"><div class="t-lbl">Best Time</div><div class="t-val">'+(rk.best_time||'&#8212;')+'</div></div>'
+    +'<div class="t-item" style="border-bottom:none;border-right:none"><div class="t-lbl">Umur Bulan</div><div class="t-val">'+f(rk.umur,1,' jam')+'</div></div>'
+    +'</div>'
+    +(chips?'<div class="param-row"><div class="param-title">Parameter '+(e(rk.mabims_label||'MABIMS'))+'</div><div class="chips">'+chips+'</div></div>':'')
+    +'<div class="scores-row"><div class="param-title">Kriteria Visibilitas</div><div class="sc-grid">'
+    +'<div class="score-b"><div class="sn">Yallop q</div><div class="sv">'+f(rk.yallop_q,3)+'</div><div class="sk">'+e(rk.yallop_klas||'&#8212;')+'</div></div>'
+    +'<div class="score-b"><div class="sn">Odeh V</div><div class="sv">'+f(rk.odeh_v,3)+'</div><div class="sk">'+e(rk.odeh_klas||'&#8212;')+'</div></div>'
+    +'</div></div>'
+    +'<div class="prob-row"><div class="prob-top"><span class="prob-lbl">Probabilitas Terlihat</span><span class="prob-num">'+f(prob,1,'%')+'</span></div><div class="track"><div class="fill" style="width:'+Math.min(100,Math.max(0,prob))+'%"></div></div></div>'
+    +kontrasRow
+    +'</div>'
+
+    // Right: scan indonesia
+    +'<div>'
+    +scanHtml
+    +'</div>'
+    +'</div>'
+
+    // Days detail
+    +daysHtml;
+}
+
+// ── Scan Indonesia ────────────────────────────────────────────────
+function buildScan(d){
+  var lolos=d.hari_diperiksa&&d.hari_diperiksa.find(function(h){return h.lolos_mabims});
+  var sc=lolos&&lolos.scan_indonesia||d.scan_indonesia;
+  if(!sc)return '<div class="scan-section"><div class="scan-title">Scan Visibilitas Indonesia</div><p style="color:var(--muted);font-family:\'DM Mono\',monospace;font-size:.74rem">Data tidak tersedia</p></div>';
+
+  var dots=(sc.titik_sampel||[]).map(function(p){
+    return '<div class="scan-dot">'+p.lat+'&deg;, '+p.lon+'&deg;</div>';
+  }).join('');
+
+  return '<div class="scan-section">'
+    +'<div class="scan-title">&#9679; Scan Visibilitas Indonesia</div>'
+    +'<div class="scan-stat"><strong>'+sc.n_titik_grid+'</strong> titik grid terlihat hilal</div>'
+    +(dots?'<div class="scan-dots">'+dots+'</div>':'<p style="color:var(--muted);font-family:\'DM Mono\',monospace;font-size:.72rem">Tidak ada titik potensial rukyat</p>')
+    +'</div>';
+}
+
+// ── Days detail ───────────────────────────────────────────────────
+function buildDays(days){
+  if(!days.length)return '';
+  var uid=Math.random().toString(36).slice(2,7);
+  var html='<div class="days-section"><div class="param-title" style="margin-bottom:10px">&#8615; Detail Tiap Hari Diperiksa</div>';
+
+  days.forEach(function(h,i){
+    var id='d'+uid+i;
+    var mb=h.mabims||{};
+    var statusBadge=h.lolos_mabims
+      ?'<span class="badge ok" style="margin-left:8px">&#10003; Lolos</span>'
+      :'<span class="badge fail" style="margin-left:8px">&#10007; Gagal</span>';
+    if(h.borderline)statusBadge+='<span class="badge warn" style="margin-left:5px">&#9888; Borderline</span>';
+
+    var vis=h.visibilitas||{};
+    var dg=[
+      {l:'Altitude (ref)',v:f(mb.alt,2,'&deg;'),    cls:mb.alt_ok?'ok':'fail'},
+      {l:'Elong Geo',     v:f(mb.elong_geo,2,'&deg;'),cls:mb.elong_ok?'ok':'fail'},
+      {l:'Umur Bulan',    v:f(mb.umur,1,' jam'),      cls:mb.umur_ok?'ok':'fail'},
+      {l:'ARCV',          v:f(vis.arcv,2,'&deg;'),    cls:''},
+      {l:'Alt (airless)', v:f(vis.alt_bulan_airless,2,'&deg;'),cls:''},
+      {l:'Elongasi Top',  v:f(vis.elongasi_top,2,'&deg;'),cls:''},
+      {l:'Lebar Sabit',   v:f(vis.lebar_sabit_menit,2,'&prime;'),cls:''},
+      {l:'Illuminasi',    v:f(vis.illumination_pct,2,'%'),cls:''},
+      {l:'Yallop q',      v:f(h.yallop&&h.yallop.q,3),cls:'gold'},
+      {l:'Odeh V',        v:f(h.odeh&&h.odeh.v,3),   cls:'gold'},
+      {l:'Prob',          v:f(h.probabilitas_pct,1,'%'),cls:''},
+      {l:'Kontras',       v:f(h.kontras&&h.kontras.nilai,4),cls:''},
+    ].map(function(g){
+      return '<div class="dg-item"><div class="dg-lbl">'+g.l+'</div><div class="dg-val '+g.cls+'">'+g.v+'</div></div>';
+    }).join('');
+
+    var warnHtml='';
+    if(h.borderline){
+      warnHtml='<div class="warn-box">&#9888; Elongasi borderline: '+h.borderline.elong_actual+'&deg; (kurang '+h.borderline.kurang_dari+'&deg; dari threshold). '+e(h.borderline.pesan)+'</div>';
+    }
+
+    var kelas_y=h.yallop&&h.yallop.kelas?e(h.yallop.kelas):'&#8212;';
+    var kelas_o=h.odeh&&h.odeh.kelas?e(h.odeh.kelas):'&#8212;';
+
+    html+='<div class="day-block">'
+      +'<button class="day-toggle" id="btn'+id+'" onclick="toggleDay(\''+id+'\')">'
+      +'<span>'+e(h.tanggal||'')+'&nbsp;&nbsp;'+(h.maghrib||'')+'&nbsp;&nbsp;'+(h.best_time?'best:'+h.best_time:'')+'</span>'
+      +'<span>'+statusBadge+'&nbsp;<span class="arrow">&#9660;</span></span>'
+      +'</button>'
+      +'<div class="day-body" id="'+id+'">'
+      +'<div class="day-grid">'+dg+'</div>'
+      +'<div style="font-family:\'DM Mono\',monospace;font-size:.72rem;color:var(--muted);margin-top:6px">'
+      +'Yallop: <span style="color:var(--text)">'+kelas_y+'</span> &nbsp;|&nbsp; '
+      +'Odeh: <span style="color:var(--text)">'+kelas_o+'</span>'
+      +(h.kontras&&h.kontras.keterangan?' &nbsp;|&nbsp; Kontras: <span style="color:var(--text)">'+e(h.kontras.keterangan)+'</span>':'')
+      +'</div>'
+      +warnHtml
+      +'</div></div>';
+  });
+
+  return html+'</div>';
+}
+
+function toggleDay(id){
+  var b=document.getElementById('btn'+id);
+  var body=document.getElementById(id);
+  b.classList.toggle('open');
+  body.classList.toggle('open');
+}
+
+// ── Tabs ──────────────────────────────────────────────────────────
+function switchTab(name,btn){
+  document.querySelectorAll('.tab').forEach(function(t){t.classList.remove('on')});
+  document.querySelectorAll('.panel').forEach(function(p){p.classList.remove('on')});
+  if(btn)btn.classList.add('on');
+  var p=document.getElementById('panel-'+name);if(p)p.classList.add('on');
+}
+
+// ── UI ────────────────────────────────────────────────────────────
+function hide(){
+  document.getElementById('loading').classList.remove('on');
+  document.getElementById('results').classList.remove('on');
+  var eb=document.getElementById('err-box');eb.classList.remove('on');eb.style.display='none';
+}
+function setState(s,msg){
+  hide();
+  if(s==='loading'){document.getElementById('ltxt').textContent=msg;document.getElementById('loading').classList.add('on')}
+  else if(s==='error'){var b=document.getElementById('err-box');b.style.display='block';b.innerHTML='&#9888; '+e(msg).replace(/\n/g,'<br>');b.classList.add('on')}
+}
+function showErr(msg){setState('error',msg)}
+
+// ── Init ──────────────────────────────────────────────────────────
+document.getElementById('yr-inp').addEventListener('keydown',function(ev){if(ev.key==='Enter')go()});
+loadIdx();
+</script>
+</body>
+</html>

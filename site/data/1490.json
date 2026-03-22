@@ -1,0 +1,705 @@
+{
+  "tahun": 1490,
+  "tahun_masehi": 2067,
+  "delta_t": 103.8,
+  "lokasi": {
+    "lat": -6.2088,
+    "lon": 106.8456,
+    "elevasi": 8.0,
+    "tz": "WIB (UTC+7)",
+    "T_C": 25.0,
+    "P_mbar": 1010.0
+  },
+  "ramadan": {
+    "tanggal_awal": "2067-11-09",
+    "ijtimak_wib": "07-11-2067 07:14 WIB",
+    "ijtimak_tgl_lokal": "2067-11-07",
+    "ijtimak_posisi": "sebelum",
+    "hari_diperiksa": [
+      {
+        "tanggal": "2067-11-07",
+        "maghrib": "17:47 WIB",
+        "maghrib_utc": "10:47 UTC",
+        "moonset": "18:03 WIB",
+        "moonset_utc": "11:03 UTC",
+        "best_time": "17:54 WIB",
+        "mabims": {
+          "label": "Neo MABIMS (2022+)",
+          "lolos": false,
+          "alt": 3.36,
+          "alt_ok": true,
+          "elong_geo": 5.68,
+          "elong_ok": false,
+          "umur": 10.5,
+          "umur_ok": true
+        },
+        "borderline": {
+          "elong_actual": 5.68,
+          "kurang_dari": 0.72,
+          "pesan": "Rukyat mungkin berhasil, keputusan final di Sidang Isbat"
+        },
+        "visibilitas": {
+          "alt_bulan_airless": 1.5,
+          "alt_matahari_airless": -2.58,
+          "elongasi_top": 4.93,
+          "arcv": 4.07,
+          "lebar_sabit_menit": 0.06,
+          "illumination_pct": 99.75
+        },
+        "yallop": {
+          "q": -0.74,
+          "huruf": "E",
+          "kelas": "E — tidak terlihat walau dengan teleskop"
+        },
+        "odeh": {
+          "v": -2.73,
+          "huruf": "D",
+          "kelas": "D — Tidak terlihat"
+        },
+        "probabilitas_pct": 0.4,
+        "kontras": {
+          "nilai": 0.0008,
+          "keterangan": "Hampir mustahil terlihat"
+        },
+        "lolos_mabims": false,
+        "awal_bulan": null,
+        "scan_indonesia": null
+      },
+      {
+        "tanggal": "2067-11-08",
+        "maghrib": "17:47 WIB",
+        "maghrib_utc": "10:47 UTC",
+        "moonset": "18:59 WIB",
+        "moonset_utc": "11:59 UTC",
+        "best_time": "18:19 WIB",
+        "mabims": {
+          "label": "Neo MABIMS (2022+)",
+          "lolos": true,
+          "alt": 15.63,
+          "alt_ok": true,
+          "elong_geo": 17.75,
+          "elong_ok": true,
+          "umur": 34.5,
+          "umur_ok": true
+        },
+        "borderline": null,
+        "visibilitas": {
+          "alt_bulan_airless": 8.38,
+          "alt_matahari_airless": -8.44,
+          "elongasi_top": 17.09,
+          "arcv": 16.82,
+          "lebar_sabit_menit": 0.7,
+          "illumination_pct": 97.55
+        },
+        "yallop": {
+          "q": 0.91,
+          "huruf": "A",
+          "kelas": "A — mudah terlihat mata telanjang"
+        },
+        "odeh": {
+          "v": 13.74,
+          "huruf": "A",
+          "kelas": "A — Mudah terlihat (mata telanjang)"
+        },
+        "probabilitas_pct": 100.0,
+        "kontras": {
+          "nilai": 0.7981,
+          "keterangan": "Sangat mudah terlihat"
+        },
+        "lolos_mabims": true,
+        "awal_bulan": "2067-11-09",
+        "scan_indonesia": {
+          "n_titik_grid": 40,
+          "titik_sampel": [
+            {
+              "lat": -10.0,
+              "lon": 95.0
+            },
+            {
+              "lat": -10.0,
+              "lon": 101.0
+            },
+            {
+              "lat": -10.0,
+              "lon": 107.0
+            },
+            {
+              "lat": -10.0,
+              "lon": 113.0
+            },
+            {
+              "lat": -10.0,
+              "lon": 119.0
+            },
+            {
+              "lat": -10.0,
+              "lon": 125.0
+            },
+            {
+              "lat": -10.0,
+              "lon": 131.0
+            },
+            {
+              "lat": -10.0,
+              "lon": 137.0
+            },
+            {
+              "lat": -6.0,
+              "lon": 95.0
+            },
+            {
+              "lat": -6.0,
+              "lon": 101.0
+            },
+            {
+              "lat": -6.0,
+              "lon": 107.0
+            },
+            {
+              "lat": -6.0,
+              "lon": 113.0
+            },
+            {
+              "lat": -6.0,
+              "lon": 119.0
+            },
+            {
+              "lat": -6.0,
+              "lon": 125.0
+            },
+            {
+              "lat": -6.0,
+              "lon": 131.0
+            }
+          ]
+        }
+      }
+    ],
+    "hari_lolos": {
+      "tanggal": "2067-11-08",
+      "maghrib": "17:47 WIB",
+      "maghrib_utc": "10:47 UTC",
+      "moonset": "18:59 WIB",
+      "moonset_utc": "11:59 UTC",
+      "best_time": "18:19 WIB",
+      "mabims": {
+        "label": "Neo MABIMS (2022+)",
+        "lolos": true,
+        "alt": 15.63,
+        "alt_ok": true,
+        "elong_geo": 17.75,
+        "elong_ok": true,
+        "umur": 34.5,
+        "umur_ok": true
+      },
+      "borderline": null,
+      "visibilitas": {
+        "alt_bulan_airless": 8.38,
+        "alt_matahari_airless": -8.44,
+        "elongasi_top": 17.09,
+        "arcv": 16.82,
+        "lebar_sabit_menit": 0.7,
+        "illumination_pct": 97.55
+      },
+      "yallop": {
+        "q": 0.91,
+        "huruf": "A",
+        "kelas": "A — mudah terlihat mata telanjang"
+      },
+      "odeh": {
+        "v": 13.74,
+        "huruf": "A",
+        "kelas": "A — Mudah terlihat (mata telanjang)"
+      },
+      "probabilitas_pct": 100.0,
+      "kontras": {
+        "nilai": 0.7981,
+        "keterangan": "Sangat mudah terlihat"
+      },
+      "lolos_mabims": true,
+      "awal_bulan": "2067-11-09",
+      "scan_indonesia": {
+        "n_titik_grid": 40,
+        "titik_sampel": [
+          {
+            "lat": -10.0,
+            "lon": 95.0
+          },
+          {
+            "lat": -10.0,
+            "lon": 101.0
+          },
+          {
+            "lat": -10.0,
+            "lon": 107.0
+          },
+          {
+            "lat": -10.0,
+            "lon": 113.0
+          },
+          {
+            "lat": -10.0,
+            "lon": 119.0
+          },
+          {
+            "lat": -10.0,
+            "lon": 125.0
+          },
+          {
+            "lat": -10.0,
+            "lon": 131.0
+          },
+          {
+            "lat": -10.0,
+            "lon": 137.0
+          },
+          {
+            "lat": -6.0,
+            "lon": 95.0
+          },
+          {
+            "lat": -6.0,
+            "lon": 101.0
+          },
+          {
+            "lat": -6.0,
+            "lon": 107.0
+          },
+          {
+            "lat": -6.0,
+            "lon": 113.0
+          },
+          {
+            "lat": -6.0,
+            "lon": 119.0
+          },
+          {
+            "lat": -6.0,
+            "lon": 125.0
+          },
+          {
+            "lat": -6.0,
+            "lon": 131.0
+          }
+        ]
+      }
+    },
+    "istikmal": null,
+    "scan_indonesia": {
+      "n_titik_grid": 40,
+      "titik_sampel": [
+        {
+          "lat": -10.0,
+          "lon": 95.0
+        },
+        {
+          "lat": -10.0,
+          "lon": 101.0
+        },
+        {
+          "lat": -10.0,
+          "lon": 107.0
+        },
+        {
+          "lat": -10.0,
+          "lon": 113.0
+        },
+        {
+          "lat": -10.0,
+          "lon": 119.0
+        },
+        {
+          "lat": -10.0,
+          "lon": 125.0
+        },
+        {
+          "lat": -10.0,
+          "lon": 131.0
+        },
+        {
+          "lat": -10.0,
+          "lon": 137.0
+        },
+        {
+          "lat": -6.0,
+          "lon": 95.0
+        },
+        {
+          "lat": -6.0,
+          "lon": 101.0
+        },
+        {
+          "lat": -6.0,
+          "lon": 107.0
+        },
+        {
+          "lat": -6.0,
+          "lon": 113.0
+        },
+        {
+          "lat": -6.0,
+          "lon": 119.0
+        },
+        {
+          "lat": -6.0,
+          "lon": 125.0
+        },
+        {
+          "lat": -6.0,
+          "lon": 131.0
+        }
+      ]
+    },
+    "mabims_lolos": true,
+    "ringkas": {
+      "tanggal": "2067-11-09",
+      "ijtimak": "07-11-2067 07:14 WIB",
+      "maghrib": "17:47 WIB",
+      "moonset": "18:59 WIB",
+      "best_time": "18:19 WIB",
+      "mabims_label": "Neo MABIMS (2022+)",
+      "alt": 15.63,
+      "alt_ok": true,
+      "elong_geo": 17.75,
+      "elong_ok": true,
+      "umur": 34.5,
+      "umur_ok": true,
+      "arcv": 16.82,
+      "elongasi_top": 17.09,
+      "lebar_sabit": 0.7,
+      "illumination": 97.55,
+      "yallop_q": 0.91,
+      "yallop_klas": "A — mudah terlihat mata telanjang",
+      "odeh_v": 13.74,
+      "odeh_klas": "A — Mudah terlihat (mata telanjang)",
+      "prob": 100.0,
+      "kontras": {
+        "nilai": 0.7981,
+        "keterangan": "Sangat mudah terlihat"
+      }
+    },
+    "_log_raw": "Perkiraan awal bulan 1490-9: 2067-11-08\nMencari new moon antara 2067-10-19 00:00:00+00:00 dan 2067-11-28 23:59:00+00:00\nDitemukan 1 new moon\nIjtimak: 07-11-2067 07:14 WIB, tanggal lokal: 2067-11-07\n  ℹ️  Ijtimak sebelum maghrib → pengecekan dimulai hari yang sama\n\nMemeriksa maghrib tanggal 2067-11-07\n  Maghrib: 17:47 WIB (10:47 UTC)\n  Moonset: 18:03 WIB (11:03 UTC)\n  Best time: 17:54 WIB\n  [MABIMS] Neo MABIMS (2022+): alt=3.36° (✓), elong_geo=5.68° (✗), umur=10.5 jam (✓) -> ❌ Gagal\n      ⚠️  Elongasi borderline (5.68°, kurang 0.72° dari threshold)\n          → Rukyat mungkin berhasil, keputusan final di Sidang Isbat\n  [VISIBILITAS] Altitude bulan (airless): 1.50°, Matahari: -2.58°\n    Elongasi (toposentrik): 4.93°, ARCV (airless): 4.07°\n    Lebar sabit (geometris): 0.06 menit busur\n    Illumination fraction: 99.75%\n    Yallop q = -0.74 -> E — tidak terlihat walau dengan teleskop\n    Odeh V = -2.73 -> D — Tidak terlihat\n    Probabilitas terlihat: 0.4%\n    Kontras hilal vs langit: 0.0008\n      → Hilal hampir mustahil terlihat\n\nMemeriksa maghrib tanggal 2067-11-08\n  Maghrib: 17:47 WIB (10:47 UTC)\n  Moonset: 18:59 WIB (11:59 UTC)\n  Best time: 18:19 WIB\n  [MABIMS] Neo MABIMS (2022+): alt=15.63° (✓), elong_geo=17.75° (✓), umur=34.5 jam (✓) -> ✅ Lolos\n  [VISIBILITAS] Altitude bulan (airless): 8.38°, Matahari: -8.44°\n    Elongasi (toposentrik): 17.09°, ARCV (airless): 16.82°\n    Lebar sabit (geometris): 0.70 menit busur\n    Illumination fraction: 97.55%\n    Yallop q = 0.91 -> A — mudah terlihat mata telanjang\n    Odeh V = 13.74 -> A — Mudah terlihat (mata telanjang)\n    Probabilitas terlihat: 100.0%\n    Kontras hilal vs langit: 0.7981\n      → Hilal sangat mudah terlihat\n\n=== SCAN VISIBILITAS INDONESIA (grid kasar) ===\nWilayah potensial rukyat: 40 titik grid\n  lat=-10.0, lon=95.0\n  lat=-10.0, lon=101.0\n  lat=-10.0, lon=107.0\n  lat=-10.0, lon=113.0\n  lat=-10.0, lon=119.0\n  lat=-10.0, lon=125.0\n  lat=-10.0, lon=131.0\n  lat=-10.0, lon=137.0\n  lat=-6.0, lon=95.0\n  lat=-6.0, lon=101.0\n  lat=-6.0, lon=107.0\n  lat=-6.0, lon=113.0\n  lat=-6.0, lon=119.0\n  lat=-6.0, lon=125.0\n  lat=-6.0, lon=131.0\n  ✅ Awal bulan = 2067-11-09 (sesuai MABIMS)\n"
+  },
+  "syawal": {
+    "tanggal_awal": "2067-12-08",
+    "ijtimak_wib": "06-12-2067 21:05 WIB",
+    "ijtimak_tgl_lokal": "2067-12-06",
+    "ijtimak_posisi": "setelah",
+    "hari_diperiksa": [
+      {
+        "tanggal": "2067-12-07",
+        "maghrib": "17:58 WIB",
+        "maghrib_utc": "10:58 UTC",
+        "moonset": "18:43 WIB",
+        "moonset_utc": "11:43 UTC",
+        "best_time": "18:18 WIB",
+        "mabims": {
+          "label": "Neo MABIMS (2022+)",
+          "lolos": true,
+          "alt": 9.6,
+          "alt_ok": true,
+          "elong_geo": 11.42,
+          "elong_ok": true,
+          "umur": 20.9,
+          "umur_ok": true
+        },
+        "borderline": null,
+        "visibilitas": {
+          "alt_bulan_airless": 5.02,
+          "alt_matahari_airless": -5.44,
+          "elongasi_top": 10.65,
+          "arcv": 10.46,
+          "lebar_sabit_menit": 0.28,
+          "illumination_pct": 98.98
+        },
+        "yallop": {
+          "q": 0.03,
+          "huruf": "B",
+          "kelas": "B — terlihat kondisi sempurna"
+        },
+        "odeh": {
+          "v": 5.0,
+          "huruf": "B",
+          "kelas": "B — Terlihat dengan alat bantu (bisa naked eye)"
+        },
+        "probabilitas_pct": 100.0,
+        "kontras": {
+          "nilai": 0.0404,
+          "keterangan": "Sangat sulit terlihat"
+        },
+        "lolos_mabims": true,
+        "awal_bulan": "2067-12-08",
+        "scan_indonesia": {
+          "n_titik_grid": 40,
+          "titik_sampel": [
+            {
+              "lat": -10.0,
+              "lon": 95.0
+            },
+            {
+              "lat": -10.0,
+              "lon": 101.0
+            },
+            {
+              "lat": -10.0,
+              "lon": 107.0
+            },
+            {
+              "lat": -10.0,
+              "lon": 113.0
+            },
+            {
+              "lat": -10.0,
+              "lon": 119.0
+            },
+            {
+              "lat": -10.0,
+              "lon": 125.0
+            },
+            {
+              "lat": -10.0,
+              "lon": 131.0
+            },
+            {
+              "lat": -10.0,
+              "lon": 137.0
+            },
+            {
+              "lat": -6.0,
+              "lon": 95.0
+            },
+            {
+              "lat": -6.0,
+              "lon": 101.0
+            },
+            {
+              "lat": -6.0,
+              "lon": 107.0
+            },
+            {
+              "lat": -6.0,
+              "lon": 113.0
+            },
+            {
+              "lat": -6.0,
+              "lon": 119.0
+            },
+            {
+              "lat": -6.0,
+              "lon": 125.0
+            },
+            {
+              "lat": -6.0,
+              "lon": 131.0
+            }
+          ]
+        }
+      }
+    ],
+    "hari_lolos": {
+      "tanggal": "2067-12-07",
+      "maghrib": "17:58 WIB",
+      "maghrib_utc": "10:58 UTC",
+      "moonset": "18:43 WIB",
+      "moonset_utc": "11:43 UTC",
+      "best_time": "18:18 WIB",
+      "mabims": {
+        "label": "Neo MABIMS (2022+)",
+        "lolos": true,
+        "alt": 9.6,
+        "alt_ok": true,
+        "elong_geo": 11.42,
+        "elong_ok": true,
+        "umur": 20.9,
+        "umur_ok": true
+      },
+      "borderline": null,
+      "visibilitas": {
+        "alt_bulan_airless": 5.02,
+        "alt_matahari_airless": -5.44,
+        "elongasi_top": 10.65,
+        "arcv": 10.46,
+        "lebar_sabit_menit": 0.28,
+        "illumination_pct": 98.98
+      },
+      "yallop": {
+        "q": 0.03,
+        "huruf": "B",
+        "kelas": "B — terlihat kondisi sempurna"
+      },
+      "odeh": {
+        "v": 5.0,
+        "huruf": "B",
+        "kelas": "B — Terlihat dengan alat bantu (bisa naked eye)"
+      },
+      "probabilitas_pct": 100.0,
+      "kontras": {
+        "nilai": 0.0404,
+        "keterangan": "Sangat sulit terlihat"
+      },
+      "lolos_mabims": true,
+      "awal_bulan": "2067-12-08",
+      "scan_indonesia": {
+        "n_titik_grid": 40,
+        "titik_sampel": [
+          {
+            "lat": -10.0,
+            "lon": 95.0
+          },
+          {
+            "lat": -10.0,
+            "lon": 101.0
+          },
+          {
+            "lat": -10.0,
+            "lon": 107.0
+          },
+          {
+            "lat": -10.0,
+            "lon": 113.0
+          },
+          {
+            "lat": -10.0,
+            "lon": 119.0
+          },
+          {
+            "lat": -10.0,
+            "lon": 125.0
+          },
+          {
+            "lat": -10.0,
+            "lon": 131.0
+          },
+          {
+            "lat": -10.0,
+            "lon": 137.0
+          },
+          {
+            "lat": -6.0,
+            "lon": 95.0
+          },
+          {
+            "lat": -6.0,
+            "lon": 101.0
+          },
+          {
+            "lat": -6.0,
+            "lon": 107.0
+          },
+          {
+            "lat": -6.0,
+            "lon": 113.0
+          },
+          {
+            "lat": -6.0,
+            "lon": 119.0
+          },
+          {
+            "lat": -6.0,
+            "lon": 125.0
+          },
+          {
+            "lat": -6.0,
+            "lon": 131.0
+          }
+        ]
+      }
+    },
+    "istikmal": null,
+    "scan_indonesia": {
+      "n_titik_grid": 40,
+      "titik_sampel": [
+        {
+          "lat": -10.0,
+          "lon": 95.0
+        },
+        {
+          "lat": -10.0,
+          "lon": 101.0
+        },
+        {
+          "lat": -10.0,
+          "lon": 107.0
+        },
+        {
+          "lat": -10.0,
+          "lon": 113.0
+        },
+        {
+          "lat": -10.0,
+          "lon": 119.0
+        },
+        {
+          "lat": -10.0,
+          "lon": 125.0
+        },
+        {
+          "lat": -10.0,
+          "lon": 131.0
+        },
+        {
+          "lat": -10.0,
+          "lon": 137.0
+        },
+        {
+          "lat": -6.0,
+          "lon": 95.0
+        },
+        {
+          "lat": -6.0,
+          "lon": 101.0
+        },
+        {
+          "lat": -6.0,
+          "lon": 107.0
+        },
+        {
+          "lat": -6.0,
+          "lon": 113.0
+        },
+        {
+          "lat": -6.0,
+          "lon": 119.0
+        },
+        {
+          "lat": -6.0,
+          "lon": 125.0
+        },
+        {
+          "lat": -6.0,
+          "lon": 131.0
+        }
+      ]
+    },
+    "mabims_lolos": true,
+    "ringkas": {
+      "tanggal": "2067-12-08",
+      "ijtimak": "06-12-2067 21:05 WIB",
+      "maghrib": "17:58 WIB",
+      "moonset": "18:43 WIB",
+      "best_time": "18:18 WIB",
+      "mabims_label": "Neo MABIMS (2022+)",
+      "alt": 9.6,
+      "alt_ok": true,
+      "elong_geo": 11.42,
+      "elong_ok": true,
+      "umur": 20.9,
+      "umur_ok": true,
+      "arcv": 10.46,
+      "elongasi_top": 10.65,
+      "lebar_sabit": 0.28,
+      "illumination": 98.98,
+      "yallop_q": 0.03,
+      "yallop_klas": "B — terlihat kondisi sempurna",
+      "odeh_v": 5.0,
+      "odeh_klas": "B — Terlihat dengan alat bantu (bisa naked eye)",
+      "prob": 100.0,
+      "kontras": {
+        "nilai": 0.0404,
+        "keterangan": "Sangat sulit terlihat"
+      }
+    },
+    "_log_raw": "Perkiraan awal bulan 1490-10: 2067-12-08\nMencari new moon antara 2067-11-18 00:00:00+00:00 dan 2067-12-28 23:59:00+00:00\nDitemukan 1 new moon\nIjtimak: 06-12-2067 21:05 WIB, tanggal lokal: 2067-12-06\n  ℹ️  Ijtimak setelah maghrib → pengecekan dimulai besok\n\nMemeriksa maghrib tanggal 2067-12-07\n  Maghrib: 17:58 WIB (10:58 UTC)\n  Moonset: 18:43 WIB (11:43 UTC)\n  Best time: 18:18 WIB\n  [MABIMS] Neo MABIMS (2022+): alt=9.60° (✓), elong_geo=11.42° (✓), umur=20.9 jam (✓) -> ✅ Lolos\n  [VISIBILITAS] Altitude bulan (airless): 5.02°, Matahari: -5.44°\n    Elongasi (toposentrik): 10.65°, ARCV (airless): 10.46°\n    Lebar sabit (geometris): 0.28 menit busur\n    Illumination fraction: 98.98%\n    Yallop q = 0.03 -> B — terlihat kondisi sempurna\n    Odeh V = 5.00 -> B — Terlihat dengan alat bantu (bisa naked eye)\n    Probabilitas terlihat: 100.0%\n    Kontras hilal vs langit: 0.0404\n      → Hilal sangat sulit terlihat\n\n=== SCAN VISIBILITAS INDONESIA (grid kasar) ===\nWilayah potensial rukyat: 40 titik grid\n  lat=-10.0, lon=95.0\n  lat=-10.0, lon=101.0\n  lat=-10.0, lon=107.0\n  lat=-10.0, lon=113.0\n  lat=-10.0, lon=119.0\n  lat=-10.0, lon=125.0\n  lat=-10.0, lon=131.0\n  lat=-10.0, lon=137.0\n  lat=-6.0, lon=95.0\n  lat=-6.0, lon=101.0\n  lat=-6.0, lon=107.0\n  lat=-6.0, lon=113.0\n  lat=-6.0, lon=119.0\n  lat=-6.0, lon=125.0\n  lat=-6.0, lon=131.0\n  ✅ Awal bulan = 2067-12-08 (sesuai MABIMS)\n"
+  },
+  "generated_at": "2026-03-22T08:38:53.245745"
+}
