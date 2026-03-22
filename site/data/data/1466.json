@@ -1,0 +1,3734 @@
+{
+  "tahun": 1466,
+  "tahun_masehi": 2043,
+  "delta_t": 87.5,
+  "n_lokasi_evaluasi": 13,
+  "lokasi_ref": {
+    "lat": -6.2088,
+    "lon": 106.8456,
+    "elevasi": 8.0,
+    "tz": "WIB (UTC+7)"
+  },
+  "mabims": {
+    "ramadan": {
+      "tanggal_awal": "2044-07-26",
+      "ijtimak_wib": "25-07-2044 00:10 WIB",
+      "ijtimak_tgl_lokal": "2044-07-25",
+      "ijtimak_posisi": "sebelum maghrib",
+      "istikmal": false,
+      "mabims_lolos": true,
+      "hari_diperiksa": [
+        {
+          "tanggal": "2044-07-25",
+          "lolos_mabims": true,
+          "dilewati": false,
+          "alasan_lewat": null,
+          "maghrib_wib": "17:53 WIB",
+          "maghrib_utc": "10:53 UTC",
+          "moonset_wib": "18:35 WIB",
+          "moonset_utc": "11:35 UTC",
+          "best_time_wib": "18:12 WIB",
+          "best_time_utc": "11:12 UTC",
+          "umur_jam": 17.72,
+          "mabims_jakarta": {
+            "lolos": true,
+            "label": "Neo MABIMS (2022+)",
+            "alt_ok": true,
+            "elong_ok": true,
+            "umur_ok": true,
+            "borderline": false,
+            "threshold": {
+              "alt": 3.0,
+              "elong": 6.4,
+              "umur": null
+            },
+            "alt": 8.84,
+            "elong_geo": 10.639,
+            "umur": 17.72
+          },
+          "visibilitas": {
+            "alt_bulan_airless": 4.6154,
+            "alt_matahari_airless": -5.1558,
+            "elongasi_top": 9.8071,
+            "arcv": 9.7713,
+            "lebar_sabit_menit": 0.2419,
+            "illumination_pct": 99.1128,
+            "yallop": {
+              "q": -0.0578,
+              "kelas": "C",
+              "deskripsi": "Perlu alat bantu, bisa naked eye jika ditemukan"
+            },
+            "odeh": {
+              "v": 4.0943,
+              "kelas": "B",
+              "deskripsi": "Terlihat dengan alat bantu, bisa naked eye"
+            },
+            "probabilitas_pct": 99.97,
+            "kontras": {
+              "nilai": 0.027296,
+              "keterangan": "Sangat sulit terlihat"
+            }
+          },
+          "multilokasi": {
+            "n_lokasi": 13,
+            "lokasi": [
+              {
+                "nama": "Sabang",
+                "lat": 5.8943,
+                "lon": 95.3184,
+                "alt": 9.388,
+                "az": 288.15,
+                "elong_geo": 11.225,
+                "umur_jam": 18.78,
+                "lag_menit": 43.3,
+                "maghrib_utc": "11:57",
+                "moonset_utc": "12:40",
+                "mabims": {
+                  "lolos": true,
+                  "label": "Neo MABIMS (2022+)",
+                  "alt_ok": true,
+                  "elong_ok": true,
+                  "umur_ok": true,
+                  "borderline": false,
+                  "threshold": {
+                    "alt": 3.0,
+                    "elong": 6.4,
+                    "umur": null
+                  }
+                }
+              },
+              {
+                "nama": "Medan",
+                "lat": 3.5952,
+                "lon": 98.6722,
+                "alt": 9.292,
+                "az": 288.59,
+                "elong_geo": 11.07,
+                "umur_jam": 18.5,
+                "lag_menit": 42.9,
+                "maghrib_utc": "11:40",
+                "moonset_utc": "12:23",
+                "mabims": {
+                  "lolos": true,
+                  "label": "Neo MABIMS (2022+)",
+                  "alt_ok": true,
+                  "elong_ok": true,
+                  "umur_ok": true,
+                  "borderline": false,
+                  "threshold": {
+                    "alt": 3.0,
+                    "elong": 6.4,
+                    "umur": null
+                  }
+                }
+              },
+              {
+                "nama": "Padang",
+                "lat": -0.9471,
+                "lon": 100.4172,
+                "alt": 9.208,
+                "az": 289.47,
+                "elong_geo": 10.946,
+                "umur_jam": 18.28,
+                "lag_menit": 42.6,
+                "maghrib_utc": "11:27",
+                "moonset_utc": "12:09",
+                "mabims": {
+                  "lolos": true,
+                  "label": "Neo MABIMS (2022+)",
+                  "alt_ok": true,
+                  "elong_ok": true,
+                  "umur_ok": true,
+                  "borderline": false,
+                  "threshold": {
+                    "alt": 3.0,
+                    "elong": 6.4,
+                    "umur": null
+                  }
+                }
+              },
+              {
+                "nama": "Jakarta",
+                "lat": -6.2088,
+                "lon": 106.8456,
+                "alt": 8.84,
+                "az": 290.65,
+                "elong_geo": 10.639,
+                "umur_jam": 17.72,
+                "lag_menit": 41.5,
+                "maghrib_utc": "10:53",
+                "moonset_utc": "11:35",
+                "mabims": {
+                  "lolos": true,
+                  "label": "Neo MABIMS (2022+)",
+                  "alt_ok": true,
+                  "elong_ok": true,
+                  "umur_ok": true,
+                  "borderline": false,
+                  "threshold": {
+                    "alt": 3.0,
+                    "elong": 6.4,
+                    "umur": null
+                  }
+                }
+              },
+              {
+                "nama": "Bandung",
+                "lat": -6.9175,
+                "lon": 107.6191,
+                "alt": 8.785,
+                "az": 290.81,
+                "elong_geo": 10.601,
+                "umur_jam": 17.65,
+                "lag_menit": 41.3,
+                "maghrib_utc": "10:49",
+                "moonset_utc": "11:31",
+                "mabims": {
+                  "lolos": true,
+                  "label": "Neo MABIMS (2022+)",
+                  "alt_ok": true,
+                  "elong_ok": true,
+                  "umur_ok": true,
+                  "borderline": false,
+                  "threshold": {
+                    "alt": 3.0,
+                    "elong": 6.4,
+                    "umur": null
+                  }
+                }
+              },
+              {
+                "nama": "Surabaya",
+                "lat": -7.2575,
+                "lon": 112.7521,
+                "alt": 8.577,
+                "az": 290.93,
+                "elong_geo": 10.407,
+                "umur_jam": 17.3,
+                "lag_menit": 40.4,
+                "maghrib_utc": "10:28",
+                "moonset_utc": "11:09",
+                "mabims": {
+                  "lolos": true,
+                  "label": "Neo MABIMS (2022+)",
+                  "alt_ok": true,
+                  "elong_ok": true,
+                  "umur_ok": true,
+                  "borderline": false,
+                  "threshold": {
+                    "alt": 3.0,
+                    "elong": 6.4,
+                    "umur": null
+                  }
+                }
+              },
+              {
+                "nama": "Banjarmasin",
+                "lat": -3.3194,
+                "lon": 114.5928,
+                "alt": 8.636,
+                "az": 290.11,
+                "elong_geo": 10.391,
+                "umur_jam": 17.27,
+                "lag_menit": 40.3,
+                "maghrib_utc": "10:27",
+                "moonset_utc": "11:07",
+                "mabims": {
+                  "lolos": true,
+                  "label": "Neo MABIMS (2022+)",
+                  "alt_ok": true,
+                  "elong_ok": true,
+                  "umur_ok": true,
+                  "borderline": false,
+                  "threshold": {
+                    "alt": 3.0,
+                    "elong": 6.4,
+                    "umur": null
+                  }
+                }
+              },
+              {
+                "nama": "Balikpapan",
+                "lat": -1.2379,
+                "lon": 116.8529,
+                "alt": 8.598,
+                "az": 289.72,
+                "elong_geo": 10.335,
+                "umur_jam": 17.17,
+                "lag_menit": 40.0,
+                "maghrib_utc": "10:20",
+                "moonset_utc": "11:00",
+                "mabims": {
+                  "lolos": true,
+                  "label": "Neo MABIMS (2022+)",
+                  "alt_ok": true,
+                  "elong_ok": true,
+                  "umur_ok": true,
+                  "borderline": false,
+                  "threshold": {
+                    "alt": 3.0,
+                    "elong": 6.4,
+                    "umur": null
+                  }
+                }
+              },
+              {
+                "nama": "Makassar",
+                "lat": -5.1477,
+                "lon": 119.4327,
+                "alt": 8.402,
+                "az": 290.53,
+                "elong_geo": 10.189,
+                "umur_jam": 16.91,
+                "lag_menit": 39.4,
+                "maghrib_utc": "10:05",
+                "moonset_utc": "10:44",
+                "mabims": {
+                  "lolos": true,
+                  "label": "Neo MABIMS (2022+)",
+                  "alt_ok": true,
+                  "elong_ok": true,
+                  "umur_ok": true,
+                  "borderline": false,
+                  "threshold": {
+                    "alt": 3.0,
+                    "elong": 6.4,
+                    "umur": null
+                  }
+                }
+              },
+              {
+                "nama": "Manado",
+                "lat": 1.4748,
+                "lon": 124.8421,
+                "alt": 8.344,
+                "az": 289.35,
+                "elong_geo": 10.076,
+                "umur_jam": 16.7,
+                "lag_menit": 38.8,
+                "maghrib_utc": "09:52",
+                "moonset_utc": "10:31",
+                "mabims": {
+                  "lolos": true,
+                  "label": "Neo MABIMS (2022+)",
+                  "alt_ok": true,
+                  "elong_ok": true,
+                  "umur_ok": true,
+                  "borderline": false,
+                  "threshold": {
+                    "alt": 3.0,
+                    "elong": 6.4,
+                    "umur": null
+                  }
+                }
+              },
+              {
+                "nama": "Kupang",
+                "lat": -10.1772,
+                "lon": 123.607,
+                "alt": 8.031,
+                "az": 291.67,
+                "elong_geo": 9.97,
+                "umur_jam": 16.51,
+                "lag_menit": 38.4,
+                "maghrib_utc": "09:41",
+                "moonset_utc": "10:19",
+                "mabims": {
+                  "lolos": true,
+                  "label": "Neo MABIMS (2022+)",
+                  "alt_ok": true,
+                  "elong_ok": true,
+                  "umur_ok": true,
+                  "borderline": false,
+                  "threshold": {
+                    "alt": 3.0,
+                    "elong": 6.4,
+                    "umur": null
+                  }
+                }
+              },
+              {
+                "nama": "Ambon",
+                "lat": -3.655,
+                "lon": 128.1908,
+                "alt": 8.12,
+                "az": 290.32,
+                "elong_geo": 9.887,
+                "umur_jam": 16.36,
+                "lag_menit": 38.0,
+                "maghrib_utc": "09:32",
+                "moonset_utc": "10:10",
+                "mabims": {
+                  "lolos": true,
+                  "label": "Neo MABIMS (2022+)",
+                  "alt_ok": true,
+                  "elong_ok": true,
+                  "umur_ok": true,
+                  "borderline": false,
+                  "threshold": {
+                    "alt": 3.0,
+                    "elong": 6.4,
+                    "umur": null
+                  }
+                }
+              },
+              {
+                "nama": "Jayapura",
+                "lat": -2.5337,
+                "lon": 140.7181,
+                "alt": 7.685,
+                "az": 290.24,
+                "elong_geo": 9.443,
+                "umur_jam": 15.55,
+                "lag_menit": 36.0,
+                "maghrib_utc": "08:43",
+                "moonset_utc": "09:19",
+                "mabims": {
+                  "lolos": true,
+                  "label": "Neo MABIMS (2022+)",
+                  "alt_ok": true,
+                  "elong_ok": true,
+                  "umur_ok": true,
+                  "borderline": false,
+                  "threshold": {
+                    "alt": 3.0,
+                    "elong": 6.4,
+                    "umur": null
+                  }
+                }
+              }
+            ]
+          },
+          "scan_indonesia": {
+            "n_titik_grid": 39,
+            "titik_sampel": [
+              {
+                "lat": -10.0,
+                "lon": 95.0,
+                "q": -0.04
+              },
+              {
+                "lat": -10.0,
+                "lon": 101.0,
+                "q": -0.07
+              },
+              {
+                "lat": -10.0,
+                "lon": 107.0,
+                "q": -0.1
+              },
+              {
+                "lat": -10.0,
+                "lon": 113.0,
+                "q": -0.129
+              },
+              {
+                "lat": -10.0,
+                "lon": 119.0,
+                "q": -0.158
+              },
+              {
+                "lat": -10.0,
+                "lon": 125.0,
+                "q": -0.188
+              },
+              {
+                "lat": -10.0,
+                "lon": 131.0,
+                "q": -0.217
+              },
+              {
+                "lat": -6.0,
+                "lon": 95.0,
+                "q": -0.023
+              },
+              {
+                "lat": -6.0,
+                "lon": 101.0,
+                "q": -0.052
+              },
+              {
+                "lat": -6.0,
+                "lon": 107.0,
+                "q": -0.082
+              },
+              {
+                "lat": -6.0,
+                "lon": 113.0,
+                "q": -0.111
+              },
+              {
+                "lat": -6.0,
+                "lon": 119.0,
+                "q": -0.14
+              },
+              {
+                "lat": -6.0,
+                "lon": 125.0,
+                "q": -0.169
+              },
+              {
+                "lat": -6.0,
+                "lon": 131.0,
+                "q": -0.198
+              },
+              {
+                "lat": -6.0,
+                "lon": 137.0,
+                "q": -0.226
+              },
+              {
+                "lat": -2.0,
+                "lon": 95.0,
+                "q": -0.011
+              },
+              {
+                "lat": -2.0,
+                "lon": 101.0,
+                "q": -0.04
+              },
+              {
+                "lat": -2.0,
+                "lon": 107.0,
+                "q": -0.069
+              },
+              {
+                "lat": -2.0,
+                "lon": 113.0,
+                "q": -0.098
+              },
+              {
+                "lat": -2.0,
+                "lon": 119.0,
+                "q": -0.127
+              }
+            ]
+          }
+        }
+      ],
+      "scan_indonesia": {
+        "n_titik_grid": 39,
+        "titik_sampel": [
+          {
+            "lat": -10.0,
+            "lon": 95.0,
+            "q": -0.04
+          },
+          {
+            "lat": -10.0,
+            "lon": 101.0,
+            "q": -0.07
+          },
+          {
+            "lat": -10.0,
+            "lon": 107.0,
+            "q": -0.1
+          },
+          {
+            "lat": -10.0,
+            "lon": 113.0,
+            "q": -0.129
+          },
+          {
+            "lat": -10.0,
+            "lon": 119.0,
+            "q": -0.158
+          },
+          {
+            "lat": -10.0,
+            "lon": 125.0,
+            "q": -0.188
+          },
+          {
+            "lat": -10.0,
+            "lon": 131.0,
+            "q": -0.217
+          },
+          {
+            "lat": -6.0,
+            "lon": 95.0,
+            "q": -0.023
+          },
+          {
+            "lat": -6.0,
+            "lon": 101.0,
+            "q": -0.052
+          },
+          {
+            "lat": -6.0,
+            "lon": 107.0,
+            "q": -0.082
+          },
+          {
+            "lat": -6.0,
+            "lon": 113.0,
+            "q": -0.111
+          },
+          {
+            "lat": -6.0,
+            "lon": 119.0,
+            "q": -0.14
+          },
+          {
+            "lat": -6.0,
+            "lon": 125.0,
+            "q": -0.169
+          },
+          {
+            "lat": -6.0,
+            "lon": 131.0,
+            "q": -0.198
+          },
+          {
+            "lat": -6.0,
+            "lon": 137.0,
+            "q": -0.226
+          },
+          {
+            "lat": -2.0,
+            "lon": 95.0,
+            "q": -0.011
+          },
+          {
+            "lat": -2.0,
+            "lon": 101.0,
+            "q": -0.04
+          },
+          {
+            "lat": -2.0,
+            "lon": 107.0,
+            "q": -0.069
+          },
+          {
+            "lat": -2.0,
+            "lon": 113.0,
+            "q": -0.098
+          },
+          {
+            "lat": -2.0,
+            "lon": 119.0,
+            "q": -0.127
+          }
+        ]
+      },
+      "ringkas": {
+        "tanggal": "2044-07-26",
+        "ijtimak": "25-07-2044 00:10 WIB",
+        "maghrib": "17:53 WIB",
+        "moonset": "18:35 WIB",
+        "best_time": "18:12 WIB",
+        "umur_jam": 17.72,
+        "mabims_label": "Neo MABIMS (2022+)",
+        "alt": 8.84,
+        "alt_ok": true,
+        "elong_geo": 10.639,
+        "elong_ok": true,
+        "arcv": 9.7713,
+        "elongasi_top": 9.8071,
+        "lebar_sabit": 0.2419,
+        "illumination": 99.1128,
+        "yallop_q": -0.0578,
+        "yallop_klas": "C",
+        "yallop_desk": "Perlu alat bantu, bisa naked eye jika ditemukan",
+        "odeh_v": 4.0943,
+        "odeh_klas": "B",
+        "odeh_desk": "Terlihat dengan alat bantu, bisa naked eye",
+        "prob": 99.97,
+        "kontras": {
+          "nilai": 0.027296,
+          "keterangan": "Sangat sulit terlihat"
+        },
+        "n_lokasi_lolos": 13,
+        "lokasi_lolos": [
+          {
+            "nama": "Sabang",
+            "lat": 5.8943,
+            "lon": 95.3184,
+            "alt": 9.388,
+            "az": 288.15,
+            "elong_geo": 11.225,
+            "umur_jam": 18.78,
+            "lag_menit": 43.3,
+            "maghrib_utc": "11:57",
+            "moonset_utc": "12:40",
+            "mabims": {
+              "lolos": true,
+              "label": "Neo MABIMS (2022+)",
+              "alt_ok": true,
+              "elong_ok": true,
+              "umur_ok": true,
+              "borderline": false,
+              "threshold": {
+                "alt": 3.0,
+                "elong": 6.4,
+                "umur": null
+              }
+            }
+          },
+          {
+            "nama": "Medan",
+            "lat": 3.5952,
+            "lon": 98.6722,
+            "alt": 9.292,
+            "az": 288.59,
+            "elong_geo": 11.07,
+            "umur_jam": 18.5,
+            "lag_menit": 42.9,
+            "maghrib_utc": "11:40",
+            "moonset_utc": "12:23",
+            "mabims": {
+              "lolos": true,
+              "label": "Neo MABIMS (2022+)",
+              "alt_ok": true,
+              "elong_ok": true,
+              "umur_ok": true,
+              "borderline": false,
+              "threshold": {
+                "alt": 3.0,
+                "elong": 6.4,
+                "umur": null
+              }
+            }
+          },
+          {
+            "nama": "Padang",
+            "lat": -0.9471,
+            "lon": 100.4172,
+            "alt": 9.208,
+            "az": 289.47,
+            "elong_geo": 10.946,
+            "umur_jam": 18.28,
+            "lag_menit": 42.6,
+            "maghrib_utc": "11:27",
+            "moonset_utc": "12:09",
+            "mabims": {
+              "lolos": true,
+              "label": "Neo MABIMS (2022+)",
+              "alt_ok": true,
+              "elong_ok": true,
+              "umur_ok": true,
+              "borderline": false,
+              "threshold": {
+                "alt": 3.0,
+                "elong": 6.4,
+                "umur": null
+              }
+            }
+          },
+          {
+            "nama": "Jakarta",
+            "lat": -6.2088,
+            "lon": 106.8456,
+            "alt": 8.84,
+            "az": 290.65,
+            "elong_geo": 10.639,
+            "umur_jam": 17.72,
+            "lag_menit": 41.5,
+            "maghrib_utc": "10:53",
+            "moonset_utc": "11:35",
+            "mabims": {
+              "lolos": true,
+              "label": "Neo MABIMS (2022+)",
+              "alt_ok": true,
+              "elong_ok": true,
+              "umur_ok": true,
+              "borderline": false,
+              "threshold": {
+                "alt": 3.0,
+                "elong": 6.4,
+                "umur": null
+              }
+            }
+          },
+          {
+            "nama": "Bandung",
+            "lat": -6.9175,
+            "lon": 107.6191,
+            "alt": 8.785,
+            "az": 290.81,
+            "elong_geo": 10.601,
+            "umur_jam": 17.65,
+            "lag_menit": 41.3,
+            "maghrib_utc": "10:49",
+            "moonset_utc": "11:31",
+            "mabims": {
+              "lolos": true,
+              "label": "Neo MABIMS (2022+)",
+              "alt_ok": true,
+              "elong_ok": true,
+              "umur_ok": true,
+              "borderline": false,
+              "threshold": {
+                "alt": 3.0,
+                "elong": 6.4,
+                "umur": null
+              }
+            }
+          },
+          {
+            "nama": "Surabaya",
+            "lat": -7.2575,
+            "lon": 112.7521,
+            "alt": 8.577,
+            "az": 290.93,
+            "elong_geo": 10.407,
+            "umur_jam": 17.3,
+            "lag_menit": 40.4,
+            "maghrib_utc": "10:28",
+            "moonset_utc": "11:09",
+            "mabims": {
+              "lolos": true,
+              "label": "Neo MABIMS (2022+)",
+              "alt_ok": true,
+              "elong_ok": true,
+              "umur_ok": true,
+              "borderline": false,
+              "threshold": {
+                "alt": 3.0,
+                "elong": 6.4,
+                "umur": null
+              }
+            }
+          },
+          {
+            "nama": "Banjarmasin",
+            "lat": -3.3194,
+            "lon": 114.5928,
+            "alt": 8.636,
+            "az": 290.11,
+            "elong_geo": 10.391,
+            "umur_jam": 17.27,
+            "lag_menit": 40.3,
+            "maghrib_utc": "10:27",
+            "moonset_utc": "11:07",
+            "mabims": {
+              "lolos": true,
+              "label": "Neo MABIMS (2022+)",
+              "alt_ok": true,
+              "elong_ok": true,
+              "umur_ok": true,
+              "borderline": false,
+              "threshold": {
+                "alt": 3.0,
+                "elong": 6.4,
+                "umur": null
+              }
+            }
+          },
+          {
+            "nama": "Balikpapan",
+            "lat": -1.2379,
+            "lon": 116.8529,
+            "alt": 8.598,
+            "az": 289.72,
+            "elong_geo": 10.335,
+            "umur_jam": 17.17,
+            "lag_menit": 40.0,
+            "maghrib_utc": "10:20",
+            "moonset_utc": "11:00",
+            "mabims": {
+              "lolos": true,
+              "label": "Neo MABIMS (2022+)",
+              "alt_ok": true,
+              "elong_ok": true,
+              "umur_ok": true,
+              "borderline": false,
+              "threshold": {
+                "alt": 3.0,
+                "elong": 6.4,
+                "umur": null
+              }
+            }
+          },
+          {
+            "nama": "Makassar",
+            "lat": -5.1477,
+            "lon": 119.4327,
+            "alt": 8.402,
+            "az": 290.53,
+            "elong_geo": 10.189,
+            "umur_jam": 16.91,
+            "lag_menit": 39.4,
+            "maghrib_utc": "10:05",
+            "moonset_utc": "10:44",
+            "mabims": {
+              "lolos": true,
+              "label": "Neo MABIMS (2022+)",
+              "alt_ok": true,
+              "elong_ok": true,
+              "umur_ok": true,
+              "borderline": false,
+              "threshold": {
+                "alt": 3.0,
+                "elong": 6.4,
+                "umur": null
+              }
+            }
+          },
+          {
+            "nama": "Manado",
+            "lat": 1.4748,
+            "lon": 124.8421,
+            "alt": 8.344,
+            "az": 289.35,
+            "elong_geo": 10.076,
+            "umur_jam": 16.7,
+            "lag_menit": 38.8,
+            "maghrib_utc": "09:52",
+            "moonset_utc": "10:31",
+            "mabims": {
+              "lolos": true,
+              "label": "Neo MABIMS (2022+)",
+              "alt_ok": true,
+              "elong_ok": true,
+              "umur_ok": true,
+              "borderline": false,
+              "threshold": {
+                "alt": 3.0,
+                "elong": 6.4,
+                "umur": null
+              }
+            }
+          },
+          {
+            "nama": "Kupang",
+            "lat": -10.1772,
+            "lon": 123.607,
+            "alt": 8.031,
+            "az": 291.67,
+            "elong_geo": 9.97,
+            "umur_jam": 16.51,
+            "lag_menit": 38.4,
+            "maghrib_utc": "09:41",
+            "moonset_utc": "10:19",
+            "mabims": {
+              "lolos": true,
+              "label": "Neo MABIMS (2022+)",
+              "alt_ok": true,
+              "elong_ok": true,
+              "umur_ok": true,
+              "borderline": false,
+              "threshold": {
+                "alt": 3.0,
+                "elong": 6.4,
+                "umur": null
+              }
+            }
+          },
+          {
+            "nama": "Ambon",
+            "lat": -3.655,
+            "lon": 128.1908,
+            "alt": 8.12,
+            "az": 290.32,
+            "elong_geo": 9.887,
+            "umur_jam": 16.36,
+            "lag_menit": 38.0,
+            "maghrib_utc": "09:32",
+            "moonset_utc": "10:10",
+            "mabims": {
+              "lolos": true,
+              "label": "Neo MABIMS (2022+)",
+              "alt_ok": true,
+              "elong_ok": true,
+              "umur_ok": true,
+              "borderline": false,
+              "threshold": {
+                "alt": 3.0,
+                "elong": 6.4,
+                "umur": null
+              }
+            }
+          },
+          {
+            "nama": "Jayapura",
+            "lat": -2.5337,
+            "lon": 140.7181,
+            "alt": 7.685,
+            "az": 290.24,
+            "elong_geo": 9.443,
+            "umur_jam": 15.55,
+            "lag_menit": 36.0,
+            "maghrib_utc": "08:43",
+            "moonset_utc": "09:19",
+            "mabims": {
+              "lolos": true,
+              "label": "Neo MABIMS (2022+)",
+              "alt_ok": true,
+              "elong_ok": true,
+              "umur_ok": true,
+              "borderline": false,
+              "threshold": {
+                "alt": 3.0,
+                "elong": 6.4,
+                "umur": null
+              }
+            }
+          }
+        ]
+      }
+    },
+    "syawal": {
+      "tanggal_awal": "2044-08-25",
+      "ijtimak_wib": "23-08-2044 08:06 WIB",
+      "ijtimak_tgl_lokal": "2044-08-23",
+      "ijtimak_posisi": "sebelum maghrib",
+      "istikmal": false,
+      "mabims_lolos": true,
+      "hari_diperiksa": [
+        {
+          "tanggal": "2044-08-23",
+          "lolos_mabims": false,
+          "dilewati": false,
+          "alasan_lewat": null,
+          "maghrib_wib": "17:53 WIB",
+          "maghrib_utc": "10:53 UTC",
+          "moonset_wib": "18:11 WIB",
+          "moonset_utc": "11:11 UTC",
+          "best_time_wib": "18:01 WIB",
+          "best_time_utc": "11:01 UTC",
+          "umur_jam": 9.79,
+          "mabims_jakarta": {
+            "lolos": false,
+            "label": "Neo MABIMS (2022+)",
+            "alt_ok": true,
+            "elong_ok": false,
+            "umur_ok": true,
+            "borderline": false,
+            "threshold": {
+              "alt": 3.0,
+              "elong": 6.4,
+              "umur": null
+            },
+            "alt": 3.803,
+            "elong_geo": 5.521,
+            "umur": 9.79
+          },
+          "visibilitas": {
+            "alt_bulan_airless": 1.754,
+            "alt_matahari_airless": -2.7504,
+            "elongasi_top": 4.6226,
+            "arcv": 4.5045,
+            "lebar_sabit_menit": 0.0529,
+            "illumination_pct": 99.7619,
+            "yallop": {
+              "q": -0.7,
+              "kelas": "E",
+              "deskripsi": "Tidak terlihat walau dengan teleskop"
+            },
+            "odeh": {
+              "v": -2.328,
+              "kelas": "D",
+              "deskripsi": "Tidak terlihat"
+            },
+            "probabilitas_pct": 0.94,
+            "kontras": {
+              "nilai": 0.000754,
+              "keterangan": "Hampir mustahil terlihat"
+            }
+          },
+          "multilokasi": {
+            "n_lokasi": 0,
+            "lokasi": []
+          },
+          "scan_indonesia": null
+        },
+        {
+          "tanggal": "2044-08-24",
+          "lolos_mabims": true,
+          "dilewati": false,
+          "alasan_lewat": null,
+          "maghrib_wib": "17:53 WIB",
+          "maghrib_utc": "10:53 UTC",
+          "moonset_wib": "19:03 WIB",
+          "moonset_utc": "12:03 UTC",
+          "best_time_wib": "18:24 WIB",
+          "best_time_utc": "11:24 UTC",
+          "umur_jam": 33.79,
+          "mabims_jakarta": {
+            "lolos": true,
+            "label": "Neo MABIMS (2022+)",
+            "alt_ok": true,
+            "elong_ok": true,
+            "umur_ok": true,
+            "borderline": false,
+            "threshold": {
+              "alt": 3.0,
+              "elong": 6.4,
+              "umur": null
+            },
+            "alt": 16.177,
+            "elong_geo": 18.798,
+            "umur": 33.79
+          },
+          "visibilitas": {
+            "alt_bulan_airless": 8.702,
+            "alt_matahari_airless": -8.3867,
+            "elongasi_top": 18.1659,
+            "arcv": 17.0887,
+            "lebar_sabit_menit": 0.8033,
+            "illumination_pct": 97.2532,
+            "yallop": {
+              "q": 0.9911,
+              "kelas": "A",
+              "deskripsi": "Mudah terlihat mata telanjang"
+            },
+            "odeh": {
+              "v": 14.5829,
+              "kelas": "A",
+              "deskripsi": "Mudah terlihat mata telanjang"
+            },
+            "probabilitas_pct": 100.0,
+            "kontras": {
+              "nilai": 1.045934,
+              "keterangan": "Sangat mudah terlihat"
+            }
+          },
+          "multilokasi": {
+            "n_lokasi": 13,
+            "lokasi": [
+              {
+                "nama": "Sabang",
+                "lat": 5.8943,
+                "lon": 95.3184,
+                "alt": 14.936,
+                "az": 271.05,
+                "elong_geo": 19.303,
+                "umur_jam": 34.71,
+                "lag_menit": 63.9,
+                "maghrib_utc": "11:48",
+                "moonset_utc": "12:52",
+                "mabims": {
+                  "lolos": true,
+                  "label": "Neo MABIMS (2022+)",
+                  "alt_ok": true,
+                  "elong_ok": true,
+                  "umur_ok": true,
+                  "borderline": false,
+                  "threshold": {
+                    "alt": 3.0,
+                    "elong": 6.4,
+                    "umur": null
+                  }
+                }
+              },
+              {
+                "nama": "Medan",
+                "lat": 3.5952,
+                "lon": 98.6722,
+                "alt": 15.206,
+                "az": 271.76,
+                "elong_geo": 19.164,
+                "umur_jam": 34.46,
+                "lag_menit": 64.9,
+                "maghrib_utc": "11:33",
+                "moonset_utc": "12:38",
+                "mabims": {
+                  "lolos": true,
+                  "label": "Neo MABIMS (2022+)",
+                  "alt_ok": true,
+                  "elong_ok": true,
+                  "umur_ok": true,
+                  "borderline": false,
+                  "threshold": {
+                    "alt": 3.0,
+                    "elong": 6.4,
+                    "umur": null
+                  }
+                }
+              },
+              {
+                "nama": "Padang",
+                "lat": -0.9471,
+                "lon": 100.4172,
+                "alt": 15.796,
+                "az": 273.13,
+                "elong_geo": 19.069,
+                "umur_jam": 34.29,
+                "lag_menit": 67.3,
+                "maghrib_utc": "11:23",
+                "moonset_utc": "12:30",
+                "mabims": {
+                  "lolos": true,
+                  "label": "Neo MABIMS (2022+)",
+                  "alt_ok": true,
+                  "elong_ok": true,
+                  "umur_ok": true,
+                  "borderline": false,
+                  "threshold": {
+                    "alt": 3.0,
+                    "elong": 6.4,
+                    "umur": null
+                  }
+                }
+              },
+              {
+                "nama": "Jakarta",
+                "lat": -6.2088,
+                "lon": 106.8456,
+                "alt": 16.177,
+                "az": 274.94,
+                "elong_geo": 18.798,
+                "umur_jam": 33.79,
+                "lag_menit": 69.5,
+                "maghrib_utc": "10:53",
+                "moonset_utc": "12:03",
+                "mabims": {
+                  "lolos": true,
+                  "label": "Neo MABIMS (2022+)",
+                  "alt_ok": true,
+                  "elong_ok": true,
+                  "umur_ok": true,
+                  "borderline": false,
+                  "threshold": {
+                    "alt": 3.0,
+                    "elong": 6.4,
+                    "umur": null
+                  }
+                }
+              },
+              {
+                "nama": "Bandung",
+                "lat": -6.9175,
+                "lon": 107.6191,
+                "alt": 16.218,
+                "az": 275.18,
+                "elong_geo": 18.765,
+                "umur_jam": 33.73,
+                "lag_menit": 69.8,
+                "maghrib_utc": "10:49",
+                "moonset_utc": "11:59",
+                "mabims": {
+                  "lolos": true,
+                  "label": "Neo MABIMS (2022+)",
+                  "alt_ok": true,
+                  "elong_ok": true,
+                  "umur_ok": true,
+                  "borderline": false,
+                  "threshold": {
+                    "alt": 3.0,
+                    "elong": 6.4,
+                    "umur": null
+                  }
+                }
+              },
+              {
+                "nama": "Surabaya",
+                "lat": -7.2575,
+                "lon": 112.7521,
+                "alt": 16.072,
+                "az": 275.37,
+                "elong_geo": 18.575,
+                "umur_jam": 33.38,
+                "lag_menit": 69.3,
+                "maghrib_utc": "10:29",
+                "moonset_utc": "11:38",
+                "mabims": {
+                  "lolos": true,
+                  "label": "Neo MABIMS (2022+)",
+                  "alt_ok": true,
+                  "elong_ok": true,
+                  "umur_ok": true,
+                  "borderline": false,
+                  "threshold": {
+                    "alt": 3.0,
+                    "elong": 6.4,
+                    "umur": null
+                  }
+                }
+              },
+              {
+                "nama": "Banjarmasin",
+                "lat": -3.3194,
+                "lon": 114.5928,
+                "alt": 15.614,
+                "az": 274.12,
+                "elong_geo": 18.535,
+                "umur_jam": 33.31,
+                "lag_menit": 66.8,
+                "maghrib_utc": "10:24",
+                "moonset_utc": "11:31",
+                "mabims": {
+                  "lolos": true,
+                  "label": "Neo MABIMS (2022+)",
+                  "alt_ok": true,
+                  "elong_ok": true,
+                  "umur_ok": true,
+                  "borderline": false,
+                  "threshold": {
+                    "alt": 3.0,
+                    "elong": 6.4,
+                    "umur": null
+                  }
+                }
+              },
+              {
+                "nama": "Balikpapan",
+                "lat": -1.2379,
+                "lon": 116.8529,
+                "alt": 15.296,
+                "az": 273.52,
+                "elong_geo": 18.467,
+                "umur_jam": 33.19,
+                "lag_menit": 65.3,
+                "maghrib_utc": "10:17",
+                "moonset_utc": "11:22",
+                "mabims": {
+                  "lolos": true,
+                  "label": "Neo MABIMS (2022+)",
+                  "alt_ok": true,
+                  "elong_ok": true,
+                  "umur_ok": true,
+                  "borderline": false,
+                  "threshold": {
+                    "alt": 3.0,
+                    "elong": 6.4,
+                    "umur": null
+                  }
+                }
+              },
+              {
+                "nama": "Makassar",
+                "lat": -5.1477,
+                "lon": 119.4327,
+                "alt": 15.645,
+                "az": 274.78,
+                "elong_geo": 18.345,
+                "umur_jam": 32.97,
+                "lag_menit": 67.2,
+                "maghrib_utc": "10:03",
+                "moonset_utc": "11:11",
+                "mabims": {
+                  "lolos": true,
+                  "label": "Neo MABIMS (2022+)",
+                  "alt_ok": true,
+                  "elong_ok": true,
+                  "umur_ok": true,
+                  "borderline": false,
+                  "threshold": {
+                    "alt": 3.0,
+                    "elong": 6.4,
+                    "umur": null
+                  }
+                }
+              },
+              {
+                "nama": "Manado",
+                "lat": 1.4748,
+                "lon": 124.8421,
+                "alt": 14.689,
+                "az": 272.89,
+                "elong_geo": 18.194,
+                "umur_jam": 32.69,
+                "lag_menit": 62.7,
+                "maghrib_utc": "09:47",
+                "moonset_utc": "10:50",
+                "mabims": {
+                  "lolos": true,
+                  "label": "Neo MABIMS (2022+)",
+                  "alt_ok": true,
+                  "elong_ok": true,
+                  "umur_ok": true,
+                  "borderline": false,
+                  "threshold": {
+                    "alt": 3.0,
+                    "elong": 6.4,
+                    "umur": null
+                  }
+                }
+              },
+              {
+                "nama": "Kupang",
+                "lat": -10.1772,
+                "lon": 123.607,
+                "alt": 15.928,
+                "az": 276.51,
+                "elong_geo": 18.157,
+                "umur_jam": 32.62,
+                "lag_menit": 69.4,
+                "maghrib_utc": "09:43",
+                "moonset_utc": "10:52",
+                "mabims": {
+                  "lolos": true,
+                  "label": "Neo MABIMS (2022+)",
+                  "alt_ok": true,
+                  "elong_ok": true,
+                  "umur_ok": true,
+                  "borderline": false,
+                  "threshold": {
+                    "alt": 3.0,
+                    "elong": 6.4,
+                    "umur": null
+                  }
+                }
+              },
+              {
+                "nama": "Ambon",
+                "lat": -3.655,
+                "lon": 128.1908,
+                "alt": 15.197,
+                "az": 274.45,
+                "elong_geo": 18.036,
+                "umur_jam": 32.4,
+                "lag_menit": 65.1,
+                "maghrib_utc": "09:30",
+                "moonset_utc": "10:35",
+                "mabims": {
+                  "lolos": true,
+                  "label": "Neo MABIMS (2022+)",
+                  "alt_ok": true,
+                  "elong_ok": true,
+                  "umur_ok": true,
+                  "borderline": false,
+                  "threshold": {
+                    "alt": 3.0,
+                    "elong": 6.4,
+                    "umur": null
+                  }
+                }
+              },
+              {
+                "nama": "Jayapura",
+                "lat": -2.5337,
+                "lon": 140.7181,
+                "alt": 14.659,
+                "az": 274.33,
+                "elong_geo": 17.585,
+                "umur_jam": 31.58,
+                "lag_menit": 62.8,
+                "maghrib_utc": "08:40",
+                "moonset_utc": "09:43",
+                "mabims": {
+                  "lolos": true,
+                  "label": "Neo MABIMS (2022+)",
+                  "alt_ok": true,
+                  "elong_ok": true,
+                  "umur_ok": true,
+                  "borderline": false,
+                  "threshold": {
+                    "alt": 3.0,
+                    "elong": 6.4,
+                    "umur": null
+                  }
+                }
+              }
+            ]
+          },
+          "scan_indonesia": {
+            "n_titik_grid": 40,
+            "titik_sampel": [
+              {
+                "lat": -10.0,
+                "lon": 95.0,
+                "q": 1.059
+              },
+              {
+                "lat": -10.0,
+                "lon": 101.0,
+                "q": 1.028
+              },
+              {
+                "lat": -10.0,
+                "lon": 107.0,
+                "q": 0.997
+              },
+              {
+                "lat": -10.0,
+                "lon": 113.0,
+                "q": 0.965
+              },
+              {
+                "lat": -10.0,
+                "lon": 119.0,
+                "q": 0.934
+              },
+              {
+                "lat": -10.0,
+                "lon": 125.0,
+                "q": 0.903
+              },
+              {
+                "lat": -10.0,
+                "lon": 131.0,
+                "q": 0.872
+              },
+              {
+                "lat": -10.0,
+                "lon": 137.0,
+                "q": 0.841
+              },
+              {
+                "lat": -6.0,
+                "lon": 95.0,
+                "q": 1.026
+              },
+              {
+                "lat": -6.0,
+                "lon": 101.0,
+                "q": 0.995
+              },
+              {
+                "lat": -6.0,
+                "lon": 107.0,
+                "q": 0.964
+              },
+              {
+                "lat": -6.0,
+                "lon": 113.0,
+                "q": 0.933
+              },
+              {
+                "lat": -6.0,
+                "lon": 119.0,
+                "q": 0.903
+              },
+              {
+                "lat": -6.0,
+                "lon": 125.0,
+                "q": 0.872
+              },
+              {
+                "lat": -6.0,
+                "lon": 131.0,
+                "q": 0.842
+              },
+              {
+                "lat": -6.0,
+                "lon": 137.0,
+                "q": 0.812
+              },
+              {
+                "lat": -2.0,
+                "lon": 95.0,
+                "q": 0.983
+              },
+              {
+                "lat": -2.0,
+                "lon": 101.0,
+                "q": 0.952
+              },
+              {
+                "lat": -2.0,
+                "lon": 107.0,
+                "q": 0.922
+              },
+              {
+                "lat": -2.0,
+                "lon": 113.0,
+                "q": 0.892
+              }
+            ]
+          }
+        }
+      ],
+      "scan_indonesia": {
+        "n_titik_grid": 40,
+        "titik_sampel": [
+          {
+            "lat": -10.0,
+            "lon": 95.0,
+            "q": 1.059
+          },
+          {
+            "lat": -10.0,
+            "lon": 101.0,
+            "q": 1.028
+          },
+          {
+            "lat": -10.0,
+            "lon": 107.0,
+            "q": 0.997
+          },
+          {
+            "lat": -10.0,
+            "lon": 113.0,
+            "q": 0.965
+          },
+          {
+            "lat": -10.0,
+            "lon": 119.0,
+            "q": 0.934
+          },
+          {
+            "lat": -10.0,
+            "lon": 125.0,
+            "q": 0.903
+          },
+          {
+            "lat": -10.0,
+            "lon": 131.0,
+            "q": 0.872
+          },
+          {
+            "lat": -10.0,
+            "lon": 137.0,
+            "q": 0.841
+          },
+          {
+            "lat": -6.0,
+            "lon": 95.0,
+            "q": 1.026
+          },
+          {
+            "lat": -6.0,
+            "lon": 101.0,
+            "q": 0.995
+          },
+          {
+            "lat": -6.0,
+            "lon": 107.0,
+            "q": 0.964
+          },
+          {
+            "lat": -6.0,
+            "lon": 113.0,
+            "q": 0.933
+          },
+          {
+            "lat": -6.0,
+            "lon": 119.0,
+            "q": 0.903
+          },
+          {
+            "lat": -6.0,
+            "lon": 125.0,
+            "q": 0.872
+          },
+          {
+            "lat": -6.0,
+            "lon": 131.0,
+            "q": 0.842
+          },
+          {
+            "lat": -6.0,
+            "lon": 137.0,
+            "q": 0.812
+          },
+          {
+            "lat": -2.0,
+            "lon": 95.0,
+            "q": 0.983
+          },
+          {
+            "lat": -2.0,
+            "lon": 101.0,
+            "q": 0.952
+          },
+          {
+            "lat": -2.0,
+            "lon": 107.0,
+            "q": 0.922
+          },
+          {
+            "lat": -2.0,
+            "lon": 113.0,
+            "q": 0.892
+          }
+        ]
+      },
+      "ringkas": {
+        "tanggal": "2044-08-25",
+        "ijtimak": "23-08-2044 08:06 WIB",
+        "maghrib": "17:53 WIB",
+        "moonset": "19:03 WIB",
+        "best_time": "18:24 WIB",
+        "umur_jam": 33.79,
+        "mabims_label": "Neo MABIMS (2022+)",
+        "alt": 16.177,
+        "alt_ok": true,
+        "elong_geo": 18.798,
+        "elong_ok": true,
+        "arcv": 17.0887,
+        "elongasi_top": 18.1659,
+        "lebar_sabit": 0.8033,
+        "illumination": 97.2532,
+        "yallop_q": 0.9911,
+        "yallop_klas": "A",
+        "yallop_desk": "Mudah terlihat mata telanjang",
+        "odeh_v": 14.5829,
+        "odeh_klas": "A",
+        "odeh_desk": "Mudah terlihat mata telanjang",
+        "prob": 100.0,
+        "kontras": {
+          "nilai": 1.045934,
+          "keterangan": "Sangat mudah terlihat"
+        },
+        "n_lokasi_lolos": 13,
+        "lokasi_lolos": [
+          {
+            "nama": "Sabang",
+            "lat": 5.8943,
+            "lon": 95.3184,
+            "alt": 14.936,
+            "az": 271.05,
+            "elong_geo": 19.303,
+            "umur_jam": 34.71,
+            "lag_menit": 63.9,
+            "maghrib_utc": "11:48",
+            "moonset_utc": "12:52",
+            "mabims": {
+              "lolos": true,
+              "label": "Neo MABIMS (2022+)",
+              "alt_ok": true,
+              "elong_ok": true,
+              "umur_ok": true,
+              "borderline": false,
+              "threshold": {
+                "alt": 3.0,
+                "elong": 6.4,
+                "umur": null
+              }
+            }
+          },
+          {
+            "nama": "Medan",
+            "lat": 3.5952,
+            "lon": 98.6722,
+            "alt": 15.206,
+            "az": 271.76,
+            "elong_geo": 19.164,
+            "umur_jam": 34.46,
+            "lag_menit": 64.9,
+            "maghrib_utc": "11:33",
+            "moonset_utc": "12:38",
+            "mabims": {
+              "lolos": true,
+              "label": "Neo MABIMS (2022+)",
+              "alt_ok": true,
+              "elong_ok": true,
+              "umur_ok": true,
+              "borderline": false,
+              "threshold": {
+                "alt": 3.0,
+                "elong": 6.4,
+                "umur": null
+              }
+            }
+          },
+          {
+            "nama": "Padang",
+            "lat": -0.9471,
+            "lon": 100.4172,
+            "alt": 15.796,
+            "az": 273.13,
+            "elong_geo": 19.069,
+            "umur_jam": 34.29,
+            "lag_menit": 67.3,
+            "maghrib_utc": "11:23",
+            "moonset_utc": "12:30",
+            "mabims": {
+              "lolos": true,
+              "label": "Neo MABIMS (2022+)",
+              "alt_ok": true,
+              "elong_ok": true,
+              "umur_ok": true,
+              "borderline": false,
+              "threshold": {
+                "alt": 3.0,
+                "elong": 6.4,
+                "umur": null
+              }
+            }
+          },
+          {
+            "nama": "Jakarta",
+            "lat": -6.2088,
+            "lon": 106.8456,
+            "alt": 16.177,
+            "az": 274.94,
+            "elong_geo": 18.798,
+            "umur_jam": 33.79,
+            "lag_menit": 69.5,
+            "maghrib_utc": "10:53",
+            "moonset_utc": "12:03",
+            "mabims": {
+              "lolos": true,
+              "label": "Neo MABIMS (2022+)",
+              "alt_ok": true,
+              "elong_ok": true,
+              "umur_ok": true,
+              "borderline": false,
+              "threshold": {
+                "alt": 3.0,
+                "elong": 6.4,
+                "umur": null
+              }
+            }
+          },
+          {
+            "nama": "Bandung",
+            "lat": -6.9175,
+            "lon": 107.6191,
+            "alt": 16.218,
+            "az": 275.18,
+            "elong_geo": 18.765,
+            "umur_jam": 33.73,
+            "lag_menit": 69.8,
+            "maghrib_utc": "10:49",
+            "moonset_utc": "11:59",
+            "mabims": {
+              "lolos": true,
+              "label": "Neo MABIMS (2022+)",
+              "alt_ok": true,
+              "elong_ok": true,
+              "umur_ok": true,
+              "borderline": false,
+              "threshold": {
+                "alt": 3.0,
+                "elong": 6.4,
+                "umur": null
+              }
+            }
+          },
+          {
+            "nama": "Surabaya",
+            "lat": -7.2575,
+            "lon": 112.7521,
+            "alt": 16.072,
+            "az": 275.37,
+            "elong_geo": 18.575,
+            "umur_jam": 33.38,
+            "lag_menit": 69.3,
+            "maghrib_utc": "10:29",
+            "moonset_utc": "11:38",
+            "mabims": {
+              "lolos": true,
+              "label": "Neo MABIMS (2022+)",
+              "alt_ok": true,
+              "elong_ok": true,
+              "umur_ok": true,
+              "borderline": false,
+              "threshold": {
+                "alt": 3.0,
+                "elong": 6.4,
+                "umur": null
+              }
+            }
+          },
+          {
+            "nama": "Banjarmasin",
+            "lat": -3.3194,
+            "lon": 114.5928,
+            "alt": 15.614,
+            "az": 274.12,
+            "elong_geo": 18.535,
+            "umur_jam": 33.31,
+            "lag_menit": 66.8,
+            "maghrib_utc": "10:24",
+            "moonset_utc": "11:31",
+            "mabims": {
+              "lolos": true,
+              "label": "Neo MABIMS (2022+)",
+              "alt_ok": true,
+              "elong_ok": true,
+              "umur_ok": true,
+              "borderline": false,
+              "threshold": {
+                "alt": 3.0,
+                "elong": 6.4,
+                "umur": null
+              }
+            }
+          },
+          {
+            "nama": "Balikpapan",
+            "lat": -1.2379,
+            "lon": 116.8529,
+            "alt": 15.296,
+            "az": 273.52,
+            "elong_geo": 18.467,
+            "umur_jam": 33.19,
+            "lag_menit": 65.3,
+            "maghrib_utc": "10:17",
+            "moonset_utc": "11:22",
+            "mabims": {
+              "lolos": true,
+              "label": "Neo MABIMS (2022+)",
+              "alt_ok": true,
+              "elong_ok": true,
+              "umur_ok": true,
+              "borderline": false,
+              "threshold": {
+                "alt": 3.0,
+                "elong": 6.4,
+                "umur": null
+              }
+            }
+          },
+          {
+            "nama": "Makassar",
+            "lat": -5.1477,
+            "lon": 119.4327,
+            "alt": 15.645,
+            "az": 274.78,
+            "elong_geo": 18.345,
+            "umur_jam": 32.97,
+            "lag_menit": 67.2,
+            "maghrib_utc": "10:03",
+            "moonset_utc": "11:11",
+            "mabims": {
+              "lolos": true,
+              "label": "Neo MABIMS (2022+)",
+              "alt_ok": true,
+              "elong_ok": true,
+              "umur_ok": true,
+              "borderline": false,
+              "threshold": {
+                "alt": 3.0,
+                "elong": 6.4,
+                "umur": null
+              }
+            }
+          },
+          {
+            "nama": "Manado",
+            "lat": 1.4748,
+            "lon": 124.8421,
+            "alt": 14.689,
+            "az": 272.89,
+            "elong_geo": 18.194,
+            "umur_jam": 32.69,
+            "lag_menit": 62.7,
+            "maghrib_utc": "09:47",
+            "moonset_utc": "10:50",
+            "mabims": {
+              "lolos": true,
+              "label": "Neo MABIMS (2022+)",
+              "alt_ok": true,
+              "elong_ok": true,
+              "umur_ok": true,
+              "borderline": false,
+              "threshold": {
+                "alt": 3.0,
+                "elong": 6.4,
+                "umur": null
+              }
+            }
+          },
+          {
+            "nama": "Kupang",
+            "lat": -10.1772,
+            "lon": 123.607,
+            "alt": 15.928,
+            "az": 276.51,
+            "elong_geo": 18.157,
+            "umur_jam": 32.62,
+            "lag_menit": 69.4,
+            "maghrib_utc": "09:43",
+            "moonset_utc": "10:52",
+            "mabims": {
+              "lolos": true,
+              "label": "Neo MABIMS (2022+)",
+              "alt_ok": true,
+              "elong_ok": true,
+              "umur_ok": true,
+              "borderline": false,
+              "threshold": {
+                "alt": 3.0,
+                "elong": 6.4,
+                "umur": null
+              }
+            }
+          },
+          {
+            "nama": "Ambon",
+            "lat": -3.655,
+            "lon": 128.1908,
+            "alt": 15.197,
+            "az": 274.45,
+            "elong_geo": 18.036,
+            "umur_jam": 32.4,
+            "lag_menit": 65.1,
+            "maghrib_utc": "09:30",
+            "moonset_utc": "10:35",
+            "mabims": {
+              "lolos": true,
+              "label": "Neo MABIMS (2022+)",
+              "alt_ok": true,
+              "elong_ok": true,
+              "umur_ok": true,
+              "borderline": false,
+              "threshold": {
+                "alt": 3.0,
+                "elong": 6.4,
+                "umur": null
+              }
+            }
+          },
+          {
+            "nama": "Jayapura",
+            "lat": -2.5337,
+            "lon": 140.7181,
+            "alt": 14.659,
+            "az": 274.33,
+            "elong_geo": 17.585,
+            "umur_jam": 31.58,
+            "lag_menit": 62.8,
+            "maghrib_utc": "08:40",
+            "moonset_utc": "09:43",
+            "mabims": {
+              "lolos": true,
+              "label": "Neo MABIMS (2022+)",
+              "alt_ok": true,
+              "elong_ok": true,
+              "umur_ok": true,
+              "borderline": false,
+              "threshold": {
+                "alt": 3.0,
+                "elong": 6.4,
+                "umur": null
+              }
+            }
+          }
+        ]
+      }
+    }
+  },
+  "muhammadiyah": {
+    "ramadan": {
+      "tanggal_awal": "2044-07-26",
+      "ijtimak_wib": "25-07-2044 00:10 WIB",
+      "ijtimak_tgl_lokal": "2044-07-25",
+      "ijtimak_posisi": "sebelum maghrib",
+      "wujudul_lolos": true,
+      "istikmal": false,
+      "hari_diperiksa": [
+        {
+          "tanggal": "2044-07-25",
+          "lolos_wujudul": true,
+          "dilewati": false,
+          "alasan_lewat": null,
+          "maghrib_wib": "17:53 WIB",
+          "maghrib_utc": "10:53 UTC",
+          "moonset_wib": "18:35 WIB",
+          "moonset_utc": "11:35 UTC",
+          "best_time_wib": "18:12 WIB",
+          "best_time_utc": "11:12 UTC",
+          "umur_jam": 17.72,
+          "wujudul_jakarta": {
+            "lolos": true,
+            "label": "Hisab Hakiki Wujudul Hilal (Muhammadiyah)",
+            "syarat": {
+              "ijtimak_sebelum_maghrib": true,
+              "piringan_atas_bulan_di_atas_ufuk": true,
+              "umur_bulan_positif": true
+            },
+            "alt_ref_pada_maghrib": 8.8402,
+            "umur_jam": 17.72
+          },
+          "visibilitas": {
+            "alt_bulan_airless": 4.6154,
+            "alt_matahari_airless": -5.1558,
+            "elongasi_top": 9.8071,
+            "arcv": 9.7713,
+            "lebar_sabit_menit": 0.2419,
+            "illumination_pct": 99.1128
+          },
+          "multilokasi": {
+            "n_lokasi": 13,
+            "lokasi": [
+              {
+                "nama": "Sabang",
+                "lat": 5.8943,
+                "lon": 95.3184,
+                "alt": 9.388,
+                "az": 288.15,
+                "elong_geo": 11.225,
+                "umur_jam": 18.78,
+                "lag_menit": 43.3,
+                "maghrib_utc": "11:57",
+                "moonset_utc": "12:40",
+                "wujudul_hilal": {
+                  "lolos": true,
+                  "label": "Hisab Hakiki Wujudul Hilal (Muhammadiyah)",
+                  "syarat": {
+                    "ijtimak_sebelum_maghrib": true,
+                    "piringan_atas_bulan_di_atas_ufuk": true,
+                    "umur_bulan_positif": true
+                  },
+                  "alt_ref_pada_maghrib": 9.3878,
+                  "umur_jam": 18.78
+                }
+              },
+              {
+                "nama": "Medan",
+                "lat": 3.5952,
+                "lon": 98.6722,
+                "alt": 9.292,
+                "az": 288.59,
+                "elong_geo": 11.07,
+                "umur_jam": 18.5,
+                "lag_menit": 42.9,
+                "maghrib_utc": "11:40",
+                "moonset_utc": "12:23",
+                "wujudul_hilal": {
+                  "lolos": true,
+                  "label": "Hisab Hakiki Wujudul Hilal (Muhammadiyah)",
+                  "syarat": {
+                    "ijtimak_sebelum_maghrib": true,
+                    "piringan_atas_bulan_di_atas_ufuk": true,
+                    "umur_bulan_positif": true
+                  },
+                  "alt_ref_pada_maghrib": 9.2917,
+                  "umur_jam": 18.5
+                }
+              },
+              {
+                "nama": "Padang",
+                "lat": -0.9471,
+                "lon": 100.4172,
+                "alt": 9.208,
+                "az": 289.47,
+                "elong_geo": 10.946,
+                "umur_jam": 18.28,
+                "lag_menit": 42.6,
+                "maghrib_utc": "11:27",
+                "moonset_utc": "12:09",
+                "wujudul_hilal": {
+                  "lolos": true,
+                  "label": "Hisab Hakiki Wujudul Hilal (Muhammadiyah)",
+                  "syarat": {
+                    "ijtimak_sebelum_maghrib": true,
+                    "piringan_atas_bulan_di_atas_ufuk": true,
+                    "umur_bulan_positif": true
+                  },
+                  "alt_ref_pada_maghrib": 9.2084,
+                  "umur_jam": 18.28
+                }
+              },
+              {
+                "nama": "Jakarta",
+                "lat": -6.2088,
+                "lon": 106.8456,
+                "alt": 8.84,
+                "az": 290.65,
+                "elong_geo": 10.639,
+                "umur_jam": 17.72,
+                "lag_menit": 41.5,
+                "maghrib_utc": "10:53",
+                "moonset_utc": "11:35",
+                "wujudul_hilal": {
+                  "lolos": true,
+                  "label": "Hisab Hakiki Wujudul Hilal (Muhammadiyah)",
+                  "syarat": {
+                    "ijtimak_sebelum_maghrib": true,
+                    "piringan_atas_bulan_di_atas_ufuk": true,
+                    "umur_bulan_positif": true
+                  },
+                  "alt_ref_pada_maghrib": 8.8402,
+                  "umur_jam": 17.72
+                }
+              },
+              {
+                "nama": "Bandung",
+                "lat": -6.9175,
+                "lon": 107.6191,
+                "alt": 8.785,
+                "az": 290.81,
+                "elong_geo": 10.601,
+                "umur_jam": 17.65,
+                "lag_menit": 41.3,
+                "maghrib_utc": "10:49",
+                "moonset_utc": "11:31",
+                "wujudul_hilal": {
+                  "lolos": true,
+                  "label": "Hisab Hakiki Wujudul Hilal (Muhammadiyah)",
+                  "syarat": {
+                    "ijtimak_sebelum_maghrib": true,
+                    "piringan_atas_bulan_di_atas_ufuk": true,
+                    "umur_bulan_positif": true
+                  },
+                  "alt_ref_pada_maghrib": 8.7851,
+                  "umur_jam": 17.65
+                }
+              },
+              {
+                "nama": "Surabaya",
+                "lat": -7.2575,
+                "lon": 112.7521,
+                "alt": 8.577,
+                "az": 290.93,
+                "elong_geo": 10.407,
+                "umur_jam": 17.3,
+                "lag_menit": 40.4,
+                "maghrib_utc": "10:28",
+                "moonset_utc": "11:09",
+                "wujudul_hilal": {
+                  "lolos": true,
+                  "label": "Hisab Hakiki Wujudul Hilal (Muhammadiyah)",
+                  "syarat": {
+                    "ijtimak_sebelum_maghrib": true,
+                    "piringan_atas_bulan_di_atas_ufuk": true,
+                    "umur_bulan_positif": true
+                  },
+                  "alt_ref_pada_maghrib": 8.5774,
+                  "umur_jam": 17.3
+                }
+              },
+              {
+                "nama": "Banjarmasin",
+                "lat": -3.3194,
+                "lon": 114.5928,
+                "alt": 8.636,
+                "az": 290.11,
+                "elong_geo": 10.391,
+                "umur_jam": 17.27,
+                "lag_menit": 40.3,
+                "maghrib_utc": "10:27",
+                "moonset_utc": "11:07",
+                "wujudul_hilal": {
+                  "lolos": true,
+                  "label": "Hisab Hakiki Wujudul Hilal (Muhammadiyah)",
+                  "syarat": {
+                    "ijtimak_sebelum_maghrib": true,
+                    "piringan_atas_bulan_di_atas_ufuk": true,
+                    "umur_bulan_positif": true
+                  },
+                  "alt_ref_pada_maghrib": 8.6363,
+                  "umur_jam": 17.27
+                }
+              },
+              {
+                "nama": "Balikpapan",
+                "lat": -1.2379,
+                "lon": 116.8529,
+                "alt": 8.598,
+                "az": 289.72,
+                "elong_geo": 10.335,
+                "umur_jam": 17.17,
+                "lag_menit": 40.0,
+                "maghrib_utc": "10:20",
+                "moonset_utc": "11:00",
+                "wujudul_hilal": {
+                  "lolos": true,
+                  "label": "Hisab Hakiki Wujudul Hilal (Muhammadiyah)",
+                  "syarat": {
+                    "ijtimak_sebelum_maghrib": true,
+                    "piringan_atas_bulan_di_atas_ufuk": true,
+                    "umur_bulan_positif": true
+                  },
+                  "alt_ref_pada_maghrib": 8.5979,
+                  "umur_jam": 17.17
+                }
+              },
+              {
+                "nama": "Makassar",
+                "lat": -5.1477,
+                "lon": 119.4327,
+                "alt": 8.402,
+                "az": 290.53,
+                "elong_geo": 10.189,
+                "umur_jam": 16.91,
+                "lag_menit": 39.4,
+                "maghrib_utc": "10:05",
+                "moonset_utc": "10:44",
+                "wujudul_hilal": {
+                  "lolos": true,
+                  "label": "Hisab Hakiki Wujudul Hilal (Muhammadiyah)",
+                  "syarat": {
+                    "ijtimak_sebelum_maghrib": true,
+                    "piringan_atas_bulan_di_atas_ufuk": true,
+                    "umur_bulan_positif": true
+                  },
+                  "alt_ref_pada_maghrib": 8.4015,
+                  "umur_jam": 16.91
+                }
+              },
+              {
+                "nama": "Manado",
+                "lat": 1.4748,
+                "lon": 124.8421,
+                "alt": 8.344,
+                "az": 289.35,
+                "elong_geo": 10.076,
+                "umur_jam": 16.7,
+                "lag_menit": 38.8,
+                "maghrib_utc": "09:52",
+                "moonset_utc": "10:31",
+                "wujudul_hilal": {
+                  "lolos": true,
+                  "label": "Hisab Hakiki Wujudul Hilal (Muhammadiyah)",
+                  "syarat": {
+                    "ijtimak_sebelum_maghrib": true,
+                    "piringan_atas_bulan_di_atas_ufuk": true,
+                    "umur_bulan_positif": true
+                  },
+                  "alt_ref_pada_maghrib": 8.3439,
+                  "umur_jam": 16.7
+                }
+              },
+              {
+                "nama": "Kupang",
+                "lat": -10.1772,
+                "lon": 123.607,
+                "alt": 8.031,
+                "az": 291.67,
+                "elong_geo": 9.97,
+                "umur_jam": 16.51,
+                "lag_menit": 38.4,
+                "maghrib_utc": "09:41",
+                "moonset_utc": "10:19",
+                "wujudul_hilal": {
+                  "lolos": true,
+                  "label": "Hisab Hakiki Wujudul Hilal (Muhammadiyah)",
+                  "syarat": {
+                    "ijtimak_sebelum_maghrib": true,
+                    "piringan_atas_bulan_di_atas_ufuk": true,
+                    "umur_bulan_positif": true
+                  },
+                  "alt_ref_pada_maghrib": 8.0305,
+                  "umur_jam": 16.51
+                }
+              },
+              {
+                "nama": "Ambon",
+                "lat": -3.655,
+                "lon": 128.1908,
+                "alt": 8.12,
+                "az": 290.32,
+                "elong_geo": 9.887,
+                "umur_jam": 16.36,
+                "lag_menit": 38.0,
+                "maghrib_utc": "09:32",
+                "moonset_utc": "10:10",
+                "wujudul_hilal": {
+                  "lolos": true,
+                  "label": "Hisab Hakiki Wujudul Hilal (Muhammadiyah)",
+                  "syarat": {
+                    "ijtimak_sebelum_maghrib": true,
+                    "piringan_atas_bulan_di_atas_ufuk": true,
+                    "umur_bulan_positif": true
+                  },
+                  "alt_ref_pada_maghrib": 8.1195,
+                  "umur_jam": 16.36
+                }
+              },
+              {
+                "nama": "Jayapura",
+                "lat": -2.5337,
+                "lon": 140.7181,
+                "alt": 7.685,
+                "az": 290.24,
+                "elong_geo": 9.443,
+                "umur_jam": 15.55,
+                "lag_menit": 36.0,
+                "maghrib_utc": "08:43",
+                "moonset_utc": "09:19",
+                "wujudul_hilal": {
+                  "lolos": true,
+                  "label": "Hisab Hakiki Wujudul Hilal (Muhammadiyah)",
+                  "syarat": {
+                    "ijtimak_sebelum_maghrib": true,
+                    "piringan_atas_bulan_di_atas_ufuk": true,
+                    "umur_bulan_positif": true
+                  },
+                  "alt_ref_pada_maghrib": 7.6847,
+                  "umur_jam": 15.55
+                }
+              }
+            ]
+          },
+          "scan_indonesia": {
+            "n_titik_grid": 40,
+            "titik_sampel": [
+              {
+                "lat": -10.0,
+                "lon": 95.0,
+                "alt": 9.134
+              },
+              {
+                "lat": -10.0,
+                "lon": 101.0,
+                "alt": 8.904
+              },
+              {
+                "lat": -10.0,
+                "lon": 107.0,
+                "alt": 8.675
+              },
+              {
+                "lat": -10.0,
+                "lon": 113.0,
+                "alt": 8.445
+              },
+              {
+                "lat": -10.0,
+                "lon": 119.0,
+                "alt": 8.216
+              },
+              {
+                "lat": -10.0,
+                "lon": 125.0,
+                "alt": 7.986
+              },
+              {
+                "lat": -10.0,
+                "lon": 131.0,
+                "alt": 7.757
+              },
+              {
+                "lat": -10.0,
+                "lon": 137.0,
+                "alt": 7.528
+              },
+              {
+                "lat": -6.0,
+                "lon": 95.0,
+                "alt": 9.295
+              },
+              {
+                "lat": -6.0,
+                "lon": 101.0,
+                "alt": 9.068
+              },
+              {
+                "lat": -6.0,
+                "lon": 107.0,
+                "alt": 8.842
+              },
+              {
+                "lat": -6.0,
+                "lon": 113.0,
+                "alt": 8.615
+              },
+              {
+                "lat": -6.0,
+                "lon": 119.0,
+                "alt": 8.388
+              },
+              {
+                "lat": -6.0,
+                "lon": 125.0,
+                "alt": 8.162
+              },
+              {
+                "lat": -6.0,
+                "lon": 131.0,
+                "alt": 7.936
+              },
+              {
+                "lat": -6.0,
+                "lon": 137.0,
+                "alt": 7.709
+              },
+              {
+                "lat": -2.0,
+                "lon": 95.0,
+                "alt": 9.393
+              },
+              {
+                "lat": -2.0,
+                "lon": 101.0,
+                "alt": 9.17
+              },
+              {
+                "lat": -2.0,
+                "lon": 107.0,
+                "alt": 8.948
+              },
+              {
+                "lat": -2.0,
+                "lon": 113.0,
+                "alt": 8.726
+              }
+            ]
+          }
+        }
+      ],
+      "scan_indonesia": {
+        "n_titik_grid": 40,
+        "titik_sampel": [
+          {
+            "lat": -10.0,
+            "lon": 95.0,
+            "alt": 9.134
+          },
+          {
+            "lat": -10.0,
+            "lon": 101.0,
+            "alt": 8.904
+          },
+          {
+            "lat": -10.0,
+            "lon": 107.0,
+            "alt": 8.675
+          },
+          {
+            "lat": -10.0,
+            "lon": 113.0,
+            "alt": 8.445
+          },
+          {
+            "lat": -10.0,
+            "lon": 119.0,
+            "alt": 8.216
+          },
+          {
+            "lat": -10.0,
+            "lon": 125.0,
+            "alt": 7.986
+          },
+          {
+            "lat": -10.0,
+            "lon": 131.0,
+            "alt": 7.757
+          },
+          {
+            "lat": -10.0,
+            "lon": 137.0,
+            "alt": 7.528
+          },
+          {
+            "lat": -6.0,
+            "lon": 95.0,
+            "alt": 9.295
+          },
+          {
+            "lat": -6.0,
+            "lon": 101.0,
+            "alt": 9.068
+          },
+          {
+            "lat": -6.0,
+            "lon": 107.0,
+            "alt": 8.842
+          },
+          {
+            "lat": -6.0,
+            "lon": 113.0,
+            "alt": 8.615
+          },
+          {
+            "lat": -6.0,
+            "lon": 119.0,
+            "alt": 8.388
+          },
+          {
+            "lat": -6.0,
+            "lon": 125.0,
+            "alt": 8.162
+          },
+          {
+            "lat": -6.0,
+            "lon": 131.0,
+            "alt": 7.936
+          },
+          {
+            "lat": -6.0,
+            "lon": 137.0,
+            "alt": 7.709
+          },
+          {
+            "lat": -2.0,
+            "lon": 95.0,
+            "alt": 9.393
+          },
+          {
+            "lat": -2.0,
+            "lon": 101.0,
+            "alt": 9.17
+          },
+          {
+            "lat": -2.0,
+            "lon": 107.0,
+            "alt": 8.948
+          },
+          {
+            "lat": -2.0,
+            "lon": 113.0,
+            "alt": 8.726
+          }
+        ]
+      },
+      "ringkas": {
+        "tanggal": "2044-07-26",
+        "ijtimak": "25-07-2044 00:10 WIB",
+        "maghrib": "17:53 WIB",
+        "moonset": "18:35 WIB",
+        "best_time": "18:12 WIB",
+        "umur_jam": 17.72,
+        "alt_jakarta": 8.8402,
+        "syarat_ijtimak": true,
+        "syarat_alt": true,
+        "arcv": 9.7713,
+        "lebar_sabit": 0.2419,
+        "illumination": 99.1128,
+        "n_lokasi_lolos": 13,
+        "lokasi_lolos": [
+          {
+            "nama": "Sabang",
+            "lat": 5.8943,
+            "lon": 95.3184,
+            "alt": 9.388,
+            "az": 288.15,
+            "elong_geo": 11.225,
+            "umur_jam": 18.78,
+            "lag_menit": 43.3,
+            "maghrib_utc": "11:57",
+            "moonset_utc": "12:40",
+            "wujudul_hilal": {
+              "lolos": true,
+              "label": "Hisab Hakiki Wujudul Hilal (Muhammadiyah)",
+              "syarat": {
+                "ijtimak_sebelum_maghrib": true,
+                "piringan_atas_bulan_di_atas_ufuk": true,
+                "umur_bulan_positif": true
+              },
+              "alt_ref_pada_maghrib": 9.3878,
+              "umur_jam": 18.78
+            }
+          },
+          {
+            "nama": "Medan",
+            "lat": 3.5952,
+            "lon": 98.6722,
+            "alt": 9.292,
+            "az": 288.59,
+            "elong_geo": 11.07,
+            "umur_jam": 18.5,
+            "lag_menit": 42.9,
+            "maghrib_utc": "11:40",
+            "moonset_utc": "12:23",
+            "wujudul_hilal": {
+              "lolos": true,
+              "label": "Hisab Hakiki Wujudul Hilal (Muhammadiyah)",
+              "syarat": {
+                "ijtimak_sebelum_maghrib": true,
+                "piringan_atas_bulan_di_atas_ufuk": true,
+                "umur_bulan_positif": true
+              },
+              "alt_ref_pada_maghrib": 9.2917,
+              "umur_jam": 18.5
+            }
+          },
+          {
+            "nama": "Padang",
+            "lat": -0.9471,
+            "lon": 100.4172,
+            "alt": 9.208,
+            "az": 289.47,
+            "elong_geo": 10.946,
+            "umur_jam": 18.28,
+            "lag_menit": 42.6,
+            "maghrib_utc": "11:27",
+            "moonset_utc": "12:09",
+            "wujudul_hilal": {
+              "lolos": true,
+              "label": "Hisab Hakiki Wujudul Hilal (Muhammadiyah)",
+              "syarat": {
+                "ijtimak_sebelum_maghrib": true,
+                "piringan_atas_bulan_di_atas_ufuk": true,
+                "umur_bulan_positif": true
+              },
+              "alt_ref_pada_maghrib": 9.2084,
+              "umur_jam": 18.28
+            }
+          },
+          {
+            "nama": "Jakarta",
+            "lat": -6.2088,
+            "lon": 106.8456,
+            "alt": 8.84,
+            "az": 290.65,
+            "elong_geo": 10.639,
+            "umur_jam": 17.72,
+            "lag_menit": 41.5,
+            "maghrib_utc": "10:53",
+            "moonset_utc": "11:35",
+            "wujudul_hilal": {
+              "lolos": true,
+              "label": "Hisab Hakiki Wujudul Hilal (Muhammadiyah)",
+              "syarat": {
+                "ijtimak_sebelum_maghrib": true,
+                "piringan_atas_bulan_di_atas_ufuk": true,
+                "umur_bulan_positif": true
+              },
+              "alt_ref_pada_maghrib": 8.8402,
+              "umur_jam": 17.72
+            }
+          },
+          {
+            "nama": "Bandung",
+            "lat": -6.9175,
+            "lon": 107.6191,
+            "alt": 8.785,
+            "az": 290.81,
+            "elong_geo": 10.601,
+            "umur_jam": 17.65,
+            "lag_menit": 41.3,
+            "maghrib_utc": "10:49",
+            "moonset_utc": "11:31",
+            "wujudul_hilal": {
+              "lolos": true,
+              "label": "Hisab Hakiki Wujudul Hilal (Muhammadiyah)",
+              "syarat": {
+                "ijtimak_sebelum_maghrib": true,
+                "piringan_atas_bulan_di_atas_ufuk": true,
+                "umur_bulan_positif": true
+              },
+              "alt_ref_pada_maghrib": 8.7851,
+              "umur_jam": 17.65
+            }
+          },
+          {
+            "nama": "Surabaya",
+            "lat": -7.2575,
+            "lon": 112.7521,
+            "alt": 8.577,
+            "az": 290.93,
+            "elong_geo": 10.407,
+            "umur_jam": 17.3,
+            "lag_menit": 40.4,
+            "maghrib_utc": "10:28",
+            "moonset_utc": "11:09",
+            "wujudul_hilal": {
+              "lolos": true,
+              "label": "Hisab Hakiki Wujudul Hilal (Muhammadiyah)",
+              "syarat": {
+                "ijtimak_sebelum_maghrib": true,
+                "piringan_atas_bulan_di_atas_ufuk": true,
+                "umur_bulan_positif": true
+              },
+              "alt_ref_pada_maghrib": 8.5774,
+              "umur_jam": 17.3
+            }
+          },
+          {
+            "nama": "Banjarmasin",
+            "lat": -3.3194,
+            "lon": 114.5928,
+            "alt": 8.636,
+            "az": 290.11,
+            "elong_geo": 10.391,
+            "umur_jam": 17.27,
+            "lag_menit": 40.3,
+            "maghrib_utc": "10:27",
+            "moonset_utc": "11:07",
+            "wujudul_hilal": {
+              "lolos": true,
+              "label": "Hisab Hakiki Wujudul Hilal (Muhammadiyah)",
+              "syarat": {
+                "ijtimak_sebelum_maghrib": true,
+                "piringan_atas_bulan_di_atas_ufuk": true,
+                "umur_bulan_positif": true
+              },
+              "alt_ref_pada_maghrib": 8.6363,
+              "umur_jam": 17.27
+            }
+          },
+          {
+            "nama": "Balikpapan",
+            "lat": -1.2379,
+            "lon": 116.8529,
+            "alt": 8.598,
+            "az": 289.72,
+            "elong_geo": 10.335,
+            "umur_jam": 17.17,
+            "lag_menit": 40.0,
+            "maghrib_utc": "10:20",
+            "moonset_utc": "11:00",
+            "wujudul_hilal": {
+              "lolos": true,
+              "label": "Hisab Hakiki Wujudul Hilal (Muhammadiyah)",
+              "syarat": {
+                "ijtimak_sebelum_maghrib": true,
+                "piringan_atas_bulan_di_atas_ufuk": true,
+                "umur_bulan_positif": true
+              },
+              "alt_ref_pada_maghrib": 8.5979,
+              "umur_jam": 17.17
+            }
+          },
+          {
+            "nama": "Makassar",
+            "lat": -5.1477,
+            "lon": 119.4327,
+            "alt": 8.402,
+            "az": 290.53,
+            "elong_geo": 10.189,
+            "umur_jam": 16.91,
+            "lag_menit": 39.4,
+            "maghrib_utc": "10:05",
+            "moonset_utc": "10:44",
+            "wujudul_hilal": {
+              "lolos": true,
+              "label": "Hisab Hakiki Wujudul Hilal (Muhammadiyah)",
+              "syarat": {
+                "ijtimak_sebelum_maghrib": true,
+                "piringan_atas_bulan_di_atas_ufuk": true,
+                "umur_bulan_positif": true
+              },
+              "alt_ref_pada_maghrib": 8.4015,
+              "umur_jam": 16.91
+            }
+          },
+          {
+            "nama": "Manado",
+            "lat": 1.4748,
+            "lon": 124.8421,
+            "alt": 8.344,
+            "az": 289.35,
+            "elong_geo": 10.076,
+            "umur_jam": 16.7,
+            "lag_menit": 38.8,
+            "maghrib_utc": "09:52",
+            "moonset_utc": "10:31",
+            "wujudul_hilal": {
+              "lolos": true,
+              "label": "Hisab Hakiki Wujudul Hilal (Muhammadiyah)",
+              "syarat": {
+                "ijtimak_sebelum_maghrib": true,
+                "piringan_atas_bulan_di_atas_ufuk": true,
+                "umur_bulan_positif": true
+              },
+              "alt_ref_pada_maghrib": 8.3439,
+              "umur_jam": 16.7
+            }
+          },
+          {
+            "nama": "Kupang",
+            "lat": -10.1772,
+            "lon": 123.607,
+            "alt": 8.031,
+            "az": 291.67,
+            "elong_geo": 9.97,
+            "umur_jam": 16.51,
+            "lag_menit": 38.4,
+            "maghrib_utc": "09:41",
+            "moonset_utc": "10:19",
+            "wujudul_hilal": {
+              "lolos": true,
+              "label": "Hisab Hakiki Wujudul Hilal (Muhammadiyah)",
+              "syarat": {
+                "ijtimak_sebelum_maghrib": true,
+                "piringan_atas_bulan_di_atas_ufuk": true,
+                "umur_bulan_positif": true
+              },
+              "alt_ref_pada_maghrib": 8.0305,
+              "umur_jam": 16.51
+            }
+          },
+          {
+            "nama": "Ambon",
+            "lat": -3.655,
+            "lon": 128.1908,
+            "alt": 8.12,
+            "az": 290.32,
+            "elong_geo": 9.887,
+            "umur_jam": 16.36,
+            "lag_menit": 38.0,
+            "maghrib_utc": "09:32",
+            "moonset_utc": "10:10",
+            "wujudul_hilal": {
+              "lolos": true,
+              "label": "Hisab Hakiki Wujudul Hilal (Muhammadiyah)",
+              "syarat": {
+                "ijtimak_sebelum_maghrib": true,
+                "piringan_atas_bulan_di_atas_ufuk": true,
+                "umur_bulan_positif": true
+              },
+              "alt_ref_pada_maghrib": 8.1195,
+              "umur_jam": 16.36
+            }
+          },
+          {
+            "nama": "Jayapura",
+            "lat": -2.5337,
+            "lon": 140.7181,
+            "alt": 7.685,
+            "az": 290.24,
+            "elong_geo": 9.443,
+            "umur_jam": 15.55,
+            "lag_menit": 36.0,
+            "maghrib_utc": "08:43",
+            "moonset_utc": "09:19",
+            "wujudul_hilal": {
+              "lolos": true,
+              "label": "Hisab Hakiki Wujudul Hilal (Muhammadiyah)",
+              "syarat": {
+                "ijtimak_sebelum_maghrib": true,
+                "piringan_atas_bulan_di_atas_ufuk": true,
+                "umur_bulan_positif": true
+              },
+              "alt_ref_pada_maghrib": 7.6847,
+              "umur_jam": 15.55
+            }
+          }
+        ]
+      }
+    },
+    "syawal": {
+      "tanggal_awal": "2044-08-24",
+      "ijtimak_wib": "23-08-2044 08:06 WIB",
+      "ijtimak_tgl_lokal": "2044-08-23",
+      "ijtimak_posisi": "sebelum maghrib",
+      "wujudul_lolos": true,
+      "istikmal": false,
+      "hari_diperiksa": [
+        {
+          "tanggal": "2044-08-23",
+          "lolos_wujudul": true,
+          "dilewati": false,
+          "alasan_lewat": null,
+          "maghrib_wib": "17:53 WIB",
+          "maghrib_utc": "10:53 UTC",
+          "moonset_wib": "18:11 WIB",
+          "moonset_utc": "11:11 UTC",
+          "best_time_wib": "18:01 WIB",
+          "best_time_utc": "11:01 UTC",
+          "umur_jam": 9.79,
+          "wujudul_jakarta": {
+            "lolos": true,
+            "label": "Hisab Hakiki Wujudul Hilal (Muhammadiyah)",
+            "syarat": {
+              "ijtimak_sebelum_maghrib": true,
+              "piringan_atas_bulan_di_atas_ufuk": true,
+              "umur_bulan_positif": true
+            },
+            "alt_ref_pada_maghrib": 3.8025,
+            "umur_jam": 9.79
+          },
+          "visibilitas": {
+            "alt_bulan_airless": 1.754,
+            "alt_matahari_airless": -2.7504,
+            "elongasi_top": 4.6226,
+            "arcv": 4.5045,
+            "lebar_sabit_menit": 0.0529,
+            "illumination_pct": 99.7619
+          },
+          "multilokasi": {
+            "n_lokasi": 13,
+            "lokasi": [
+              {
+                "nama": "Sabang",
+                "lat": 5.8943,
+                "lon": 95.3184,
+                "alt": 3.904,
+                "az": 278.87,
+                "elong_geo": 6.035,
+                "umur_jam": 10.72,
+                "lag_menit": 18.0,
+                "maghrib_utc": "11:49",
+                "moonset_utc": "12:07",
+                "wujudul_hilal": {
+                  "lolos": true,
+                  "label": "Hisab Hakiki Wujudul Hilal (Muhammadiyah)",
+                  "syarat": {
+                    "ijtimak_sebelum_maghrib": true,
+                    "piringan_atas_bulan_di_atas_ufuk": true,
+                    "umur_bulan_positif": true
+                  },
+                  "alt_ref_pada_maghrib": 3.9036,
+                  "umur_jam": 10.72
+                }
+              },
+              {
+                "nama": "Medan",
+                "lat": 3.5952,
+                "lon": 98.6722,
+                "alt": 3.875,
+                "az": 279.1,
+                "elong_geo": 5.894,
+                "umur_jam": 10.47,
+                "lag_menit": 17.8,
+                "maghrib_utc": "11:34",
+                "moonset_utc": "11:51",
+                "wujudul_hilal": {
+                  "lolos": true,
+                  "label": "Hisab Hakiki Wujudul Hilal (Muhammadiyah)",
+                  "syarat": {
+                    "ijtimak_sebelum_maghrib": true,
+                    "piringan_atas_bulan_di_atas_ufuk": true,
+                    "umur_bulan_positif": true
+                  },
+                  "alt_ref_pada_maghrib": 3.8748,
+                  "umur_jam": 10.47
+                }
+              },
+              {
+                "nama": "Padang",
+                "lat": -0.9471,
+                "lon": 100.4172,
+                "alt": 3.935,
+                "az": 279.51,
+                "elong_geo": 5.797,
+                "umur_jam": 10.29,
+                "lag_menit": 18.1,
+                "maghrib_utc": "11:23",
+                "moonset_utc": "11:41",
+                "wujudul_hilal": {
+                  "lolos": true,
+                  "label": "Hisab Hakiki Wujudul Hilal (Muhammadiyah)",
+                  "syarat": {
+                    "ijtimak_sebelum_maghrib": true,
+                    "piringan_atas_bulan_di_atas_ufuk": true,
+                    "umur_bulan_positif": true
+                  },
+                  "alt_ref_pada_maghrib": 3.9349,
+                  "umur_jam": 10.29
+                }
+              },
+              {
+                "nama": "Jakarta",
+                "lat": -6.2088,
+                "lon": 106.8456,
+                "alt": 3.803,
+                "az": 280.13,
+                "elong_geo": 5.521,
+                "umur_jam": 9.79,
+                "lag_menit": 17.7,
+                "maghrib_utc": "10:53",
+                "moonset_utc": "11:11",
+                "wujudul_hilal": {
+                  "lolos": true,
+                  "label": "Hisab Hakiki Wujudul Hilal (Muhammadiyah)",
+                  "syarat": {
+                    "ijtimak_sebelum_maghrib": true,
+                    "piringan_atas_bulan_di_atas_ufuk": true,
+                    "umur_bulan_positif": true
+                  },
+                  "alt_ref_pada_maghrib": 3.8025,
+                  "umur_jam": 9.79
+                }
+              },
+              {
+                "nama": "Bandung",
+                "lat": -6.9175,
+                "lon": 107.6191,
+                "alt": 3.783,
+                "az": 280.21,
+                "elong_geo": 5.487,
+                "umur_jam": 9.73,
+                "lag_menit": 17.6,
+                "maghrib_utc": "10:49",
+                "moonset_utc": "11:07",
+                "wujudul_hilal": {
+                  "lolos": true,
+                  "label": "Hisab Hakiki Wujudul Hilal (Muhammadiyah)",
+                  "syarat": {
+                    "ijtimak_sebelum_maghrib": true,
+                    "piringan_atas_bulan_di_atas_ufuk": true,
+                    "umur_bulan_positif": true
+                  },
+                  "alt_ref_pada_maghrib": 3.7828,
+                  "umur_jam": 9.73
+                }
+              },
+              {
+                "nama": "Surabaya",
+                "lat": -7.2575,
+                "lon": 112.7521,
+                "alt": 3.61,
+                "az": 280.32,
+                "elong_geo": 5.295,
+                "umur_jam": 9.39,
+                "lag_menit": 16.9,
+                "maghrib_utc": "10:29",
+                "moonset_utc": "10:46",
+                "wujudul_hilal": {
+                  "lolos": true,
+                  "label": "Hisab Hakiki Wujudul Hilal (Muhammadiyah)",
+                  "syarat": {
+                    "ijtimak_sebelum_maghrib": true,
+                    "piringan_atas_bulan_di_atas_ufuk": true,
+                    "umur_bulan_positif": true
+                  },
+                  "alt_ref_pada_maghrib": 3.6102,
+                  "umur_jam": 9.39
+                }
+              },
+              {
+                "nama": "Banjarmasin",
+                "lat": -3.3194,
+                "lon": 114.5928,
+                "alt": 3.509,
+                "az": 279.96,
+                "elong_geo": 5.256,
+                "umur_jam": 9.31,
+                "lag_menit": 16.3,
+                "maghrib_utc": "10:24",
+                "moonset_utc": "10:41",
+                "wujudul_hilal": {
+                  "lolos": true,
+                  "label": "Hisab Hakiki Wujudul Hilal (Muhammadiyah)",
+                  "syarat": {
+                    "ijtimak_sebelum_maghrib": true,
+                    "piringan_atas_bulan_di_atas_ufuk": true,
+                    "umur_bulan_positif": true
+                  },
+                  "alt_ref_pada_maghrib": 3.5085,
+                  "umur_jam": 9.31
+                }
+              },
+              {
+                "nama": "Balikpapan",
+                "lat": -1.2379,
+                "lon": 116.8529,
+                "alt": 3.404,
+                "az": 279.81,
+                "elong_geo": 5.188,
+                "umur_jam": 9.19,
+                "lag_menit": 15.8,
+                "maghrib_utc": "10:17",
+                "moonset_utc": "10:33",
+                "wujudul_hilal": {
+                  "lolos": true,
+                  "label": "Hisab Hakiki Wujudul Hilal (Muhammadiyah)",
+                  "syarat": {
+                    "ijtimak_sebelum_maghrib": true,
+                    "piringan_atas_bulan_di_atas_ufuk": true,
+                    "umur_bulan_positif": true
+                  },
+                  "alt_ref_pada_maghrib": 3.4039,
+                  "umur_jam": 9.19
+                }
+              },
+              {
+                "nama": "Makassar",
+                "lat": -5.1477,
+                "lon": 119.4327,
+                "alt": 3.367,
+                "az": 280.2,
+                "elong_geo": 5.064,
+                "umur_jam": 8.97,
+                "lag_menit": 15.7,
+                "maghrib_utc": "10:04",
+                "moonset_utc": "10:19",
+                "wujudul_hilal": {
+                  "lolos": true,
+                  "label": "Hisab Hakiki Wujudul Hilal (Muhammadiyah)",
+                  "syarat": {
+                    "ijtimak_sebelum_maghrib": true,
+                    "piringan_atas_bulan_di_atas_ufuk": true,
+                    "umur_bulan_positif": true
+                  },
+                  "alt_ref_pada_maghrib": 3.3672,
+                  "umur_jam": 8.97
+                }
+              },
+              {
+                "nama": "Manado",
+                "lat": 1.4748,
+                "lon": 124.8421,
+                "alt": 3.101,
+                "az": 279.75,
+                "elong_geo": 4.913,
+                "umur_jam": 8.69,
+                "lag_menit": 14.5,
+                "maghrib_utc": "09:47",
+                "moonset_utc": "10:02",
+                "wujudul_hilal": {
+                  "lolos": true,
+                  "label": "Hisab Hakiki Wujudul Hilal (Muhammadiyah)",
+                  "syarat": {
+                    "ijtimak_sebelum_maghrib": true,
+                    "piringan_atas_bulan_di_atas_ufuk": true,
+                    "umur_bulan_positif": true
+                  },
+                  "alt_ref_pada_maghrib": 3.1012,
+                  "umur_jam": 8.69
+                }
+              },
+              {
+                "nama": "Kupang",
+                "lat": -10.1772,
+                "lon": 123.607,
+                "alt": 3.247,
+                "az": 280.77,
+                "elong_geo": 4.874,
+                "umur_jam": 8.62,
+                "lag_menit": 15.4,
+                "maghrib_utc": "09:43",
+                "moonset_utc": "09:58",
+                "wujudul_hilal": {
+                  "lolos": true,
+                  "label": "Hisab Hakiki Wujudul Hilal (Muhammadiyah)",
+                  "syarat": {
+                    "ijtimak_sebelum_maghrib": true,
+                    "piringan_atas_bulan_di_atas_ufuk": true,
+                    "umur_bulan_positif": true
+                  },
+                  "alt_ref_pada_maghrib": 3.2473,
+                  "umur_jam": 8.62
+                }
+              },
+              {
+                "nama": "Ambon",
+                "lat": -3.655,
+                "lon": 128.1908,
+                "alt": 3.062,
+                "az": 280.2,
+                "elong_geo": 4.753,
+                "umur_jam": 8.4,
+                "lag_menit": 14.4,
+                "maghrib_utc": "09:30",
+                "moonset_utc": "09:44",
+                "wujudul_hilal": {
+                  "lolos": true,
+                  "label": "Hisab Hakiki Wujudul Hilal (Muhammadiyah)",
+                  "syarat": {
+                    "ijtimak_sebelum_maghrib": true,
+                    "piringan_atas_bulan_di_atas_ufuk": true,
+                    "umur_bulan_positif": true
+                  },
+                  "alt_ref_pada_maghrib": 3.0619,
+                  "umur_jam": 8.4
+                }
+              },
+              {
+                "nama": "Jayapura",
+                "lat": -2.5337,
+                "lon": 140.7181,
+                "alt": 2.642,
+                "az": 280.31,
+                "elong_geo": 4.301,
+                "umur_jam": 7.58,
+                "lag_menit": 12.5,
+                "maghrib_utc": "08:41",
+                "moonset_utc": "08:53",
+                "wujudul_hilal": {
+                  "lolos": true,
+                  "label": "Hisab Hakiki Wujudul Hilal (Muhammadiyah)",
+                  "syarat": {
+                    "ijtimak_sebelum_maghrib": true,
+                    "piringan_atas_bulan_di_atas_ufuk": true,
+                    "umur_bulan_positif": true
+                  },
+                  "alt_ref_pada_maghrib": 2.6418,
+                  "umur_jam": 7.58
+                }
+              }
+            ]
+          },
+          "scan_indonesia": {
+            "n_titik_grid": 40,
+            "titik_sampel": [
+              {
+                "lat": -10.0,
+                "lon": 95.0,
+                "alt": 4.241
+              },
+              {
+                "lat": -10.0,
+                "lon": 101.0,
+                "alt": 4.032
+              },
+              {
+                "lat": -10.0,
+                "lon": 107.0,
+                "alt": 3.823
+              },
+              {
+                "lat": -10.0,
+                "lon": 113.0,
+                "alt": 3.614
+              },
+              {
+                "lat": -10.0,
+                "lon": 119.0,
+                "alt": 3.406
+              },
+              {
+                "lat": -10.0,
+                "lon": 125.0,
+                "alt": 3.199
+              },
+              {
+                "lat": -10.0,
+                "lon": 131.0,
+                "alt": 2.993
+              },
+              {
+                "lat": -10.0,
+                "lon": 137.0,
+                "alt": 2.787
+              },
+              {
+                "lat": -6.0,
+                "lon": 95.0,
+                "alt": 4.203
+              },
+              {
+                "lat": -6.0,
+                "lon": 101.0,
+                "alt": 3.999
+              },
+              {
+                "lat": -6.0,
+                "lon": 107.0,
+                "alt": 3.795
+              },
+              {
+                "lat": -6.0,
+                "lon": 113.0,
+                "alt": 3.592
+              },
+              {
+                "lat": -6.0,
+                "lon": 119.0,
+                "alt": 3.389
+              },
+              {
+                "lat": -6.0,
+                "lon": 125.0,
+                "alt": 3.186
+              },
+              {
+                "lat": -6.0,
+                "lon": 131.0,
+                "alt": 2.985
+              },
+              {
+                "lat": -6.0,
+                "lon": 137.0,
+                "alt": 2.784
+              },
+              {
+                "lat": -2.0,
+                "lon": 95.0,
+                "alt": 4.135
+              },
+              {
+                "lat": -2.0,
+                "lon": 101.0,
+                "alt": 3.937
+              },
+              {
+                "lat": -2.0,
+                "lon": 107.0,
+                "alt": 3.739
+              },
+              {
+                "lat": -2.0,
+                "lon": 113.0,
+                "alt": 3.542
+              }
+            ]
+          }
+        }
+      ],
+      "scan_indonesia": {
+        "n_titik_grid": 40,
+        "titik_sampel": [
+          {
+            "lat": -10.0,
+            "lon": 95.0,
+            "alt": 4.241
+          },
+          {
+            "lat": -10.0,
+            "lon": 101.0,
+            "alt": 4.032
+          },
+          {
+            "lat": -10.0,
+            "lon": 107.0,
+            "alt": 3.823
+          },
+          {
+            "lat": -10.0,
+            "lon": 113.0,
+            "alt": 3.614
+          },
+          {
+            "lat": -10.0,
+            "lon": 119.0,
+            "alt": 3.406
+          },
+          {
+            "lat": -10.0,
+            "lon": 125.0,
+            "alt": 3.199
+          },
+          {
+            "lat": -10.0,
+            "lon": 131.0,
+            "alt": 2.993
+          },
+          {
+            "lat": -10.0,
+            "lon": 137.0,
+            "alt": 2.787
+          },
+          {
+            "lat": -6.0,
+            "lon": 95.0,
+            "alt": 4.203
+          },
+          {
+            "lat": -6.0,
+            "lon": 101.0,
+            "alt": 3.999
+          },
+          {
+            "lat": -6.0,
+            "lon": 107.0,
+            "alt": 3.795
+          },
+          {
+            "lat": -6.0,
+            "lon": 113.0,
+            "alt": 3.592
+          },
+          {
+            "lat": -6.0,
+            "lon": 119.0,
+            "alt": 3.389
+          },
+          {
+            "lat": -6.0,
+            "lon": 125.0,
+            "alt": 3.186
+          },
+          {
+            "lat": -6.0,
+            "lon": 131.0,
+            "alt": 2.985
+          },
+          {
+            "lat": -6.0,
+            "lon": 137.0,
+            "alt": 2.784
+          },
+          {
+            "lat": -2.0,
+            "lon": 95.0,
+            "alt": 4.135
+          },
+          {
+            "lat": -2.0,
+            "lon": 101.0,
+            "alt": 3.937
+          },
+          {
+            "lat": -2.0,
+            "lon": 107.0,
+            "alt": 3.739
+          },
+          {
+            "lat": -2.0,
+            "lon": 113.0,
+            "alt": 3.542
+          }
+        ]
+      },
+      "ringkas": {
+        "tanggal": "2044-08-24",
+        "ijtimak": "23-08-2044 08:06 WIB",
+        "maghrib": "17:53 WIB",
+        "moonset": "18:11 WIB",
+        "best_time": "18:01 WIB",
+        "umur_jam": 9.79,
+        "alt_jakarta": 3.8025,
+        "syarat_ijtimak": true,
+        "syarat_alt": true,
+        "arcv": 4.5045,
+        "lebar_sabit": 0.0529,
+        "illumination": 99.7619,
+        "n_lokasi_lolos": 13,
+        "lokasi_lolos": [
+          {
+            "nama": "Sabang",
+            "lat": 5.8943,
+            "lon": 95.3184,
+            "alt": 3.904,
+            "az": 278.87,
+            "elong_geo": 6.035,
+            "umur_jam": 10.72,
+            "lag_menit": 18.0,
+            "maghrib_utc": "11:49",
+            "moonset_utc": "12:07",
+            "wujudul_hilal": {
+              "lolos": true,
+              "label": "Hisab Hakiki Wujudul Hilal (Muhammadiyah)",
+              "syarat": {
+                "ijtimak_sebelum_maghrib": true,
+                "piringan_atas_bulan_di_atas_ufuk": true,
+                "umur_bulan_positif": true
+              },
+              "alt_ref_pada_maghrib": 3.9036,
+              "umur_jam": 10.72
+            }
+          },
+          {
+            "nama": "Medan",
+            "lat": 3.5952,
+            "lon": 98.6722,
+            "alt": 3.875,
+            "az": 279.1,
+            "elong_geo": 5.894,
+            "umur_jam": 10.47,
+            "lag_menit": 17.8,
+            "maghrib_utc": "11:34",
+            "moonset_utc": "11:51",
+            "wujudul_hilal": {
+              "lolos": true,
+              "label": "Hisab Hakiki Wujudul Hilal (Muhammadiyah)",
+              "syarat": {
+                "ijtimak_sebelum_maghrib": true,
+                "piringan_atas_bulan_di_atas_ufuk": true,
+                "umur_bulan_positif": true
+              },
+              "alt_ref_pada_maghrib": 3.8748,
+              "umur_jam": 10.47
+            }
+          },
+          {
+            "nama": "Padang",
+            "lat": -0.9471,
+            "lon": 100.4172,
+            "alt": 3.935,
+            "az": 279.51,
+            "elong_geo": 5.797,
+            "umur_jam": 10.29,
+            "lag_menit": 18.1,
+            "maghrib_utc": "11:23",
+            "moonset_utc": "11:41",
+            "wujudul_hilal": {
+              "lolos": true,
+              "label": "Hisab Hakiki Wujudul Hilal (Muhammadiyah)",
+              "syarat": {
+                "ijtimak_sebelum_maghrib": true,
+                "piringan_atas_bulan_di_atas_ufuk": true,
+                "umur_bulan_positif": true
+              },
+              "alt_ref_pada_maghrib": 3.9349,
+              "umur_jam": 10.29
+            }
+          },
+          {
+            "nama": "Jakarta",
+            "lat": -6.2088,
+            "lon": 106.8456,
+            "alt": 3.803,
+            "az": 280.13,
+            "elong_geo": 5.521,
+            "umur_jam": 9.79,
+            "lag_menit": 17.7,
+            "maghrib_utc": "10:53",
+            "moonset_utc": "11:11",
+            "wujudul_hilal": {
+              "lolos": true,
+              "label": "Hisab Hakiki Wujudul Hilal (Muhammadiyah)",
+              "syarat": {
+                "ijtimak_sebelum_maghrib": true,
+                "piringan_atas_bulan_di_atas_ufuk": true,
+                "umur_bulan_positif": true
+              },
+              "alt_ref_pada_maghrib": 3.8025,
+              "umur_jam": 9.79
+            }
+          },
+          {
+            "nama": "Bandung",
+            "lat": -6.9175,
+            "lon": 107.6191,
+            "alt": 3.783,
+            "az": 280.21,
+            "elong_geo": 5.487,
+            "umur_jam": 9.73,
+            "lag_menit": 17.6,
+            "maghrib_utc": "10:49",
+            "moonset_utc": "11:07",
+            "wujudul_hilal": {
+              "lolos": true,
+              "label": "Hisab Hakiki Wujudul Hilal (Muhammadiyah)",
+              "syarat": {
+                "ijtimak_sebelum_maghrib": true,
+                "piringan_atas_bulan_di_atas_ufuk": true,
+                "umur_bulan_positif": true
+              },
+              "alt_ref_pada_maghrib": 3.7828,
+              "umur_jam": 9.73
+            }
+          },
+          {
+            "nama": "Surabaya",
+            "lat": -7.2575,
+            "lon": 112.7521,
+            "alt": 3.61,
+            "az": 280.32,
+            "elong_geo": 5.295,
+            "umur_jam": 9.39,
+            "lag_menit": 16.9,
+            "maghrib_utc": "10:29",
+            "moonset_utc": "10:46",
+            "wujudul_hilal": {
+              "lolos": true,
+              "label": "Hisab Hakiki Wujudul Hilal (Muhammadiyah)",
+              "syarat": {
+                "ijtimak_sebelum_maghrib": true,
+                "piringan_atas_bulan_di_atas_ufuk": true,
+                "umur_bulan_positif": true
+              },
+              "alt_ref_pada_maghrib": 3.6102,
+              "umur_jam": 9.39
+            }
+          },
+          {
+            "nama": "Banjarmasin",
+            "lat": -3.3194,
+            "lon": 114.5928,
+            "alt": 3.509,
+            "az": 279.96,
+            "elong_geo": 5.256,
+            "umur_jam": 9.31,
+            "lag_menit": 16.3,
+            "maghrib_utc": "10:24",
+            "moonset_utc": "10:41",
+            "wujudul_hilal": {
+              "lolos": true,
+              "label": "Hisab Hakiki Wujudul Hilal (Muhammadiyah)",
+              "syarat": {
+                "ijtimak_sebelum_maghrib": true,
+                "piringan_atas_bulan_di_atas_ufuk": true,
+                "umur_bulan_positif": true
+              },
+              "alt_ref_pada_maghrib": 3.5085,
+              "umur_jam": 9.31
+            }
+          },
+          {
+            "nama": "Balikpapan",
+            "lat": -1.2379,
+            "lon": 116.8529,
+            "alt": 3.404,
+            "az": 279.81,
+            "elong_geo": 5.188,
+            "umur_jam": 9.19,
+            "lag_menit": 15.8,
+            "maghrib_utc": "10:17",
+            "moonset_utc": "10:33",
+            "wujudul_hilal": {
+              "lolos": true,
+              "label": "Hisab Hakiki Wujudul Hilal (Muhammadiyah)",
+              "syarat": {
+                "ijtimak_sebelum_maghrib": true,
+                "piringan_atas_bulan_di_atas_ufuk": true,
+                "umur_bulan_positif": true
+              },
+              "alt_ref_pada_maghrib": 3.4039,
+              "umur_jam": 9.19
+            }
+          },
+          {
+            "nama": "Makassar",
+            "lat": -5.1477,
+            "lon": 119.4327,
+            "alt": 3.367,
+            "az": 280.2,
+            "elong_geo": 5.064,
+            "umur_jam": 8.97,
+            "lag_menit": 15.7,
+            "maghrib_utc": "10:04",
+            "moonset_utc": "10:19",
+            "wujudul_hilal": {
+              "lolos": true,
+              "label": "Hisab Hakiki Wujudul Hilal (Muhammadiyah)",
+              "syarat": {
+                "ijtimak_sebelum_maghrib": true,
+                "piringan_atas_bulan_di_atas_ufuk": true,
+                "umur_bulan_positif": true
+              },
+              "alt_ref_pada_maghrib": 3.3672,
+              "umur_jam": 8.97
+            }
+          },
+          {
+            "nama": "Manado",
+            "lat": 1.4748,
+            "lon": 124.8421,
+            "alt": 3.101,
+            "az": 279.75,
+            "elong_geo": 4.913,
+            "umur_jam": 8.69,
+            "lag_menit": 14.5,
+            "maghrib_utc": "09:47",
+            "moonset_utc": "10:02",
+            "wujudul_hilal": {
+              "lolos": true,
+              "label": "Hisab Hakiki Wujudul Hilal (Muhammadiyah)",
+              "syarat": {
+                "ijtimak_sebelum_maghrib": true,
+                "piringan_atas_bulan_di_atas_ufuk": true,
+                "umur_bulan_positif": true
+              },
+              "alt_ref_pada_maghrib": 3.1012,
+              "umur_jam": 8.69
+            }
+          },
+          {
+            "nama": "Kupang",
+            "lat": -10.1772,
+            "lon": 123.607,
+            "alt": 3.247,
+            "az": 280.77,
+            "elong_geo": 4.874,
+            "umur_jam": 8.62,
+            "lag_menit": 15.4,
+            "maghrib_utc": "09:43",
+            "moonset_utc": "09:58",
+            "wujudul_hilal": {
+              "lolos": true,
+              "label": "Hisab Hakiki Wujudul Hilal (Muhammadiyah)",
+              "syarat": {
+                "ijtimak_sebelum_maghrib": true,
+                "piringan_atas_bulan_di_atas_ufuk": true,
+                "umur_bulan_positif": true
+              },
+              "alt_ref_pada_maghrib": 3.2473,
+              "umur_jam": 8.62
+            }
+          },
+          {
+            "nama": "Ambon",
+            "lat": -3.655,
+            "lon": 128.1908,
+            "alt": 3.062,
+            "az": 280.2,
+            "elong_geo": 4.753,
+            "umur_jam": 8.4,
+            "lag_menit": 14.4,
+            "maghrib_utc": "09:30",
+            "moonset_utc": "09:44",
+            "wujudul_hilal": {
+              "lolos": true,
+              "label": "Hisab Hakiki Wujudul Hilal (Muhammadiyah)",
+              "syarat": {
+                "ijtimak_sebelum_maghrib": true,
+                "piringan_atas_bulan_di_atas_ufuk": true,
+                "umur_bulan_positif": true
+              },
+              "alt_ref_pada_maghrib": 3.0619,
+              "umur_jam": 8.4
+            }
+          },
+          {
+            "nama": "Jayapura",
+            "lat": -2.5337,
+            "lon": 140.7181,
+            "alt": 2.642,
+            "az": 280.31,
+            "elong_geo": 4.301,
+            "umur_jam": 7.58,
+            "lag_menit": 12.5,
+            "maghrib_utc": "08:41",
+            "moonset_utc": "08:53",
+            "wujudul_hilal": {
+              "lolos": true,
+              "label": "Hisab Hakiki Wujudul Hilal (Muhammadiyah)",
+              "syarat": {
+                "ijtimak_sebelum_maghrib": true,
+                "piringan_atas_bulan_di_atas_ufuk": true,
+                "umur_bulan_positif": true
+              },
+              "alt_ref_pada_maghrib": 2.6418,
+              "umur_jam": 7.58
+            }
+          }
+        ]
+      }
+    }
+  },
+  "generated_at": "2026-03-22T22:11:12.203629"
+}
