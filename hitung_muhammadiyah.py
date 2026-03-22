@@ -396,11 +396,11 @@ def hitung_awal_bulan_hijriah(tahun_hijriah, bulan_hijriah, ts, eph, topos_jakar
             print(f"✅ LOLOS WUJUDUL ({len(lokasi_lolos)} lokasi: {', '.join(nama_lolos[:3])}{'...' if len(nama_lolos)>3 else ''})")
             tanggal_1 = tgl + timedelta(days=1)
             hari_lolos_obj = hari
+            hari_list.append(hari)
             break
         else:
             print("❌ Belum wujud")
-
-        hari_list.append(hari)
+            hari_list.append(hari)
 
     else:
         tanggal_1 = tgl_nm + timedelta(days=start_i + 3)
