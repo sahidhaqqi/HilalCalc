@@ -3,179 +3,185 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Hisab Hilal — Awal Bulan Hijriyah</title>
-<link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Crimson+Pro:ital,wght@0,300;0,400;0,500;1,300&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<title>Hisab Hilal Indonesia</title>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=DM+Mono:wght@400;500&family=Crimson+Pro:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
 :root{
-  --bg:#06091a;--bg2:#0a0e24;--card:#0f152e;--card2:#141c38;
-  --gold:#c8922a;--gold-lit:#e8b84b;--gold-dim:rgba(200,146,42,.12);--gold-mid:rgba(200,146,42,.32);
-  --text:#ddd5c0;--muted:#7a7a9a;--ok:#5acea0;--err:#e07878;--info:#78aee0;--warn:#e0c478;
-  --border:rgba(200,146,42,.13);
+  --bg:#05081a;--bg2:#090d22;--card:#0d1229;--card2:#111830;
+  --gold:#c8922a;--gold-lit:#e8b84b;--gold-dim:rgba(200,146,42,.1);--gold-mid:rgba(200,146,42,.3);
+  --text:#ddd5c0;--muted:#6a6a8a;--ok:#4ec99a;--ok2:rgba(78,201,154,.12);
+  --err:#e07878;--err2:rgba(224,120,120,.12);--info:#78aee0;--warn:#e0c478;
+  --border:rgba(200,146,42,.12);--border2:rgba(200,146,42,.25);
 }
 html{scroll-behavior:smooth}
-body{background:var(--bg);color:var(--text);font-family:'Crimson Pro',Georgia,serif;font-size:17px;line-height:1.65;min-height:100vh;overflow-x:hidden}
+body{background:var(--bg);color:var(--text);font-family:'Crimson Pro',serif;font-size:16px;line-height:1.65;min-height:100vh;overflow-x:hidden}
 #sky{position:fixed;inset:0;z-index:0;pointer-events:none}
-.page{position:relative;z-index:1;max-width:960px;margin:0 auto;padding:56px 20px 90px}
 
-/* header */
-header{text-align:center;margin-bottom:48px}
-.moon-svg{width:66px;height:66px;margin:0 auto 24px;animation:float 5s ease-in-out infinite;display:block}
-@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
-h1.arabic{font-family:'Amiri',serif;font-size:2.6rem;color:var(--gold-lit);letter-spacing:.03em;margin-bottom:4px}
-.latin-title{font-family:'Amiri',serif;font-size:.95rem;color:var(--muted);letter-spacing:.2em;text-transform:uppercase;margin-bottom:12px}
-.sub{font-family:'DM Mono',monospace;font-size:.76rem;color:var(--muted);letter-spacing:.06em}
+/* ── Page ── */
+.page{position:relative;z-index:1;max-width:1100px;margin:0 auto;padding:48px 20px 80px}
 
-/* divider */
-.div{display:flex;align-items:center;gap:14px;margin:32px 0;opacity:.3}
-.div::before,.div::after{content:'';flex:1;height:1px;background:var(--gold)}
-.div span{color:var(--gold);font-size:.7rem}
+/* ── Header ── */
+header{text-align:center;margin-bottom:40px}
+.moon-wrap{width:56px;height:56px;margin:0 auto 20px;animation:float 5s ease-in-out infinite;display:block}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+h1.arabic{font-family:'Amiri',serif;font-size:2.4rem;color:var(--gold-lit);letter-spacing:.03em;margin-bottom:3px}
+.latin-sub{font-family:'DM Mono',monospace;font-size:.72rem;color:var(--muted);letter-spacing:.18em;text-transform:uppercase}
 
-/* controls */
-.ctrl{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:28px 32px;margin-bottom:28px}
-.lbl{font-family:'DM Mono',monospace;font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:9px;display:block}
-.qy-row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px}
-.btn-yr{background:var(--bg2);border:1px solid var(--border);border-radius:7px;color:var(--muted);font-family:'DM Mono',monospace;font-size:.79rem;padding:7px 13px;cursor:pointer;transition:all .14s}
-.btn-yr:hover{border-color:var(--gold-mid);color:var(--text)}
-.btn-yr.on{background:var(--gold-dim);border-color:var(--gold);color:var(--gold-lit)}
-.inp-row{display:flex;gap:10px}
-.yr-inp{flex:1;background:var(--bg2);border:1px solid var(--border);border-radius:9px;color:var(--text);font-family:'DM Mono',monospace;font-size:1.35rem;padding:11px 16px;outline:none;transition:border-color .2s;letter-spacing:.1em}
-.yr-inp:focus{border-color:var(--gold-mid)}
-.yr-inp::placeholder{color:#2e2e48}
-.btn-go{background:var(--gold);color:#1a0e00;border:none;border-radius:9px;padding:11px 24px;font-family:'Amiri',serif;font-size:1rem;font-weight:700;cursor:pointer;transition:background .14s,transform .1s;letter-spacing:.04em}
-.btn-go:hover{background:var(--gold-lit)}
-.btn-go:active{transform:scale(.97)}
-.btn-go:disabled{opacity:.45;cursor:not-allowed}
-.loc-row{display:flex;gap:18px;flex-wrap:wrap;padding-top:16px;border-top:1px solid var(--border);margin-top:4px}
-.loc-i{font-family:'DM Mono',monospace;font-size:.72rem;color:var(--muted)}
-.loc-i span{color:var(--info);margin-left:3px}
+/* ── Year selector ── */
+.year-bar{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:22px 28px;margin-bottom:24px}
+.year-tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:16px}
+.ytab{background:var(--bg2);border:1px solid var(--border);border-radius:7px;color:var(--muted);font-family:'DM Mono',monospace;font-size:.77rem;padding:6px 12px;cursor:pointer;transition:all .14s}
+.ytab:hover{border-color:var(--gold-mid);color:var(--text)}
+.ytab.on{background:var(--gold-dim);border-color:var(--gold);color:var(--gold-lit)}
+.month-tabs{display:flex;gap:8px}
+.mtab{flex:1;background:var(--bg2);border:1px solid var(--border);border-radius:8px;color:var(--muted);font-family:'Amiri',serif;font-size:1rem;padding:8px;cursor:pointer;transition:all .14s;text-align:center}
+.mtab:hover{border-color:var(--gold-mid);color:var(--text)}
+.mtab.on{background:var(--gold-dim);border-color:var(--gold);color:var(--gold-lit)}
 
-/* state */
-.loading,.err-box{display:none}
-.loading.on,.err-box.on{display:block}
-.loading{text-align:center;padding:48px 0}
-.cres{width:50px;height:50px;margin:0 auto 18px;animation:spin 2s linear infinite}
+/* ── Loading / error ── */
+.state-box{display:none;text-align:center;padding:60px 20px}
+.state-box.on{display:block}
+.cres{width:48px;height:48px;margin:0 auto 16px;animation:spin 2s linear infinite}
 @keyframes spin{to{transform:rotate(360deg)}}
 .ltxt{font-family:'DM Mono',monospace;font-size:.78rem;color:var(--muted);animation:blink 1.4s ease-in-out infinite}
 @keyframes blink{0%,100%{opacity:.35}50%{opacity:1}}
-.err-box{background:rgba(224,120,120,.07);border:1px solid rgba(224,120,120,.24);border-radius:11px;padding:16px 20px;color:var(--err);font-family:'DM Mono',monospace;font-size:.8rem}
+.err-box{display:none;background:rgba(224,120,120,.07);border:1px solid rgba(224,120,120,.24);border-radius:11px;padding:14px 18px;color:var(--err);font-family:'DM Mono',monospace;font-size:.78rem;margin-bottom:16px}
 
-/* results */
-.results{display:none;animation:up .4s ease}
-.results.on{display:block}
-@keyframes up{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
-.res-meta{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;margin-bottom:20px;font-family:'DM Mono',monospace;font-size:.75rem;color:var(--muted)}
-.res-meta strong{color:var(--gold)}
+/* ── Main results ── */
+.main-results{display:none;animation:up .4s ease}
+.main-results.on{display:block}
+@keyframes up{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
 
-/* tabs */
-.tabs{display:flex;gap:6px;margin-bottom:20px}
-.tab{background:var(--bg2);border:1px solid var(--border);border-radius:8px;color:var(--muted);font-family:'DM Mono',monospace;font-size:.78rem;padding:8px 18px;cursor:pointer;transition:all .14s}
-.tab:hover{color:var(--text)}
-.tab.on{background:var(--gold-dim);border-color:var(--gold);color:var(--gold-lit)}
+/* ── Top grid: hilal + summary ── */
+.top-grid{display:grid;grid-template-columns:280px 1fr;gap:18px;margin-bottom:18px}
+@media(max-width:700px){.top-grid{grid-template-columns:1fr}}
 
-/* panel */
-.panel{display:none}.panel.on{display:block}
+/* ── Hilal panel ── */
+.hilal-panel{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:20px;display:flex;flex-direction:column;align-items:center;gap:12px}
+.hilal-title{font-family:'DM Mono',monospace;font-size:.62rem;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);align-self:flex-start}
+#hilal-canvas{display:block}
+.hilal-info{width:100%;display:grid;grid-template-columns:1fr 1fr;gap:6px}
+.hi{background:var(--bg2);border:1px solid var(--border);border-radius:6px;padding:7px 10px}
+.hi-l{font-family:'DM Mono',monospace;font-size:.56rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-bottom:1px}
+.hi-v{font-family:'DM Mono',monospace;font-size:.82rem;color:var(--text)}
 
-/* ── month layout ── */
-.month-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:20px}
-@media(max-width:640px){.month-grid{grid-template-columns:1fr}}
+/* ── Summary panel ── */
+.summary-panel{background:var(--card);border:1px solid var(--border);border-radius:14px;overflow:hidden}
+.sp-head{padding:16px 20px 12px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:flex-start}
+.sp-month{font-family:'Amiri',serif;font-size:1.4rem;color:var(--gold-lit)}
+.sp-arabic{font-family:'Amiri',serif;font-size:.9rem;color:var(--muted)}
+.badge{font-family:'DM Mono',monospace;font-size:.62rem;padding:3px 9px;border-radius:5px;text-transform:uppercase;letter-spacing:.07em}
+.badge.ok{background:var(--ok2);color:var(--ok);border:1px solid rgba(78,201,154,.3)}
+.badge.fail{background:var(--err2);color:var(--err);border:1px solid rgba(224,120,120,.3)}
+.badge.warn{background:rgba(224,196,120,.1);color:var(--warn);border:1px solid rgba(224,196,120,.3)}
 
-/* summary card */
-.sum-card{background:var(--card);border:1px solid var(--border);border-radius:14px;overflow:hidden}
-.sum-card.ok{border-top:3px solid var(--ok)}
-.sum-card.fail{border-top:3px solid var(--err)}
-.sc-head{padding:16px 20px 12px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:flex-start}
-.sc-name{font-family:'Amiri',serif;font-size:1.3rem;color:var(--gold-lit)}
-.sc-ar{font-family:'Amiri',serif;font-size:.88rem;color:var(--muted)}
-.badge{font-family:'DM Mono',monospace;font-size:.63rem;padding:3px 8px;border-radius:5px;text-transform:uppercase;letter-spacing:.07em}
-.badge.ok{background:rgba(90,206,160,.1);color:var(--ok);border:1px solid rgba(90,206,160,.27)}
-.badge.fail{background:rgba(224,120,120,.1);color:var(--err);border:1px solid rgba(224,120,120,.27)}
-.badge.info{background:rgba(120,174,224,.1);color:var(--info);border:1px solid rgba(120,174,224,.27)}
-.badge.warn{background:rgba(224,196,120,.1);color:var(--warn);border:1px solid rgba(224,196,120,.27)}
+.sp-date{padding:14px 20px;border-bottom:1px solid var(--border)}
+.sp-lbl{font-family:'DM Mono',monospace;font-size:.6rem;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-bottom:2px}
+.sp-val{font-family:'Amiri',serif;font-size:1.7rem;color:var(--text);line-height:1.2}
+.sp-sub{font-size:.8rem;color:var(--muted);margin-top:1px}
 
-.sc-date{padding:14px 20px;border-bottom:1px solid var(--border)}
-.sc-lbl{font-family:'DM Mono',monospace;font-size:.62rem;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-bottom:2px}
-.sc-val{font-family:'Amiri',serif;font-size:1.65rem;color:var(--text);line-height:1.2}
-.sc-sub{font-size:.8rem;color:var(--muted);margin-top:1px}
+.sp-times{display:grid;grid-template-columns:repeat(4,1fr)}
+.ti{padding:10px 14px;border-right:1px solid var(--border);border-bottom:1px solid var(--border)}
+.ti:nth-child(4n){border-right:none}
+.ti:nth-last-child(-n+4){border-bottom:none}
+.ti-l{font-family:'DM Mono',monospace;font-size:.56rem;text-transform:uppercase;letter-spacing:.09em;color:var(--muted);margin-bottom:1px}
+.ti-v{font-family:'DM Mono',monospace;font-size:.82rem;color:var(--text)}
+.ti-v.g{color:var(--gold)}
 
-.sc-times{display:grid;grid-template-columns:1fr 1fr}
-.t-item{padding:11px 17px;border-right:1px solid var(--border);border-bottom:1px solid var(--border)}
-.t-item:nth-child(even){border-right:none}
-.t-item:nth-last-child(-n+2){border-bottom:none}
-.t-lbl{font-family:'DM Mono',monospace;font-size:.6rem;text-transform:uppercase;letter-spacing:.09em;color:var(--muted);margin-bottom:2px}
-.t-val{font-family:'DM Mono',monospace;font-size:.88rem;color:var(--text)}
-.t-val.g{color:var(--gold)}
-
-/* param row */
-.param-row{padding:13px 20px;border-bottom:1px solid var(--border)}
-.param-title{font-family:'DM Mono',monospace;font-size:.6rem;text-transform:uppercase;letter-spacing:.09em;color:var(--muted);margin-bottom:7px}
-.chips{display:flex;gap:7px;flex-wrap:wrap}
-.chip{background:var(--bg2);border:1px solid var(--border);border-radius:6px;padding:6px 10px;font-family:'DM Mono',monospace;font-size:.7rem;display:flex;flex-direction:column;gap:1px;min-width:60px}
-.chip .cl{font-size:.56rem;color:var(--muted);letter-spacing:.08em;text-transform:uppercase}
+.sp-params{padding:12px 20px;border-bottom:1px solid var(--border)}
+.sp-pt{font-family:'DM Mono',monospace;font-size:.58rem;text-transform:uppercase;letter-spacing:.09em;color:var(--muted);margin-bottom:7px}
+.chips{display:flex;gap:6px;flex-wrap:wrap}
+.chip{background:var(--bg2);border:1px solid var(--border);border-radius:6px;padding:5px 9px;font-family:'DM Mono',monospace;font-size:.68rem;display:flex;flex-direction:column;gap:1px}
+.chip .cl{font-size:.54rem;color:var(--muted);text-transform:uppercase;letter-spacing:.07em}
 .chip .cv{color:var(--text)}
 .chip.ok .cv{color:var(--ok)}
 .chip.fail .cv{color:var(--err)}
 
-/* scores */
-.scores-row{padding:12px 20px;border-bottom:1px solid var(--border)}
-.sc-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:7px}
+.sp-scores{padding:12px 20px;border-bottom:1px solid var(--border);display:grid;grid-template-columns:1fr 1fr;gap:10px}
 .score-b{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:9px 12px}
-.sn{font-family:'DM Mono',monospace;font-size:.6rem;text-transform:uppercase;letter-spacing:.09em;color:var(--muted);margin-bottom:2px}
+.sn{font-family:'DM Mono',monospace;font-size:.58rem;text-transform:uppercase;letter-spacing:.09em;color:var(--muted);margin-bottom:2px}
 .sv{font-family:'DM Mono',monospace;font-size:1.05rem;color:var(--gold-lit);margin-bottom:2px}
 .sk{font-size:.74rem;color:var(--text);line-height:1.3}
 
-/* prob */
-.prob-row{padding:11px 20px}
-.prob-top{display:flex;justify-content:space-between;margin-bottom:6px}
-.prob-lbl{font-family:'DM Mono',monospace;font-size:.6rem;text-transform:uppercase;letter-spacing:.09em;color:var(--muted)}
+.sp-prob{padding:11px 20px}
+.prob-row{display:flex;justify-content:space-between;margin-bottom:6px}
+.prob-lbl{font-family:'DM Mono',monospace;font-size:.58rem;text-transform:uppercase;letter-spacing:.09em;color:var(--muted)}
 .prob-num{font-family:'DM Mono',monospace;font-size:.8rem;color:var(--gold)}
 .track{height:4px;background:var(--bg2);border-radius:2px;overflow:hidden;border:1px solid var(--border)}
-.fill{height:100%;border-radius:2px;background:linear-gradient(90deg,var(--gold),var(--gold-lit));transition:width .65s ease}
+.fill{height:100%;border-radius:2px;background:linear-gradient(90deg,var(--gold),var(--gold-lit));transition:width .7s ease}
 
-/* kontras */
-.kontras-row{padding:11px 20px;border-top:1px solid var(--border)}
-.kval{font-family:'DM Mono',monospace;font-size:.82rem;color:var(--text)}
-.kval span{color:var(--gold);margin-right:8px}
+/* ── Map ── */
+.map-wrap{background:var(--card);border:1px solid var(--border);border-radius:14px;overflow:hidden;margin-bottom:18px}
+.map-header{padding:14px 20px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center}
+.map-title{font-family:'DM Mono',monospace;font-size:.64rem;text-transform:uppercase;letter-spacing:.1em;color:var(--muted)}
+.map-legend{display:flex;gap:14px}
+.leg{display:flex;align-items:center;gap:5px;font-family:'DM Mono',monospace;font-size:.62rem;color:var(--muted)}
+.leg-dot{width:8px;height:8px;border-radius:50%}
+.leg-dot.ok{background:var(--ok)}
+.leg-dot.warn{background:var(--warn)}
+.leg-dot.scan{background:rgba(120,174,224,.6)}
+#map{height:360px;background:var(--bg2)}
 
-/* ── Detail accordion per hari ── */
-.days-section{margin-top:14px}
-.day-block{background:var(--card2);border:1px solid var(--border);border-radius:10px;margin-bottom:8px;overflow:hidden}
-.day-toggle{width:100%;background:transparent;border:none;padding:12px 18px;display:flex;justify-content:space-between;align-items:center;cursor:pointer;color:var(--text);font-family:'DM Mono',monospace;font-size:.78rem;text-align:left}
-.day-toggle:hover{background:rgba(200,146,42,.06)}
-.day-toggle .arrow{transition:transform .18s;font-size:.7rem;color:var(--muted)}
-.day-toggle.open .arrow{transform:rotate(180deg)}
-.day-body{display:none;padding:14px 18px;border-top:1px solid var(--border)}
+/* Leaflet dark override */
+.leaflet-container{background:#050812 !important}
+.leaflet-tile{filter:brightness(.35) saturate(.4) hue-rotate(200deg)}
+.leaflet-popup-content-wrapper{background:var(--card2);border:1px solid var(--border2);border-radius:10px;color:var(--text);box-shadow:0 4px 24px rgba(0,0,0,.6)}
+.leaflet-popup-content{font-family:'DM Mono',monospace;font-size:.72rem;line-height:1.6;margin:10px 14px}
+.leaflet-popup-tip{background:var(--card2)}
+
+/* ── Charts row ── */
+.charts-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin-bottom:18px}
+@media(max-width:700px){.charts-row{grid-template-columns:1fr}}
+.chart-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:16px}
+.chart-title{font-family:'DM Mono',monospace;font-size:.6rem;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-bottom:12px}
+
+/* ── Lokasi lolos list ── */
+.lokasi-wrap{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:18px 20px;margin-bottom:18px}
+.lw-title{font-family:'DM Mono',monospace;font-size:.62rem;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-bottom:12px}
+.lw-stat{font-family:'DM Mono',monospace;font-size:.82rem;color:var(--text);margin-bottom:12px}
+.lw-stat strong{color:var(--gold)}
+.kota-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:8px}
+.kota-card{background:var(--bg2);border:1px solid rgba(78,201,154,.2);border-radius:8px;padding:10px 14px;transition:border-color .14s}
+.kota-card:hover{border-color:rgba(78,201,154,.45)}
+.kota-nama{font-family:'DM Mono',monospace;font-size:.76rem;color:var(--ok);margin-bottom:5px;display:flex;align-items:center;gap:5px}
+.kota-params{display:grid;grid-template-columns:1fr 1fr 1fr;gap:3px}
+.kp{font-family:'DM Mono',monospace;font-size:.62rem}
+.kp .kl{color:var(--muted);display:block;font-size:.56rem}
+.kp .kv{color:var(--text)}
+
+/* ── Detail accordion ── */
+.detail-wrap{background:var(--card);border:1px solid var(--border);border-radius:14px;overflow:hidden}
+.detail-toggle{width:100%;background:transparent;border:none;border-bottom:1px solid var(--border);padding:14px 20px;display:flex;justify-content:space-between;align-items:center;cursor:pointer;color:var(--muted);font-family:'DM Mono',monospace;font-size:.72rem;text-align:left;transition:background .14s}
+.detail-toggle:hover{background:rgba(200,146,42,.05)}
+.detail-toggle .arr{transition:transform .18s;font-size:.65rem}
+.detail-toggle.open{color:var(--text);border-bottom-color:transparent}
+.detail-toggle.open .arr{transform:rotate(180deg)}
+.detail-body{display:none;padding:16px 20px}
+.detail-body.open{display:block}
+.day-block{background:var(--card2);border:1px solid var(--border);border-radius:9px;margin-bottom:8px;overflow:hidden}
+.day-toggle{width:100%;background:transparent;border:none;padding:11px 16px;display:flex;justify-content:space-between;align-items:center;cursor:pointer;color:var(--text);font-family:'DM Mono',monospace;font-size:.74rem;text-align:left}
+.day-toggle:hover{background:rgba(200,146,42,.04)}
+.day-toggle .darr{transition:transform .18s;font-size:.64rem;color:var(--muted)}
+.day-toggle.open .darr{transform:rotate(180deg)}
+.day-body{display:none;padding:12px 16px;border-top:1px solid var(--border)}
 .day-body.open{display:block}
+.dg{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:7px;margin-bottom:8px}
+.dgi{background:var(--bg2);border:1px solid var(--border);border-radius:6px;padding:7px 10px}
+.dgl{font-family:'DM Mono',monospace;font-size:.55rem;text-transform:uppercase;letter-spacing:.07em;color:var(--muted);margin-bottom:1px}
+.dgv{font-family:'DM Mono',monospace;font-size:.82rem;color:var(--text)}
+.dgv.ok{color:var(--ok)}.dgv.fail{color:var(--err)}.dgv.gold{color:var(--gold)}
+.skip-box{background:rgba(120,174,224,.05);border:1px solid rgba(120,174,224,.18);border-radius:7px;padding:8px 12px;font-family:'DM Mono',monospace;font-size:.72rem;color:var(--muted)}
+.warn-box{background:rgba(224,196,120,.07);border:1px solid rgba(224,196,120,.22);border-radius:7px;padding:8px 12px;font-family:'DM Mono',monospace;font-size:.72rem;color:var(--warn);margin-top:6px}
 
-.day-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:8px;margin-bottom:10px}
-.dg-item{background:var(--bg2);border:1px solid var(--border);border-radius:7px;padding:8px 11px}
-.dg-lbl{font-family:'DM Mono',monospace;font-size:.58rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-bottom:2px}
-.dg-val{font-family:'DM Mono',monospace;font-size:.85rem;color:var(--text)}
-.dg-val.ok{color:var(--ok)}.dg-val.fail{color:var(--err)}.dg-val.gold{color:var(--gold)}
+/* ── Disclaimer ── */
+.disclaimer{background:rgba(120,174,224,.04);border:1px solid rgba(120,174,224,.13);border-radius:10px;padding:11px 16px;font-family:'DM Mono',monospace;font-size:.67rem;color:var(--muted);margin-top:18px;line-height:1.7}
+.disclaimer strong{color:var(--info)}
 
-.warn-box{background:rgba(224,196,120,.08);border:1px solid rgba(224,196,120,.25);border-radius:7px;padding:9px 13px;font-family:'DM Mono',monospace;font-size:.75rem;color:var(--warn);margin-top:8px}
-
-/* ── Scan indonesia ── */
-.scan-section{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:18px 22px;margin-top:14px}
-.scan-title{font-family:'DM Mono',monospace;font-size:.66rem;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-bottom:12px}
-.scan-stat{font-family:'DM Mono',monospace;font-size:.82rem;color:var(--text);margin-bottom:10px}
-.scan-stat strong{color:var(--gold)}
-.scan-dots{display:flex;flex-wrap:wrap;gap:5px}
-.scan-dot{font-family:'DM Mono',monospace;font-size:.65rem;background:rgba(90,206,160,.08);border:1px solid rgba(90,206,160,.2);color:var(--ok);border-radius:5px;padding:3px 7px}
-
-/* ── Index table ── */
-.idx-wrap{background:var(--card);border:1px solid var(--border);border-radius:13px;overflow:hidden;margin-top:22px}
-.idx-wrap table{width:100%;border-collapse:collapse;font-family:'DM Mono',monospace;font-size:.74rem}
-.idx-wrap th{padding:9px 14px;text-align:left;font-size:.6rem;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);border-bottom:1px solid var(--border);background:var(--bg2);font-weight:400}
-.idx-wrap td{padding:9px 14px;border-bottom:1px solid var(--border);color:var(--text)}
-.idx-wrap tr:last-child td{border-bottom:none}
-.idx-wrap tr:hover td{background:var(--bg2)}
-.idx-wrap td a{color:var(--gold);text-decoration:none;cursor:pointer}
-.idx-wrap td a:hover{color:var(--gold-lit);text-decoration:underline}
-.dot{width:6px;height:6px;border-radius:50%;display:inline-block;margin-right:4px}
-.dot.ok{background:var(--ok)}.dot.fail{background:var(--err)}.dot.na{background:var(--muted)}
-
-footer{margin-top:64px;text-align:center;font-family:'DM Mono',monospace;font-size:.67rem;color:var(--muted);letter-spacing:.04em;opacity:.45;border-top:1px solid var(--border);padding-top:22px}
+footer{margin-top:56px;text-align:center;font-family:'DM Mono',monospace;font-size:.65rem;color:var(--muted);letter-spacing:.04em;opacity:.4;border-top:1px solid var(--border);padding-top:20px}
 </style>
 </head>
 <body>
@@ -183,349 +189,589 @@ footer{margin-top:64px;text-align:center;font-family:'DM Mono',monospace;font-si
 <div class="page">
 
 <header>
-  <svg class="moon-svg" viewBox="0 0 68 68" fill="none">
-    <circle cx="34" cy="34" r="32" stroke="#c8922a" stroke-width="1" opacity=".18"/>
-    <path d="M34 6 C18 6 8 19 8 34 C8 49 18 62 34 62 C22 55 14 45 14 34 C14 23 22 13 34 6Z" fill="#c8922a" opacity=".85"/>
-    <circle cx="44" cy="18" r="2.5" fill="#e8b84b" opacity=".6"/>
-    <circle cx="52" cy="32" r="1.5" fill="#e8b84b" opacity=".38"/>
-    <circle cx="42" cy="44" r="2" fill="#e8b84b" opacity=".5"/>
+  <svg class="moon-wrap" viewBox="0 0 56 56" fill="none">
+    <circle cx="28" cy="28" r="26" stroke="#c8922a" stroke-width="1" opacity=".18"/>
+    <path d="M28 5 C14 5 6 16 6 28 C6 40 14 51 28 51 C18 45 11 37 11 28 C11 19 18 11 28 5Z" fill="#c8922a" opacity=".85"/>
+    <circle cx="36" cy="15" r="2" fill="#e8b84b" opacity=".55"/>
+    <circle cx="42" cy="26" r="1.2" fill="#e8b84b" opacity=".38"/>
+    <circle cx="35" cy="37" r="1.6" fill="#e8b84b" opacity=".45"/>
   </svg>
   <h1 class="arabic">&#x647;&#x650;&#x633;&#x064E;&#x627;&#x628; &#x627;&#x644;&#x652;&#x647;&#x650;&#x644;&#x627;&#x644;</h1>
-  <p class="latin-title">Hisab Awal Bulan Hijriyah</p>
-  <p class="sub">MABIMS 2022 &middot; Yallop 1998 &middot; Odeh 2006 &middot; Jakarta (6&deg;S 107&deg;E)</p>
+  <p class="latin-sub">Hisab Awal Bulan Hijriyah &middot; Multi-Lokasi 13 Titik Indonesia</p>
 </header>
 
-<div class="ctrl">
-  <span class="lbl">Pilih Tahun</span>
-  <div class="qy-row" id="qy-row"><span style="font-family:'DM Mono',monospace;font-size:.72rem;color:var(--muted)">Memuat...</span></div>
-  <span class="lbl" style="margin-top:8px">Manual</span>
-  <div class="inp-row">
-    <input type="number" id="yr-inp" class="yr-inp" placeholder="1446" min="1400" max="1500">
-    <button class="btn-go" id="btn-go" onclick="go()">Tampilkan &#9789;</button>
+<!-- Year + month selector -->
+<div class="year-bar">
+  <div class="year-tabs" id="year-tabs">
+    <span style="font-family:'DM Mono',monospace;font-size:.72rem;color:var(--muted)">Memuat...</span>
   </div>
-  <div class="loc-row">
-    <div class="loc-i">Lintang<span>6.21&deg; LS</span></div>
-    <div class="loc-i">Bujur<span>106.85&deg; BT</span></div>
-    <div class="loc-i">Elevasi<span>8 m</span></div>
-    <div class="loc-i">WIB (UTC+7)</div>
-    <div class="loc-i" id="dt-box" style="display:none">&#916;T<span id="dt-val">&#8212;</span></div>
+  <div class="month-tabs">
+    <button class="mtab on" id="mtab-r" onclick="switchMonth('ramadan')">&#x0631;&#x064E;&#x0645;&#x064E;&#x0636;&#x064E;&#x0627;&#x0646; &nbsp; Ramadan</button>
+    <button class="mtab" id="mtab-s" onclick="switchMonth('syawal')">&#x0634;&#x064E;&#x0648;&#x064E;&#x0651;&#x0627;&#x0644; &nbsp; Syawal</button>
   </div>
 </div>
 
 <div class="err-box" id="err-box"></div>
-<div class="loading" id="loading">
+
+<!-- Loading -->
+<div class="state-box" id="loading">
   <div class="cres">
-    <svg viewBox="0 0 52 52" fill="none">
-      <path d="M26 3 A23 23 0 0 1 26 49 A15 15 0 0 0 26 3Z" fill="#c8922a" opacity=".9"/>
-      <circle cx="26" cy="26" r="24" stroke="#c8922a" stroke-width="1.2" opacity=".18" fill="none"/>
+    <svg viewBox="0 0 48 48" fill="none">
+      <path d="M24 3 A21 21 0 0 1 24 45 A14 14 0 0 0 24 3Z" fill="#c8922a" opacity=".9"/>
+      <circle cx="24" cy="24" r="22" stroke="#c8922a" stroke-width="1" opacity=".18" fill="none"/>
     </svg>
   </div>
   <p class="ltxt" id="ltxt">Memuat data...</p>
 </div>
 
-<div class="results" id="results">
-  <div class="res-meta">
-    <span>Tahun <strong id="r-th">&#8212;</strong> H / <strong id="r-m">&#8212;</strong> M</span>
-    <span>&#916;T &asymp; <strong id="r-dt">&#8212;</strong> detik</span>
+<!-- Results -->
+<div class="main-results" id="results">
+
+  <!-- Top: hilal + summary -->
+  <div class="top-grid">
+    <div class="hilal-panel">
+      <div class="hilal-title">&#9789; Visualisasi Hilal</div>
+      <canvas id="hilal-canvas" width="220" height="220"></canvas>
+      <div class="hilal-info" id="hilal-info"></div>
+    </div>
+    <div class="summary-panel" id="summary-panel"></div>
   </div>
 
-  <div class="tabs">
-    <button class="tab on" onclick="switchTab('ramadan',this)">Ramadan</button>
-    <button class="tab" onclick="switchTab('syawal',this)">Syawal</button>
-    <button class="tab" onclick="switchTab('semua',this)">Semua Tahun</button>
+  <!-- Map -->
+  <div class="map-wrap">
+    <div class="map-header">
+      <div class="map-title">&#9679; Peta Visibilitas Hilal Indonesia</div>
+      <div class="map-legend">
+        <div class="leg"><div class="leg-dot ok"></div>Lolos MABIMS</div>
+        <div class="leg"><div class="leg-dot scan"></div>Grid Scan (Yallop &ge; D)</div>
+      </div>
+    </div>
+    <div id="map"></div>
   </div>
 
-  <div class="panel on" id="panel-ramadan"></div>
-  <div class="panel" id="panel-syawal"></div>
-  <div class="panel" id="panel-semua"></div>
+  <!-- Charts -->
+  <div class="charts-row">
+    <div class="chart-card">
+      <div class="chart-title">Probabilitas Terlihat</div>
+      <canvas id="chart-prob" height="140"></canvas>
+    </div>
+    <div class="chart-card">
+      <div class="chart-title">Skor Yallop q &amp; Odeh V</div>
+      <canvas id="chart-scores" height="140"></canvas>
+    </div>
+    <div class="chart-card">
+      <div class="chart-title">Ramadan &amp; Syawal — Semua Tahun</div>
+      <canvas id="chart-multi" height="140"></canvas>
+    </div>
+  </div>
+
+  <!-- Lokasi lolos -->
+  <div class="lokasi-wrap" id="lokasi-wrap"></div>
+
+  <!-- Detail accordion -->
+  <div class="detail-wrap">
+    <button class="detail-toggle" id="detail-toggle" onclick="toggleDetail()">
+      <span>&#8615; Detail Tiap Hari Diperiksa</span>
+      <span class="arr">&#9660;</span>
+    </button>
+    <div class="detail-body" id="detail-body"></div>
+  </div>
+
+  <div class="disclaimer">
+    <strong>Catatan:</strong> Hasil hisab astronomi multi-lokasi (13 titik representatif Indonesia). Awal bulan ditetapkan jika minimal satu lokasi memenuhi kriteria MABIMS 2022 (alt &ge; 3&deg;, elong &ge; 6.4&deg;). Keputusan resmi mengikuti Sidang Isbat Kemenag RI.
+  </div>
 </div>
 
 <footer>
-  Ephemeris DE440s / DE421 &middot; Skyfield &middot; Data precomputed &middot; Tanpa server<br>
-  Hisab Hilal Indonesia &mdash; Jakarta &middot; T=25&deg;C P=1010 mbar
+  Ephemeris DE440 &middot; Skyfield &middot; MABIMS 2022 &middot; Yallop 1998 &middot; Odeh 2006<br>
+  Sabang &middot; Medan &middot; Padang &middot; Jakarta &middot; Bandung &middot; Surabaya &middot; Banjarmasin &middot; Balikpapan &middot; Makassar &middot; Manado &middot; Kupang &middot; Ambon &middot; Jayapura
 </footer>
 </div>
 
 <script>
-// ── Starfield ─────────────────────────────────────────────────────
+// ── Starfield ────────────────────────────────────────────────────
 (function(){
   var c=document.getElementById('sky'),ctx=c.getContext('2d'),s=[];
   function rsz(){c.width=innerWidth;c.height=innerHeight}
-  function init(){s=[];var n=Math.floor(c.width*c.height/5200);for(var i=0;i<n;i++)s.push({x:Math.random()*c.width,y:Math.random()*c.height,r:Math.random()*1.1+.2,a:Math.random(),da:(Math.random()*.004+.001)*(Math.random()<.5?1:-1)})}
-  function draw(){ctx.clearRect(0,0,c.width,c.height);for(var i=0;i<s.length;i++){var p=s[i];p.a=Math.max(.1,Math.min(.88,p.a+p.da));if(p.a<=.1||p.a>=.88)p.da*=-1;ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);ctx.fillStyle='rgba(220,210,190,'+p.a*.42+')';ctx.fill()}requestAnimationFrame(draw)}
+  function init(){s=[];var n=Math.floor(c.width*c.height/4800);for(var i=0;i<n;i++)s.push({x:Math.random()*c.width,y:Math.random()*c.height,r:Math.random()*1.1+.2,a:Math.random(),da:(Math.random()*.004+.001)*(Math.random()<.5?1:-1)})}
+  function draw(){ctx.clearRect(0,0,c.width,c.height);s.forEach(function(p){p.a=Math.max(.08,Math.min(.85,p.a+p.da));if(p.a<=.08||p.a>=.85)p.da*=-1;ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);ctx.fillStyle='rgba(220,210,190,'+p.a*.4+')';ctx.fill()});requestAnimationFrame(draw)}
   rsz();init();draw();window.addEventListener('resize',function(){rsz();init()});
 })();
 
-// ── Helpers ───────────────────────────────────────────────────────
+// ── Helpers ──────────────────────────────────────────────────────
 function e(s){return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}
-function f(v,d,u){if(v===null||v===undefined)return '&#8212;';return (+v).toFixed(d||2)+(u?' '+u:'')}
+function f(v,d,u){if(v===null||v===undefined)return '&#8212;';return (+v).toFixed(d===undefined?2:d)+(u?' '+u:'')}
 function fDate(s){if(!s)return '&#8212;';return new Date(s+'T12:00:00').toLocaleDateString('id-ID',{weekday:'long',day:'numeric',month:'long',year:'numeric'})}
 
-// ── State ─────────────────────────────────────────────────────────
-var IDX=null, CUR=null;
+// ── State ────────────────────────────────────────────────────────
+var IDX=null, CUR=null, MONTH='ramadan';
+var leafMap=null, chartProb=null, chartScores=null, chartMulti=null;
+var LOKASI_ALL=[];
 
-// ── Index ─────────────────────────────────────────────────────────
+// ── Index ────────────────────────────────────────────────────────
 async function loadIdx(){
   try{
     var r=await fetch('data/index.json');
     if(!r.ok)throw 0;
     IDX=await r.json();
-    renderQY();renderSemua();
+    renderYearTabs();
+    buildMultiChart();
   }catch(x){
-    document.getElementById('qy-row').innerHTML='<span style="font-family:\'DM Mono\',monospace;font-size:.72rem;color:var(--muted)">Masukkan tahun manual</span>';
+    document.getElementById('year-tabs').innerHTML='<span style="font-family:\'DM Mono\',monospace;font-size:.72rem;color:var(--muted)">Masukkan data dulu dengan generate_json.py</span>';
   }
 }
 
-function renderQY(){
-  var w=document.getElementById('qy-row');w.innerHTML='';
+function renderYearTabs(){
+  var w=document.getElementById('year-tabs');w.innerHTML='';
   if(!IDX)return;
   IDX.tahun_tersedia.forEach(function(t){
     var b=document.createElement('button');
-    b.className='btn-yr';b.textContent=t+' H';b.setAttribute('data-t',t);
-    b.onclick=function(){go(t)};w.appendChild(b);
+    b.className='ytab';b.textContent=t+' H';b.setAttribute('data-t',t);
+    b.onclick=function(){loadYear(t)};w.appendChild(b);
   });
 }
 
-function renderSemua(){
-  var p=document.getElementById('panel-semua');
-  if(!IDX||!IDX.data.length){p.innerHTML='<p style="color:var(--muted);font-family:\'DM Mono\',monospace;font-size:.8rem">Tidak ada data index.</p>';return}
-  var rows=IDX.data.map(function(row){
-    return '<tr>'
-      +'<td><a onclick="go('+row.tahun+')">'+row.tahun+'</a></td>'
-      +'<td>'+row.tahun_masehi+'</td>'
-      +'<td>'+fDate(row.ramadan.tanggal)+'</td>'
-      +'<td>'+dotB(row.ramadan.mabims)+'</td>'
-      +'<td>'+f(row.ramadan.yallop_q,2)+'</td>'
-      +'<td>'+f(row.ramadan.odeh_v,2)+'</td>'
-      +'<td>'+f(row.ramadan.prob,0,'%')+'</td>'
-      +'<td>'+fDate(row.syawal.tanggal)+'</td>'
-      +'<td>'+dotB(row.syawal.mabims)+'</td>'
-      +'<td>'+f(row.syawal.yallop_q,2)+'</td>'
-      +'<td>'+f(row.syawal.odeh_v,2)+'</td>'
-      +'<td>'+f(row.syawal.prob,0,'%')+'</td>'
-      +'</tr>';
-  }).join('');
-  p.innerHTML='<div class="idx-wrap" style="overflow-x:auto"><table>'
-    +'<thead><tr><th>Tahun H</th><th>M</th><th>1 Ramadan</th><th>MAB</th><th>q</th><th>V</th><th>P%</th><th>1 Syawal</th><th>MAB</th><th>q</th><th>V</th><th>P%</th></tr></thead>'
-    +'<tbody>'+rows+'</tbody></table></div>';
-}
-
-function dotB(v){
-  if(v===true)return '<span class="dot ok"></span><span style="color:var(--ok)">&#10003;</span>';
-  if(v===false)return '<span class="dot fail"></span><span style="color:var(--err)">&#10007;</span>';
-  return '<span class="dot na"></span><span style="color:var(--muted)">—</span>';
-}
-
-// ── Load year ─────────────────────────────────────────────────────
-async function go(arg){
-  var inp=document.getElementById('yr-inp');
-  var t=arg||parseInt(inp.value);
-  if(!t||t<1400||t>1500){showErr('Tahun Hijriah harus 1400–1500');return}
-  document.querySelectorAll('.btn-yr').forEach(function(b){b.classList.remove('on')});
-  var ab=document.querySelector('.btn-yr[data-t="'+t+'"]');if(ab)ab.classList.add('on');
-  if(!arg)inp.value=t;
-  hide();setState('loading','Memuat tahun '+t+' H...');
+// ── Load year ────────────────────────────────────────────────────
+async function loadYear(t){
+  document.querySelectorAll('.ytab').forEach(function(b){b.classList.remove('on')});
+  var ab=document.querySelector('.ytab[data-t="'+t+'"]');if(ab)ab.classList.add('on');
+  hideAll();
+  document.getElementById('loading').classList.add('on');
+  document.getElementById('ltxt').textContent='Memuat tahun '+t+' H...';
   try{
     var r=await fetch('data/'+t+'.json');
-    if(!r.ok)throw new Error('Data '+t+' H belum ada.\nJalankan: python generate_json.py --tahun '+t);
+    if(!r.ok)throw new Error('Data '+t+' H belum ada. Jalankan: python generate_json.py --tahun '+t);
     CUR=await r.json();
     render();
-  }catch(ex){setState('error',ex.message)}
+  }catch(ex){
+    document.getElementById('loading').classList.remove('on');
+    var eb=document.getElementById('err-box');
+    eb.style.display='block';
+    eb.innerHTML='&#9888; '+e(ex.message);
+  }
 }
 
-// ── Render ────────────────────────────────────────────────────────
+function switchMonth(m){
+  MONTH=m;
+  document.getElementById('mtab-r').classList.toggle('on',m==='ramadan');
+  document.getElementById('mtab-s').classList.toggle('on',m==='syawal');
+  if(CUR)renderMonth();
+}
+
+function hideAll(){
+  document.getElementById('results').classList.remove('on');
+  document.getElementById('err-box').style.display='none';
+}
+
 function render(){
-  hide();
-  document.getElementById('r-th').textContent=CUR.tahun;
-  var masehi=CUR.ramadan&&CUR.ramadan.ringkas&&CUR.ramadan.ringkas.tanggal?new Date(CUR.ramadan.ringkas.tanggal+'T12:00:00').getFullYear():CUR.tahun_masehi;document.getElementById('r-m').textContent=masehi;
-  document.getElementById('r-dt').textContent=CUR.delta_t;
-  document.getElementById('dt-box').style.display='';
-  document.getElementById('dt-val').textContent=' '+CUR.delta_t+' dtk';
-  document.getElementById('panel-ramadan').innerHTML=buildMonth(CUR.ramadan,'Ramadan','\u0631\u064e\u0645\u064e\u0636\u064e\u0627\u0646',CUR.tahun);
-  document.getElementById('panel-syawal').innerHTML=buildMonth(CUR.syawal,'Syawal','\u0634\u064e\u0648\u064e\u0651\u0627\u0644',CUR.tahun);
+  document.getElementById('loading').classList.remove('on');
   document.getElementById('results').classList.add('on');
-  switchTab('ramadan',document.querySelector('.tab.on'));
-  document.getElementById('results').scrollIntoView({behavior:'smooth',block:'start'});
+  renderMonth();
+  buildMultiChart();
 }
 
-// ── Build month panel ─────────────────────────────────────────────
-function buildMonth(d,name,ar,tahun){
-  if(!d)return '<p style="color:var(--muted)">Data tidak tersedia.</p>';
-  var rk=d.ringkas||{};
+function renderMonth(){
+  var d=CUR[MONTH];
+  var rk=d&&d.ringkas||{};
+  var name=MONTH==='ramadan'?'Ramadan':'Syawal';
+  var ar=MONTH==='ramadan'?'\u0631\u064e\u0645\u064e\u0636\u064e\u0627\u0646':'\u0634\u064e\u0648\u064e\u0651\u0627\u0644';
+
+  drawHilal(rk);
+  buildSummary(d,rk,name,ar);
+  buildMap(d,rk);
+  buildCharts(rk);
+  buildLokasi(rk);
+  buildDetail(d.hari_diperiksa||[]);
+}
+
+// ══════════════════════════════════════════════════════════════════
+// HILAL CANVAS
+// ══════════════════════════════════════════════════════════════════
+function drawHilal(rk){
+  var canvas=document.getElementById('hilal-canvas');
+  var ctx=canvas.getContext('2d');
+  var W=220,H=220,cx=W/2,cy=H/2,R=80;
+  ctx.clearRect(0,0,W,H);
+
+  var illum=(rk.illumination||1)/100;       // 0–1
+  var elong=rk.elongasi_top||10;            // degrees
+  var lebar=rk.lebar_sabit||0.1;            // arcmin
+
+  // Background glow
+  var grd=ctx.createRadialGradient(cx,cy,R*.3,cx,cy,R*1.4);
+  grd.addColorStop(0,'rgba(200,146,42,.06)');
+  grd.addColorStop(1,'rgba(200,146,42,0)');
+  ctx.fillStyle=grd;ctx.fillRect(0,0,W,H);
+
+  // Draw crescent using composite
+  // Full moon circle
+  ctx.save();
+  ctx.beginPath();
+  ctx.arc(cx,cy,R,0,Math.PI*2);
+  ctx.fillStyle='rgba(220,200,140,.9)';
+  ctx.fill();
+
+  // Shadow ellipse to create crescent
+  // width of illuminated part ∝ illumination
+  // offset: positive = right illuminated (waxing), negative = left
+  var shadowOffset = R * (1 - 2*illum);
+  var shadowRx = Math.abs(R * (1 - 2*illum));
+  if(shadowRx < 1) shadowRx = 1;
+
+  ctx.globalCompositeOperation='destination-out';
+  ctx.beginPath();
+  ctx.ellipse(cx + shadowOffset, cy, shadowRx, R, 0, 0, Math.PI*2);
+  ctx.fillStyle='rgba(0,0,0,1)';
+  ctx.fill();
+  ctx.restore();
+
+  // Thin glow rim
+  ctx.save();
+  ctx.beginPath();
+  ctx.arc(cx,cy,R,0,Math.PI*2);
+  ctx.strokeStyle='rgba(232,184,75,.35)';
+  ctx.lineWidth=1.5;
+  ctx.stroke();
+  ctx.restore();
+
+  // Labels
+  ctx.fillStyle='rgba(106,106,138,.6)';
+  ctx.font='10px DM Mono, monospace';
+  ctx.textAlign='center';
+  ctx.fillText('iluminasi '+f(rk.illumination,1)+'%', cx, cy+R+18);
+
+  // Info grid
+  document.getElementById('hilal-info').innerHTML=[
+    {l:'Lebar Sabit',v:f(lebar,2)+' arcmin'},
+    {l:'Elongasi',   v:f(elong,2)+'°'},
+    {l:'ARCV',       v:f(rk.arcv,2)+'°'},
+    {l:'Illuminasi', v:f(rk.illumination,2)+'%'},
+  ].map(function(x){return '<div class="hi"><div class="hi-l">'+x.l+'</div><div class="hi-v">'+x.v+'</div></div>'}).join('');
+}
+
+// ══════════════════════════════════════════════════════════════════
+// SUMMARY
+// ══════════════════════════════════════════════════════════════════
+function buildSummary(d,rk,name,ar){
   var ok=d.mabims_lolos;
   var mBadge=ok?'<span class="badge ok">&#10003; MABIMS Lolos</span>':'<span class="badge fail">&#10007; MABIMS Gagal</span>';
-
-  // Summary card
-  var chips='';
-  if(rk.alt!==undefined){
-    var hari_lolos=d.hari_diperiksa&&d.hari_diperiksa.find(function(h){return h.lolos_mabims});
-    var dd=hari_lolos&&hari_lolos.mabims||{};
-    chips=[
-      {l:'Altitude',   v:f(dd.alt,2,'&deg;'),       ok2:dd.alt_ok},
-      {l:'Elong Geo',  v:f(dd.elong_geo,2,'&deg;'),  ok2:dd.elong_ok},
-      {l:'Umur Bulan', v:f(dd.umur,1,' jam'),        ok2:dd.umur_ok},
-      {l:'ARCV',       v:f(rk.arcv,2,'&deg;'),       ok2:null},
-      {l:'Elongasi',   v:f(rk.elongasi_top,2,'&deg;'),ok2:null},
-      {l:'Lebar Sabit',v:f(rk.lebar_sabit,2,'&prime;'),ok2:null},
-      {l:'Illuminasi', v:f(rk.illumination,2,'%'),   ok2:null},
-    ].map(function(c){return '<div class="chip '+(c.ok2===true?'ok':c.ok2===false?'fail':'')+'"><span class="cl">'+c.l+'</span><span class="cv">'+c.v+'</span></div>'}).join('');
-  }
-
-  var kontrasRow='';
-  if(rk.kontras){
-    kontrasRow='<div class="kontras-row"><span class="t-lbl">Kontras</span>&nbsp;&nbsp;'
-      +'<span class="kval"><span>'+f(rk.kontras.nilai,4)+'</span>'+e(rk.kontras.keterangan||'')+'</span></div>';
-  }
+  var mab=rk.mabims_label||'MABIMS';
+  var chips=[
+    {l:'Alt (Jkt)', v:f(rk.alt,2,'°'),      ok2:rk.alt_ok},
+    {l:'Elong Geo', v:f(rk.elong_geo,2,'°'), ok2:rk.elong_ok},
+    {l:'ARCV',      v:f(rk.arcv,2,'°'),      ok2:null},
+    {l:'Lebar',     v:f(rk.lebar_sabit,2,"'"),ok2:null},
+    {l:'Illuminasi',v:f(rk.illumination,2,'%'),ok2:null},
+    {l:'Umur Bulan',v:f(rk.umur_jam,1,' jam'),ok2:null},
+  ].map(function(c){return '<div class="chip '+(c.ok2===true?'ok':c.ok2===false?'fail':'')+'"><span class="cl">'+c.l+'</span><span class="cv">'+c.v+'</span></div>'}).join('');
 
   var prob=rk.prob||0;
-  var scanHtml=buildScan(d);
-  var daysHtml=buildDays(d.hari_diperiksa||[]);
+  var masehi=rk.tanggal?new Date(rk.tanggal+'T12:00:00').getFullYear():CUR.tahun_masehi;
 
-  return '<div class="month-grid">'
-    // Left: summary card
-    +'<div class="sum-card '+(ok?'ok':'fail')+'">'
-    +'<div class="sc-head"><div><div class="sc-name">'+name+'</div><div class="sc-ar">'+ar+'</div></div>'+mBadge+'</div>'
-    +'<div class="sc-date"><div class="sc-lbl">1 '+name+' '+tahun+' H</div><div class="sc-val">'+fDate(d.tanggal_awal)+'</div><div class="sc-sub">Ijtimak: '+e(d.ijtimak_wib||'&#8212;')+'</div></div>'
-    +'<div class="sc-times">'
-    +'<div class="t-item"><div class="t-lbl">Maghrib</div><div class="t-val g">'+(rk.maghrib||'&#8212;')+'</div></div>'
-    +'<div class="t-item"><div class="t-lbl">Moonset</div><div class="t-val">'+(rk.moonset||'&#8212;')+'</div></div>'
-    +'<div class="t-item" style="border-bottom:none"><div class="t-lbl">Best Time</div><div class="t-val">'+(rk.best_time||'&#8212;')+'</div></div>'
-    +'<div class="t-item" style="border-bottom:none;border-right:none"><div class="t-lbl">Umur Bulan</div><div class="t-val">'+f(rk.umur,1,' jam')+'</div></div>'
+  document.getElementById('summary-panel').innerHTML=
+    '<div class="sp-head"><div><div class="sp-month">'+name+' '+CUR.tahun+' H</div>'
+    +'<div class="sp-arabic">'+ar+' &middot; '+masehi+' M</div></div>'+mBadge+'</div>'
+    +'<div class="sp-date"><div class="sp-lbl">1 '+name+' '+CUR.tahun+' H</div>'
+    +'<div class="sp-val">'+fDate(rk.tanggal)+'</div>'
+    +'<div class="sp-sub">Ijtimak: '+e(rk.ijtimak||'&#8212;')+'</div></div>'
+    +'<div class="sp-times">'
+    +'<div class="ti"><div class="ti-l">Maghrib</div><div class="ti-v g">'+(rk.maghrib||'&#8212;')+'</div></div>'
+    +'<div class="ti"><div class="ti-l">Moonset</div><div class="ti-v">'+(rk.moonset||'&#8212;')+'</div></div>'
+    +'<div class="ti"><div class="ti-l">Best Time</div><div class="ti-v">'+(rk.best_time||'&#8212;')+'</div></div>'
+    +'<div class="ti"><div class="ti-l">Lokasi Lolos</div><div class="ti-v" style="color:var(--ok)">'+(rk.n_lokasi_lolos||0)+' / 13</div></div>'
     +'</div>'
-    +(chips?'<div class="param-row"><div class="param-title">Parameter '+(e(rk.mabims_label||'MABIMS'))+'</div><div class="chips">'+chips+'</div></div>':'')
-    +'<div class="scores-row"><div class="param-title">Kriteria Visibilitas</div><div class="sc-grid">'
-    +'<div class="score-b"><div class="sn">Yallop q</div><div class="sv">'+f(rk.yallop_q,3)+'</div><div class="sk">'+e(rk.yallop_klas||'&#8212;')+'</div></div>'
-    +'<div class="score-b"><div class="sn">Odeh V</div><div class="sv">'+f(rk.odeh_v,3)+'</div><div class="sk">'+e(rk.odeh_klas||'&#8212;')+'</div></div>'
-    +'</div></div>'
-    +'<div class="prob-row"><div class="prob-top"><span class="prob-lbl">Probabilitas Terlihat</span><span class="prob-num">'+f(prob,1,'%')+'</span></div><div class="track"><div class="fill" style="width:'+Math.min(100,Math.max(0,prob))+'%"></div></div></div>'
-    +kontrasRow
+    +'<div class="sp-params"><div class="sp-pt">Parameter '+e(mab)+'</div><div class="chips">'+chips+'</div></div>'
+    +'<div class="sp-scores">'
+    +'<div class="score-b"><div class="sn">Yallop q</div><div class="sv">'+f(rk.yallop_q,3)+'</div><div class="sk">'+e(rk.yallop_klas||'')+(rk.yallop_desk?' &mdash; '+e(rk.yallop_desk):'')+'</div></div>'
+    +'<div class="score-b"><div class="sn">Odeh V</div><div class="sv">'+f(rk.odeh_v,3)+'</div><div class="sk">'+e(rk.odeh_klas||'')+(rk.odeh_desk?' &mdash; '+e(rk.odeh_desk):'')+'</div></div>'
     +'</div>'
-
-    // Right: scan indonesia
-    +'<div>'
-    +scanHtml
-    +'</div>'
-    +'</div>'
-
-    // Days detail
-    +daysHtml;
+    +'<div class="sp-prob"><div class="prob-row"><span class="prob-lbl">Probabilitas Terlihat</span><span class="prob-num">'+f(prob,1,'%')+'</span></div>'
+    +'<div class="track"><div class="fill" style="width:'+Math.min(100,Math.max(0,prob))+'%"></div></div></div>';
 }
 
-// ── Scan Indonesia ────────────────────────────────────────────────
-function buildScan(d){
-  var lolos=d.hari_diperiksa&&d.hari_diperiksa.find(function(h){return h.lolos_mabims});
-  var sc=lolos&&lolos.scan_indonesia||d.scan_indonesia;
-  if(!sc)return '<div class="scan-section"><div class="scan-title">Scan Visibilitas Indonesia</div><p style="color:var(--muted);font-family:\'DM Mono\',monospace;font-size:.74rem">Data tidak tersedia</p></div>';
+// ══════════════════════════════════════════════════════════════════
+// LEAFLET MAP
+// ══════════════════════════════════════════════════════════════════
+function buildMap(d,rk){
+  if(!leafMap){
+    leafMap=L.map('map',{zoomControl:true,scrollWheelZoom:false}).setView([-2,118],4);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{
+      attribution:'&copy; OpenStreetMap',
+      opacity:0.5,
+    }).addTo(leafMap);
+  } else {
+    leafMap.eachLayer(function(l){if(l instanceof L.Marker||l instanceof L.CircleMarker)leafMap.removeLayer(l)});
+  }
 
-  var dots=(sc.titik_sampel||[]).map(function(p){
-    return '<div class="scan-dot">'+p.lat+'&deg;, '+p.lon+'&deg;</div>';
-  }).join('');
+  // All 13 lokasi — default merah
+  LOKASI_ALL=[
+    {nama:'Sabang',lat:5.8943,lon:95.3184},
+    {nama:'Medan',lat:3.5952,lon:98.6722},
+    {nama:'Padang',lat:-0.9471,lon:100.4172},
+    {nama:'Jakarta',lat:-6.2088,lon:106.8456},
+    {nama:'Bandung',lat:-6.9175,lon:107.6191},
+    {nama:'Surabaya',lat:-7.2575,lon:112.7521},
+    {nama:'Banjarmasin',lat:-3.3194,lon:114.5928},
+    {nama:'Balikpapan',lat:-1.2379,lon:116.8529},
+    {nama:'Makassar',lat:-5.1477,lon:119.4327},
+    {nama:'Manado',lat:1.4748,lon:124.8421},
+    {nama:'Kupang',lat:-10.1772,lon:123.607},
+    {nama:'Ambon',lat:-3.655,lon:128.1908},
+    {nama:'Jayapura',lat:-2.5337,lon:140.7181},
+  ];
 
-  return '<div class="scan-section">'
-    +'<div class="scan-title">&#9679; Scan Visibilitas Indonesia</div>'
-    +'<div class="scan-stat"><strong>'+sc.n_titik_grid+'</strong> titik grid terlihat hilal</div>'
-    +(dots?'<div class="scan-dots">'+dots+'</div>':'<p style="color:var(--muted);font-family:\'DM Mono\',monospace;font-size:.72rem">Tidak ada titik potensial rukyat</p>')
-    +'</div>';
+  var lolosNama=(rk.lokasi_lolos||[]).map(function(l){return l.nama});
+  var lolosMap={};
+  (rk.lokasi_lolos||[]).forEach(function(l){lolosMap[l.nama]=l});
+
+  // Scan grid dots
+  var scan=d.scan_indonesia||(d.hari_diperiksa&&d.hari_diperiksa.find(function(h){return h.lolos_mabims})&&d.hari_diperiksa.find(function(h){return h.lolos_mabims}).scan_indonesia);
+  if(scan&&scan.titik_sampel){
+    scan.titik_sampel.forEach(function(p){
+      L.circleMarker([p.lat,p.lon],{
+        radius:5,color:'rgba(120,174,224,.8)',fillColor:'rgba(120,174,224,.25)',
+        fillOpacity:.7,weight:1
+      }).bindTooltip('Grid: '+p.lat+'°, '+p.lon+'° (q='+f(p.q,2)+')',{className:'leaflet-popup-content-wrapper'})
+      .addTo(leafMap);
+    });
+  }
+
+  // Lokasi markers
+  LOKASI_ALL.forEach(function(lok){
+    var lolos=lolosNama.indexOf(lok.nama)>=0;
+    var detail=lolosMap[lok.nama];
+    var color=lolos?'#4ec99a':'#e07878';
+    var fillColor=lolos?'rgba(78,201,154,.2)':'rgba(224,120,120,.15)';
+    var marker=L.circleMarker([lok.lat,lok.lon],{
+      radius:lolos?10:7,
+      color:color,fillColor:fillColor,fillOpacity:1,weight:2
+    });
+    var popup='<b>'+lok.nama+'</b><br>';
+    if(lolos&&detail){
+      popup+='&#10003; Lolos MABIMS<br>Alt: '+f(detail.alt,2)+'° &nbsp; Az: '+f(detail.az,1)+'°<br>';
+      popup+='Elong: '+f(detail.elong_geo,2)+'° &nbsp; Umur: '+f(detail.umur_jam,1)+' jam<br>';
+      popup+='Lag: '+f(detail.lag_menit,0)+' mnt &nbsp; Moonset: '+(detail.moonset_utc||'—')+' UTC';
+    } else {
+      popup+='&#10007; Tidak memenuhi MABIMS';
+    }
+    marker.bindPopup(popup).addTo(leafMap);
+  });
 }
 
-// ── Days detail ───────────────────────────────────────────────────
-function buildDays(days){
-  if(!days.length)return '';
-  var uid=Math.random().toString(36).slice(2,7);
-  var html='<div class="days-section"><div class="param-title" style="margin-bottom:10px">&#8615; Detail Tiap Hari Diperiksa</div>';
+// ══════════════════════════════════════════════════════════════════
+// CHARTS
+// ══════════════════════════════════════════════════════════════════
+var CHART_OPTS={
+  responsive:true,
+  plugins:{legend:{display:false},tooltip:{callbacks:{label:function(c){return ' '+c.parsed.y}}}},
+  scales:{x:{ticks:{color:'#6a6a8a',font:{family:'DM Mono',size:10}},grid:{color:'rgba(200,146,42,.08)'}},
+          y:{ticks:{color:'#6a6a8a',font:{family:'DM Mono',size:10}},grid:{color:'rgba(200,146,42,.08)'}}}
+};
 
-  days.forEach(function(h,i){
-    var id='d'+uid+i;
-    var mb=h.mabims||{};
-    var statusBadge=h.lolos_mabims
-      ?'<span class="badge ok" style="margin-left:8px">&#10003; Lolos</span>'
-      :'<span class="badge fail" style="margin-left:8px">&#10007; Gagal</span>';
-    if(h.borderline)statusBadge+='<span class="badge warn" style="margin-left:5px">&#9888; Borderline</span>';
-
-    var vis=h.visibilitas||{};
-    if(mb.alt===null||mb.alt===undefined){
-      html+='<div class="day-block"><button class="day-toggle" id="btn'+id+'" onclick="toggleDay(\''+id+'\')">'
-        +'<span>'+e(h.tanggal||'')+'&nbsp;&nbsp;'+(h.maghrib||'')+'</span>'
-        +'<span><span class="badge fail" style="margin-left:8px">&#10007; Dilewati</span>&nbsp;<span class="arrow">&#9660;</span></span>'
-        +'</button><div class="day-body" id="'+id+'">'
-        +'<div class="warn-box">Lag time negatif atau ijtimak setelah maghrib &mdash; perhitungan dilewati.</div>'
-        +'</div></div>';
-      return;
-    }
-    var dg=[
-      {l:'Altitude (ref)',v:f(mb.alt,2,'&deg;'),    cls:mb.alt_ok?'ok':'fail'},
-      {l:'Elong Geo',     v:f(mb.elong_geo,2,'&deg;'),cls:mb.elong_ok?'ok':'fail'},
-      {l:'Umur Bulan',    v:f(mb.umur,1,' jam'),      cls:mb.umur_ok?'ok':'fail'},
-      {l:'ARCV',          v:f(vis.arcv,2,'&deg;'),    cls:''},
-      {l:'Alt (airless)', v:f(vis.alt_bulan_airless,2,'&deg;'),cls:''},
-      {l:'Elongasi Top',  v:f(vis.elongasi_top,2,'&deg;'),cls:''},
-      {l:'Lebar Sabit',   v:f(vis.lebar_sabit_menit,2,'&prime;'),cls:''},
-      {l:'Illuminasi',    v:f(vis.illumination_pct,2,'%'),cls:''},
-      {l:'Yallop q',      v:f(h.yallop&&h.yallop.q,3),cls:'gold'},
-      {l:'Odeh V',        v:f(h.odeh&&h.odeh.v,3),   cls:'gold'},
-      {l:'Prob',          v:f(h.probabilitas_pct,1,'%'),cls:''},
-      {l:'Kontras',       v:f(h.kontras&&h.kontras.nilai,4),cls:''},
-    ].map(function(g){
-      return '<div class="dg-item"><div class="dg-lbl">'+g.l+'</div><div class="dg-val '+g.cls+'">'+g.v+'</div></div>';
-    }).join('');
-
-    var warnHtml='';
-    if(h.borderline){
-      warnHtml='<div class="warn-box">&#9888; Elongasi borderline: '+h.borderline.elong_actual+'&deg; (kurang '+h.borderline.kurang_dari+'&deg; dari threshold). '+e(h.borderline.pesan)+'</div>';
-    }
-
-    var kelas_y=h.yallop&&h.yallop.kelas?e(h.yallop.kelas):'&#8212;';
-    var kelas_o=h.odeh&&h.odeh.kelas?e(h.odeh.kelas):'&#8212;';
-
-    html+='<div class="day-block">'
-      +'<button class="day-toggle" id="btn'+id+'" onclick="toggleDay(\''+id+'\')">'
-      +'<span>'+e(h.tanggal||'')+'&nbsp;&nbsp;'+(h.maghrib||'')+'&nbsp;&nbsp;'+(h.best_time?'best:'+h.best_time:'')+'</span>'
-      +'<span>'+statusBadge+'&nbsp;<span class="arrow">&#9660;</span></span>'
-      +'</button>'
-      +'<div class="day-body" id="'+id+'">'
-      +'<div class="day-grid">'+dg+'</div>'
-      +'<div style="font-family:\'DM Mono\',monospace;font-size:.72rem;color:var(--muted);margin-top:6px">'
-      +'Yallop: <span style="color:var(--text)">'+kelas_y+'</span> &nbsp;|&nbsp; '
-      +'Odeh: <span style="color:var(--text)">'+kelas_o+'</span>'
-      +(h.kontras&&h.kontras.keterangan?' &nbsp;|&nbsp; Kontras: <span style="color:var(--text)">'+e(h.kontras.keterangan)+'</span>':'')
-      +'</div>'
-      +warnHtml
-      +'</div></div>';
+function buildCharts(rk){
+  // Prob gauge (doughnut)
+  if(chartProb){chartProb.destroy()}
+  var prob=rk.prob||0;
+  chartProb=new Chart(document.getElementById('chart-prob'),{
+    type:'doughnut',
+    data:{
+      datasets:[{
+        data:[prob,100-prob],
+        backgroundColor:['#4ec99a','rgba(255,255,255,.04)'],
+        borderWidth:0,
+        circumference:270,
+        rotation:-135,
+      }]
+    },
+    options:{
+      responsive:true,cutout:'75%',
+      plugins:{legend:{display:false},
+        tooltip:{enabled:false},
+        afterDraw:function(chart){
+          var ctx=chart.ctx,cx=chart.width/2,cy=chart.height*.58;
+          ctx.fillStyle='#ddd5c0';ctx.font='bold 22px DM Mono';ctx.textAlign='center';
+          ctx.fillText(prob.toFixed(0)+'%',cx,cy);
+          ctx.fillStyle='#6a6a8a';ctx.font='10px DM Mono';
+          ctx.fillText('terlihat',cx,cy+18);
+        }
+      }
+    },
+    plugins:[{id:'center',afterDraw:function(chart){
+      var ctx=chart.ctx,w=chart.width,h=chart.height;
+      ctx.save();
+      ctx.fillStyle='#ddd5c0';ctx.font='500 20px DM Mono,monospace';ctx.textAlign='center';
+      ctx.fillText(prob.toFixed(0)+'%',w/2,h*.58);
+      ctx.fillStyle='#6a6a8a';ctx.font='10px DM Mono,monospace';
+      ctx.fillText('probabilitas',w/2,h*.58+17);
+      ctx.restore();
+    }}]
   });
 
-  return html+'</div>';
+  // Scores bar
+  if(chartScores){chartScores.destroy()}
+  chartScores=new Chart(document.getElementById('chart-scores'),{
+    type:'bar',
+    data:{
+      labels:['Yallop q','Odeh V'],
+      datasets:[{
+        data:[rk.yallop_q||0, rk.odeh_v||0],
+        backgroundColor:function(ctx){
+          var v=ctx.parsed&&ctx.parsed.y;
+          return v>=0?'rgba(78,201,154,.5)':'rgba(224,120,120,.5)';
+        },
+        borderColor:function(ctx){
+          var v=ctx.parsed&&ctx.parsed.y;
+          return v>=0?'#4ec99a':'#e07878';
+        },
+        borderWidth:1.5,borderRadius:4,
+      }]
+    },
+    options:Object.assign({},CHART_OPTS,{
+      plugins:Object.assign({},CHART_OPTS.plugins,{
+        annotation:{annotations:{zero:{type:'line',yMin:0,yMax:0,borderColor:'rgba(200,146,42,.3)',borderWidth:1}}}
+      })
+    })
+  });
 }
 
-function toggleDay(id){
-  var b=document.getElementById('btn'+id);
-  var body=document.getElementById(id);
-  b.classList.toggle('open');
+function buildMultiChart(){
+  if(!IDX||!IDX.data.length)return;
+  if(chartMulti){chartMulti.destroy()}
+
+  var labels=IDX.data.map(function(r){return r.tahun+'H'});
+  var ramProb=IDX.data.map(function(r){return r.ramadan.prob||0});
+  var sywProb=IDX.data.map(function(r){return r.syawal.prob||0});
+
+  chartMulti=new Chart(document.getElementById('chart-multi'),{
+    type:'line',
+    data:{
+      labels:labels,
+      datasets:[
+        {label:'Ramadan',data:ramProb,borderColor:'#c8922a',backgroundColor:'rgba(200,146,42,.1)',borderWidth:1.5,pointRadius:3,tension:.3},
+        {label:'Syawal', data:sywProb,borderColor:'#4ec99a',backgroundColor:'rgba(78,201,154,.08)',borderWidth:1.5,pointRadius:3,tension:.3},
+      ]
+    },
+    options:Object.assign({},CHART_OPTS,{
+      plugins:Object.assign({},CHART_OPTS.plugins,{
+        legend:{display:true,labels:{color:'#6a6a8a',font:{family:'DM Mono',size:10},boxWidth:12}}
+      }),
+      scales:{
+        x:{ticks:{color:'#6a6a8a',font:{family:'DM Mono',size:9}},grid:{color:'rgba(200,146,42,.06)'}},
+        y:{min:0,max:100,ticks:{color:'#6a6a8a',font:{family:'DM Mono',size:9},callback:function(v){return v+'%'}},grid:{color:'rgba(200,146,42,.06)'}}
+      }
+    })
+  });
+}
+
+// ══════════════════════════════════════════════════════════════════
+// LOKASI LOLOS LIST
+// ══════════════════════════════════════════════════════════════════
+function buildLokasi(rk){
+  var list=rk.lokasi_lolos||[];
+  var n=rk.n_lokasi_lolos||0;
+  var cards=list.map(function(k){
+    return '<div class="kota-card">'
+      +'<div class="kota-nama"><span style="font-size:.7rem">&#10003;</span>'+e(k.nama)+'</div>'
+      +'<div class="kota-params">'
+      +'<div class="kp"><span class="kl">Altitude</span><span class="kv">'+f(k.alt,2)+'°</span></div>'
+      +'<div class="kp"><span class="kl">Azimuth</span><span class="kv">'+f(k.az,1)+'°</span></div>'
+      +'<div class="kp"><span class="kl">Elong Geo</span><span class="kv">'+f(k.elong_geo,2)+'°</span></div>'
+      +'<div class="kp"><span class="kl">Umur</span><span class="kv">'+f(k.umur_jam,1)+' jam</span></div>'
+      +'<div class="kp"><span class="kl">Lag</span><span class="kv">'+f(k.lag_menit,0)+' mnt</span></div>'
+      +'<div class="kp"><span class="kl">Moonset</span><span class="kv">'+(k.moonset_utc||'—')+' UTC</span></div>'
+      +'</div></div>';
+  }).join('');
+
+  document.getElementById('lokasi-wrap').innerHTML=
+    '<div class="lw-title">&#9679; Lokasi yang Memenuhi MABIMS</div>'
+    +'<div class="lw-stat"><strong>'+n+'</strong> dari 13 titik memenuhi kriteria</div>'
+    +(cards?'<div class="kota-grid">'+cards+'</div>':'<div style="font-family:\'DM Mono\',monospace;font-size:.78rem;color:var(--muted)">Tidak ada lokasi yang memenuhi MABIMS pada hari ini.</div>');
+}
+
+// ══════════════════════════════════════════════════════════════════
+// DETAIL ACCORDION
+// ══════════════════════════════════════════════════════════════════
+function toggleDetail(){
+  var btn=document.getElementById('detail-toggle');
+  var body=document.getElementById('detail-body');
+  btn.classList.toggle('open');
   body.classList.toggle('open');
 }
 
-// ── Tabs ──────────────────────────────────────────────────────────
-function switchTab(name,btn){
-  document.querySelectorAll('.tab').forEach(function(t){t.classList.remove('on')});
-  document.querySelectorAll('.panel').forEach(function(p){p.classList.remove('on')});
-  if(btn)btn.classList.add('on');
-  var p=document.getElementById('panel-'+name);if(p)p.classList.add('on');
+function buildDetail(days){
+  if(!days.length){document.getElementById('detail-body').innerHTML='<p style="color:var(--muted);font-family:\'DM Mono\',monospace;font-size:.76rem">Tidak ada data hari.</p>';return}
+  var uid=Math.random().toString(36).slice(2,6);
+  var html='';
+
+  days.forEach(function(h,i){
+    var id='dh'+uid+i;
+    var mb=h.mabims_jakarta||{};
+    var vis=h.visibilitas||{};
+    var multi=h.multilokasi||{};
+    var dilewati=h.dilewati||(!mb.alt&&!vis.arcv);
+
+    var badge=h.lolos_mabims
+      ?'<span class="badge ok" style="margin-left:7px">&#10003; Lolos ('+multi.n_lokasi+' lok)</span>'
+      :'<span class="badge fail" style="margin-left:7px">&#10007; Gagal</span>';
+    if(h.borderline)badge+='<span class="badge warn" style="margin-left:4px">&#9888;</span>';
+    if(dilewati)badge='<span class="badge" style="margin-left:7px;background:rgba(120,174,224,.08);color:var(--info);border:1px solid rgba(120,174,224,.2)">Dilewati</span>';
+
+    var bodyHtml='';
+    if(dilewati){
+      bodyHtml='<div class="skip-box">'+(h.alasan_lewat||'Lag time negatif atau ijtimak setelah maghrib')+'</div>';
+    } else {
+      var dg=[
+        {l:'Alt Jkt (ref)', v:f(mb.alt,2,'°'),       cls:mb.alt_ok?'ok':'fail'},
+        {l:'Elong Geo',     v:f(mb.elong_geo,2,'°'),  cls:mb.elong_ok?'ok':'fail'},
+        {l:'Umur Bulan',   v:f(h.umur_jam,1,' jam'),  cls:mb.umur_ok?'ok':'fail'},
+        {l:'ARCV',          v:f(vis.arcv,2,'°'),       cls:''},
+        {l:'Alt Airless',   v:f(vis.alt_bulan_airless,2,'°'),cls:''},
+        {l:'Elongasi Top',  v:f(vis.elongasi_top,2,'°'),cls:''},
+        {l:'Lebar Sabit',   v:f(vis.lebar_sabit_menit,2,"'"),cls:''},
+        {l:'Illuminasi',    v:f(vis.illumination_pct,2,'%'),cls:''},
+        {l:'Yallop q',      v:f(vis.yallop&&vis.yallop.q,3),cls:'gold'},
+        {l:'Odeh V',        v:f(vis.odeh&&vis.odeh.v,3),cls:'gold'},
+        {l:'Prob',          v:f(h.visibilitas&&h.visibilitas.probabilitas_pct,1,'%'),cls:''},
+        {l:'Kontras',       v:f(vis.kontras&&vis.kontras.nilai,4),cls:''},
+      ].map(function(g){return '<div class="dgi"><div class="dgl">'+g.l+'</div><div class="dgv '+g.cls+'">'+g.v+'</div></div>'}).join('');
+
+      bodyHtml='<div class="dg">'+dg+'</div>';
+      if(vis.yallop||vis.odeh){
+        bodyHtml+='<div style="font-family:\'DM Mono\',monospace;font-size:.68rem;color:var(--muted);margin-bottom:8px">'
+          +'Yallop: <span style="color:var(--text)">'+e(vis.yallop&&(vis.yallop.kelas+' — '+vis.yallop.deskripsi)||'—')+'</span>'
+          +' &nbsp;|&nbsp; Odeh: <span style="color:var(--text)">'+e(vis.odeh&&(vis.odeh.kelas+' — '+vis.odeh.deskripsi)||'—')+'</span>'
+          +(vis.kontras&&vis.kontras.keterangan?' &nbsp;|&nbsp; <span style="color:var(--text)">'+e(vis.kontras.keterangan)+'</span>':'')
+          +'</div>';
+      }
+
+      if(h.borderline)bodyHtml+='<div class="warn-box">&#9888; Elongasi borderline &mdash; rukyat mungkin berhasil, keputusan final di Sidang Isbat.</div>';
+
+      // Kota lolos mini list
+      if(multi.lokasi&&multi.lokasi.length){
+        bodyHtml+='<div style="margin-top:8px;display:flex;flex-wrap:wrap;gap:4px">'
+          +multi.lokasi.map(function(k){return '<span style="font-family:\'DM Mono\',monospace;font-size:.62rem;background:rgba(78,201,154,.1);border:1px solid rgba(78,201,154,.25);border-radius:4px;padding:2px 7px;color:var(--ok)">&#10003; '+e(k.nama)+'</span>'}).join('')
+          +'</div>';
+      }
+    }
+
+    html+='<div class="day-block">'
+      +'<button class="day-toggle" id="btn'+id+'" onclick="toggleDH(\''+id+'\')">'
+      +'<span>'+e(h.tanggal||'')+'&nbsp;&nbsp;'+(h.maghrib_wib||'')+'&nbsp;&nbsp;'+(h.best_time_wib?'best: '+h.best_time_wib:'')+'</span>'
+      +'<span>'+badge+'&nbsp;<span class="darr">&#9660;</span></span>'
+      +'</button>'
+      +'<div class="day-body" id="'+id+'">'+bodyHtml+'</div></div>';
+  });
+
+  document.getElementById('detail-body').innerHTML=html;
 }
 
-// ── UI ────────────────────────────────────────────────────────────
-function hide(){
-  document.getElementById('loading').classList.remove('on');
-  document.getElementById('results').classList.remove('on');
-  var eb=document.getElementById('err-box');eb.classList.remove('on');eb.style.display='none';
+function toggleDH(id){
+  var b=document.getElementById('btn'+id);
+  var body=document.getElementById(id);
+  b.classList.toggle('open');body.classList.toggle('open');
 }
-function setState(s,msg){
-  hide();
-  if(s==='loading'){document.getElementById('ltxt').textContent=msg;document.getElementById('loading').classList.add('on')}
-  else if(s==='error'){var b=document.getElementById('err-box');b.style.display='block';b.innerHTML='&#9888; '+e(msg).replace(/\n/g,'<br>');b.classList.add('on')}
-}
-function showErr(msg){setState('error',msg)}
 
-// ── Init ──────────────────────────────────────────────────────────
-document.getElementById('yr-inp').addEventListener('keydown',function(ev){if(ev.key==='Enter')go()});
+// ── Init ─────────────────────────────────────────────────────────
 loadIdx();
 </script>
 </body>
