@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Hisab Muhammadiyah — Detail Lengkap</title>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Crimson+Pro:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#06091a;--bg2:#0a0e24;--card:#0f152e;--card2:#141c38;
+  --gold:#c8922a;--gold-lit:#e8b84b;--gold-dim:rgba(200,146,42,.12);--gold-mid:rgba(200,146,42,.32);
+  --text:#ddd5c0;--muted:#7a7a9a;--ok:#5acea0;--err:#e07878;--info:#78aee0;--warn:#e0c478;
+  --border:rgba(200,146,42,.13);--accent:#a78bfa;
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:'Crimson Pro',Georgia,serif;font-size:17px;line-height:1.65;min-height:100vh;overflow-x:hidden}
+#sky{position:fixed;inset:0;z-index:0;pointer-events:none}
+.page{position:relative;z-index:1;max-width:960px;margin:0 auto;padding:40px 20px 90px}
+.back-link{display:inline-flex;align-items:center;gap:8px;font-family:'DM Mono',monospace;font-size:.72rem;color:var(--muted);text-decoration:none;margin-bottom:28px;transition:color .14s}
+.back-link:hover{color:var(--accent)}
+header{text-align:center;margin-bottom:44px}
+.page-badge{display:inline-block;font-family:'DM Mono',monospace;font-size:.65rem;text-transform:uppercase;letter-spacing:.12em;color:var(--accent);background:rgba(167,139,250,.1);border:1px solid rgba(167,139,250,.25);border-radius:6px;padding:4px 12px;margin-bottom:16px}
+h1.arabic{font-family:'Amiri',serif;font-size:2.3rem;color:var(--gold-lit);letter-spacing:.03em;margin-bottom:4px}
+.latin-title{font-family:'Amiri',serif;font-size:.9rem;color:var(--muted);letter-spacing:.2em;text-transform:uppercase;margin-bottom:10px}
+.sub{font-family:'DM Mono',monospace;font-size:.74rem;color:var(--muted);letter-spacing:.06em}
+.ctrl{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:24px 28px;margin-bottom:24px}
+.lbl{font-family:'DM Mono',monospace;font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:8px;display:block}
+.qy-row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}
+.btn-yr{background:var(--bg2);border:1px solid var(--border);border-radius:7px;color:var(--muted);font-family:'DM Mono',monospace;font-size:.79rem;padding:7px 13px;cursor:pointer;transition:all .14s}
+.btn-yr:hover{border-color:var(--gold-mid);color:var(--text)}
+.btn-yr.on{background:var(--gold-dim);border-color:var(--gold);color:var(--gold-lit)}
+.inp-row{display:flex;gap:10px}
+.yr-inp{flex:1;background:var(--bg2);border:1px solid var(--border);border-radius:9px;color:var(--text);font-family:'DM Mono',monospace;font-size:1.3rem;padding:10px 16px;outline:none;transition:border-color .2s;letter-spacing:.1em}
+.yr-inp:focus{border-color:var(--gold-mid)}
+.yr-inp::placeholder{color:#2e2e48}
+.btn-go{background:var(--gold);color:#1a0e00;border:none;border-radius:9px;padding:10px 22px;font-family:'Amiri',serif;font-size:1rem;font-weight:700;cursor:pointer;transition:background .14s,transform .1s}
+.btn-go:hover{background:var(--gold-lit)}
+.btn-go:active{transform:scale(.97)}
+.loading,.err-box{display:none}
+.loading.on,.err-box.on{display:block}
+.loading{text-align:center;padding:48px 0}
+.cres{width:50px;height:50px;margin:0 auto 18px;animation:spin 2s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.ltxt{font-family:'DM Mono',monospace;font-size:.78rem;color:var(--muted);animation:blink 1.4s infinite}
+@keyframes blink{0%,100%{opacity:.35}50%{opacity:1}}
+.err-box{background:rgba(224,120,120,.07);border:1px solid rgba(224,120,120,.24);border-radius:11px;padding:16px 20px;color:var(--err);font-family:'DM Mono',monospace;font-size:.8rem}
+.results{display:none;animation:up .4s ease}
+.results.on{display:block}
+@keyframes up{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+.res-meta{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;margin-bottom:20px;font-family:'DM Mono',monospace;font-size:.75rem;color:var(--muted)}
+.res-meta strong{color:var(--gold)}
+.tabs{display:flex;gap:6px;margin-bottom:20px}
+.tab{background:var(--bg2);border:1px solid var(--border);border-radius:8px;color:var(--muted);font-family:'DM Mono',monospace;font-size:.78rem;padding:8px 18px;cursor:pointer;transition:all .14s}
+.tab:hover{color:var(--text)}
+.tab.on{background:rgba(167,139,250,.1);border-color:rgba(167,139,250,.35);color:var(--accent)}
+.panel{display:none}.panel.on{display:block}
+.month-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:20px}
+@media(max-width:640px){.month-grid{grid-template-columns:1fr}}
+.sum-card{background:var(--card);border:1px solid var(--border);border-radius:14px;overflow:hidden}
+.sum-card.ok{border-top:3px solid var(--ok)}
+.sum-card.fail{border-top:3px solid var(--err)}
+.sc-head{padding:16px 20px 12px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:flex-start}
+.sc-name{font-family:'Amiri',serif;font-size:1.3rem;color:var(--gold-lit)}
+.sc-ar{font-family:'Amiri',serif;font-size:.88rem;color:var(--muted)}
+.badge{font-family:'DM Mono',monospace;font-size:.63rem;padding:3px 8px;border-radius:5px;text-transform:uppercase;letter-spacing:.07em}
+.badge.ok{background:rgba(90,206,160,.1);color:var(--ok);border:1px solid rgba(90,206,160,.27)}
+.badge.fail{background:rgba(224,120,120,.1);color:var(--err);border:1px solid rgba(224,120,120,.27)}
+.badge.info{background:rgba(120,174,224,.1);color:var(--info);border:1px solid rgba(120,174,224,.27)}
+.sc-date{padding:14px 20px;border-bottom:1px solid var(--border)}
+.sc-lbl{font-family:'DM Mono',monospace;font-size:.62rem;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-bottom:2px}
+.sc-val{font-family:'Amiri',serif;font-size:1.6rem;color:var(--text);line-height:1.2}
+.sc-sub{font-size:.8rem;color:var(--muted);margin-top:1px}
+.sc-times{display:grid;grid-template-columns:1fr 1fr}
+.t-item{padding:11px 17px;border-right:1px solid var(--border);border-bottom:1px solid var(--border)}
+.t-item:nth-child(even){border-right:none}
+.t-item:nth-last-child(-n+2){border-bottom:none}
+.t-lbl{font-family:'DM Mono',monospace;font-size:.6rem;text-transform:uppercase;letter-spacing:.09em;color:var(--muted);margin-bottom:2px}
+.t-val{font-family:'DM Mono',monospace;font-size:.88rem;color:var(--text)}
+.t-val.g{color:var(--gold)}
+/* syarat wujudul */
+.syarat-row{padding:14px 20px;border-bottom:1px solid var(--border)}
+.syarat-title{font-family:'DM Mono',monospace;font-size:.6rem;text-transform:uppercase;letter-spacing:.09em;color:var(--muted);margin-bottom:8px}
+.syarat-items{display:flex;flex-direction:column;gap:6px}
+.syarat-item{display:flex;justify-content:space-between;align-items:center;background:var(--bg2);border-radius:7px;padding:8px 12px;border:1px solid var(--border)}
+.syarat-label{font-family:'DM Mono',monospace;font-size:.7rem;color:var(--muted)}
+.syarat-val{font-family:'DM Mono',monospace;font-size:.75rem}
+.syarat-val.ok{color:var(--ok)}.syarat-val.fail{color:var(--err)}
+/* bonus vis */
+.bonus-row{padding:13px 20px;border-bottom:1px solid var(--border)}
+.bonus-chips{display:flex;gap:7px;flex-wrap:wrap}
+.chip{background:var(--bg2);border:1px solid var(--border);border-radius:6px;padding:6px 10px;font-family:'DM Mono',monospace;font-size:.7rem;display:flex;flex-direction:column;gap:1px;min-width:60px}
+.chip .cl{font-size:.56rem;color:var(--muted);letter-spacing:.08em;text-transform:uppercase}
+.chip .cv{color:var(--text)}
+/* multi lokasi */
+.multi-section{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:18px 22px;height:100%}
+.multi-title{font-family:'DM Mono',monospace;font-size:.66rem;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-bottom:10px}
+.multi-stat{font-family:'DM Mono',monospace;font-size:.82rem;color:var(--text);margin-bottom:12px}
+.multi-stat strong{color:var(--gold)}
+.kota-list{display:flex;flex-direction:column;gap:6px}
+.kota-item{background:var(--bg2);border:1px solid rgba(90,206,160,.2);border-radius:7px;padding:8px 12px}
+.kota-nama{font-family:'DM Mono',monospace;font-size:.74rem;color:var(--ok);margin-bottom:3px}
+.kota-params{font-family:'DM Mono',monospace;font-size:.63rem;color:var(--muted);display:flex;gap:10px;flex-wrap:wrap}
+.kota-params span{color:var(--text)}
+.no-lokasi{font-family:'DM Mono',monospace;font-size:.72rem;color:var(--muted)}
+.scan-section{background:var(--card2);border:1px solid var(--border);border-radius:10px;padding:14px 18px;margin-top:10px}
+.scan-dots{display:flex;flex-wrap:wrap;gap:4px;margin-top:8px}
+.scan-dot{font-family:'DM Mono',monospace;font-size:.62rem;background:rgba(90,206,160,.07);border:1px solid rgba(90,206,160,.18);color:var(--ok);border-radius:4px;padding:2px 6px}
+/* days */
+.days-section{margin-top:14px}
+.day-block{background:var(--card2);border:1px solid var(--border);border-radius:10px;margin-bottom:8px;overflow:hidden}
+.day-toggle{width:100%;background:transparent;border:none;padding:12px 18px;display:flex;justify-content:space-between;align-items:center;cursor:pointer;color:var(--text);font-family:'DM Mono',monospace;font-size:.78rem;text-align:left}
+.day-toggle:hover{background:rgba(200,146,42,.06)}
+.day-toggle .arrow{transition:transform .18s;font-size:.7rem;color:var(--muted)}
+.day-toggle.open .arrow{transform:rotate(180deg)}
+.day-body{display:none;padding:14px 18px;border-top:1px solid var(--border)}
+.day-body.open{display:block}
+.day-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:8px;margin-bottom:10px}
+.dg-item{background:var(--bg2);border:1px solid var(--border);border-radius:7px;padding:8px 11px}
+.dg-lbl{font-family:'DM Mono',monospace;font-size:.58rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-bottom:2px}
+.dg-val{font-family:'DM Mono',monospace;font-size:.85rem;color:var(--text)}
+.dg-val.ok{color:var(--ok)}.dg-val.fail{color:var(--err)}.dg-val.gold{color:var(--gold)}
+.skip-box{background:rgba(120,174,224,.06);border:1px solid rgba(120,174,224,.2);border-radius:7px;padding:9px 13px;font-family:'DM Mono',monospace;font-size:.75rem;color:var(--muted)}
+.idx-wrap{background:var(--card);border:1px solid var(--border);border-radius:13px;overflow:hidden;overflow-x:auto}
+.idx-wrap table{width:100%;border-collapse:collapse;font-family:'DM Mono',monospace;font-size:.74rem}
+.idx-wrap th{padding:9px 14px;text-align:left;font-size:.6rem;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);border-bottom:1px solid var(--border);background:var(--bg2);font-weight:400}
+.idx-wrap td{padding:9px 14px;border-bottom:1px solid var(--border);color:var(--text)}
+.idx-wrap tr:last-child td{border-bottom:none}
+.idx-wrap tr:hover td{background:var(--bg2)}
+.idx-wrap td a{color:var(--gold);text-decoration:none;cursor:pointer}
+.idx-wrap td a:hover{color:var(--gold-lit)}
+.dot{width:6px;height:6px;border-radius:50%;display:inline-block;margin-right:4px}
+.dot.ok{background:var(--ok)}.dot.fail{background:var(--err)}.dot.na{background:var(--muted)}
+.disclaimer{background:rgba(167,139,250,.05);border:1px solid rgba(167,139,250,.15);border-radius:10px;padding:12px 18px;font-family:'DM Mono',monospace;font-size:.7rem;color:var(--muted);margin-top:20px;line-height:1.6}
+.disclaimer strong{color:var(--accent)}
+footer{margin-top:64px;text-align:center;font-family:'DM Mono',monospace;font-size:.67rem;color:var(--muted);letter-spacing:.04em;opacity:.45;border-top:1px solid var(--border);padding-top:22px}
+</style>
+</head>
+<body>
+<canvas id="sky"></canvas>
+<div class="page">
+<a class="back-link" href="index.html">&#8592; Kembali ke Perbandingan</a>
+
+<header>
+  <div class="page-badge">Muhammadiyah</div>
+  <h1 class="arabic">&#x647;&#x650;&#x633;&#x064E;&#x627;&#x628; &#x627;&#x644;&#x652;&#x647;&#x650;&#x644;&#x627;&#x644;</h1>
+  <p class="latin-title">Hisab Hakiki Wujudul Hilal</p>
+  <p class="sub">Ijtimak sebelum maghrib &middot; Bulan di atas ufuk &middot; Multi-Lokasi 13 Titik</p>
+</header>
+
+<div class="ctrl">
+  <span class="lbl">Pilih Tahun</span>
+  <div class="qy-row" id="qy-row"><span style="font-family:'DM Mono',monospace;font-size:.72rem;color:var(--muted)">Memuat...</span></div>
+  <span class="lbl" style="margin-top:8px">Manual</span>
+  <div class="inp-row">
+    <input type="number" id="yr-inp" class="yr-inp" placeholder="1446" min="1400" max="1500">
+    <button class="btn-go" onclick="go()">Tampilkan &#9789;</button>
+  </div>
+</div>
+
+<div class="err-box" id="err-box"></div>
+<div class="loading" id="loading">
+  <div class="cres"><svg viewBox="0 0 52 52" fill="none"><path d="M26 3 A23 23 0 0 1 26 49 A15 15 0 0 0 26 3Z" fill="#c8922a" opacity=".9"/><circle cx="26" cy="26" r="24" stroke="#c8922a" stroke-width="1.2" opacity=".18" fill="none"/></svg></div>
+  <p class="ltxt" id="ltxt">Memuat data...</p>
+</div>
+
+<div class="results" id="results">
+  <div class="res-meta">
+    <span>Tahun <strong id="r-th">&#8212;</strong> H / <strong id="r-m">&#8212;</strong> M</span>
+    <span>&#916;T &asymp; <strong id="r-dt">&#8212;</strong> dtk</span>
+  </div>
+  <div class="tabs">
+    <button class="tab on" onclick="switchTab('ramadan',this)">Ramadan</button>
+    <button class="tab" onclick="switchTab('syawal',this)">Syawal</button>
+    <button class="tab" onclick="switchTab('semua',this)">Semua Tahun</button>
+  </div>
+  <div class="panel on" id="panel-ramadan"></div>
+  <div class="panel" id="panel-syawal"></div>
+  <div class="panel" id="panel-semua"></div>
+  <div class="disclaimer">
+    <strong>Metode Hisab Hakiki Wujudul Hilal:</strong> Awal bulan dimulai jika tiga syarat terpenuhi:
+    (1) sudah terjadi ijtimak, (2) ijtimak sebelum maghrib, (3) saat maghrib piringan atas bulan di atas ufuk (&gt;0&deg;).
+    Tidak memperhitungkan kemungkinan terlihat tidaknya hilal secara fisik.
+    Keputusan resmi mengikuti Majelis Tarjih dan Tajdid Muhammadiyah.
+  </div>
+</div>
+
+<footer>
+  Ephemeris DE440 &middot; Skyfield &middot; Hisab Hakiki Wujudul Hilal &middot; 13 Titik Representatif Indonesia
+</footer>
+</div>
+
+<script>
+(function(){var c=document.getElementById('sky'),ctx=c.getContext('2d'),s=[];function rsz(){c.width=innerWidth;c.height=innerHeight}function init(){s=[];var n=Math.floor(c.width*c.height/5200);for(var i=0;i<n;i++)s.push({x:Math.random()*c.width,y:Math.random()*c.height,r:Math.random()*1.1+.2,a:Math.random(),da:(Math.random()*.004+.001)*(Math.random()<.5?1:-1)})}function draw(){ctx.clearRect(0,0,c.width,c.height);for(var i=0;i<s.length;i++){var p=s[i];p.a=Math.max(.1,Math.min(.88,p.a+p.da));if(p.a<=.1||p.a>=.88)p.da*=-1;ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);ctx.fillStyle='rgba(220,210,190,'+p.a*.42+')';ctx.fill()}requestAnimationFrame(draw)}rsz();init();draw();window.addEventListener('resize',function(){rsz();init()});})();
+
+function e(s){return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}
+function f(v,d,u){if(v===null||v===undefined)return '&#8212;';return (+v).toFixed(d||2)+(u?' '+u:'')}
+function fDate(s){if(!s)return '&#8212;';return new Date(s+'T12:00:00').toLocaleDateString('id-ID',{weekday:'long',day:'numeric',month:'long',year:'numeric'})}
+
+var IDX=null,CUR=null;
+
+async function loadIdx(){
+  try{var r=await fetch('data/index.json');if(!r.ok)throw 0;IDX=await r.json();renderQY();renderSemua();}
+  catch(x){document.getElementById('qy-row').innerHTML='<span style="font-family:\'DM Mono\',monospace;font-size:.72rem;color:var(--muted)">Masukkan tahun manual</span>';}
+}
+function renderQY(){
+  var w=document.getElementById('qy-row');w.innerHTML='';
+  if(!IDX)return;
+  IDX.tahun_tersedia.forEach(function(t){var b=document.createElement('button');b.className='btn-yr';b.textContent=t+' H';b.setAttribute('data-t',t);b.onclick=function(){go(t)};w.appendChild(b);});
+}
+function renderSemua(){
+  var p=document.getElementById('panel-semua');
+  if(!IDX||!IDX.data.length){p.innerHTML='';return}
+  var rows=IDX.data.map(function(row){
+    var mu=row.muhammadiyah||{};
+    return '<tr><td><a onclick="go('+row.tahun+')">'+row.tahun+'</a></td><td>'+row.tahun_masehi+'</td>'
+      +'<td>'+fDate(mu.ramadan_tanggal)+'</td><td>'+(mu.ramadan_lolos?'<span class="dot ok"></span>Wujud':'<span class="dot fail"></span>Tidak')+'</td>'
+      +'<td>'+(mu.ramadan_n_lok||0)+' lok</td>'
+      +'<td>'+fDate(mu.syawal_tanggal)+'</td><td>'+(mu.syawal_lolos?'<span class="dot ok"></span>Wujud':'<span class="dot fail"></span>Tidak')+'</td>'
+      +'<td>'+(mu.syawal_n_lok||0)+' lok</td></tr>';
+  }).join('');
+  p.innerHTML='<div class="idx-wrap"><table><thead><tr><th>H</th><th>M</th><th>1 Ramadan</th><th>Wujud</th><th>Lok</th><th>1 Syawal</th><th>Wujud</th><th>Lok</th></tr></thead><tbody>'+rows+'</tbody></table></div>';
+}
+
+async function go(arg){
+  var inp=document.getElementById('yr-inp');
+  var t=arg||parseInt(inp.value);
+  if(!t||t<1400||t>1500){showErr('Tahun Hijriah harus 1400-1500');return}
+  document.querySelectorAll('.btn-yr').forEach(function(b){b.classList.remove('on')});
+  var ab=document.querySelector('.btn-yr[data-t="'+t+'"]');if(ab)ab.classList.add('on');
+  if(!arg)inp.value=t;
+  hide();setState('loading','Memuat '+t+' H...');
+  try{
+    var r=await fetch('data/'+t+'.json');
+    if(!r.ok)throw new Error('Data '+t+' H belum ada.\nJalankan: python generate_json.py --tahun '+t);
+    CUR=await r.json();
+    render();
+  }catch(ex){setState('error',ex.message)}
+}
+
+function render(){
+  hide();
+  var d=CUR.muhammadiyah||{};
+  var masehi=d.ramadan&&d.ramadan.ringkas&&d.ramadan.ringkas.tanggal?new Date(d.ramadan.ringkas.tanggal+'T12:00:00').getFullYear():CUR.tahun_masehi;
+  document.getElementById('r-th').textContent=CUR.tahun;
+  document.getElementById('r-m').textContent=masehi;
+  document.getElementById('r-dt').textContent=CUR.delta_t;
+  document.getElementById('panel-ramadan').innerHTML=buildMonth(d.ramadan,'Ramadan','\u0631\u064e\u0645\u064e\u0636\u064e\u0627\u0646',CUR.tahun);
+  document.getElementById('panel-syawal').innerHTML=buildMonth(d.syawal,'Syawal','\u0634\u064e\u0648\u064e\u0651\u0627\u0644',CUR.tahun);
+  document.getElementById('results').classList.add('on');
+  switchTab('ramadan',document.querySelector('.tab.on'));
+  document.getElementById('results').scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+function buildMonth(d,name,ar,tahun){
+  if(!d)return '<p style="color:var(--muted)">Data tidak tersedia.</p>';
+  var rk=d.ringkas||{};
+  var ok=d.wujudul_lolos;
+  var mBadge=ok?'<span class="badge ok">&#10003; Wujudul Hilal</span>':'<span class="badge fail">&#10007; Belum Wujud</span>';
+
+  // Ambil hari yang lolos untuk detail
+  var hl=d.hari_diperiksa&&d.hari_diperiksa.find(function(h){return h.lolos_wujudul});
+  var wujud=hl&&hl.wujudul_jakarta||{};
+  var syarat=wujud.syarat||{};
+  var vis=hl&&hl.visibilitas||{};
+  var ml=hl&&hl.multilokasi||{};
+
+  var syaratHtml='<div class="syarat-row"><div class="syarat-title">Syarat Wujudul Hilal (Jakarta)</div><div class="syarat-items">'
+    +'<div class="syarat-item"><span class="syarat-label">Ijtimak sebelum maghrib</span><span class="syarat-val '+(syarat.ijtimak_sebelum_maghrib?'ok':'fail')+'">'+(syarat.ijtimak_sebelum_maghrib?'&#10003; Ya':'&#10007; Tidak')+'</span></div>'
+    +'<div class="syarat-item"><span class="syarat-label">Piringan atas bulan &gt;0&deg;</span><span class="syarat-val '+(syarat.piringan_atas_bulan_di_atas_ufuk?'ok':'fail')+'">'+(syarat.piringan_atas_bulan_di_atas_ufuk?'&#10003; '+f(wujud.alt_ref_pada_maghrib,3)+'&deg;':'&#10007; Tidak')+'</span></div>'
+    +'<div class="syarat-item"><span class="syarat-label">Umur bulan positif</span><span class="syarat-val '+(syarat.umur_bulan_positif?'ok':'fail')+'">'+(syarat.umur_bulan_positif?'&#10003; '+f(wujud.umur_jam,1)+' jam':'&#10007; Tidak')+'</span></div>'
+    +'</div></div>';
+
+  var bonusHtml='';
+  if(vis&&vis.arcv!==null&&vis.arcv!==undefined){
+    var chips=[
+      {l:'ARCV',v:f(vis.arcv,2,'&deg;')},
+      {l:'Lebar Sabit',v:f(vis.lebar_sabit_menit,2,'&prime;')},
+      {l:'Illuminasi',v:f(vis.illumination_pct,2,'%')},
+      {l:'Elongasi Top',v:f(vis.elongasi_top,2,'&deg;')},
+    ].map(function(c){return '<div class="chip"><span class="cl">'+c.l+'</span><span class="cv">'+c.v+'</span></div>'}).join('');
+    bonusHtml='<div class="bonus-row"><div class="syarat-title">Data Astronomi (Info, tidak mempengaruhi keputusan)</div><div class="bonus-chips">'+chips+'</div></div>';
+  }
+
+  var kotaList=ml.lokasi||[];
+  var kotaHtml=kotaList.length
+    ?'<div class="kota-list">'+kotaList.map(function(k){return '<div class="kota-item"><div class="kota-nama">&#10003; '+e(k.nama)+'</div><div class="kota-params">alt <span>'+f(k.alt,3)+'&deg;</span> elong <span>'+f(k.elong_geo,2)+'&deg;</span> umur <span>'+f(k.umur_jam,1)+' jam</span>'+(k.lag_menit?' lag <span>'+f(k.lag_menit,0)+' mnt</span>':'')+'</div></div>'}).join('')+'</div>'
+    :'<div class="no-lokasi">Tidak ada lokasi yang memenuhi Wujudul Hilal</div>';
+
+  var sc=d.scan_indonesia;
+  var scanHtml='';
+  if(sc&&sc.n_titik_grid>0){
+    var dots=(sc.titik_sampel||[]).map(function(p){return '<div class="scan-dot">'+p.lat+'&deg;,'+p.lon+'&deg;'+(p.alt?' ('+f(p.alt,2)+'&deg;)':'')+'</div>'}).join('');
+    scanHtml='<div class="scan-section"><div class="syarat-title" style="margin-bottom:6px">Scan Grid Wujud: <strong style="color:var(--gold)">'+sc.n_titik_grid+'</strong> titik alt &gt;0&deg;</div><div class="scan-dots">'+dots+'</div></div>';
+  }
+
+  return '<div class="month-grid">'
+    +'<div class="sum-card '+(ok?'ok':'fail')+'">'
+    +'<div class="sc-head"><div><div class="sc-name">'+name+'</div><div class="sc-ar">'+ar+'</div></div>'+mBadge+'</div>'
+    +'<div class="sc-date"><div class="sc-lbl">1 '+name+' '+tahun+' H</div><div class="sc-val">'+fDate(d.tanggal_awal)+'</div><div class="sc-sub">Ijtimak: '+e(d.ijtimak_wib||'&#8212;')+'</div></div>'
+    +'<div class="sc-times">'
+    +'<div class="t-item"><div class="t-lbl">Maghrib (Jkt)</div><div class="t-val g">'+(rk.maghrib||'&#8212;')+'</div></div>'
+    +'<div class="t-item"><div class="t-lbl">Moonset</div><div class="t-val">'+(rk.moonset||'&#8212;')+'</div></div>'
+    +'<div class="t-item" style="border-bottom:none"><div class="t-lbl">Best Time</div><div class="t-val">'+(rk.best_time||'&#8212;')+'</div></div>'
+    +'<div class="t-item" style="border-bottom:none;border-right:none"><div class="t-lbl">Umur Bulan</div><div class="t-val">'+f(rk.umur_jam,1,' jam')+'</div></div>'
+    +'</div>'
+    +syaratHtml
+    +bonusHtml
+    +'</div>'
+    +'<div><div class="multi-section"><div class="multi-title">&#9679; Multi-Lokasi Nasional</div><div class="multi-stat"><strong>'+(ml.n_lokasi||0)+'</strong> lokasi wujudul hilal</div>'+kotaHtml+'</div>'+scanHtml+'</div>'
+    +'</div>'
+    +buildDays(d.hari_diperiksa||[]);
+}
+
+function buildDays(days){
+  if(!days.length)return '';
+  var uid=Math.random().toString(36).slice(2,7);
+  var html='<div class="days-section"><div class="syarat-title" style="margin-bottom:10px;font-family:\'DM Mono\',monospace;font-size:.6rem;text-transform:uppercase;letter-spacing:.09em;color:var(--muted)">&#8615; Detail Tiap Hari Diperiksa</div>';
+  days.forEach(function(h,i){
+    var id='d'+uid+i;
+    if(h.dilewati){
+      html+='<div class="day-block"><button class="day-toggle" id="btn'+id+'" onclick="toggleDay(\''+id+'\')"><span>'+e(h.tanggal||'')+'&nbsp;&nbsp;'+(h.maghrib_wib||'')+'</span><span><span class="badge info" style="margin-left:8px">Dilewati</span>&nbsp;<span class="arrow">&#9660;</span></span></button><div class="day-body" id="'+id+'"><div class="skip-box">'+e(h.alasan_lewat||'Dilewati')+'</div></div></div>';
+      return;
+    }
+    var wujud=h.wujudul_jakarta||{};
+    var syarat=wujud.syarat||{};
+    var vis=h.visibilitas||{};
+    var ml=h.multilokasi||{};
+    var statusBadge=h.lolos_wujudul
+      ?'<span class="badge ok" style="margin-left:8px">&#10003; Wujud ('+(ml.n_lokasi||0)+')</span>'
+      :'<span class="badge fail" style="margin-left:8px">&#10007; Belum</span>';
+    var dg=[
+      {l:'Alt Jkt (ref)',v:f(wujud.alt_ref_pada_maghrib,3,'&deg;'),cls:syarat.piringan_atas_bulan_di_atas_ufuk?'ok':'fail'},
+      {l:'Umur Bulan',v:f(wujud.umur_jam,1,' jam'),cls:syarat.umur_bulan_positif?'ok':'fail'},
+      {l:'Ijtimak',v:syarat.ijtimak_sebelum_maghrib?'Sebelum':'Setelah',cls:syarat.ijtimak_sebelum_maghrib?'ok':'fail'},
+      {l:'ARCV',v:f(vis.arcv,2,'&deg;'),cls:''},
+      {l:'Elong Top',v:f(vis.elongasi_top,2,'&deg;'),cls:''},
+      {l:'Lebar Sabit',v:f(vis.lebar_sabit_menit,2,'&prime;'),cls:''},
+      {l:'Illuminasi',v:f(vis.illumination_pct,2,'%'),cls:''},
+    ].map(function(g){return '<div class="dg-item"><div class="dg-lbl">'+g.l+'</div><div class="dg-val '+g.cls+'">'+g.v+'</div></div>'}).join('');
+    var kotaLolos='';
+    if(ml.lokasi&&ml.lokasi.length){
+      kotaLolos='<div style="margin-top:10px;display:flex;flex-wrap:wrap;gap:5px">'+ml.lokasi.map(function(k){return '<div class="scan-dot" style="background:rgba(90,206,160,.1);border-color:rgba(90,206,160,.3)">'+e(k.nama)+'</div>'}).join('')+'</div>';
+    }
+    html+='<div class="day-block"><button class="day-toggle" id="btn'+id+'" onclick="toggleDay(\''+id+'\')"><span>'+e(h.tanggal||'')+'&nbsp;&nbsp;'+(h.maghrib_wib||'')+'</span><span>'+statusBadge+'&nbsp;<span class="arrow">&#9660;</span></span></button><div class="day-body" id="'+id+'"><div class="day-grid">'+dg+'</div>'+kotaLolos+'</div></div>';
+  });
+  return html+'</div>';
+}
+
+function toggleDay(id){var b=document.getElementById('btn'+id);var body=document.getElementById(id);b.classList.toggle('open');body.classList.toggle('open')}
+function switchTab(name,btn){document.querySelectorAll('.tab').forEach(function(t){t.classList.remove('on')});document.querySelectorAll('.panel').forEach(function(p){p.classList.remove('on')});if(btn)btn.classList.add('on');var p=document.getElementById('panel-'+name);if(p)p.classList.add('on')}
+function hide(){document.getElementById('loading').classList.remove('on');document.getElementById('results').classList.remove('on');var eb=document.getElementById('err-box');eb.classList.remove('on');eb.style.display='none'}
+function setState(s,msg){hide();if(s==='loading'){document.getElementById('ltxt').textContent=msg;document.getElementById('loading').classList.add('on')}else if(s==='error'){var b=document.getElementById('err-box');b.style.display='block';b.innerHTML='&#9888; '+e(msg).replace(/\n/g,'<br>');b.classList.add('on')}}
+function showErr(msg){setState('error',msg)}
+document.getElementById('yr-inp').addEventListener('keydown',function(ev){if(ev.key==='Enter')go()});
+loadIdx();
+var urlP=new URLSearchParams(window.location.search);var urlT=urlP.get('t');if(urlT)go(parseInt(urlT));
+</script>
+</body>
+</html>

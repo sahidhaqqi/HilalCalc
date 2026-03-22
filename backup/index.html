@@ -29,27 +29,37 @@ header{text-align:center;margin-bottom:40px}
 .moon-wrap{width:56px;height:56px;margin:0 auto 20px;animation:float 5s ease-in-out infinite;display:block}
 @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
 h1.arabic{font-family:'Amiri',serif;font-size:2.4rem;color:var(--gold-lit);letter-spacing:.03em;margin-bottom:3px}
-.latin-sub{font-family:'DM Mono',monospace;font-size:.72rem;color:var(--muted);letter-spacing:.18em;text-transform:uppercase}
+.latin-sub{font-family:DM Mono,monospace;font-size:.72rem;color:var(--muted);letter-spacing:.18em;text-transform:uppercase}
 
 /* ── Year selector ── */
 .year-bar{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:22px 28px;margin-bottom:24px}
 .year-tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:16px}
-.ytab{background:var(--bg2);border:1px solid var(--border);border-radius:7px;color:var(--muted);font-family:'DM Mono',monospace;font-size:.77rem;padding:6px 12px;cursor:pointer;transition:all .14s}
+.ytab{background:var(--bg2);border:1px solid var(--border);border-radius:7px;color:var(--muted);font-family:DM Mono,monospace;font-size:.77rem;padding:6px 12px;cursor:pointer;transition:all .14s}
 .ytab:hover{border-color:var(--gold-mid);color:var(--text)}
 .ytab.on{background:var(--gold-dim);border-color:var(--gold);color:var(--gold-lit)}
 .month-tabs{display:flex;gap:8px}
 .mtab{flex:1;background:var(--bg2);border:1px solid var(--border);border-radius:8px;color:var(--muted);font-family:'Amiri',serif;font-size:1rem;padding:8px;cursor:pointer;transition:all .14s;text-align:center}
 .mtab:hover{border-color:var(--gold-mid);color:var(--text)}
 .mtab.on{background:var(--gold-dim);border-color:var(--gold);color:var(--gold-lit)}
+.all-wrap{background:var(--card);border:1px solid var(--border);border-radius:14px;overflow:hidden;margin-bottom:18px}
+.all-wrap table{width:100%;border-collapse:collapse;font-family:"DM Mono",monospace;font-size:.74rem}
+.all-wrap th{padding:10px 14px;text-align:left;font-size:.6rem;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);border-bottom:1px solid var(--border);background:var(--bg2);font-weight:400;white-space:nowrap}
+.all-wrap td{padding:9px 14px;border-bottom:1px solid var(--border);color:var(--text);white-space:nowrap}
+.all-wrap tr:last-child td{border-bottom:none}
+.all-wrap tr:hover td{background:rgba(200,146,42,.04);cursor:pointer}
+.all-wrap td a{color:var(--gold);text-decoration:none;cursor:pointer}
+.all-wrap td a:hover{color:var(--gold-lit);text-decoration:underline}
+.dot{width:6px;height:6px;border-radius:50%;display:inline-block;margin-right:4px;vertical-align:middle}
+.dot.ok{background:var(--ok)}.dot.fail{background:var(--err)}.dot.na{background:var(--muted)}
 
 /* ── Loading / error ── */
 .state-box{display:none;text-align:center;padding:60px 20px}
 .state-box.on{display:block}
 .cres{width:48px;height:48px;margin:0 auto 16px;animation:spin 2s linear infinite}
 @keyframes spin{to{transform:rotate(360deg)}}
-.ltxt{font-family:'DM Mono',monospace;font-size:.78rem;color:var(--muted);animation:blink 1.4s ease-in-out infinite}
+.ltxt{font-family:DM Mono,monospace;font-size:.78rem;color:var(--muted);animation:blink 1.4s ease-in-out infinite}
 @keyframes blink{0%,100%{opacity:.35}50%{opacity:1}}
-.err-box{display:none;background:rgba(224,120,120,.07);border:1px solid rgba(224,120,120,.24);border-radius:11px;padding:14px 18px;color:var(--err);font-family:'DM Mono',monospace;font-size:.78rem;margin-bottom:16px}
+.err-box{display:none;background:rgba(224,120,120,.07);border:1px solid rgba(224,120,120,.24);border-radius:11px;padding:14px 18px;color:var(--err);font-family:DM Mono,monospace;font-size:.78rem;margin-bottom:16px}
 
 /* ── Main results ── */
 .main-results{display:none;animation:up .4s ease}
@@ -62,25 +72,25 @@ h1.arabic{font-family:'Amiri',serif;font-size:2.4rem;color:var(--gold-lit);lette
 
 /* ── Hilal panel ── */
 .hilal-panel{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:20px;display:flex;flex-direction:column;align-items:center;gap:12px}
-.hilal-title{font-family:'DM Mono',monospace;font-size:.62rem;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);align-self:flex-start}
+.hilal-title{font-family:DM Mono,monospace;font-size:.62rem;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);align-self:flex-start}
 #hilal-canvas{display:block}
 .hilal-info{width:100%;display:grid;grid-template-columns:1fr 1fr;gap:6px}
 .hi{background:var(--bg2);border:1px solid var(--border);border-radius:6px;padding:7px 10px}
-.hi-l{font-family:'DM Mono',monospace;font-size:.56rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-bottom:1px}
-.hi-v{font-family:'DM Mono',monospace;font-size:.82rem;color:var(--text)}
+.hi-l{font-family:DM Mono,monospace;font-size:.56rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-bottom:1px}
+.hi-v{font-family:DM Mono,monospace;font-size:.82rem;color:var(--text)}
 
 /* ── Summary panel ── */
 .summary-panel{background:var(--card);border:1px solid var(--border);border-radius:14px;overflow:hidden}
 .sp-head{padding:16px 20px 12px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:flex-start}
 .sp-month{font-family:'Amiri',serif;font-size:1.4rem;color:var(--gold-lit)}
 .sp-arabic{font-family:'Amiri',serif;font-size:.9rem;color:var(--muted)}
-.badge{font-family:'DM Mono',monospace;font-size:.62rem;padding:3px 9px;border-radius:5px;text-transform:uppercase;letter-spacing:.07em}
+.badge{font-family:DM Mono,monospace;font-size:.62rem;padding:3px 9px;border-radius:5px;text-transform:uppercase;letter-spacing:.07em}
 .badge.ok{background:var(--ok2);color:var(--ok);border:1px solid rgba(78,201,154,.3)}
 .badge.fail{background:var(--err2);color:var(--err);border:1px solid rgba(224,120,120,.3)}
 .badge.warn{background:rgba(224,196,120,.1);color:var(--warn);border:1px solid rgba(224,196,120,.3)}
 
 .sp-date{padding:14px 20px;border-bottom:1px solid var(--border)}
-.sp-lbl{font-family:'DM Mono',monospace;font-size:.6rem;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-bottom:2px}
+.sp-lbl{font-family:DM Mono,monospace;font-size:.6rem;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-bottom:2px}
 .sp-val{font-family:'Amiri',serif;font-size:1.7rem;color:var(--text);line-height:1.2}
 .sp-sub{font-size:.8rem;color:var(--muted);margin-top:1px}
 
@@ -88,14 +98,14 @@ h1.arabic{font-family:'Amiri',serif;font-size:2.4rem;color:var(--gold-lit);lette
 .ti{padding:10px 14px;border-right:1px solid var(--border);border-bottom:1px solid var(--border)}
 .ti:nth-child(4n){border-right:none}
 .ti:nth-last-child(-n+4){border-bottom:none}
-.ti-l{font-family:'DM Mono',monospace;font-size:.56rem;text-transform:uppercase;letter-spacing:.09em;color:var(--muted);margin-bottom:1px}
-.ti-v{font-family:'DM Mono',monospace;font-size:.82rem;color:var(--text)}
+.ti-l{font-family:DM Mono,monospace;font-size:.56rem;text-transform:uppercase;letter-spacing:.09em;color:var(--muted);margin-bottom:1px}
+.ti-v{font-family:DM Mono,monospace;font-size:.82rem;color:var(--text)}
 .ti-v.g{color:var(--gold)}
 
 .sp-params{padding:12px 20px;border-bottom:1px solid var(--border)}
-.sp-pt{font-family:'DM Mono',monospace;font-size:.58rem;text-transform:uppercase;letter-spacing:.09em;color:var(--muted);margin-bottom:7px}
+.sp-pt{font-family:DM Mono,monospace;font-size:.58rem;text-transform:uppercase;letter-spacing:.09em;color:var(--muted);margin-bottom:7px}
 .chips{display:flex;gap:6px;flex-wrap:wrap}
-.chip{background:var(--bg2);border:1px solid var(--border);border-radius:6px;padding:5px 9px;font-family:'DM Mono',monospace;font-size:.68rem;display:flex;flex-direction:column;gap:1px}
+.chip{background:var(--bg2);border:1px solid var(--border);border-radius:6px;padding:5px 9px;font-family:DM Mono,monospace;font-size:.68rem;display:flex;flex-direction:column;gap:1px}
 .chip .cl{font-size:.54rem;color:var(--muted);text-transform:uppercase;letter-spacing:.07em}
 .chip .cv{color:var(--text)}
 .chip.ok .cv{color:var(--ok)}
@@ -103,23 +113,23 @@ h1.arabic{font-family:'Amiri',serif;font-size:2.4rem;color:var(--gold-lit);lette
 
 .sp-scores{padding:12px 20px;border-bottom:1px solid var(--border);display:grid;grid-template-columns:1fr 1fr;gap:10px}
 .score-b{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:9px 12px}
-.sn{font-family:'DM Mono',monospace;font-size:.58rem;text-transform:uppercase;letter-spacing:.09em;color:var(--muted);margin-bottom:2px}
-.sv{font-family:'DM Mono',monospace;font-size:1.05rem;color:var(--gold-lit);margin-bottom:2px}
+.sn{font-family:DM Mono,monospace;font-size:.58rem;text-transform:uppercase;letter-spacing:.09em;color:var(--muted);margin-bottom:2px}
+.sv{font-family:DM Mono,monospace;font-size:1.05rem;color:var(--gold-lit);margin-bottom:2px}
 .sk{font-size:.74rem;color:var(--text);line-height:1.3}
 
 .sp-prob{padding:11px 20px}
 .prob-row{display:flex;justify-content:space-between;margin-bottom:6px}
-.prob-lbl{font-family:'DM Mono',monospace;font-size:.58rem;text-transform:uppercase;letter-spacing:.09em;color:var(--muted)}
-.prob-num{font-family:'DM Mono',monospace;font-size:.8rem;color:var(--gold)}
+.prob-lbl{font-family:DM Mono,monospace;font-size:.58rem;text-transform:uppercase;letter-spacing:.09em;color:var(--muted)}
+.prob-num{font-family:DM Mono,monospace;font-size:.8rem;color:var(--gold)}
 .track{height:4px;background:var(--bg2);border-radius:2px;overflow:hidden;border:1px solid var(--border)}
 .fill{height:100%;border-radius:2px;background:linear-gradient(90deg,var(--gold),var(--gold-lit));transition:width .7s ease}
 
 /* ── Map ── */
 .map-wrap{background:var(--card);border:1px solid var(--border);border-radius:14px;overflow:hidden;margin-bottom:18px}
 .map-header{padding:14px 20px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center}
-.map-title{font-family:'DM Mono',monospace;font-size:.64rem;text-transform:uppercase;letter-spacing:.1em;color:var(--muted)}
+.map-title{font-family:DM Mono,monospace;font-size:.64rem;text-transform:uppercase;letter-spacing:.1em;color:var(--muted)}
 .map-legend{display:flex;gap:14px}
-.leg{display:flex;align-items:center;gap:5px;font-family:'DM Mono',monospace;font-size:.62rem;color:var(--muted)}
+.leg{display:flex;align-items:center;gap:5px;font-family:DM Mono,monospace;font-size:.62rem;color:var(--muted)}
 .leg-dot{width:8px;height:8px;border-radius:50%}
 .leg-dot.ok{background:var(--ok)}
 .leg-dot.warn{background:var(--warn)}
@@ -130,32 +140,32 @@ h1.arabic{font-family:'Amiri',serif;font-size:2.4rem;color:var(--gold-lit);lette
 .leaflet-container{background:#050812 !important}
 .leaflet-tile{filter:brightness(.35) saturate(.4) hue-rotate(200deg)}
 .leaflet-popup-content-wrapper{background:var(--card2);border:1px solid var(--border2);border-radius:10px;color:var(--text);box-shadow:0 4px 24px rgba(0,0,0,.6)}
-.leaflet-popup-content{font-family:'DM Mono',monospace;font-size:.72rem;line-height:1.6;margin:10px 14px}
+.leaflet-popup-content{font-family:DM Mono,monospace;font-size:.72rem;line-height:1.6;margin:10px 14px}
 .leaflet-popup-tip{background:var(--card2)}
 
 /* ── Charts row ── */
 .charts-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin-bottom:18px}
 @media(max-width:700px){.charts-row{grid-template-columns:1fr}}
 .chart-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:16px}
-.chart-title{font-family:'DM Mono',monospace;font-size:.6rem;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-bottom:12px}
+.chart-title{font-family:DM Mono,monospace;font-size:.6rem;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-bottom:12px}
 
 /* ── Lokasi lolos list ── */
 .lokasi-wrap{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:18px 20px;margin-bottom:18px}
-.lw-title{font-family:'DM Mono',monospace;font-size:.62rem;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-bottom:12px}
-.lw-stat{font-family:'DM Mono',monospace;font-size:.82rem;color:var(--text);margin-bottom:12px}
+.lw-title{font-family:DM Mono,monospace;font-size:.62rem;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-bottom:12px}
+.lw-stat{font-family:DM Mono,monospace;font-size:.82rem;color:var(--text);margin-bottom:12px}
 .lw-stat strong{color:var(--gold)}
 .kota-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:8px}
 .kota-card{background:var(--bg2);border:1px solid rgba(78,201,154,.2);border-radius:8px;padding:10px 14px;transition:border-color .14s}
 .kota-card:hover{border-color:rgba(78,201,154,.45)}
-.kota-nama{font-family:'DM Mono',monospace;font-size:.76rem;color:var(--ok);margin-bottom:5px;display:flex;align-items:center;gap:5px}
+.kota-nama{font-family:DM Mono,monospace;font-size:.76rem;color:var(--ok);margin-bottom:5px;display:flex;align-items:center;gap:5px}
 .kota-params{display:grid;grid-template-columns:1fr 1fr 1fr;gap:3px}
-.kp{font-family:'DM Mono',monospace;font-size:.62rem}
+.kp{font-family:DM Mono,monospace;font-size:.62rem}
 .kp .kl{color:var(--muted);display:block;font-size:.56rem}
 .kp .kv{color:var(--text)}
 
 /* ── Detail accordion ── */
 .detail-wrap{background:var(--card);border:1px solid var(--border);border-radius:14px;overflow:hidden}
-.detail-toggle{width:100%;background:transparent;border:none;border-bottom:1px solid var(--border);padding:14px 20px;display:flex;justify-content:space-between;align-items:center;cursor:pointer;color:var(--muted);font-family:'DM Mono',monospace;font-size:.72rem;text-align:left;transition:background .14s}
+.detail-toggle{width:100%;background:transparent;border:none;border-bottom:1px solid var(--border);padding:14px 20px;display:flex;justify-content:space-between;align-items:center;cursor:pointer;color:var(--muted);font-family:DM Mono,monospace;font-size:.72rem;text-align:left;transition:background .14s}
 .detail-toggle:hover{background:rgba(200,146,42,.05)}
 .detail-toggle .arr{transition:transform .18s;font-size:.65rem}
 .detail-toggle.open{color:var(--text);border-bottom-color:transparent}
@@ -163,7 +173,7 @@ h1.arabic{font-family:'Amiri',serif;font-size:2.4rem;color:var(--gold-lit);lette
 .detail-body{display:none;padding:16px 20px}
 .detail-body.open{display:block}
 .day-block{background:var(--card2);border:1px solid var(--border);border-radius:9px;margin-bottom:8px;overflow:hidden}
-.day-toggle{width:100%;background:transparent;border:none;padding:11px 16px;display:flex;justify-content:space-between;align-items:center;cursor:pointer;color:var(--text);font-family:'DM Mono',monospace;font-size:.74rem;text-align:left}
+.day-toggle{width:100%;background:transparent;border:none;padding:11px 16px;display:flex;justify-content:space-between;align-items:center;cursor:pointer;color:var(--text);font-family:DM Mono,monospace;font-size:.74rem;text-align:left}
 .day-toggle:hover{background:rgba(200,146,42,.04)}
 .day-toggle .darr{transition:transform .18s;font-size:.64rem;color:var(--muted)}
 .day-toggle.open .darr{transform:rotate(180deg)}
@@ -171,17 +181,22 @@ h1.arabic{font-family:'Amiri',serif;font-size:2.4rem;color:var(--gold-lit);lette
 .day-body.open{display:block}
 .dg{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:7px;margin-bottom:8px}
 .dgi{background:var(--bg2);border:1px solid var(--border);border-radius:6px;padding:7px 10px}
-.dgl{font-family:'DM Mono',monospace;font-size:.55rem;text-transform:uppercase;letter-spacing:.07em;color:var(--muted);margin-bottom:1px}
-.dgv{font-family:'DM Mono',monospace;font-size:.82rem;color:var(--text)}
+.dgl{font-family:DM Mono,monospace;font-size:.55rem;text-transform:uppercase;letter-spacing:.07em;color:var(--muted);margin-bottom:1px}
+.dgv{font-family:DM Mono,monospace;font-size:.82rem;color:var(--text)}
 .dgv.ok{color:var(--ok)}.dgv.fail{color:var(--err)}.dgv.gold{color:var(--gold)}
-.skip-box{background:rgba(120,174,224,.05);border:1px solid rgba(120,174,224,.18);border-radius:7px;padding:8px 12px;font-family:'DM Mono',monospace;font-size:.72rem;color:var(--muted)}
-.warn-box{background:rgba(224,196,120,.07);border:1px solid rgba(224,196,120,.22);border-radius:7px;padding:8px 12px;font-family:'DM Mono',monospace;font-size:.72rem;color:var(--warn);margin-top:6px}
+.skip-box{background:rgba(120,174,224,.05);border:1px solid rgba(120,174,224,.18);border-radius:7px;padding:8px 12px;font-family:DM Mono,monospace;font-size:.72rem;color:var(--muted)}
+.warn-box{background:rgba(224,196,120,.07);border:1px solid rgba(224,196,120,.22);border-radius:7px;padding:8px 12px;font-family:DM Mono,monospace;font-size:.72rem;color:var(--warn);margin-top:6px}
 
 /* ── Disclaimer ── */
-.disclaimer{background:rgba(120,174,224,.04);border:1px solid rgba(120,174,224,.13);border-radius:10px;padding:11px 16px;font-family:'DM Mono',monospace;font-size:.67rem;color:var(--muted);margin-top:18px;line-height:1.7}
+.disclaimer{background:rgba(120,174,224,.04);border:1px solid rgba(120,174,224,.13);border-radius:10px;padding:11px 16px;font-family:DM Mono,monospace;font-size:.67rem;color:var(--muted);margin-top:18px;line-height:1.7}
 .disclaimer strong{color:var(--info)}
 
-footer{margin-top:56px;text-align:center;font-family:'DM Mono',monospace;font-size:.65rem;color:var(--muted);letter-spacing:.04em;opacity:.4;border-top:1px solid var(--border);padding-top:20px}
+footer{margin-top:56px;text-align:center;font-family:DM Mono,monospace;font-size:.65rem;color:var(--muted);letter-spacing:.04em;opacity:.4;border-top:1px solid var(--border);padding-top:20px}
+
+.lok-row{transition:background .12s}
+.lok-row:hover{background:rgba(200,146,42,.04) !important}
+.lok-ok{background:rgba(78,201,154,.04)}
+.lok-ok:hover{background:rgba(78,201,154,.08) !important}
 </style>
 </head>
 <body>
@@ -203,10 +218,11 @@ footer{margin-top:56px;text-align:center;font-family:'DM Mono',monospace;font-si
 <!-- Year + month selector -->
 <div class="year-bar">
   <div class="year-tabs" id="year-tabs">
-    <span style="font-family:'DM Mono',monospace;font-size:.72rem;color:var(--muted)">Memuat...</span>
+    <span style="font-family:DM Mono,monospace;font-size:.72rem;color:var(--muted)">Memuat...</span>
   </div>
   <div class="month-tabs">
     <button class="mtab on" id="mtab-r" onclick="switchMonth('ramadan')">&#x0631;&#x064E;&#x0645;&#x064E;&#x0636;&#x064E;&#x0627;&#x0646; &nbsp; Ramadan</button>
+    <button class="mtab" id="mtab-all" onclick="switchMonth('semua')">Semua Tahun</button>
     <button class="mtab" id="mtab-s" onclick="switchMonth('syawal')">&#x0634;&#x064E;&#x0648;&#x064E;&#x0651;&#x0627;&#x0644; &nbsp; Syawal</button>
   </div>
 </div>
@@ -282,6 +298,8 @@ footer{margin-top:56px;text-align:center;font-family:'DM Mono',monospace;font-si
   </div>
 </div>
 
+<div id="panel-semua" style="display:none;animation:up .4s ease"></div>
+
 <footer>
   Ephemeris DE440 &middot; Skyfield &middot; MABIMS 2022 &middot; Yallop 1998 &middot; Odeh 2006<br>
   Sabang &middot; Medan &middot; Padang &middot; Jakarta &middot; Bandung &middot; Surabaya &middot; Banjarmasin &middot; Balikpapan &middot; Makassar &middot; Manado &middot; Kupang &middot; Ambon &middot; Jayapura
@@ -355,17 +373,109 @@ function switchMonth(m){
   MONTH=m;
   document.getElementById('mtab-r').classList.toggle('on',m==='ramadan');
   document.getElementById('mtab-s').classList.toggle('on',m==='syawal');
-  if(CUR)renderMonth();
+  document.getElementById('mtab-all').classList.toggle('on',m==='semua');
+  var ps=document.getElementById('panel-semua');
+  var mr=document.getElementById('results');
+  if(m==='semua'){
+    ps.style.display='block';
+    mr.style.display='none';
+    renderSemua();
+    document.getElementById('panel-semua').scrollIntoView({behavior:'smooth',block:'start'});
+    return;
+  }
+  ps.style.display='none';
+  mr.style.display='';
+  if(CUR){mr.classList.add('on');renderMonth();}
+}
+
+function renderSemua(){
+  var p=document.getElementById('panel-semua');
+  if(!IDX||!IDX.data||!IDX.data.length){
+    p.innerHTML='<div style="padding:24px;font-family:DM Mono,monospace;font-size:.78rem;color:var(--muted)">Tidak ada data index. Jalankan generate_json.py dulu.</div>';
+    return;
+  }
+  var rows=IDX.data.map(function(row){
+    if(!row||!row.ramadan||!row.syawal)return '';
+    var r=row.ramadan, s=row.syawal;
+    return '<tr onclick="goYear('+row.tahun+')" style="cursor:pointer">'
+      +'<td><a onclick="event.stopPropagation();goYear('+row.tahun+')">'+row.tahun+' H</a></td>'
+      +'<td>'+row.tahun_masehi+'</td>'
+      // Ramadan
+      +'<td style="color:var(--gold-lit);font-weight:500">'+fDateShort(r.tanggal)+'</td>'
+      +'<td>'+e(r.ijtimak||'—')+'</td>'
+      +'<td>'+dotB(r.mabims)+'</td>'
+      +'<td style="color:var(--ok)">'+(r.n_lokasi_lolos||0)+' / 13</td>'
+      +'<td>'+fNum(r.yallop_q,2)+'</td>'
+      +'<td>'+fNum(r.odeh_v,2)+'</td>'
+      +'<td>'+fNum(r.prob,0,'%')+'</td>'
+      // Syawal
+      +'<td style="color:var(--gold-lit);font-weight:500">'+fDateShort(s.tanggal)+'</td>'
+      +'<td>'+e(s.ijtimak||'—')+'</td>'
+      +'<td>'+dotB(s.mabims)+'</td>'
+      +'<td style="color:var(--ok)">'+(s.n_lokasi_lolos||0)+' / 13</td>'
+      +'<td>'+fNum(s.yallop_q,2)+'</td>'
+      +'<td>'+fNum(s.odeh_v,2)+'</td>'
+      +'<td>'+fNum(s.prob,0,'%')+'</td>'
+      +'</tr>';
+  }).join('');
+
+  p.innerHTML=
+    '<div style="padding:16px 20px 0;font-family:DM Mono,monospace">'
+    +'<div style="font-size:.62rem;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-bottom:6px">Rangkuman '+IDX.data.length+' Tahun Hijriyah</div>'
+    +'<div style="font-size:.72rem;color:var(--muted)">Klik baris untuk lihat detail &middot; MAB = MABIMS &middot; Lok = lokasi lolos / 13 &middot; q = Yallop &middot; V = Odeh &middot; P% = Probabilitas</div>'
+    +'</div>'
+    +'<div class="all-wrap" style="overflow-x:auto;margin-top:12px">'
+    +'<table><thead><tr>'
+    +'<th rowspan="2" style="vertical-align:bottom">Tahun</th>'
+    +'<th rowspan="2" style="vertical-align:bottom">M</th>'
+    +'<th colspan="7" style="text-align:center;border-left:1px solid var(--border);color:var(--gold);padding-bottom:4px">&#x0631;&#x064e;&#x0645;&#x064e;&#x0636;&#x064e;&#x0627;&#x0646; RAMADAN</th>'
+    +'<th colspan="7" style="text-align:center;border-left:1px solid var(--border);color:var(--ok);padding-bottom:4px">&#x0634;&#x064e;&#x0648;&#x064e;&#x0651;&#x0627;&#x0644; SYAWAL</th>'
+    +'</tr><tr>'
+    +'<th style="border-left:1px solid var(--border)">1 Ramadan</th><th>Ijtimak</th><th>MAB</th><th>Lok</th><th>q</th><th>V</th><th>P%</th>'
+    +'<th style="border-left:1px solid var(--border)">1 Syawal</th><th>Ijtimak</th><th>MAB</th><th>Lok</th><th>q</th><th>V</th><th>P%</th>'
+    +'</tr></thead>'
+    +'<tbody>'+rows+'</tbody></table></div>';
+}
+
+function goYear(t){
+  switchMonth('ramadan');
+  loadYear(t);
+}
+
+function fDateShort(s){
+  if(!s)return '—';
+  var d=new Date(s+'T12:00:00');
+  return d.toLocaleDateString('id-ID',{day:'numeric',month:'short',year:'numeric'});
+}
+
+function dotB(v){
+  if(v===true)return '<span class="dot ok"></span><span style="color:var(--ok)">Lolos</span>';
+  if(v===false)return '<span class="dot fail"></span><span style="color:var(--err)">Gagal</span>';
+  return '<span class="dot na"></span><span style="color:var(--muted)">—</span>';
+}
+
+function fNum(v,d,u){
+  if(v===null||v===undefined)return '—';
+  return (+v).toFixed(d||2)+(u?' '+u:'');
 }
 
 function hideAll(){
   document.getElementById('results').classList.remove('on');
+  document.getElementById('results').style.display='';
+  document.getElementById('panel-semua').style.display='none';
   document.getElementById('err-box').style.display='none';
 }
 
 function render(){
   document.getElementById('loading').classList.remove('on');
+  document.getElementById('panel-semua').style.display='none';
+  document.getElementById('results').style.display='';
   document.getElementById('results').classList.add('on');
+  // Reset tab ke ramadan saat baru load tahun
+  if(MONTH==='semua') MONTH='ramadan';
+  document.getElementById('mtab-r').classList.toggle('on',MONTH==='ramadan');
+  document.getElementById('mtab-s').classList.toggle('on',MONTH==='syawal');
+  document.getElementById('mtab-all').classList.remove('on');
   renderMonth();
   buildMultiChart();
 }
@@ -667,26 +777,74 @@ function buildMultiChart(){
 // LOKASI LOLOS LIST
 // ══════════════════════════════════════════════════════════════════
 function buildLokasi(rk){
-  var list=rk.lokasi_lolos||[];
+  var lolosList=rk.lokasi_lolos||[];
   var n=rk.n_lokasi_lolos||0;
-  var cards=list.map(function(k){
-    return '<div class="kota-card">'
-      +'<div class="kota-nama"><span style="font-size:.7rem">&#10003;</span>'+e(k.nama)+'</div>'
-      +'<div class="kota-params">'
-      +'<div class="kp"><span class="kl">Altitude</span><span class="kv">'+f(k.alt,2)+'°</span></div>'
-      +'<div class="kp"><span class="kl">Azimuth</span><span class="kv">'+f(k.az,1)+'°</span></div>'
-      +'<div class="kp"><span class="kl">Elong Geo</span><span class="kv">'+f(k.elong_geo,2)+'°</span></div>'
-      +'<div class="kp"><span class="kl">Umur</span><span class="kv">'+f(k.umur_jam,1)+' jam</span></div>'
-      +'<div class="kp"><span class="kl">Lag</span><span class="kv">'+f(k.lag_menit,0)+' mnt</span></div>'
-      +'<div class="kp"><span class="kl">Moonset</span><span class="kv">'+(k.moonset_utc||'—')+' UTC</span></div>'
-      +'</div></div>';
+  var lolosMap={};
+  lolosList.forEach(function(k){lolosMap[k.nama]=k});
+
+  var SEMUA=[
+    'Sabang','Medan','Padang','Jakarta','Bandung','Surabaya',
+    'Banjarmasin','Balikpapan','Makassar','Manado','Kupang','Ambon','Jayapura'
+  ];
+
+  var TH='<th style="padding:7px 10px;text-align:left;color:var(--muted);font-weight:400;font-size:.58rem;text-transform:uppercase;letter-spacing:.08em;white-space:nowrap;border-bottom:1px solid var(--border);background:var(--bg2)">';
+
+  var rows=SEMUA.map(function(nama,idx){
+    var d=lolosMap[nama];
+    var lolos=!!d;
+    var bg=lolos?'background:rgba(78,201,154,.04)':'';
+    var nc='color:'+(lolos?'var(--ok)':'var(--text)');
+    var sc=lolos?'color:var(--ok)':'color:var(--err)';
+    var si=lolos?'&#10003; Lolos':'&#10007; Gagal';
+    var TD='<td style="padding:7px 10px;border-bottom:1px solid var(--border);white-space:nowrap">';
+    if(lolos&&d){
+      var mab=d.mabims||{};
+      return '<tr class="lok-row lok-ok">'
+        +TD+'<span style="color:var(--muted);font-size:.62rem">'+(idx+1)+'</span></td>'
+        +TD+'<span style="font-weight:500;color:var(--ok)">'+e(nama)+'</span></td>'
+        +TD+'<span style="color:var(--ok)">&#10003; Lolos</span></td>'
+        +TD+'<span style="color:var(--gold-lit)">'+f(d.alt,2)+'&deg;</span></td>'
+        +TD+f(d.az,1)+'&deg;</td>'
+        +TD+'<span style="color:var(--info)">'+f(d.elong_geo,2)+'&deg;</span></td>'
+        +TD+f(d.umur_jam,1)+' jam</td>'
+        +TD+f(d.lag_menit,0)+' mnt</td>'
+        +TD+(d.maghrib_utc||'&#8212;')+' UTC</td>'
+        +TD+(d.moonset_utc||'&#8212;')+' UTC</td>'
+        +TD+'<span style="color:'+(mab.alt_ok?'var(--ok)':'var(--err)')+'">Alt</span>'
+        +' <span style="color:'+(mab.elong_ok?'var(--ok)':'var(--err)')+'">Elong</span></td>'
+        +'</tr>';
+    } else {
+      var dash='<span style="color:var(--muted)">&#8212;</span>';
+      return '<tr class="lok-row">'+
+        TD+'<span style="color:var(--muted);font-size:.62rem">'+(idx+1)+'</span></td>'+
+        TD+'<span style="color:var(--muted)">'+e(nama)+'</span></td>'+
+        TD+'<span style="'+sc+'">'+si+'</span></td>'+
+        TD+dash+'</td>'+TD+dash+'</td>'+TD+dash+'</td>'+
+        TD+dash+'</td>'+TD+dash+'</td>'+TD+dash+'</td>'+TD+dash+'</td>'+
+        TD+dash+'</td>'+'</tr>';
+    }
   }).join('');
 
   document.getElementById('lokasi-wrap').innerHTML=
-    '<div class="lw-title">&#9679; Lokasi yang Memenuhi MABIMS</div>'
-    +'<div class="lw-stat"><strong>'+n+'</strong> dari 13 titik memenuhi kriteria</div>'
-    +(cards?'<div class="kota-grid">'+cards+'</div>':'<div style="font-family:\'DM Mono\',monospace;font-size:.78rem;color:var(--muted)">Tidak ada lokasi yang memenuhi MABIMS pada hari ini.</div>');
+    '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px">'
+    +'<div class="lw-title" style="margin-bottom:0">&#9679; Rangkuman 13 Lokasi Representatif Indonesia</div>'
+    +'<div style="font-family:DM Mono,monospace;font-size:.76rem">'
+    +'<span style="color:var(--ok);font-weight:500">'+n+' Lolos</span>'
+    +' <span style="color:var(--muted)">/</span> '
+    +'<span style="color:var(--err)">'+(13-n)+' Gagal</span>'
+    +'</div></div>'
+    +'<div style="overflow-x:auto;border:1px solid var(--border);border-radius:10px">'
+    +'<table style="width:100%;border-collapse:collapse;font-family:DM Mono,monospace;font-size:.73rem">'
+    +'<thead><tr>'
+    +TH+'#</th>'+TH+'Kota</th>'+TH+'Status</th>'
+    +TH+'Altitude</th>'+TH+'Azimuth</th>'+TH+'Elong Geo</th>'
+    +TH+'Umur Bulan</th>'+TH+'Lag</th>'
+    +TH+'Maghrib UTC</th>'+TH+'Moonset UTC</th>'
+    +TH+'MABIMS Detail</th>'
+    +'</tr></thead><tbody>'+rows+'</tbody></table></div>';
 }
+
+
 
 // ══════════════════════════════════════════════════════════════════
 // DETAIL ACCORDION
