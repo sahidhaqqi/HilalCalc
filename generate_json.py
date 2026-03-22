@@ -247,10 +247,9 @@ def hitung_tahun(tahun):
 
     hasil_mabims = {}
     for bulan, key in [(9, 'ramadan'), (10, 'syawal')]:
-        buf = io.StringIO()
-        with contextlib.redirect_stdout(buf):
-            tgl = B_mabims.hitung_awal_bulan_hijriah(tahun, bulan, B_mabims.ts, B_mabims.eph, topos_m, lokasi_m)
-        hasil_mabims[key] = parse_log_mabims(buf.getvalue(), tgl)
+        with contextlib.redirect_stdout(io.StringIO()):
+            data = B_mabims.hitung_awal_bulan_hijriah(tahun, bulan, B_mabims.ts, B_mabims.eph, topos_m, lokasi_m)
+        hasil_mabims[key] = data
 
     # ── MUHAMMADIYAH ──
     earth_u = B_muham.eph['earth']

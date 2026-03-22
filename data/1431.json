@@ -11,73 +11,1302 @@
   },
   "mabims": {
     "ramadan": {
-      "tanggal_awal": "{'tanggal_awal': '2010-08-11', 'ijtimak_wib': '10-08-2010 10:08 WIB', 'ijtimak_tgl_lokal': '2010-08-10', 'ijtimak_posisi': 'sebelum maghrib', 'istikmal': False, 'mabims_lolos': True, 'hari_diperiksa': [{'tanggal': '2010-08-10', 'lolos_mabims': True, 'dilewati': False, 'alasan_lewat': None, 'maghrib_wib': '17:54 WIB', 'maghrib_utc': '10:54 UTC', 'moonset_wib': '18:05 WIB', 'moonset_utc': '11:05 UTC', 'best_time_wib': '17:59 WIB', 'best_time_utc': '10:59 UTC', 'umur_jam': 7.77, 'mabims_jakarta': {'lolos': True, 'label': 'MABIMS Lama (pre-2022)', 'alt_ok': True, 'elong_ok': True, 'umur_ok': False, 'borderline': False, 'threshold': {'alt': 2.0, 'elong': 3.0, 'umur': 8.0}, 'alt': 2.246, 'elong_geo': 5.719, 'umur': 7.77}, 'visibilitas': {'alt_bulan_airless': 0.8456, 'alt_matahari_airless': -1.9875, 'elongasi_top': 5.1348, 'arcv': 2.8331, 'lebar_sabit_menit': 0.067, 'illumination_pct': 99.7476, 'yallop': {'q': -0.8584, 'kelas': 'E', 'deskripsi': 'Tidak terlihat walau dengan teleskop'}, 'odeh': {'v': -3.9117, 'kelas': 'D', 'deskripsi': 'Tidak terlihat'}, 'probabilitas_pct': 0.04, 'kontras': {'nilai': 0.000698, 'keterangan': 'Hampir mustahil terlihat'}}, 'multilokasi': {'n_lokasi': 4, 'lokasi': [{'nama': 'Padang', 'lat': -0.9471, 'lon': 100.4172, 'alt': 2.123, 'az': 280.79, 'elong_geo': 5.986, 'umur_jam': 8.3, 'lag_menit': 10.2, 'maghrib_utc': '11:26', 'moonset_utc': '11:36', 'mabims': {'lolos': True, 'label': 'MABIMS Lama (pre-2022)', 'alt_ok': True, 'elong_ok': True, 'umur_ok': True, 'borderline': False, 'threshold': {'alt': 2.0, 'elong': 3.0, 'umur': 8.0}}}, {'nama': 'Jakarta', 'lat': -6.2088, 'lon': 106.8456, 'alt': 2.246, 'az': 281.27, 'elong_geo': 5.719, 'umur_jam': 7.77, 'lag_menit': 10.8, 'maghrib_utc': '10:54', 'moonset_utc': '11:05', 'mabims': {'lolos': True, 'label': 'MABIMS Lama (pre-2022)', 'alt_ok': True, 'elong_ok': True, 'umur_ok': False, 'borderline': False, 'threshold': {'alt': 2.0, 'elong': 3.0, 'umur': 8.0}}}, {'nama': 'Bandung', 'lat': -6.9175, 'lon': 107.6191, 'alt': 2.262, 'az': 281.34, 'elong_geo': 5.686, 'umur_jam': 7.71, 'lag_menit': 10.9, 'maghrib_utc': '10:50', 'moonset_utc': '11:01', 'mabims': {'lolos': True, 'label': 'MABIMS Lama (pre-2022)', 'alt_ok': True, 'elong_ok': True, 'umur_ok': False, 'borderline': False, 'threshold': {'alt': 2.0, 'elong': 3.0, 'umur': 8.0}}}, {'nama': 'Surabaya', 'lat': -7.2575, 'lon': 112.7521, 'alt': 2.099, 'az': 281.43, 'elong_geo': 5.512, 'umur_jam': 7.36, 'lag_menit': 10.2, 'maghrib_utc': '10:29', 'moonset_utc': '10:39', 'mabims': {'lolos': True, 'label': 'MABIMS Lama (pre-2022)', 'alt_ok': True, 'elong_ok': True, 'umur_ok': False, 'borderline': False, 'threshold': {'alt': 2.0, 'elong': 3.0, 'umur': 8.0}}}]}, 'scan_indonesia': {'n_titik_grid': 0, 'titik_sampel': []}}], 'scan_indonesia': {'n_titik_grid': 0, 'titik_sampel': []}, 'ringkas': {'tanggal': '2010-08-11', 'ijtimak': '10-08-2010 10:08 WIB', 'maghrib': '17:54 WIB', 'moonset': '18:05 WIB', 'best_time': '17:59 WIB', 'umur_jam': 7.77, 'mabims_label': 'MABIMS Lama (pre-2022)', 'alt': 2.246, 'alt_ok': True, 'elong_geo': 5.719, 'elong_ok': True, 'arcv': 2.8331, 'elongasi_top': 5.1348, 'lebar_sabit': 0.067, 'illumination': 99.7476, 'yallop_q': -0.8584, 'yallop_klas': 'E', 'yallop_desk': 'Tidak terlihat walau dengan teleskop', 'odeh_v': -3.9117, 'odeh_klas': 'D', 'odeh_desk': 'Tidak terlihat', 'prob': 0.04, 'kontras': {'nilai': 0.000698, 'keterangan': 'Hampir mustahil terlihat'}, 'n_lokasi_lolos': 4, 'lokasi_lolos': [{'nama': 'Padang', 'lat': -0.9471, 'lon': 100.4172, 'alt': 2.123, 'az': 280.79, 'elong_geo': 5.986, 'umur_jam': 8.3, 'lag_menit': 10.2, 'maghrib_utc': '11:26', 'moonset_utc': '11:36', 'mabims': {'lolos': True, 'label': 'MABIMS Lama (pre-2022)', 'alt_ok': True, 'elong_ok': True, 'umur_ok': True, 'borderline': False, 'threshold': {'alt': 2.0, 'elong': 3.0, 'umur': 8.0}}}, {'nama': 'Jakarta', 'lat': -6.2088, 'lon': 106.8456, 'alt': 2.246, 'az': 281.27, 'elong_geo': 5.719, 'umur_jam': 7.77, 'lag_menit': 10.8, 'maghrib_utc': '10:54', 'moonset_utc': '11:05', 'mabims': {'lolos': True, 'label': 'MABIMS Lama (pre-2022)', 'alt_ok': True, 'elong_ok': True, 'umur_ok': False, 'borderline': False, 'threshold': {'alt': 2.0, 'elong': 3.0, 'umur': 8.0}}}, {'nama': 'Bandung', 'lat': -6.9175, 'lon': 107.6191, 'alt': 2.262, 'az': 281.34, 'elong_geo': 5.686, 'umur_jam': 7.71, 'lag_menit': 10.9, 'maghrib_utc': '10:50', 'moonset_utc': '11:01', 'mabims': {'lolos': True, 'label': 'MABIMS Lama (pre-2022)', 'alt_ok': True, 'elong_ok': True, 'umur_ok': False, 'borderline': False, 'threshold': {'alt': 2.0, 'elong': 3.0, 'umur': 8.0}}}, {'nama': 'Surabaya', 'lat': -7.2575, 'lon': 112.7521, 'alt': 2.099, 'az': 281.43, 'elong_geo': 5.512, 'umur_jam': 7.36, 'lag_menit': 10.2, 'maghrib_utc': '10:29', 'moonset_utc': '10:39', 'mabims': {'lolos': True, 'label': 'MABIMS Lama (pre-2022)', 'alt_ok': True, 'elong_ok': True, 'umur_ok': False, 'borderline': False, 'threshold': {'alt': 2.0, 'elong': 3.0, 'umur': 8.0}}}]}}",
+      "tanggal_awal": "2010-08-11",
       "ijtimak_wib": "10-08-2010 10:08 WIB",
-      "ijtimak_tgl_lokal": null,
-      "ijtimak_posisi": null,
-      "hari_diperiksa": [],
-      "hari_lolos": null,
-      "istikmal": null,
-      "scan_indonesia": null,
-      "mabims_lolos": false,
+      "ijtimak_tgl_lokal": "2010-08-10",
+      "ijtimak_posisi": "sebelum maghrib",
+      "istikmal": false,
+      "mabims_lolos": true,
+      "hari_diperiksa": [
+        {
+          "tanggal": "2010-08-10",
+          "lolos_mabims": true,
+          "dilewati": false,
+          "alasan_lewat": null,
+          "maghrib_wib": "17:54 WIB",
+          "maghrib_utc": "10:54 UTC",
+          "moonset_wib": "18:05 WIB",
+          "moonset_utc": "11:05 UTC",
+          "best_time_wib": "17:59 WIB",
+          "best_time_utc": "10:59 UTC",
+          "umur_jam": 7.77,
+          "mabims_jakarta": {
+            "lolos": true,
+            "label": "MABIMS Lama (pre-2022)",
+            "alt_ok": true,
+            "elong_ok": true,
+            "umur_ok": false,
+            "borderline": false,
+            "threshold": {
+              "alt": 2.0,
+              "elong": 3.0,
+              "umur": 8.0
+            },
+            "alt": 2.246,
+            "elong_geo": 5.719,
+            "umur": 7.77
+          },
+          "visibilitas": {
+            "alt_bulan_airless": 0.8456,
+            "alt_matahari_airless": -1.9875,
+            "elongasi_top": 5.1348,
+            "arcv": 2.8331,
+            "lebar_sabit_menit": 0.067,
+            "illumination_pct": 99.7476,
+            "yallop": {
+              "q": -0.8584,
+              "kelas": "E",
+              "deskripsi": "Tidak terlihat walau dengan teleskop"
+            },
+            "odeh": {
+              "v": -3.9117,
+              "kelas": "D",
+              "deskripsi": "Tidak terlihat"
+            },
+            "probabilitas_pct": 0.04,
+            "kontras": {
+              "nilai": 0.000698,
+              "keterangan": "Hampir mustahil terlihat"
+            }
+          },
+          "multilokasi": {
+            "n_lokasi": 4,
+            "lokasi": [
+              {
+                "nama": "Padang",
+                "lat": -0.9471,
+                "lon": 100.4172,
+                "alt": 2.123,
+                "az": 280.79,
+                "elong_geo": 5.986,
+                "umur_jam": 8.3,
+                "lag_menit": 10.2,
+                "maghrib_utc": "11:26",
+                "moonset_utc": "11:36",
+                "mabims": {
+                  "lolos": true,
+                  "label": "MABIMS Lama (pre-2022)",
+                  "alt_ok": true,
+                  "elong_ok": true,
+                  "umur_ok": true,
+                  "borderline": false,
+                  "threshold": {
+                    "alt": 2.0,
+                    "elong": 3.0,
+                    "umur": 8.0
+                  }
+                }
+              },
+              {
+                "nama": "Jakarta",
+                "lat": -6.2088,
+                "lon": 106.8456,
+                "alt": 2.246,
+                "az": 281.27,
+                "elong_geo": 5.719,
+                "umur_jam": 7.77,
+                "lag_menit": 10.8,
+                "maghrib_utc": "10:54",
+                "moonset_utc": "11:05",
+                "mabims": {
+                  "lolos": true,
+                  "label": "MABIMS Lama (pre-2022)",
+                  "alt_ok": true,
+                  "elong_ok": true,
+                  "umur_ok": false,
+                  "borderline": false,
+                  "threshold": {
+                    "alt": 2.0,
+                    "elong": 3.0,
+                    "umur": 8.0
+                  }
+                }
+              },
+              {
+                "nama": "Bandung",
+                "lat": -6.9175,
+                "lon": 107.6191,
+                "alt": 2.262,
+                "az": 281.34,
+                "elong_geo": 5.686,
+                "umur_jam": 7.71,
+                "lag_menit": 10.9,
+                "maghrib_utc": "10:50",
+                "moonset_utc": "11:01",
+                "mabims": {
+                  "lolos": true,
+                  "label": "MABIMS Lama (pre-2022)",
+                  "alt_ok": true,
+                  "elong_ok": true,
+                  "umur_ok": false,
+                  "borderline": false,
+                  "threshold": {
+                    "alt": 2.0,
+                    "elong": 3.0,
+                    "umur": 8.0
+                  }
+                }
+              },
+              {
+                "nama": "Surabaya",
+                "lat": -7.2575,
+                "lon": 112.7521,
+                "alt": 2.099,
+                "az": 281.43,
+                "elong_geo": 5.512,
+                "umur_jam": 7.36,
+                "lag_menit": 10.2,
+                "maghrib_utc": "10:29",
+                "moonset_utc": "10:39",
+                "mabims": {
+                  "lolos": true,
+                  "label": "MABIMS Lama (pre-2022)",
+                  "alt_ok": true,
+                  "elong_ok": true,
+                  "umur_ok": false,
+                  "borderline": false,
+                  "threshold": {
+                    "alt": 2.0,
+                    "elong": 3.0,
+                    "umur": 8.0
+                  }
+                }
+              }
+            ]
+          },
+          "scan_indonesia": {
+            "n_titik_grid": 0,
+            "titik_sampel": []
+          }
+        }
+      ],
+      "scan_indonesia": {
+        "n_titik_grid": 0,
+        "titik_sampel": []
+      },
       "ringkas": {
-        "tanggal": "{'tanggal_awal': '2010-08-11', 'ijtimak_wib': '10-08-2010 10:08 WIB', 'ijtimak_tgl_lokal': '2010-08-10', 'ijtimak_posisi': 'sebelum maghrib', 'istikmal': False, 'mabims_lolos': True, 'hari_diperiksa': [{'tanggal': '2010-08-10', 'lolos_mabims': True, 'dilewati': False, 'alasan_lewat': None, 'maghrib_wib': '17:54 WIB', 'maghrib_utc': '10:54 UTC', 'moonset_wib': '18:05 WIB', 'moonset_utc': '11:05 UTC', 'best_time_wib': '17:59 WIB', 'best_time_utc': '10:59 UTC', 'umur_jam': 7.77, 'mabims_jakarta': {'lolos': True, 'label': 'MABIMS Lama (pre-2022)', 'alt_ok': True, 'elong_ok': True, 'umur_ok': False, 'borderline': False, 'threshold': {'alt': 2.0, 'elong': 3.0, 'umur': 8.0}, 'alt': 2.246, 'elong_geo': 5.719, 'umur': 7.77}, 'visibilitas': {'alt_bulan_airless': 0.8456, 'alt_matahari_airless': -1.9875, 'elongasi_top': 5.1348, 'arcv': 2.8331, 'lebar_sabit_menit': 0.067, 'illumination_pct': 99.7476, 'yallop': {'q': -0.8584, 'kelas': 'E', 'deskripsi': 'Tidak terlihat walau dengan teleskop'}, 'odeh': {'v': -3.9117, 'kelas': 'D', 'deskripsi': 'Tidak terlihat'}, 'probabilitas_pct': 0.04, 'kontras': {'nilai': 0.000698, 'keterangan': 'Hampir mustahil terlihat'}}, 'multilokasi': {'n_lokasi': 4, 'lokasi': [{'nama': 'Padang', 'lat': -0.9471, 'lon': 100.4172, 'alt': 2.123, 'az': 280.79, 'elong_geo': 5.986, 'umur_jam': 8.3, 'lag_menit': 10.2, 'maghrib_utc': '11:26', 'moonset_utc': '11:36', 'mabims': {'lolos': True, 'label': 'MABIMS Lama (pre-2022)', 'alt_ok': True, 'elong_ok': True, 'umur_ok': True, 'borderline': False, 'threshold': {'alt': 2.0, 'elong': 3.0, 'umur': 8.0}}}, {'nama': 'Jakarta', 'lat': -6.2088, 'lon': 106.8456, 'alt': 2.246, 'az': 281.27, 'elong_geo': 5.719, 'umur_jam': 7.77, 'lag_menit': 10.8, 'maghrib_utc': '10:54', 'moonset_utc': '11:05', 'mabims': {'lolos': True, 'label': 'MABIMS Lama (pre-2022)', 'alt_ok': True, 'elong_ok': True, 'umur_ok': False, 'borderline': False, 'threshold': {'alt': 2.0, 'elong': 3.0, 'umur': 8.0}}}, {'nama': 'Bandung', 'lat': -6.9175, 'lon': 107.6191, 'alt': 2.262, 'az': 281.34, 'elong_geo': 5.686, 'umur_jam': 7.71, 'lag_menit': 10.9, 'maghrib_utc': '10:50', 'moonset_utc': '11:01', 'mabims': {'lolos': True, 'label': 'MABIMS Lama (pre-2022)', 'alt_ok': True, 'elong_ok': True, 'umur_ok': False, 'borderline': False, 'threshold': {'alt': 2.0, 'elong': 3.0, 'umur': 8.0}}}, {'nama': 'Surabaya', 'lat': -7.2575, 'lon': 112.7521, 'alt': 2.099, 'az': 281.43, 'elong_geo': 5.512, 'umur_jam': 7.36, 'lag_menit': 10.2, 'maghrib_utc': '10:29', 'moonset_utc': '10:39', 'mabims': {'lolos': True, 'label': 'MABIMS Lama (pre-2022)', 'alt_ok': True, 'elong_ok': True, 'umur_ok': False, 'borderline': False, 'threshold': {'alt': 2.0, 'elong': 3.0, 'umur': 8.0}}}]}, 'scan_indonesia': {'n_titik_grid': 0, 'titik_sampel': []}}], 'scan_indonesia': {'n_titik_grid': 0, 'titik_sampel': []}, 'ringkas': {'tanggal': '2010-08-11', 'ijtimak': '10-08-2010 10:08 WIB', 'maghrib': '17:54 WIB', 'moonset': '18:05 WIB', 'best_time': '17:59 WIB', 'umur_jam': 7.77, 'mabims_label': 'MABIMS Lama (pre-2022)', 'alt': 2.246, 'alt_ok': True, 'elong_geo': 5.719, 'elong_ok': True, 'arcv': 2.8331, 'elongasi_top': 5.1348, 'lebar_sabit': 0.067, 'illumination': 99.7476, 'yallop_q': -0.8584, 'yallop_klas': 'E', 'yallop_desk': 'Tidak terlihat walau dengan teleskop', 'odeh_v': -3.9117, 'odeh_klas': 'D', 'odeh_desk': 'Tidak terlihat', 'prob': 0.04, 'kontras': {'nilai': 0.000698, 'keterangan': 'Hampir mustahil terlihat'}, 'n_lokasi_lolos': 4, 'lokasi_lolos': [{'nama': 'Padang', 'lat': -0.9471, 'lon': 100.4172, 'alt': 2.123, 'az': 280.79, 'elong_geo': 5.986, 'umur_jam': 8.3, 'lag_menit': 10.2, 'maghrib_utc': '11:26', 'moonset_utc': '11:36', 'mabims': {'lolos': True, 'label': 'MABIMS Lama (pre-2022)', 'alt_ok': True, 'elong_ok': True, 'umur_ok': True, 'borderline': False, 'threshold': {'alt': 2.0, 'elong': 3.0, 'umur': 8.0}}}, {'nama': 'Jakarta', 'lat': -6.2088, 'lon': 106.8456, 'alt': 2.246, 'az': 281.27, 'elong_geo': 5.719, 'umur_jam': 7.77, 'lag_menit': 10.8, 'maghrib_utc': '10:54', 'moonset_utc': '11:05', 'mabims': {'lolos': True, 'label': 'MABIMS Lama (pre-2022)', 'alt_ok': True, 'elong_ok': True, 'umur_ok': False, 'borderline': False, 'threshold': {'alt': 2.0, 'elong': 3.0, 'umur': 8.0}}}, {'nama': 'Bandung', 'lat': -6.9175, 'lon': 107.6191, 'alt': 2.262, 'az': 281.34, 'elong_geo': 5.686, 'umur_jam': 7.71, 'lag_menit': 10.9, 'maghrib_utc': '10:50', 'moonset_utc': '11:01', 'mabims': {'lolos': True, 'label': 'MABIMS Lama (pre-2022)', 'alt_ok': True, 'elong_ok': True, 'umur_ok': False, 'borderline': False, 'threshold': {'alt': 2.0, 'elong': 3.0, 'umur': 8.0}}}, {'nama': 'Surabaya', 'lat': -7.2575, 'lon': 112.7521, 'alt': 2.099, 'az': 281.43, 'elong_geo': 5.512, 'umur_jam': 7.36, 'lag_menit': 10.2, 'maghrib_utc': '10:29', 'moonset_utc': '10:39', 'mabims': {'lolos': True, 'label': 'MABIMS Lama (pre-2022)', 'alt_ok': True, 'elong_ok': True, 'umur_ok': False, 'borderline': False, 'threshold': {'alt': 2.0, 'elong': 3.0, 'umur': 8.0}}}]}}",
+        "tanggal": "2010-08-11",
         "ijtimak": "10-08-2010 10:08 WIB",
-        "maghrib": null,
-        "best_time": null,
-        "mabims_label": null,
-        "alt": null,
-        "alt_ok": null,
-        "elong_geo": null,
-        "elong_ok": null,
-        "umur": null,
-        "arcv": null,
-        "elongasi_top": null,
-        "lebar_sabit": null,
-        "illumination": null,
-        "yallop_q": null,
-        "yallop_klas": null,
-        "odeh_v": null,
-        "odeh_klas": null,
-        "prob": null,
-        "kontras": null,
-        "n_lokasi_lolos": 0,
-        "lokasi_lolos": []
+        "maghrib": "17:54 WIB",
+        "moonset": "18:05 WIB",
+        "best_time": "17:59 WIB",
+        "umur_jam": 7.77,
+        "mabims_label": "MABIMS Lama (pre-2022)",
+        "alt": 2.246,
+        "alt_ok": true,
+        "elong_geo": 5.719,
+        "elong_ok": true,
+        "arcv": 2.8331,
+        "elongasi_top": 5.1348,
+        "lebar_sabit": 0.067,
+        "illumination": 99.7476,
+        "yallop_q": -0.8584,
+        "yallop_klas": "E",
+        "yallop_desk": "Tidak terlihat walau dengan teleskop",
+        "odeh_v": -3.9117,
+        "odeh_klas": "D",
+        "odeh_desk": "Tidak terlihat",
+        "prob": 0.04,
+        "kontras": {
+          "nilai": 0.000698,
+          "keterangan": "Hampir mustahil terlihat"
+        },
+        "n_lokasi_lolos": 4,
+        "lokasi_lolos": [
+          {
+            "nama": "Padang",
+            "lat": -0.9471,
+            "lon": 100.4172,
+            "alt": 2.123,
+            "az": 280.79,
+            "elong_geo": 5.986,
+            "umur_jam": 8.3,
+            "lag_menit": 10.2,
+            "maghrib_utc": "11:26",
+            "moonset_utc": "11:36",
+            "mabims": {
+              "lolos": true,
+              "label": "MABIMS Lama (pre-2022)",
+              "alt_ok": true,
+              "elong_ok": true,
+              "umur_ok": true,
+              "borderline": false,
+              "threshold": {
+                "alt": 2.0,
+                "elong": 3.0,
+                "umur": 8.0
+              }
+            }
+          },
+          {
+            "nama": "Jakarta",
+            "lat": -6.2088,
+            "lon": 106.8456,
+            "alt": 2.246,
+            "az": 281.27,
+            "elong_geo": 5.719,
+            "umur_jam": 7.77,
+            "lag_menit": 10.8,
+            "maghrib_utc": "10:54",
+            "moonset_utc": "11:05",
+            "mabims": {
+              "lolos": true,
+              "label": "MABIMS Lama (pre-2022)",
+              "alt_ok": true,
+              "elong_ok": true,
+              "umur_ok": false,
+              "borderline": false,
+              "threshold": {
+                "alt": 2.0,
+                "elong": 3.0,
+                "umur": 8.0
+              }
+            }
+          },
+          {
+            "nama": "Bandung",
+            "lat": -6.9175,
+            "lon": 107.6191,
+            "alt": 2.262,
+            "az": 281.34,
+            "elong_geo": 5.686,
+            "umur_jam": 7.71,
+            "lag_menit": 10.9,
+            "maghrib_utc": "10:50",
+            "moonset_utc": "11:01",
+            "mabims": {
+              "lolos": true,
+              "label": "MABIMS Lama (pre-2022)",
+              "alt_ok": true,
+              "elong_ok": true,
+              "umur_ok": false,
+              "borderline": false,
+              "threshold": {
+                "alt": 2.0,
+                "elong": 3.0,
+                "umur": 8.0
+              }
+            }
+          },
+          {
+            "nama": "Surabaya",
+            "lat": -7.2575,
+            "lon": 112.7521,
+            "alt": 2.099,
+            "az": 281.43,
+            "elong_geo": 5.512,
+            "umur_jam": 7.36,
+            "lag_menit": 10.2,
+            "maghrib_utc": "10:29",
+            "moonset_utc": "10:39",
+            "mabims": {
+              "lolos": true,
+              "label": "MABIMS Lama (pre-2022)",
+              "alt_ok": true,
+              "elong_ok": true,
+              "umur_ok": false,
+              "borderline": false,
+              "threshold": {
+                "alt": 2.0,
+                "elong": 3.0,
+                "umur": 8.0
+              }
+            }
+          }
+        ]
       }
     },
     "syawal": {
-      "tanggal_awal": "{'tanggal_awal': '2010-09-10', 'ijtimak_wib': '08-09-2010 17:29 WIB', 'ijtimak_tgl_lokal': '2010-09-08', 'ijtimak_posisi': 'sebelum maghrib', 'istikmal': False, 'mabims_lolos': True, 'hari_diperiksa': [{'tanggal': '2010-09-08', 'lolos_mabims': False, 'dilewati': False, 'alasan_lewat': None, 'maghrib_wib': '17:51 WIB', 'maghrib_utc': '10:51 UTC', 'moonset_wib': None, 'moonset_utc': None, 'best_time_wib': None, 'best_time_utc': None, 'umur_jam': 0.36, 'mabims_jakarta': {'lolos': False, 'label': 'MABIMS Lama (pre-2022)', 'alt_ok': False, 'elong_ok': True, 'umur_ok': False, 'borderline': False, 'threshold': {'alt': 2.0, 'elong': 3.0, 'umur': 8.0}, 'alt': -2.968, 'elong_geo': 4.626, 'umur': 0.36}, 'visibilitas': None, 'multilokasi': {'n_lokasi': 0, 'lokasi': []}, 'scan_indonesia': None}, {'tanggal': '2010-09-09', 'lolos_mabims': True, 'dilewati': False, 'alasan_lewat': None, 'maghrib_wib': '17:51 WIB', 'maghrib_utc': '10:51 UTC', 'moonset_wib': '18:37 WIB', 'moonset_utc': '11:37 UTC', 'best_time_wib': '18:11 WIB', 'best_time_utc': '11:11 UTC', 'umur_jam': 24.35, 'mabims_jakarta': {'lolos': True, 'label': 'MABIMS Lama (pre-2022)', 'alt_ok': True, 'elong_ok': True, 'umur_ok': True, 'borderline': False, 'threshold': {'alt': 2.0, 'elong': 3.0, 'umur': 8.0}, 'alt': 10.609, 'elong_geo': 15.318, 'umur': 24.35}, 'visibilitas': {'alt_bulan_airless': 5.5898, 'alt_matahari_airless': -5.9466, 'elongasi_top': 14.7079, 'arcv': 11.5364, 'lebar_sabit_menit': 0.5464, 'illumination_pct': 98.1788, 'yallop': {'q': 0.2952, 'kelas': 'A', 'deskripsi': 'Mudah terlihat mata telanjang'}, 'odeh': {'v': 7.6242, 'kelas': 'A', 'deskripsi': 'Mudah terlihat mata telanjang'}, 'probabilitas_pct': 100.0, 'kontras': {'nilai': 0.143756, 'keterangan': 'Kemungkinan terlihat'}}, 'multilokasi': {'n_lokasi': 13, 'lokasi': [{'nama': 'Sabang', 'lat': 5.8943, 'lon': 95.3184, 'alt': 8.862, 'az': 263.61, 'elong_geo': 15.792, 'umur_jam': 25.2, 'lag_menit': 39.0, 'maghrib_utc': '11:41', 'moonset_utc': '12:20', 'mabims': {'lolos': True, 'label': 'MABIMS Lama (pre-2022)', 'alt_ok': True, 'elong_ok': True, 'umur_ok': True, 'borderline': False, 'threshold': {'alt': 2.0, 'elong': 3.0, 'umur': 8.0}}}, {'nama': 'Medan', 'lat': 3.5952, 'lon': 98.6722, 'alt': 9.199, 'az': 264.07, 'elong_geo': 15.658, 'umur_jam': 24.96, 'lag_menit': 40.3, 'maghrib_utc': '11:27', 'moonset_utc': '12:07', 'mabims': {'lolos': True, 'label': 'MABIMS Lama (pre-2022)', 'alt_ok': True, 'elong_ok': True, 'umur_ok': True, 'borderline': False, 'threshold': {'alt': 2.0, 'elong': 3.0, 'umur': 8.0}}}, {'nama': 'Padang', 'lat': -0.9471, 'lon': 100.4172, 'alt': 9.973, 'az': 264.93, 'elong_geo': 15.577, 'umur_jam': 24.81, 'lag_menit': 43.5, 'maghrib_utc': '11:18', 'moonset_utc': '12:02', 'mabims': {'lolos': True, 'label': 'MABIMS Lama (pre-2022)', 'alt_ok': True, 'elong_ok': True, 'umur_ok': True, 'borderline': False, 'threshold': {'alt': 2.0, 'elong': 3.0, 'umur': 8.0}}}, {'nama': 'Jakarta', 'lat': -6.2088, 'lon': 106.8456, 'alt': 10.609, 'az': 266.1, 'elong_geo': 15.318, 'umur_jam': 24.35, 'lag_menit': 46.5, 'maghrib_utc': '10:51', 'moonset_utc': '11:37', 'mabims': {'lolos': True, 'label': 'MABIMS Lama (pre-2022)', 'alt_ok': True, 'elong_ok': True, 'umur_ok': True, 'borderline': False, 'threshold': {'alt': 2.0, 'elong': 3.0, 'umur': 8.0}}}, {'nama': 'Bandung', 'lat': -6.9175, 'lon': 107.6191, 'alt': 10.689, 'az': 266.26, 'elong_geo': 15.287, 'umur_jam': 24.3, 'lag_menit': 46.9, 'maghrib_utc': '10:47', 'moonset_utc': '11:34', 'mabims': {'lolos': True, 'label': 'MABIMS Lama (pre-2022)', 'alt_ok': True, 'elong_ok': True, 'umur_ok': True, 'borderline': False, 'threshold': {'alt': 2.0, 'elong': 3.0, 'umur': 8.0}}}, {'nama': 'Surabaya', 'lat': -7.2575, 'lon': 112.7521, 'alt': 10.549, 'az': 266.4, 'elong_geo': 15.093, 'umur_jam': 23.95, 'lag_menit': 46.3, 'maghrib_utc': '10:27', 'moonset_utc': '11:13', 'mabims': {'lolos': True, 'label': 'MABIMS Lama (pre-2022)', 'alt_ok': True, 'elong_ok': True, 'umur_ok': True, 'borderline': False, 'threshold': {'alt': 2.0, 'elong': 3.0, 'umur': 8.0}}}, {'nama': 'Banjarmasin', 'lat': -3.3194, 'lon': 114.5928, 'alt': 9.865, 'az': 265.63, 'elong_geo': 15.038, 'umur_jam': 23.86, 'lag_menit': 43.1, 'maghrib_utc': '10:21', 'moonset_utc': '11:04', 'mabims': {'lolos': True, 'label': 'MABIMS Lama (pre-2022)', 'alt_ok': True, 'elong_ok': True, 'umur_ok': True, 'borderline': False, 'threshold': {'alt': 2.0, 'elong': 3.0, 'umur': 8.0}}}, {'nama': 'Balikpapan', 'lat': -1.2379, 'lon': 116.8529, 'alt': 9.437, 'az': 265.27, 'elong_geo': 14.961, 'umur_jam': 23.72, 'lag_menit': 41.2, 'maghrib_utc': '10:12', 'moonset_utc': '10:54', 'mabims': {'lolos': True, 'label': 'MABIMS Lama (pre-2022)', 'alt_ok': True, 'elong_ok': True, 'umur_ok': True, 'borderline': False, 'threshold': {'alt': 2.0, 'elong': 3.0, 'umur': 8.0}}}, {'nama': 'Makassar', 'lat': -5.1477, 'lon': 119.4327, 'alt': 9.98, 'az': 266.06, 'elong_geo': 14.851, 'umur_jam': 23.52, 'lag_menit': 43.7, 'maghrib_utc': '10:01', 'moonset_utc': '10:44', 'mabims': {'lolos': True, 'label': 'MABIMS Lama (pre-2022)', 'alt_ok': True, 'elong_ok': True, 'umur_ok': True, 'borderline': False, 'threshold': {'alt': 2.0, 'elong': 3.0, 'umur': 8.0}}}, {'nama': 'Manado', 'lat': 1.4748, 'lon': 124.8421, 'alt': 8.685, 'az': 264.94, 'elong_geo': 14.672, 'umur_jam': 23.2, 'lag_menit': 38.1, 'maghrib_utc': '09:41', 'moonset_utc': '10:19', 'mabims': {'lolos': True, 'label': 'MABIMS Lama (pre-2022)', 'alt_ok': True, 'elong_ok': True, 'umur_ok': True, 'borderline': False, 'threshold': {'alt': 2.0, 'elong': 3.0, 'umur': 8.0}}}, {'nama': 'Kupang', 'lat': -10.1772, 'lon': 123.607, 'alt': 10.559, 'az': 267.17, 'elong_geo': 14.678, 'umur_jam': 23.21, 'lag_menit': 46.7, 'maghrib_utc': '09:42', 'moonset_utc': '10:29', 'mabims': {'lolos': True, 'label': 'MABIMS Lama (pre-2022)', 'alt_ok': True, 'elong_ok': True, 'umur_ok': True, 'borderline': False, 'threshold': {'alt': 2.0, 'elong': 3.0, 'umur': 8.0}}}, {'nama': 'Ambon', 'lat': -3.655, 'lon': 128.1908, 'alt': 9.425, 'az': 265.91, 'elong_geo': 14.529, 'umur_jam': 22.95, 'lag_menit': 41.3, 'maghrib_utc': '09:26', 'moonset_utc': '10:07', 'mabims': {'lolos': True, 'label': 'MABIMS Lama (pre-2022)', 'alt_ok': True, 'elong_ok': True, 'umur_ok': True, 'borderline': False, 'threshold': {'alt': 2.0, 'elong': 3.0, 'umur': 8.0}}}, {'nama': 'Jayapura', 'lat': -2.5337, 'lon': 140.7181, 'alt': 8.793, 'az': 265.9, 'elong_geo': 14.067, 'umur_jam': 22.12, 'lag_menit': 38.6, 'maghrib_utc': '08:36', 'moonset_utc': '09:15', 'mabims': {'lolos': True, 'label': 'MABIMS Lama (pre-2022)', 'alt_ok': True, 'elong_ok': True, 'umur_ok': True, 'borderline': False, 'threshold': {'alt': 2.0, 'elong': 3.0, 'umur': 8.0}}}]}, 'scan_indonesia': {'n_titik_grid': 40, 'titik_sampel': [{'lat': -10.0, 'lon': 95.0, 'q': 0.389}, {'lat': -10.0, 'lon': 101.0, 'q': 0.356}, {'lat': -10.0, 'lon': 107.0, 'q': 0.324}, {'lat': -10.0, 'lon': 113.0, 'q': 0.292}, {'lat': -10.0, 'lon': 119.0, 'q': 0.261}, {'lat': -10.0, 'lon': 125.0, 'q': 0.229}, {'lat': -10.0, 'lon': 131.0, 'q': 0.197}, {'lat': -10.0, 'lon': 137.0, 'q': 0.166}, {'lat': -6.0, 'lon': 95.0, 'q': 0.33}, {'lat': -6.0, 'lon': 101.0, 'q': 0.299}, {'lat': -6.0, 'lon': 107.0, 'q': 0.267}, {'lat': -6.0, 'lon': 113.0, 'q': 0.236}, {'lat': -6.0, 'lon': 119.0, 'q': 0.204}, {'lat': -6.0, 'lon': 125.0, 'q': 0.173}, {'lat': -6.0, 'lon': 131.0, 'q': 0.142}, {'lat': -6.0, 'lon': 137.0, 'q': 0.111}, {'lat': -2.0, 'lon': 95.0, 'q': 0.266}, {'lat': -2.0, 'lon': 101.0, 'q': 0.235}, {'lat': -2.0, 'lon': 107.0, 'q': 0.204}, {'lat': -2.0, 'lon': 113.0, 'q': 0.173}]}}], 'scan_indonesia': {'n_titik_grid': 40, 'titik_sampel': [{'lat': -10.0, 'lon': 95.0, 'q': 0.389}, {'lat': -10.0, 'lon': 101.0, 'q': 0.356}, {'lat': -10.0, 'lon': 107.0, 'q': 0.324}, {'lat': -10.0, 'lon': 113.0, 'q': 0.292}, {'lat': -10.0, 'lon': 119.0, 'q': 0.261}, {'lat': -10.0, 'lon': 125.0, 'q': 0.229}, {'lat': -10.0, 'lon': 131.0, 'q': 0.197}, {'lat': -10.0, 'lon': 137.0, 'q': 0.166}, {'lat': -6.0, 'lon': 95.0, 'q': 0.33}, {'lat': -6.0, 'lon': 101.0, 'q': 0.299}, {'lat': -6.0, 'lon': 107.0, 'q': 0.267}, {'lat': -6.0, 'lon': 113.0, 'q': 0.236}, {'lat': -6.0, 'lon': 119.0, 'q': 0.204}, {'lat': -6.0, 'lon': 125.0, 'q': 0.173}, {'lat': -6.0, 'lon': 131.0, 'q': 0.142}, {'lat': -6.0, 'lon': 137.0, 'q': 0.111}, {'lat': -2.0, 'lon': 95.0, 'q': 0.266}, {'lat': -2.0, 'lon': 101.0, 'q': 0.235}, {'lat': -2.0, 'lon': 107.0, 'q': 0.204}, {'lat': -2.0, 'lon': 113.0, 'q': 0.173}]}, 'ringkas': {'tanggal': '2010-09-10', 'ijtimak': '08-09-2010 17:29 WIB', 'maghrib': '17:51 WIB', 'moonset': '18:37 WIB', 'best_time': '18:11 WIB', 'umur_jam': 24.35, 'mabims_label': 'MABIMS Lama (pre-2022)', 'alt': 10.609, 'alt_ok': True, 'elong_geo': 15.318, 'elong_ok': True, 'arcv': 11.5364, 'elongasi_top': 14.7079, 'lebar_sabit': 0.5464, 'illumination': 98.1788, 'yallop_q': 0.2952, 'yallop_klas': 'A', 'yallop_desk': 'Mudah terlihat mata telanjang', 'odeh_v': 7.6242, 'odeh_klas': 'A', 'odeh_desk': 'Mudah terlihat mata telanjang', 'prob': 100.0, 'kontras': {'nilai': 0.143756, 'keterangan': 'Kemungkinan terlihat'}, 'n_lokasi_lolos': 13, 'lokasi_lolos': [{'nama': 'Sabang', 'lat': 5.8943, 'lon': 95.3184, 'alt': 8.862, 'az': 263.61, 'elong_geo': 15.792, 'umur_jam': 25.2, 'lag_menit': 39.0, 'maghrib_utc': '11:41', 'moonset_utc': '12:20', 'mabims': {'lolos': True, 'label': 'MABIMS Lama (pre-2022)', 'alt_ok': True, 'elong_ok': True, 'umur_ok': True, 'borderline': False, 'threshold': {'alt': 2.0, 'elong': 3.0, 'umur': 8.0}}}, {'nama': 'Medan', 'lat': 3.5952, 'lon': 98.6722, 'alt': 9.199, 'az': 264.07, 'elong_geo': 15.658, 'umur_jam': 24.96, 'lag_menit': 40.3, 'maghrib_utc': '11:27', 'moonset_utc': '12:07', 'mabims': {'lolos': True, 'label': 'MABIMS Lama (pre-2022)', 'alt_ok': True, 'elong_ok': True, 'umur_ok': True, 'borderline': False, 'threshold': {'alt': 2.0, 'elong': 3.0, 'umur': 8.0}}}, {'nama': 'Padang', 'lat': -0.9471, 'lon': 100.4172, 'alt': 9.973, 'az': 264.93, 'elong_geo': 15.577, 'umur_jam': 24.81, 'lag_menit': 43.5, 'maghrib_utc': '11:18', 'moonset_utc': '12:02', 'mabims': {'lolos': True, 'label': 'MABIMS Lama (pre-2022)', 'alt_ok': True, 'elong_ok': True, 'umur_ok': True, 'borderline': False, 'threshold': {'alt': 2.0, 'elong': 3.0, 'umur': 8.0}}}, {'nama': 'Jakarta', 'lat': -6.2088, 'lon': 106.8456, 'alt': 10.609, 'az': 266.1, 'elong_geo': 15.318, 'umur_jam': 24.35, 'lag_menit': 46.5, 'maghrib_utc': '10:51', 'moonset_utc': '11:37', 'mabims': {'lolos': True, 'label': 'MABIMS Lama (pre-2022)', 'alt_ok': True, 'elong_ok': True, 'umur_ok': True, 'borderline': False, 'threshold': {'alt': 2.0, 'elong': 3.0, 'umur': 8.0}}}, {'nama': 'Bandung', 'lat': -6.9175, 'lon': 107.6191, 'alt': 10.689, 'az': 266.26, 'elong_geo': 15.287, 'umur_jam': 24.3, 'lag_menit': 46.9, 'maghrib_utc': '10:47', 'moonset_utc': '11:34', 'mabims': {'lolos': True, 'label': 'MABIMS Lama (pre-2022)', 'alt_ok': True, 'elong_ok': True, 'umur_ok': True, 'borderline': False, 'threshold': {'alt': 2.0, 'elong': 3.0, 'umur': 8.0}}}, {'nama': 'Surabaya', 'lat': -7.2575, 'lon': 112.7521, 'alt': 10.549, 'az': 266.4, 'elong_geo': 15.093, 'umur_jam': 23.95, 'lag_menit': 46.3, 'maghrib_utc': '10:27', 'moonset_utc': '11:13', 'mabims': {'lolos': True, 'label': 'MABIMS Lama (pre-2022)', 'alt_ok': True, 'elong_ok': True, 'umur_ok': True, 'borderline': False, 'threshold': {'alt': 2.0, 'elong': 3.0, 'umur': 8.0}}}, {'nama': 'Banjarmasin', 'lat': -3.3194, 'lon': 114.5928, 'alt': 9.865, 'az': 265.63, 'elong_geo': 15.038, 'umur_jam': 23.86, 'lag_menit': 43.1, 'maghrib_utc': '10:21', 'moonset_utc': '11:04', 'mabims': {'lolos': True, 'label': 'MABIMS Lama (pre-2022)', 'alt_ok': True, 'elong_ok': True, 'umur_ok': True, 'borderline': False, 'threshold': {'alt': 2.0, 'elong': 3.0, 'umur': 8.0}}}, {'nama': 'Balikpapan', 'lat': -1.2379, 'lon': 116.8529, 'alt': 9.437, 'az': 265.27, 'elong_geo': 14.961, 'umur_jam': 23.72, 'lag_menit': 41.2, 'maghrib_utc': '10:12', 'moonset_utc': '10:54', 'mabims': {'lolos': True, 'label': 'MABIMS Lama (pre-2022)', 'alt_ok': True, 'elong_ok': True, 'umur_ok': True, 'borderline': False, 'threshold': {'alt': 2.0, 'elong': 3.0, 'umur': 8.0}}}, {'nama': 'Makassar', 'lat': -5.1477, 'lon': 119.4327, 'alt': 9.98, 'az': 266.06, 'elong_geo': 14.851, 'umur_jam': 23.52, 'lag_menit': 43.7, 'maghrib_utc': '10:01', 'moonset_utc': '10:44', 'mabims': {'lolos': True, 'label': 'MABIMS Lama (pre-2022)', 'alt_ok': True, 'elong_ok': True, 'umur_ok': True, 'borderline': False, 'threshold': {'alt': 2.0, 'elong': 3.0, 'umur': 8.0}}}, {'nama': 'Manado', 'lat': 1.4748, 'lon': 124.8421, 'alt': 8.685, 'az': 264.94, 'elong_geo': 14.672, 'umur_jam': 23.2, 'lag_menit': 38.1, 'maghrib_utc': '09:41', 'moonset_utc': '10:19', 'mabims': {'lolos': True, 'label': 'MABIMS Lama (pre-2022)', 'alt_ok': True, 'elong_ok': True, 'umur_ok': True, 'borderline': False, 'threshold': {'alt': 2.0, 'elong': 3.0, 'umur': 8.0}}}, {'nama': 'Kupang', 'lat': -10.1772, 'lon': 123.607, 'alt': 10.559, 'az': 267.17, 'elong_geo': 14.678, 'umur_jam': 23.21, 'lag_menit': 46.7, 'maghrib_utc': '09:42', 'moonset_utc': '10:29', 'mabims': {'lolos': True, 'label': 'MABIMS Lama (pre-2022)', 'alt_ok': True, 'elong_ok': True, 'umur_ok': True, 'borderline': False, 'threshold': {'alt': 2.0, 'elong': 3.0, 'umur': 8.0}}}, {'nama': 'Ambon', 'lat': -3.655, 'lon': 128.1908, 'alt': 9.425, 'az': 265.91, 'elong_geo': 14.529, 'umur_jam': 22.95, 'lag_menit': 41.3, 'maghrib_utc': '09:26', 'moonset_utc': '10:07', 'mabims': {'lolos': True, 'label': 'MABIMS Lama (pre-2022)', 'alt_ok': True, 'elong_ok': True, 'umur_ok': True, 'borderline': False, 'threshold': {'alt': 2.0, 'elong': 3.0, 'umur': 8.0}}}, {'nama': 'Jayapura', 'lat': -2.5337, 'lon': 140.7181, 'alt': 8.793, 'az': 265.9, 'elong_geo': 14.067, 'umur_jam': 22.12, 'lag_menit': 38.6, 'maghrib_utc': '08:36', 'moonset_utc': '09:15', 'mabims': {'lolos': True, 'label': 'MABIMS Lama (pre-2022)', 'alt_ok': True, 'elong_ok': True, 'umur_ok': True, 'borderline': False, 'threshold': {'alt': 2.0, 'elong': 3.0, 'umur': 8.0}}}]}}",
+      "tanggal_awal": "2010-09-10",
       "ijtimak_wib": "08-09-2010 17:29 WIB",
-      "ijtimak_tgl_lokal": null,
-      "ijtimak_posisi": null,
-      "hari_diperiksa": [],
-      "hari_lolos": null,
-      "istikmal": null,
-      "scan_indonesia": null,
-      "mabims_lolos": false,
+      "ijtimak_tgl_lokal": "2010-09-08",
+      "ijtimak_posisi": "sebelum maghrib",
+      "istikmal": false,
+      "mabims_lolos": true,
+      "hari_diperiksa": [
+        {
+          "tanggal": "2010-09-08",
+          "lolos_mabims": false,
+          "dilewati": false,
+          "alasan_lewat": null,
+          "maghrib_wib": "17:51 WIB",
+          "maghrib_utc": "10:51 UTC",
+          "moonset_wib": null,
+          "moonset_utc": null,
+          "best_time_wib": null,
+          "best_time_utc": null,
+          "umur_jam": 0.36,
+          "mabims_jakarta": {
+            "lolos": false,
+            "label": "MABIMS Lama (pre-2022)",
+            "alt_ok": false,
+            "elong_ok": true,
+            "umur_ok": false,
+            "borderline": false,
+            "threshold": {
+              "alt": 2.0,
+              "elong": 3.0,
+              "umur": 8.0
+            },
+            "alt": -2.968,
+            "elong_geo": 4.626,
+            "umur": 0.36
+          },
+          "visibilitas": null,
+          "multilokasi": {
+            "n_lokasi": 0,
+            "lokasi": []
+          },
+          "scan_indonesia": null
+        },
+        {
+          "tanggal": "2010-09-09",
+          "lolos_mabims": true,
+          "dilewati": false,
+          "alasan_lewat": null,
+          "maghrib_wib": "17:51 WIB",
+          "maghrib_utc": "10:51 UTC",
+          "moonset_wib": "18:37 WIB",
+          "moonset_utc": "11:37 UTC",
+          "best_time_wib": "18:11 WIB",
+          "best_time_utc": "11:11 UTC",
+          "umur_jam": 24.35,
+          "mabims_jakarta": {
+            "lolos": true,
+            "label": "MABIMS Lama (pre-2022)",
+            "alt_ok": true,
+            "elong_ok": true,
+            "umur_ok": true,
+            "borderline": false,
+            "threshold": {
+              "alt": 2.0,
+              "elong": 3.0,
+              "umur": 8.0
+            },
+            "alt": 10.609,
+            "elong_geo": 15.318,
+            "umur": 24.35
+          },
+          "visibilitas": {
+            "alt_bulan_airless": 5.5898,
+            "alt_matahari_airless": -5.9466,
+            "elongasi_top": 14.7079,
+            "arcv": 11.5364,
+            "lebar_sabit_menit": 0.5464,
+            "illumination_pct": 98.1788,
+            "yallop": {
+              "q": 0.2952,
+              "kelas": "A",
+              "deskripsi": "Mudah terlihat mata telanjang"
+            },
+            "odeh": {
+              "v": 7.6242,
+              "kelas": "A",
+              "deskripsi": "Mudah terlihat mata telanjang"
+            },
+            "probabilitas_pct": 100.0,
+            "kontras": {
+              "nilai": 0.143756,
+              "keterangan": "Kemungkinan terlihat"
+            }
+          },
+          "multilokasi": {
+            "n_lokasi": 13,
+            "lokasi": [
+              {
+                "nama": "Sabang",
+                "lat": 5.8943,
+                "lon": 95.3184,
+                "alt": 8.862,
+                "az": 263.61,
+                "elong_geo": 15.792,
+                "umur_jam": 25.2,
+                "lag_menit": 39.0,
+                "maghrib_utc": "11:41",
+                "moonset_utc": "12:20",
+                "mabims": {
+                  "lolos": true,
+                  "label": "MABIMS Lama (pre-2022)",
+                  "alt_ok": true,
+                  "elong_ok": true,
+                  "umur_ok": true,
+                  "borderline": false,
+                  "threshold": {
+                    "alt": 2.0,
+                    "elong": 3.0,
+                    "umur": 8.0
+                  }
+                }
+              },
+              {
+                "nama": "Medan",
+                "lat": 3.5952,
+                "lon": 98.6722,
+                "alt": 9.199,
+                "az": 264.07,
+                "elong_geo": 15.658,
+                "umur_jam": 24.96,
+                "lag_menit": 40.3,
+                "maghrib_utc": "11:27",
+                "moonset_utc": "12:07",
+                "mabims": {
+                  "lolos": true,
+                  "label": "MABIMS Lama (pre-2022)",
+                  "alt_ok": true,
+                  "elong_ok": true,
+                  "umur_ok": true,
+                  "borderline": false,
+                  "threshold": {
+                    "alt": 2.0,
+                    "elong": 3.0,
+                    "umur": 8.0
+                  }
+                }
+              },
+              {
+                "nama": "Padang",
+                "lat": -0.9471,
+                "lon": 100.4172,
+                "alt": 9.973,
+                "az": 264.93,
+                "elong_geo": 15.577,
+                "umur_jam": 24.81,
+                "lag_menit": 43.5,
+                "maghrib_utc": "11:18",
+                "moonset_utc": "12:02",
+                "mabims": {
+                  "lolos": true,
+                  "label": "MABIMS Lama (pre-2022)",
+                  "alt_ok": true,
+                  "elong_ok": true,
+                  "umur_ok": true,
+                  "borderline": false,
+                  "threshold": {
+                    "alt": 2.0,
+                    "elong": 3.0,
+                    "umur": 8.0
+                  }
+                }
+              },
+              {
+                "nama": "Jakarta",
+                "lat": -6.2088,
+                "lon": 106.8456,
+                "alt": 10.609,
+                "az": 266.1,
+                "elong_geo": 15.318,
+                "umur_jam": 24.35,
+                "lag_menit": 46.5,
+                "maghrib_utc": "10:51",
+                "moonset_utc": "11:37",
+                "mabims": {
+                  "lolos": true,
+                  "label": "MABIMS Lama (pre-2022)",
+                  "alt_ok": true,
+                  "elong_ok": true,
+                  "umur_ok": true,
+                  "borderline": false,
+                  "threshold": {
+                    "alt": 2.0,
+                    "elong": 3.0,
+                    "umur": 8.0
+                  }
+                }
+              },
+              {
+                "nama": "Bandung",
+                "lat": -6.9175,
+                "lon": 107.6191,
+                "alt": 10.689,
+                "az": 266.26,
+                "elong_geo": 15.287,
+                "umur_jam": 24.3,
+                "lag_menit": 46.9,
+                "maghrib_utc": "10:47",
+                "moonset_utc": "11:34",
+                "mabims": {
+                  "lolos": true,
+                  "label": "MABIMS Lama (pre-2022)",
+                  "alt_ok": true,
+                  "elong_ok": true,
+                  "umur_ok": true,
+                  "borderline": false,
+                  "threshold": {
+                    "alt": 2.0,
+                    "elong": 3.0,
+                    "umur": 8.0
+                  }
+                }
+              },
+              {
+                "nama": "Surabaya",
+                "lat": -7.2575,
+                "lon": 112.7521,
+                "alt": 10.549,
+                "az": 266.4,
+                "elong_geo": 15.093,
+                "umur_jam": 23.95,
+                "lag_menit": 46.3,
+                "maghrib_utc": "10:27",
+                "moonset_utc": "11:13",
+                "mabims": {
+                  "lolos": true,
+                  "label": "MABIMS Lama (pre-2022)",
+                  "alt_ok": true,
+                  "elong_ok": true,
+                  "umur_ok": true,
+                  "borderline": false,
+                  "threshold": {
+                    "alt": 2.0,
+                    "elong": 3.0,
+                    "umur": 8.0
+                  }
+                }
+              },
+              {
+                "nama": "Banjarmasin",
+                "lat": -3.3194,
+                "lon": 114.5928,
+                "alt": 9.865,
+                "az": 265.63,
+                "elong_geo": 15.038,
+                "umur_jam": 23.86,
+                "lag_menit": 43.1,
+                "maghrib_utc": "10:21",
+                "moonset_utc": "11:04",
+                "mabims": {
+                  "lolos": true,
+                  "label": "MABIMS Lama (pre-2022)",
+                  "alt_ok": true,
+                  "elong_ok": true,
+                  "umur_ok": true,
+                  "borderline": false,
+                  "threshold": {
+                    "alt": 2.0,
+                    "elong": 3.0,
+                    "umur": 8.0
+                  }
+                }
+              },
+              {
+                "nama": "Balikpapan",
+                "lat": -1.2379,
+                "lon": 116.8529,
+                "alt": 9.437,
+                "az": 265.27,
+                "elong_geo": 14.961,
+                "umur_jam": 23.72,
+                "lag_menit": 41.2,
+                "maghrib_utc": "10:12",
+                "moonset_utc": "10:54",
+                "mabims": {
+                  "lolos": true,
+                  "label": "MABIMS Lama (pre-2022)",
+                  "alt_ok": true,
+                  "elong_ok": true,
+                  "umur_ok": true,
+                  "borderline": false,
+                  "threshold": {
+                    "alt": 2.0,
+                    "elong": 3.0,
+                    "umur": 8.0
+                  }
+                }
+              },
+              {
+                "nama": "Makassar",
+                "lat": -5.1477,
+                "lon": 119.4327,
+                "alt": 9.98,
+                "az": 266.06,
+                "elong_geo": 14.851,
+                "umur_jam": 23.52,
+                "lag_menit": 43.7,
+                "maghrib_utc": "10:01",
+                "moonset_utc": "10:44",
+                "mabims": {
+                  "lolos": true,
+                  "label": "MABIMS Lama (pre-2022)",
+                  "alt_ok": true,
+                  "elong_ok": true,
+                  "umur_ok": true,
+                  "borderline": false,
+                  "threshold": {
+                    "alt": 2.0,
+                    "elong": 3.0,
+                    "umur": 8.0
+                  }
+                }
+              },
+              {
+                "nama": "Manado",
+                "lat": 1.4748,
+                "lon": 124.8421,
+                "alt": 8.685,
+                "az": 264.94,
+                "elong_geo": 14.672,
+                "umur_jam": 23.2,
+                "lag_menit": 38.1,
+                "maghrib_utc": "09:41",
+                "moonset_utc": "10:19",
+                "mabims": {
+                  "lolos": true,
+                  "label": "MABIMS Lama (pre-2022)",
+                  "alt_ok": true,
+                  "elong_ok": true,
+                  "umur_ok": true,
+                  "borderline": false,
+                  "threshold": {
+                    "alt": 2.0,
+                    "elong": 3.0,
+                    "umur": 8.0
+                  }
+                }
+              },
+              {
+                "nama": "Kupang",
+                "lat": -10.1772,
+                "lon": 123.607,
+                "alt": 10.559,
+                "az": 267.17,
+                "elong_geo": 14.678,
+                "umur_jam": 23.21,
+                "lag_menit": 46.7,
+                "maghrib_utc": "09:42",
+                "moonset_utc": "10:29",
+                "mabims": {
+                  "lolos": true,
+                  "label": "MABIMS Lama (pre-2022)",
+                  "alt_ok": true,
+                  "elong_ok": true,
+                  "umur_ok": true,
+                  "borderline": false,
+                  "threshold": {
+                    "alt": 2.0,
+                    "elong": 3.0,
+                    "umur": 8.0
+                  }
+                }
+              },
+              {
+                "nama": "Ambon",
+                "lat": -3.655,
+                "lon": 128.1908,
+                "alt": 9.425,
+                "az": 265.91,
+                "elong_geo": 14.529,
+                "umur_jam": 22.95,
+                "lag_menit": 41.3,
+                "maghrib_utc": "09:26",
+                "moonset_utc": "10:07",
+                "mabims": {
+                  "lolos": true,
+                  "label": "MABIMS Lama (pre-2022)",
+                  "alt_ok": true,
+                  "elong_ok": true,
+                  "umur_ok": true,
+                  "borderline": false,
+                  "threshold": {
+                    "alt": 2.0,
+                    "elong": 3.0,
+                    "umur": 8.0
+                  }
+                }
+              },
+              {
+                "nama": "Jayapura",
+                "lat": -2.5337,
+                "lon": 140.7181,
+                "alt": 8.793,
+                "az": 265.9,
+                "elong_geo": 14.067,
+                "umur_jam": 22.12,
+                "lag_menit": 38.6,
+                "maghrib_utc": "08:36",
+                "moonset_utc": "09:15",
+                "mabims": {
+                  "lolos": true,
+                  "label": "MABIMS Lama (pre-2022)",
+                  "alt_ok": true,
+                  "elong_ok": true,
+                  "umur_ok": true,
+                  "borderline": false,
+                  "threshold": {
+                    "alt": 2.0,
+                    "elong": 3.0,
+                    "umur": 8.0
+                  }
+                }
+              }
+            ]
+          },
+          "scan_indonesia": {
+            "n_titik_grid": 40,
+            "titik_sampel": [
+              {
+                "lat": -10.0,
+                "lon": 95.0,
+                "q": 0.389
+              },
+              {
+                "lat": -10.0,
+                "lon": 101.0,
+                "q": 0.356
+              },
+              {
+                "lat": -10.0,
+                "lon": 107.0,
+                "q": 0.324
+              },
+              {
+                "lat": -10.0,
+                "lon": 113.0,
+                "q": 0.292
+              },
+              {
+                "lat": -10.0,
+                "lon": 119.0,
+                "q": 0.261
+              },
+              {
+                "lat": -10.0,
+                "lon": 125.0,
+                "q": 0.229
+              },
+              {
+                "lat": -10.0,
+                "lon": 131.0,
+                "q": 0.197
+              },
+              {
+                "lat": -10.0,
+                "lon": 137.0,
+                "q": 0.166
+              },
+              {
+                "lat": -6.0,
+                "lon": 95.0,
+                "q": 0.33
+              },
+              {
+                "lat": -6.0,
+                "lon": 101.0,
+                "q": 0.299
+              },
+              {
+                "lat": -6.0,
+                "lon": 107.0,
+                "q": 0.267
+              },
+              {
+                "lat": -6.0,
+                "lon": 113.0,
+                "q": 0.236
+              },
+              {
+                "lat": -6.0,
+                "lon": 119.0,
+                "q": 0.204
+              },
+              {
+                "lat": -6.0,
+                "lon": 125.0,
+                "q": 0.173
+              },
+              {
+                "lat": -6.0,
+                "lon": 131.0,
+                "q": 0.142
+              },
+              {
+                "lat": -6.0,
+                "lon": 137.0,
+                "q": 0.111
+              },
+              {
+                "lat": -2.0,
+                "lon": 95.0,
+                "q": 0.266
+              },
+              {
+                "lat": -2.0,
+                "lon": 101.0,
+                "q": 0.235
+              },
+              {
+                "lat": -2.0,
+                "lon": 107.0,
+                "q": 0.204
+              },
+              {
+                "lat": -2.0,
+                "lon": 113.0,
+                "q": 0.173
+              }
+            ]
+          }
+        }
+      ],
+      "scan_indonesia": {
+        "n_titik_grid": 40,
+        "titik_sampel": [
+          {
+            "lat": -10.0,
+            "lon": 95.0,
+            "q": 0.389
+          },
+          {
+            "lat": -10.0,
+            "lon": 101.0,
+            "q": 0.356
+          },
+          {
+            "lat": -10.0,
+            "lon": 107.0,
+            "q": 0.324
+          },
+          {
+            "lat": -10.0,
+            "lon": 113.0,
+            "q": 0.292
+          },
+          {
+            "lat": -10.0,
+            "lon": 119.0,
+            "q": 0.261
+          },
+          {
+            "lat": -10.0,
+            "lon": 125.0,
+            "q": 0.229
+          },
+          {
+            "lat": -10.0,
+            "lon": 131.0,
+            "q": 0.197
+          },
+          {
+            "lat": -10.0,
+            "lon": 137.0,
+            "q": 0.166
+          },
+          {
+            "lat": -6.0,
+            "lon": 95.0,
+            "q": 0.33
+          },
+          {
+            "lat": -6.0,
+            "lon": 101.0,
+            "q": 0.299
+          },
+          {
+            "lat": -6.0,
+            "lon": 107.0,
+            "q": 0.267
+          },
+          {
+            "lat": -6.0,
+            "lon": 113.0,
+            "q": 0.236
+          },
+          {
+            "lat": -6.0,
+            "lon": 119.0,
+            "q": 0.204
+          },
+          {
+            "lat": -6.0,
+            "lon": 125.0,
+            "q": 0.173
+          },
+          {
+            "lat": -6.0,
+            "lon": 131.0,
+            "q": 0.142
+          },
+          {
+            "lat": -6.0,
+            "lon": 137.0,
+            "q": 0.111
+          },
+          {
+            "lat": -2.0,
+            "lon": 95.0,
+            "q": 0.266
+          },
+          {
+            "lat": -2.0,
+            "lon": 101.0,
+            "q": 0.235
+          },
+          {
+            "lat": -2.0,
+            "lon": 107.0,
+            "q": 0.204
+          },
+          {
+            "lat": -2.0,
+            "lon": 113.0,
+            "q": 0.173
+          }
+        ]
+      },
       "ringkas": {
-        "tanggal": "{'tanggal_awal': '2010-09-10', 'ijtimak_wib': '08-09-2010 17:29 WIB', 'ijtimak_tgl_lokal': '2010-09-08', 'ijtimak_posisi': 'sebelum maghrib', 'istikmal': False, 'mabims_lolos': True, 'hari_diperiksa': [{'tanggal': '2010-09-08', 'lolos_mabims': False, 'dilewati': False, 'alasan_lewat': None, 'maghrib_wib': '17:51 WIB', 'maghrib_utc': '10:51 UTC', 'moonset_wib': None, 'moonset_utc': None, 'best_time_wib': None, 'best_time_utc': None, 'umur_jam': 0.36, 'mabims_jakarta': {'lolos': False, 'label': 'MABIMS Lama (pre-2022)', 'alt_ok': False, 'elong_ok': True, 'umur_ok': False, 'borderline': False, 'threshold': {'alt': 2.0, 'elong': 3.0, 'umur': 8.0}, 'alt': -2.968, 'elong_geo': 4.626, 'umur': 0.36}, 'visibilitas': None, 'multilokasi': {'n_lokasi': 0, 'lokasi': []}, 'scan_indonesia': None}, {'tanggal': '2010-09-09', 'lolos_mabims': True, 'dilewati': False, 'alasan_lewat': None, 'maghrib_wib': '17:51 WIB', 'maghrib_utc': '10:51 UTC', 'moonset_wib': '18:37 WIB', 'moonset_utc': '11:37 UTC', 'best_time_wib': '18:11 WIB', 'best_time_utc': '11:11 UTC', 'umur_jam': 24.35, 'mabims_jakarta': {'lolos': True, 'label': 'MABIMS Lama (pre-2022)', 'alt_ok': True, 'elong_ok': True, 'umur_ok': True, 'borderline': False, 'threshold': {'alt': 2.0, 'elong': 3.0, 'umur': 8.0}, 'alt': 10.609, 'elong_geo': 15.318, 'umur': 24.35}, 'visibilitas': {'alt_bulan_airless': 5.5898, 'alt_matahari_airless': -5.9466, 'elongasi_top': 14.7079, 'arcv': 11.5364, 'lebar_sabit_menit': 0.5464, 'illumination_pct': 98.1788, 'yallop': {'q': 0.2952, 'kelas': 'A', 'deskripsi': 'Mudah terlihat mata telanjang'}, 'odeh': {'v': 7.6242, 'kelas': 'A', 'deskripsi': 'Mudah terlihat mata telanjang'}, 'probabilitas_pct': 100.0, 'kontras': {'nilai': 0.143756, 'keterangan': 'Kemungkinan terlihat'}}, 'multilokasi': {'n_lokasi': 13, 'lokasi': [{'nama': 'Sabang', 'lat': 5.8943, 'lon': 95.3184, 'alt': 8.862, 'az': 263.61, 'elong_geo': 15.792, 'umur_jam': 25.2, 'lag_menit': 39.0, 'maghrib_utc': '11:41', 'moonset_utc': '12:20', 'mabims': {'lolos': True, 'label': 'MABIMS Lama (pre-2022)', 'alt_ok': True, 'elong_ok': True, 'umur_ok': True, 'borderline': False, 'threshold': {'alt': 2.0, 'elong': 3.0, 'umur': 8.0}}}, {'nama': 'Medan', 'lat': 3.5952, 'lon': 98.6722, 'alt': 9.199, 'az': 264.07, 'elong_geo': 15.658, 'umur_jam': 24.96, 'lag_menit': 40.3, 'maghrib_utc': '11:27', 'moonset_utc': '12:07', 'mabims': {'lolos': True, 'label': 'MABIMS Lama (pre-2022)', 'alt_ok': True, 'elong_ok': True, 'umur_ok': True, 'borderline': False, 'threshold': {'alt': 2.0, 'elong': 3.0, 'umur': 8.0}}}, {'nama': 'Padang', 'lat': -0.9471, 'lon': 100.4172, 'alt': 9.973, 'az': 264.93, 'elong_geo': 15.577, 'umur_jam': 24.81, 'lag_menit': 43.5, 'maghrib_utc': '11:18', 'moonset_utc': '12:02', 'mabims': {'lolos': True, 'label': 'MABIMS Lama (pre-2022)', 'alt_ok': True, 'elong_ok': True, 'umur_ok': True, 'borderline': False, 'threshold': {'alt': 2.0, 'elong': 3.0, 'umur': 8.0}}}, {'nama': 'Jakarta', 'lat': -6.2088, 'lon': 106.8456, 'alt': 10.609, 'az': 266.1, 'elong_geo': 15.318, 'umur_jam': 24.35, 'lag_menit': 46.5, 'maghrib_utc': '10:51', 'moonset_utc': '11:37', 'mabims': {'lolos': True, 'label': 'MABIMS Lama (pre-2022)', 'alt_ok': True, 'elong_ok': True, 'umur_ok': True, 'borderline': False, 'threshold': {'alt': 2.0, 'elong': 3.0, 'umur': 8.0}}}, {'nama': 'Bandung', 'lat': -6.9175, 'lon': 107.6191, 'alt': 10.689, 'az': 266.26, 'elong_geo': 15.287, 'umur_jam': 24.3, 'lag_menit': 46.9, 'maghrib_utc': '10:47', 'moonset_utc': '11:34', 'mabims': {'lolos': True, 'label': 'MABIMS Lama (pre-2022)', 'alt_ok': True, 'elong_ok': True, 'umur_ok': True, 'borderline': False, 'threshold': {'alt': 2.0, 'elong': 3.0, 'umur': 8.0}}}, {'nama': 'Surabaya', 'lat': -7.2575, 'lon': 112.7521, 'alt': 10.549, 'az': 266.4, 'elong_geo': 15.093, 'umur_jam': 23.95, 'lag_menit': 46.3, 'maghrib_utc': '10:27', 'moonset_utc': '11:13', 'mabims': {'lolos': True, 'label': 'MABIMS Lama (pre-2022)', 'alt_ok': True, 'elong_ok': True, 'umur_ok': True, 'borderline': False, 'threshold': {'alt': 2.0, 'elong': 3.0, 'umur': 8.0}}}, {'nama': 'Banjarmasin', 'lat': -3.3194, 'lon': 114.5928, 'alt': 9.865, 'az': 265.63, 'elong_geo': 15.038, 'umur_jam': 23.86, 'lag_menit': 43.1, 'maghrib_utc': '10:21', 'moonset_utc': '11:04', 'mabims': {'lolos': True, 'label': 'MABIMS Lama (pre-2022)', 'alt_ok': True, 'elong_ok': True, 'umur_ok': True, 'borderline': False, 'threshold': {'alt': 2.0, 'elong': 3.0, 'umur': 8.0}}}, {'nama': 'Balikpapan', 'lat': -1.2379, 'lon': 116.8529, 'alt': 9.437, 'az': 265.27, 'elong_geo': 14.961, 'umur_jam': 23.72, 'lag_menit': 41.2, 'maghrib_utc': '10:12', 'moonset_utc': '10:54', 'mabims': {'lolos': True, 'label': 'MABIMS Lama (pre-2022)', 'alt_ok': True, 'elong_ok': True, 'umur_ok': True, 'borderline': False, 'threshold': {'alt': 2.0, 'elong': 3.0, 'umur': 8.0}}}, {'nama': 'Makassar', 'lat': -5.1477, 'lon': 119.4327, 'alt': 9.98, 'az': 266.06, 'elong_geo': 14.851, 'umur_jam': 23.52, 'lag_menit': 43.7, 'maghrib_utc': '10:01', 'moonset_utc': '10:44', 'mabims': {'lolos': True, 'label': 'MABIMS Lama (pre-2022)', 'alt_ok': True, 'elong_ok': True, 'umur_ok': True, 'borderline': False, 'threshold': {'alt': 2.0, 'elong': 3.0, 'umur': 8.0}}}, {'nama': 'Manado', 'lat': 1.4748, 'lon': 124.8421, 'alt': 8.685, 'az': 264.94, 'elong_geo': 14.672, 'umur_jam': 23.2, 'lag_menit': 38.1, 'maghrib_utc': '09:41', 'moonset_utc': '10:19', 'mabims': {'lolos': True, 'label': 'MABIMS Lama (pre-2022)', 'alt_ok': True, 'elong_ok': True, 'umur_ok': True, 'borderline': False, 'threshold': {'alt': 2.0, 'elong': 3.0, 'umur': 8.0}}}, {'nama': 'Kupang', 'lat': -10.1772, 'lon': 123.607, 'alt': 10.559, 'az': 267.17, 'elong_geo': 14.678, 'umur_jam': 23.21, 'lag_menit': 46.7, 'maghrib_utc': '09:42', 'moonset_utc': '10:29', 'mabims': {'lolos': True, 'label': 'MABIMS Lama (pre-2022)', 'alt_ok': True, 'elong_ok': True, 'umur_ok': True, 'borderline': False, 'threshold': {'alt': 2.0, 'elong': 3.0, 'umur': 8.0}}}, {'nama': 'Ambon', 'lat': -3.655, 'lon': 128.1908, 'alt': 9.425, 'az': 265.91, 'elong_geo': 14.529, 'umur_jam': 22.95, 'lag_menit': 41.3, 'maghrib_utc': '09:26', 'moonset_utc': '10:07', 'mabims': {'lolos': True, 'label': 'MABIMS Lama (pre-2022)', 'alt_ok': True, 'elong_ok': True, 'umur_ok': True, 'borderline': False, 'threshold': {'alt': 2.0, 'elong': 3.0, 'umur': 8.0}}}, {'nama': 'Jayapura', 'lat': -2.5337, 'lon': 140.7181, 'alt': 8.793, 'az': 265.9, 'elong_geo': 14.067, 'umur_jam': 22.12, 'lag_menit': 38.6, 'maghrib_utc': '08:36', 'moonset_utc': '09:15', 'mabims': {'lolos': True, 'label': 'MABIMS Lama (pre-2022)', 'alt_ok': True, 'elong_ok': True, 'umur_ok': True, 'borderline': False, 'threshold': {'alt': 2.0, 'elong': 3.0, 'umur': 8.0}}}]}, 'scan_indonesia': {'n_titik_grid': 40, 'titik_sampel': [{'lat': -10.0, 'lon': 95.0, 'q': 0.389}, {'lat': -10.0, 'lon': 101.0, 'q': 0.356}, {'lat': -10.0, 'lon': 107.0, 'q': 0.324}, {'lat': -10.0, 'lon': 113.0, 'q': 0.292}, {'lat': -10.0, 'lon': 119.0, 'q': 0.261}, {'lat': -10.0, 'lon': 125.0, 'q': 0.229}, {'lat': -10.0, 'lon': 131.0, 'q': 0.197}, {'lat': -10.0, 'lon': 137.0, 'q': 0.166}, {'lat': -6.0, 'lon': 95.0, 'q': 0.33}, {'lat': -6.0, 'lon': 101.0, 'q': 0.299}, {'lat': -6.0, 'lon': 107.0, 'q': 0.267}, {'lat': -6.0, 'lon': 113.0, 'q': 0.236}, {'lat': -6.0, 'lon': 119.0, 'q': 0.204}, {'lat': -6.0, 'lon': 125.0, 'q': 0.173}, {'lat': -6.0, 'lon': 131.0, 'q': 0.142}, {'lat': -6.0, 'lon': 137.0, 'q': 0.111}, {'lat': -2.0, 'lon': 95.0, 'q': 0.266}, {'lat': -2.0, 'lon': 101.0, 'q': 0.235}, {'lat': -2.0, 'lon': 107.0, 'q': 0.204}, {'lat': -2.0, 'lon': 113.0, 'q': 0.173}]}}], 'scan_indonesia': {'n_titik_grid': 40, 'titik_sampel': [{'lat': -10.0, 'lon': 95.0, 'q': 0.389}, {'lat': -10.0, 'lon': 101.0, 'q': 0.356}, {'lat': -10.0, 'lon': 107.0, 'q': 0.324}, {'lat': -10.0, 'lon': 113.0, 'q': 0.292}, {'lat': -10.0, 'lon': 119.0, 'q': 0.261}, {'lat': -10.0, 'lon': 125.0, 'q': 0.229}, {'lat': -10.0, 'lon': 131.0, 'q': 0.197}, {'lat': -10.0, 'lon': 137.0, 'q': 0.166}, {'lat': -6.0, 'lon': 95.0, 'q': 0.33}, {'lat': -6.0, 'lon': 101.0, 'q': 0.299}, {'lat': -6.0, 'lon': 107.0, 'q': 0.267}, {'lat': -6.0, 'lon': 113.0, 'q': 0.236}, {'lat': -6.0, 'lon': 119.0, 'q': 0.204}, {'lat': -6.0, 'lon': 125.0, 'q': 0.173}, {'lat': -6.0, 'lon': 131.0, 'q': 0.142}, {'lat': -6.0, 'lon': 137.0, 'q': 0.111}, {'lat': -2.0, 'lon': 95.0, 'q': 0.266}, {'lat': -2.0, 'lon': 101.0, 'q': 0.235}, {'lat': -2.0, 'lon': 107.0, 'q': 0.204}, {'lat': -2.0, 'lon': 113.0, 'q': 0.173}]}, 'ringkas': {'tanggal': '2010-09-10', 'ijtimak': '08-09-2010 17:29 WIB', 'maghrib': '17:51 WIB', 'moonset': '18:37 WIB', 'best_time': '18:11 WIB', 'umur_jam': 24.35, 'mabims_label': 'MABIMS Lama (pre-2022)', 'alt': 10.609, 'alt_ok': True, 'elong_geo': 15.318, 'elong_ok': True, 'arcv': 11.5364, 'elongasi_top': 14.7079, 'lebar_sabit': 0.5464, 'illumination': 98.1788, 'yallop_q': 0.2952, 'yallop_klas': 'A', 'yallop_desk': 'Mudah terlihat mata telanjang', 'odeh_v': 7.6242, 'odeh_klas': 'A', 'odeh_desk': 'Mudah terlihat mata telanjang', 'prob': 100.0, 'kontras': {'nilai': 0.143756, 'keterangan': 'Kemungkinan terlihat'}, 'n_lokasi_lolos': 13, 'lokasi_lolos': [{'nama': 'Sabang', 'lat': 5.8943, 'lon': 95.3184, 'alt': 8.862, 'az': 263.61, 'elong_geo': 15.792, 'umur_jam': 25.2, 'lag_menit': 39.0, 'maghrib_utc': '11:41', 'moonset_utc': '12:20', 'mabims': {'lolos': True, 'label': 'MABIMS Lama (pre-2022)', 'alt_ok': True, 'elong_ok': True, 'umur_ok': True, 'borderline': False, 'threshold': {'alt': 2.0, 'elong': 3.0, 'umur': 8.0}}}, {'nama': 'Medan', 'lat': 3.5952, 'lon': 98.6722, 'alt': 9.199, 'az': 264.07, 'elong_geo': 15.658, 'umur_jam': 24.96, 'lag_menit': 40.3, 'maghrib_utc': '11:27', 'moonset_utc': '12:07', 'mabims': {'lolos': True, 'label': 'MABIMS Lama (pre-2022)', 'alt_ok': True, 'elong_ok': True, 'umur_ok': True, 'borderline': False, 'threshold': {'alt': 2.0, 'elong': 3.0, 'umur': 8.0}}}, {'nama': 'Padang', 'lat': -0.9471, 'lon': 100.4172, 'alt': 9.973, 'az': 264.93, 'elong_geo': 15.577, 'umur_jam': 24.81, 'lag_menit': 43.5, 'maghrib_utc': '11:18', 'moonset_utc': '12:02', 'mabims': {'lolos': True, 'label': 'MABIMS Lama (pre-2022)', 'alt_ok': True, 'elong_ok': True, 'umur_ok': True, 'borderline': False, 'threshold': {'alt': 2.0, 'elong': 3.0, 'umur': 8.0}}}, {'nama': 'Jakarta', 'lat': -6.2088, 'lon': 106.8456, 'alt': 10.609, 'az': 266.1, 'elong_geo': 15.318, 'umur_jam': 24.35, 'lag_menit': 46.5, 'maghrib_utc': '10:51', 'moonset_utc': '11:37', 'mabims': {'lolos': True, 'label': 'MABIMS Lama (pre-2022)', 'alt_ok': True, 'elong_ok': True, 'umur_ok': True, 'borderline': False, 'threshold': {'alt': 2.0, 'elong': 3.0, 'umur': 8.0}}}, {'nama': 'Bandung', 'lat': -6.9175, 'lon': 107.6191, 'alt': 10.689, 'az': 266.26, 'elong_geo': 15.287, 'umur_jam': 24.3, 'lag_menit': 46.9, 'maghrib_utc': '10:47', 'moonset_utc': '11:34', 'mabims': {'lolos': True, 'label': 'MABIMS Lama (pre-2022)', 'alt_ok': True, 'elong_ok': True, 'umur_ok': True, 'borderline': False, 'threshold': {'alt': 2.0, 'elong': 3.0, 'umur': 8.0}}}, {'nama': 'Surabaya', 'lat': -7.2575, 'lon': 112.7521, 'alt': 10.549, 'az': 266.4, 'elong_geo': 15.093, 'umur_jam': 23.95, 'lag_menit': 46.3, 'maghrib_utc': '10:27', 'moonset_utc': '11:13', 'mabims': {'lolos': True, 'label': 'MABIMS Lama (pre-2022)', 'alt_ok': True, 'elong_ok': True, 'umur_ok': True, 'borderline': False, 'threshold': {'alt': 2.0, 'elong': 3.0, 'umur': 8.0}}}, {'nama': 'Banjarmasin', 'lat': -3.3194, 'lon': 114.5928, 'alt': 9.865, 'az': 265.63, 'elong_geo': 15.038, 'umur_jam': 23.86, 'lag_menit': 43.1, 'maghrib_utc': '10:21', 'moonset_utc': '11:04', 'mabims': {'lolos': True, 'label': 'MABIMS Lama (pre-2022)', 'alt_ok': True, 'elong_ok': True, 'umur_ok': True, 'borderline': False, 'threshold': {'alt': 2.0, 'elong': 3.0, 'umur': 8.0}}}, {'nama': 'Balikpapan', 'lat': -1.2379, 'lon': 116.8529, 'alt': 9.437, 'az': 265.27, 'elong_geo': 14.961, 'umur_jam': 23.72, 'lag_menit': 41.2, 'maghrib_utc': '10:12', 'moonset_utc': '10:54', 'mabims': {'lolos': True, 'label': 'MABIMS Lama (pre-2022)', 'alt_ok': True, 'elong_ok': True, 'umur_ok': True, 'borderline': False, 'threshold': {'alt': 2.0, 'elong': 3.0, 'umur': 8.0}}}, {'nama': 'Makassar', 'lat': -5.1477, 'lon': 119.4327, 'alt': 9.98, 'az': 266.06, 'elong_geo': 14.851, 'umur_jam': 23.52, 'lag_menit': 43.7, 'maghrib_utc': '10:01', 'moonset_utc': '10:44', 'mabims': {'lolos': True, 'label': 'MABIMS Lama (pre-2022)', 'alt_ok': True, 'elong_ok': True, 'umur_ok': True, 'borderline': False, 'threshold': {'alt': 2.0, 'elong': 3.0, 'umur': 8.0}}}, {'nama': 'Manado', 'lat': 1.4748, 'lon': 124.8421, 'alt': 8.685, 'az': 264.94, 'elong_geo': 14.672, 'umur_jam': 23.2, 'lag_menit': 38.1, 'maghrib_utc': '09:41', 'moonset_utc': '10:19', 'mabims': {'lolos': True, 'label': 'MABIMS Lama (pre-2022)', 'alt_ok': True, 'elong_ok': True, 'umur_ok': True, 'borderline': False, 'threshold': {'alt': 2.0, 'elong': 3.0, 'umur': 8.0}}}, {'nama': 'Kupang', 'lat': -10.1772, 'lon': 123.607, 'alt': 10.559, 'az': 267.17, 'elong_geo': 14.678, 'umur_jam': 23.21, 'lag_menit': 46.7, 'maghrib_utc': '09:42', 'moonset_utc': '10:29', 'mabims': {'lolos': True, 'label': 'MABIMS Lama (pre-2022)', 'alt_ok': True, 'elong_ok': True, 'umur_ok': True, 'borderline': False, 'threshold': {'alt': 2.0, 'elong': 3.0, 'umur': 8.0}}}, {'nama': 'Ambon', 'lat': -3.655, 'lon': 128.1908, 'alt': 9.425, 'az': 265.91, 'elong_geo': 14.529, 'umur_jam': 22.95, 'lag_menit': 41.3, 'maghrib_utc': '09:26', 'moonset_utc': '10:07', 'mabims': {'lolos': True, 'label': 'MABIMS Lama (pre-2022)', 'alt_ok': True, 'elong_ok': True, 'umur_ok': True, 'borderline': False, 'threshold': {'alt': 2.0, 'elong': 3.0, 'umur': 8.0}}}, {'nama': 'Jayapura', 'lat': -2.5337, 'lon': 140.7181, 'alt': 8.793, 'az': 265.9, 'elong_geo': 14.067, 'umur_jam': 22.12, 'lag_menit': 38.6, 'maghrib_utc': '08:36', 'moonset_utc': '09:15', 'mabims': {'lolos': True, 'label': 'MABIMS Lama (pre-2022)', 'alt_ok': True, 'elong_ok': True, 'umur_ok': True, 'borderline': False, 'threshold': {'alt': 2.0, 'elong': 3.0, 'umur': 8.0}}}]}}",
+        "tanggal": "2010-09-10",
         "ijtimak": "08-09-2010 17:29 WIB",
-        "maghrib": null,
-        "best_time": null,
-        "mabims_label": null,
-        "alt": null,
-        "alt_ok": null,
-        "elong_geo": null,
-        "elong_ok": null,
-        "umur": null,
-        "arcv": null,
-        "elongasi_top": null,
-        "lebar_sabit": null,
-        "illumination": null,
-        "yallop_q": null,
-        "yallop_klas": null,
-        "odeh_v": null,
-        "odeh_klas": null,
-        "prob": null,
-        "kontras": null,
-        "n_lokasi_lolos": 0,
-        "lokasi_lolos": []
+        "maghrib": "17:51 WIB",
+        "moonset": "18:37 WIB",
+        "best_time": "18:11 WIB",
+        "umur_jam": 24.35,
+        "mabims_label": "MABIMS Lama (pre-2022)",
+        "alt": 10.609,
+        "alt_ok": true,
+        "elong_geo": 15.318,
+        "elong_ok": true,
+        "arcv": 11.5364,
+        "elongasi_top": 14.7079,
+        "lebar_sabit": 0.5464,
+        "illumination": 98.1788,
+        "yallop_q": 0.2952,
+        "yallop_klas": "A",
+        "yallop_desk": "Mudah terlihat mata telanjang",
+        "odeh_v": 7.6242,
+        "odeh_klas": "A",
+        "odeh_desk": "Mudah terlihat mata telanjang",
+        "prob": 100.0,
+        "kontras": {
+          "nilai": 0.143756,
+          "keterangan": "Kemungkinan terlihat"
+        },
+        "n_lokasi_lolos": 13,
+        "lokasi_lolos": [
+          {
+            "nama": "Sabang",
+            "lat": 5.8943,
+            "lon": 95.3184,
+            "alt": 8.862,
+            "az": 263.61,
+            "elong_geo": 15.792,
+            "umur_jam": 25.2,
+            "lag_menit": 39.0,
+            "maghrib_utc": "11:41",
+            "moonset_utc": "12:20",
+            "mabims": {
+              "lolos": true,
+              "label": "MABIMS Lama (pre-2022)",
+              "alt_ok": true,
+              "elong_ok": true,
+              "umur_ok": true,
+              "borderline": false,
+              "threshold": {
+                "alt": 2.0,
+                "elong": 3.0,
+                "umur": 8.0
+              }
+            }
+          },
+          {
+            "nama": "Medan",
+            "lat": 3.5952,
+            "lon": 98.6722,
+            "alt": 9.199,
+            "az": 264.07,
+            "elong_geo": 15.658,
+            "umur_jam": 24.96,
+            "lag_menit": 40.3,
+            "maghrib_utc": "11:27",
+            "moonset_utc": "12:07",
+            "mabims": {
+              "lolos": true,
+              "label": "MABIMS Lama (pre-2022)",
+              "alt_ok": true,
+              "elong_ok": true,
+              "umur_ok": true,
+              "borderline": false,
+              "threshold": {
+                "alt": 2.0,
+                "elong": 3.0,
+                "umur": 8.0
+              }
+            }
+          },
+          {
+            "nama": "Padang",
+            "lat": -0.9471,
+            "lon": 100.4172,
+            "alt": 9.973,
+            "az": 264.93,
+            "elong_geo": 15.577,
+            "umur_jam": 24.81,
+            "lag_menit": 43.5,
+            "maghrib_utc": "11:18",
+            "moonset_utc": "12:02",
+            "mabims": {
+              "lolos": true,
+              "label": "MABIMS Lama (pre-2022)",
+              "alt_ok": true,
+              "elong_ok": true,
+              "umur_ok": true,
+              "borderline": false,
+              "threshold": {
+                "alt": 2.0,
+                "elong": 3.0,
+                "umur": 8.0
+              }
+            }
+          },
+          {
+            "nama": "Jakarta",
+            "lat": -6.2088,
+            "lon": 106.8456,
+            "alt": 10.609,
+            "az": 266.1,
+            "elong_geo": 15.318,
+            "umur_jam": 24.35,
+            "lag_menit": 46.5,
+            "maghrib_utc": "10:51",
+            "moonset_utc": "11:37",
+            "mabims": {
+              "lolos": true,
+              "label": "MABIMS Lama (pre-2022)",
+              "alt_ok": true,
+              "elong_ok": true,
+              "umur_ok": true,
+              "borderline": false,
+              "threshold": {
+                "alt": 2.0,
+                "elong": 3.0,
+                "umur": 8.0
+              }
+            }
+          },
+          {
+            "nama": "Bandung",
+            "lat": -6.9175,
+            "lon": 107.6191,
+            "alt": 10.689,
+            "az": 266.26,
+            "elong_geo": 15.287,
+            "umur_jam": 24.3,
+            "lag_menit": 46.9,
+            "maghrib_utc": "10:47",
+            "moonset_utc": "11:34",
+            "mabims": {
+              "lolos": true,
+              "label": "MABIMS Lama (pre-2022)",
+              "alt_ok": true,
+              "elong_ok": true,
+              "umur_ok": true,
+              "borderline": false,
+              "threshold": {
+                "alt": 2.0,
+                "elong": 3.0,
+                "umur": 8.0
+              }
+            }
+          },
+          {
+            "nama": "Surabaya",
+            "lat": -7.2575,
+            "lon": 112.7521,
+            "alt": 10.549,
+            "az": 266.4,
+            "elong_geo": 15.093,
+            "umur_jam": 23.95,
+            "lag_menit": 46.3,
+            "maghrib_utc": "10:27",
+            "moonset_utc": "11:13",
+            "mabims": {
+              "lolos": true,
+              "label": "MABIMS Lama (pre-2022)",
+              "alt_ok": true,
+              "elong_ok": true,
+              "umur_ok": true,
+              "borderline": false,
+              "threshold": {
+                "alt": 2.0,
+                "elong": 3.0,
+                "umur": 8.0
+              }
+            }
+          },
+          {
+            "nama": "Banjarmasin",
+            "lat": -3.3194,
+            "lon": 114.5928,
+            "alt": 9.865,
+            "az": 265.63,
+            "elong_geo": 15.038,
+            "umur_jam": 23.86,
+            "lag_menit": 43.1,
+            "maghrib_utc": "10:21",
+            "moonset_utc": "11:04",
+            "mabims": {
+              "lolos": true,
+              "label": "MABIMS Lama (pre-2022)",
+              "alt_ok": true,
+              "elong_ok": true,
+              "umur_ok": true,
+              "borderline": false,
+              "threshold": {
+                "alt": 2.0,
+                "elong": 3.0,
+                "umur": 8.0
+              }
+            }
+          },
+          {
+            "nama": "Balikpapan",
+            "lat": -1.2379,
+            "lon": 116.8529,
+            "alt": 9.437,
+            "az": 265.27,
+            "elong_geo": 14.961,
+            "umur_jam": 23.72,
+            "lag_menit": 41.2,
+            "maghrib_utc": "10:12",
+            "moonset_utc": "10:54",
+            "mabims": {
+              "lolos": true,
+              "label": "MABIMS Lama (pre-2022)",
+              "alt_ok": true,
+              "elong_ok": true,
+              "umur_ok": true,
+              "borderline": false,
+              "threshold": {
+                "alt": 2.0,
+                "elong": 3.0,
+                "umur": 8.0
+              }
+            }
+          },
+          {
+            "nama": "Makassar",
+            "lat": -5.1477,
+            "lon": 119.4327,
+            "alt": 9.98,
+            "az": 266.06,
+            "elong_geo": 14.851,
+            "umur_jam": 23.52,
+            "lag_menit": 43.7,
+            "maghrib_utc": "10:01",
+            "moonset_utc": "10:44",
+            "mabims": {
+              "lolos": true,
+              "label": "MABIMS Lama (pre-2022)",
+              "alt_ok": true,
+              "elong_ok": true,
+              "umur_ok": true,
+              "borderline": false,
+              "threshold": {
+                "alt": 2.0,
+                "elong": 3.0,
+                "umur": 8.0
+              }
+            }
+          },
+          {
+            "nama": "Manado",
+            "lat": 1.4748,
+            "lon": 124.8421,
+            "alt": 8.685,
+            "az": 264.94,
+            "elong_geo": 14.672,
+            "umur_jam": 23.2,
+            "lag_menit": 38.1,
+            "maghrib_utc": "09:41",
+            "moonset_utc": "10:19",
+            "mabims": {
+              "lolos": true,
+              "label": "MABIMS Lama (pre-2022)",
+              "alt_ok": true,
+              "elong_ok": true,
+              "umur_ok": true,
+              "borderline": false,
+              "threshold": {
+                "alt": 2.0,
+                "elong": 3.0,
+                "umur": 8.0
+              }
+            }
+          },
+          {
+            "nama": "Kupang",
+            "lat": -10.1772,
+            "lon": 123.607,
+            "alt": 10.559,
+            "az": 267.17,
+            "elong_geo": 14.678,
+            "umur_jam": 23.21,
+            "lag_menit": 46.7,
+            "maghrib_utc": "09:42",
+            "moonset_utc": "10:29",
+            "mabims": {
+              "lolos": true,
+              "label": "MABIMS Lama (pre-2022)",
+              "alt_ok": true,
+              "elong_ok": true,
+              "umur_ok": true,
+              "borderline": false,
+              "threshold": {
+                "alt": 2.0,
+                "elong": 3.0,
+                "umur": 8.0
+              }
+            }
+          },
+          {
+            "nama": "Ambon",
+            "lat": -3.655,
+            "lon": 128.1908,
+            "alt": 9.425,
+            "az": 265.91,
+            "elong_geo": 14.529,
+            "umur_jam": 22.95,
+            "lag_menit": 41.3,
+            "maghrib_utc": "09:26",
+            "moonset_utc": "10:07",
+            "mabims": {
+              "lolos": true,
+              "label": "MABIMS Lama (pre-2022)",
+              "alt_ok": true,
+              "elong_ok": true,
+              "umur_ok": true,
+              "borderline": false,
+              "threshold": {
+                "alt": 2.0,
+                "elong": 3.0,
+                "umur": 8.0
+              }
+            }
+          },
+          {
+            "nama": "Jayapura",
+            "lat": -2.5337,
+            "lon": 140.7181,
+            "alt": 8.793,
+            "az": 265.9,
+            "elong_geo": 14.067,
+            "umur_jam": 22.12,
+            "lag_menit": 38.6,
+            "maghrib_utc": "08:36",
+            "moonset_utc": "09:15",
+            "mabims": {
+              "lolos": true,
+              "label": "MABIMS Lama (pre-2022)",
+              "alt_ok": true,
+              "elong_ok": true,
+              "umur_ok": true,
+              "borderline": false,
+              "threshold": {
+                "alt": 2.0,
+                "elong": 3.0,
+                "umur": 8.0
+              }
+            }
+          }
+        ]
       }
     }
   },
@@ -374,5 +1603,5 @@
       }
     }
   },
-  "generated_at": "2026-03-22T20:46:49.779997"
+  "generated_at": "2026-03-22T21:22:07.975948"
 }
