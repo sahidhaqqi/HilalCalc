@@ -443,6 +443,15 @@ function buildDays(days){
     if(h.borderline)statusBadge+='<span class="badge warn" style="margin-left:5px">&#9888; Borderline</span>';
 
     var vis=h.visibilitas||{};
+    if(mb.alt===null||mb.alt===undefined){
+      html+='<div class="day-block"><button class="day-toggle" id="btn'+id+'" onclick="toggleDay(\''+id+'\')">'
+        +'<span>'+e(h.tanggal||'')+'&nbsp;&nbsp;'+(h.maghrib||'')+'</span>'
+        +'<span><span class="badge fail" style="margin-left:8px">&#10007; Dilewati</span>&nbsp;<span class="arrow">&#9660;</span></span>'
+        +'</button><div class="day-body" id="'+id+'">'
+        +'<div class="warn-box">Lag time negatif atau ijtimak setelah maghrib &mdash; perhitungan dilewati.</div>'
+        +'</div></div>';
+      return;
+    }
     var dg=[
       {l:'Altitude (ref)',v:f(mb.alt,2,'&deg;'),    cls:mb.alt_ok?'ok':'fail'},
       {l:'Elong Geo',     v:f(mb.elong_geo,2,'&deg;'),cls:mb.elong_ok?'ok':'fail'},
