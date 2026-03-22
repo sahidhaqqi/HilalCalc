@@ -337,7 +337,7 @@ async function go(arg){
 function render(){
   hide();
   document.getElementById('r-th').textContent=CUR.tahun;
-  document.getElementById('r-m').textContent=CUR.tahun_masehi;
+  var masehi=CUR.ramadan&&CUR.ramadan.ringkas&&CUR.ramadan.ringkas.tanggal?new Date(CUR.ramadan.ringkas.tanggal+'T12:00:00').getFullYear():CUR.tahun_masehi;document.getElementById('r-m').textContent=masehi;
   document.getElementById('r-dt').textContent=CUR.delta_t;
   document.getElementById('dt-box').style.display='';
   document.getElementById('dt-val').textContent=' '+CUR.delta_t+' dtk';
