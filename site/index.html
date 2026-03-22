@@ -1,335 +1,445 @@
-#!/usr/bin/env python3
-"""
-Generate JSON gabungan MABIMS + Muhammadiyah.
-Satu file JSON per tahun berisi kedua metode.
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Hisab Hilal Indonesia — Perbandingan Metode</title>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Crimson+Pro:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#06091a;--bg2:#0a0e24;--card:#0f152e;--card2:#141c38;
+  --gold:#c8922a;--gold-lit:#e8b84b;--gold-dim:rgba(200,146,42,.12);--gold-mid:rgba(200,146,42,.32);
+  --text:#ddd5c0;--muted:#7a7a9a;--ok:#5acea0;--err:#e07878;--info:#78aee0;--warn:#e0c478;
+  --border:rgba(200,146,42,.13);
+  --mabims:#78aee0;--muham:#a78bfa;
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:'Crimson Pro',Georgia,serif;font-size:17px;line-height:1.65;min-height:100vh;overflow-x:hidden}
+#sky{position:fixed;inset:0;z-index:0;pointer-events:none}
+.page{position:relative;z-index:1;max-width:980px;margin:0 auto;padding:56px 20px 90px}
 
-Usage:
-    python generate_json.py
-    python generate_json.py --dari 1444 --sampai 1450
-    python generate_json.py --tahun 1446 1447
-"""
+/* header */
+header{text-align:center;margin-bottom:52px}
+.moon-svg{width:66px;height:66px;margin:0 auto 24px;animation:float 5s ease-in-out infinite;display:block}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
+h1.arabic{font-family:'Amiri',serif;font-size:2.6rem;color:var(--gold-lit);letter-spacing:.03em;margin-bottom:4px}
+.latin-title{font-family:'Amiri',serif;font-size:.95rem;color:var(--muted);letter-spacing:.2em;text-transform:uppercase;margin-bottom:14px}
+.sub{font-family:'DM Mono',monospace;font-size:.76rem;color:var(--muted);letter-spacing:.06em}
 
-import json, io, re, os, sys, contextlib, argparse
-from pathlib import Path
-from datetime import datetime
+/* method nav */
+.method-nav{display:flex;gap:12px;justify-content:center;margin-bottom:32px;flex-wrap:wrap}
+.method-btn{display:flex;flex-direction:column;align-items:center;gap:6px;background:var(--card);border:1px solid var(--border);border-radius:12px;padding:14px 24px;cursor:pointer;text-decoration:none;transition:all .18s;min-width:180px}
+.method-btn:hover{border-color:var(--gold-mid);background:var(--card2)}
+.method-btn .mb-label{font-family:'DM Mono',monospace;font-size:.65rem;text-transform:uppercase;letter-spacing:.1em;color:var(--muted)}
+.method-btn .mb-name{font-family:'Amiri',serif;font-size:1.1rem;color:var(--text)}
+.method-btn.mabims{border-color:rgba(120,174,224,.3)}
+.method-btn.mabims .mb-name{color:var(--mabims)}
+.method-btn.muham{border-color:rgba(167,139,250,.3)}
+.method-btn.muham .mb-name{color:var(--muham)}
 
-print("Memuat backend...")
-import importlib.util
+/* controls */
+.ctrl{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:28px 32px;margin-bottom:28px}
+.lbl{font-family:'DM Mono',monospace;font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:9px;display:block}
+.qy-row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px}
+.btn-yr{background:var(--bg2);border:1px solid var(--border);border-radius:7px;color:var(--muted);font-family:'DM Mono',monospace;font-size:.79rem;padding:7px 13px;cursor:pointer;transition:all .14s}
+.btn-yr:hover{border-color:var(--gold-mid);color:var(--text)}
+.btn-yr.on{background:var(--gold-dim);border-color:var(--gold);color:var(--gold-lit)}
+.inp-row{display:flex;gap:10px}
+.yr-inp{flex:1;background:var(--bg2);border:1px solid var(--border);border-radius:9px;color:var(--text);font-family:'DM Mono',monospace;font-size:1.35rem;padding:11px 16px;outline:none;transition:border-color .2s;letter-spacing:.1em}
+.yr-inp:focus{border-color:var(--gold-mid)}
+.yr-inp::placeholder{color:#2e2e48}
+.btn-go{background:var(--gold);color:#1a0e00;border:none;border-radius:9px;padding:11px 24px;font-family:'Amiri',serif;font-size:1rem;font-weight:700;cursor:pointer;transition:background .14s,transform .1s;letter-spacing:.04em}
+.btn-go:hover{background:var(--gold-lit)}
+.btn-go:active{transform:scale(.97)}
 
-def load_backend(filename):
-    here = os.path.dirname(os.path.abspath(__file__))
-    path = os.path.join(here, filename)
-    if not os.path.exists(path):
-        sys.exit(f"{filename} tidak ditemukan di {here}")
-    spec = importlib.util.spec_from_file_location(filename.replace('.py',''), path)
-    mod  = importlib.util.module_from_spec(spec)
-    with contextlib.redirect_stdout(io.StringIO()):
-        spec.loader.exec_module(mod)
-    return mod
+/* state */
+.loading,.err-box{display:none}
+.loading.on,.err-box.on{display:block}
+.loading{text-align:center;padding:48px 0}
+.cres{width:50px;height:50px;margin:0 auto 18px;animation:spin 2s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.ltxt{font-family:'DM Mono',monospace;font-size:.78rem;color:var(--muted);animation:blink 1.4s infinite}
+@keyframes blink{0%,100%{opacity:.35}50%{opacity:1}}
+.err-box{background:rgba(224,120,120,.07);border:1px solid rgba(224,120,120,.24);border-radius:11px;padding:16px 20px;color:var(--err);font-family:'DM Mono',monospace;font-size:.8rem}
 
-B_mabims = load_backend('hitung_final.py')
-B_muham  = load_backend('hitung_muhammadiyah.py')
-print("Backend MABIMS + Muhammadiyah siap\n")
+/* results */
+.results{display:none;animation:up .4s ease}
+.results.on{display:block}
+@keyframes up{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+.res-meta{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;margin-bottom:24px;font-family:'DM Mono',monospace;font-size:.75rem;color:var(--muted)}
+.res-meta strong{color:var(--gold)}
 
+/* comparison grid */
+.cmp-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:24px}
+@media(max-width:600px){.cmp-grid{grid-template-columns:1fr}}
 
-# ═══════════════════════════════════════════════════════
-# HELPER
-# ═══════════════════════════════════════════════════════
-def rx(text, pattern, cast=str, default=None):
-    m = re.search(pattern, text)
-    if not m: return default
-    try:    return cast(m.group(1))
-    except: return default
+/* method card */
+.mcard{background:var(--card);border:1px solid var(--border);border-radius:14px;overflow:hidden}
+.mcard.mabims{border-top:3px solid var(--mabims)}
+.mcard.muham{border-top:3px solid var(--muham)}
+.mc-head{padding:16px 20px 12px;border-bottom:1px solid var(--border)}
+.mc-org{font-family:'DM Mono',monospace;font-size:.63rem;text-transform:uppercase;letter-spacing:.1em;margin-bottom:4px}
+.mcard.mabims .mc-org{color:var(--mabims)}
+.mcard.muham  .mc-org{color:var(--muham)}
+.mc-name{font-family:'Amiri',serif;font-size:1.2rem;color:var(--text)}
+.mc-desc{font-family:'DM Mono',monospace;font-size:.64rem;color:var(--muted);margin-top:3px}
 
+/* date block */
+.mc-dates{display:grid;grid-template-columns:1fr 1fr;border-bottom:1px solid var(--border)}
+.mc-date{padding:14px 18px;border-right:1px solid var(--border)}
+.mc-date:last-child{border-right:none}
+.mc-dlbl{font-family:'DM Mono',monospace;font-size:.6rem;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-bottom:3px}
+.mc-dval{font-family:'Amiri',serif;font-size:1.4rem;color:var(--text);line-height:1.2}
+.mc-dsub{font-family:'DM Mono',monospace;font-size:.65rem;color:var(--muted);margin-top:2px}
 
-# ═══════════════════════════════════════════════════════
-# PARSER MABIMS (hitung_final.py)
-# ═══════════════════════════════════════════════════════
-def parse_multilokasi_mabims(blok):
-    n_match = re.search(r'LOKASI YANG MEMENUHI MABIMS NASIONAL \((\d+) titik\)', blok)
-    if not n_match:
-        return None
-    lokasi_list = []
-    for m in re.finditer(
-        r'-\s+(.+?):\s+alt=([-\d.]+)°,\s+az=([\d.]+)°,\s+'
-        r'elong=([\d.]+)°,\s+umur=([\d.]+)\s+jam,\s+lag=([\d.]+)\s+menit,\s+'
-        r'maghrib=(\d{2}:\d{2})\s+UTC,\s+moonset=(\d{2}:\d{2})\s+UTC',
-        blok
-    ):
-        lokasi_list.append({
-            'nama': m.group(1).strip(),
-            'alt': float(m.group(2)), 'az': float(m.group(3)),
-            'elong': float(m.group(4)), 'umur': float(m.group(5)),
-            'lag_menit': float(m.group(6)),
-            'maghrib_utc': m.group(7), 'moonset_utc': m.group(8),
-        })
-    return {'n_lokasi': int(n_match.group(1)), 'lokasi': lokasi_list}
+/* params mini */
+.mc-params{padding:12px 18px;border-bottom:1px solid var(--border)}
+.mc-ptitle{font-family:'DM Mono',monospace;font-size:.59rem;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-bottom:7px}
+.mini-chips{display:flex;gap:6px;flex-wrap:wrap}
+.mchip{background:var(--bg2);border:1px solid var(--border);border-radius:5px;padding:5px 9px;font-family:'DM Mono',monospace;font-size:.67rem;display:flex;flex-direction:column;gap:1px}
+.mchip .mcl{font-size:.54rem;color:var(--muted);text-transform:uppercase;letter-spacing:.07em}
+.mchip .mcv{color:var(--text)}
+.mchip.ok .mcv{color:var(--ok)}
+.mchip.fail .mcv{color:var(--err)}
 
-def parse_scan(blok):
-    if 'SCAN VISIBILITAS INDONESIA' not in blok:
-        return None
-    n_match = re.search(r'Wilayah potensial rukyat:\s*(\d+)\s*titik', blok)
-    n = int(n_match.group(1)) if n_match else 0
-    titik = [{'lat': float(m.group(1)), 'lon': float(m.group(2))}
-             for m in re.finditer(r'lat=([-\d.]+),\s*lon=([-\d.]+)', blok)]
-    return {'n_titik_grid': n, 'titik_sampel': titik}
+.mc-link{display:block;padding:11px 18px;font-family:'DM Mono',monospace;font-size:.72rem;text-align:center;text-decoration:none;transition:background .14s}
+.mcard.mabims .mc-link{color:var(--mabims)}
+.mcard.mabims .mc-link:hover{background:rgba(120,174,224,.06)}
+.mcard.muham  .mc-link{color:var(--muham)}
+.mcard.muham  .mc-link:hover{background:rgba(167,139,250,.06)}
 
-def parse_hari_mabims(blok):
-    tanggal     = rx(blok, r'Memeriksa maghrib tanggal (\d{4}-\d{2}-\d{2})')
-    maghrib     = rx(blok, r'Maghrib: (\d{2}:\d{2} WIB)')
-    maghrib_utc = rx(blok, r'Maghrib:.*?\((\d{2}:\d{2} UTC)\)')
-    best_time   = rx(blok, r'[Bb]est time.*?(\d{2}:\d{2} WIB)')
+/* selisih banner */
+.selisih-banner{background:var(--card2);border:1px solid var(--border);border-radius:12px;padding:16px 22px;margin-bottom:20px}
+.sb-title{font-family:'DM Mono',monospace;font-size:.63rem;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-bottom:12px}
+.sb-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.sb-item{display:flex;justify-content:space-between;align-items:center;background:var(--bg2);border-radius:8px;padding:10px 14px;border:1px solid var(--border)}
+.sb-label{font-family:'DM Mono',monospace;font-size:.7rem;color:var(--muted)}
+.sb-val{font-family:'DM Mono',monospace;font-size:.88rem}
+.sb-val.same{color:var(--ok)}
+.sb-val.diff1{color:var(--warn)}
+.sb-val.diff2{color:var(--err)}
 
-    mabims = None
-    mm = re.search(
-        r'\[MABIMS\s+\w+\]\s+(.+?):\s+alt=([-\d.]+)°\s*\(([✓✗])\).*?'
-        r'elong_geo=([-\d.]+)°\s*\(([✓✗])\).*?'
-        r'umur=([-\d.]+)\s+jam\s*\(([✓✗])\).*?->\s*(.*?)$',
-        blok, re.MULTILINE
-    )
-    if mm:
-        mabims = {
-            'label': mm.group(1).strip(), 'lolos': 'Lolos' in mm.group(8),
-            'alt': float(mm.group(2)), 'alt_ok': mm.group(3) == '✓',
-            'elong_geo': float(mm.group(4)), 'elong_ok': mm.group(5) == '✓',
-            'umur': float(mm.group(6)), 'umur_ok': mm.group(7) == '✓',
-        }
+/* tabel semua tahun */
+.panel{display:none}.panel.on{display:block}
+.tabs{display:flex;gap:6px;margin-bottom:20px}
+.tab{background:var(--bg2);border:1px solid var(--border);border-radius:8px;color:var(--muted);font-family:'DM Mono',monospace;font-size:.78rem;padding:8px 18px;cursor:pointer;transition:all .14s}
+.tab:hover{color:var(--text)}
+.tab.on{background:var(--gold-dim);border-color:var(--gold);color:var(--gold-lit)}
+.idx-wrap{background:var(--card);border:1px solid var(--border);border-radius:13px;overflow:hidden;overflow-x:auto}
+.idx-wrap table{width:100%;border-collapse:collapse;font-family:'DM Mono',monospace;font-size:.72rem;min-width:700px}
+.idx-wrap th{padding:9px 12px;text-align:left;font-size:.58rem;text-transform:uppercase;letter-spacing:.09em;color:var(--muted);border-bottom:1px solid var(--border);background:var(--bg2);font-weight:400}
+.idx-wrap th.mabims-h{color:var(--mabims)}
+.idx-wrap th.muham-h{color:var(--muham)}
+.idx-wrap td{padding:9px 12px;border-bottom:1px solid var(--border);color:var(--text)}
+.idx-wrap tr:last-child td{border-bottom:none}
+.idx-wrap tr:hover td{background:var(--bg2)}
+.idx-wrap td a{color:var(--gold);text-decoration:none;cursor:pointer}
+.idx-wrap td a:hover{color:var(--gold-lit)}
+.dot{width:6px;height:6px;border-radius:50%;display:inline-block;margin-right:3px;vertical-align:middle}
+.dot.ok{background:var(--ok)}.dot.fail{background:var(--err)}.dot.na{background:var(--muted)}
+.selisih-badge{font-size:.65rem;padding:1px 6px;border-radius:4px;margin-left:4px}
+.selisih-badge.s0{background:rgba(90,206,160,.12);color:var(--ok)}
+.selisih-badge.s1{background:rgba(224,196,120,.12);color:var(--warn)}
+.selisih-badge.s2{background:rgba(224,120,120,.12);color:var(--err)}
 
-    borderline = None
-    bm = re.search(r'Elongasi borderline \(([\d.]+)°.*?kurang ([\d.]+)°', blok)
-    if bm:
-        borderline = {'elong_actual': float(bm.group(1)), 'kurang_dari': float(bm.group(2)),
-                      'pesan': 'Rukyat mungkin berhasil, keputusan final di Sidang Isbat'}
+/* disclaimer */
+.disclaimer{background:rgba(120,174,224,.05);border:1px solid rgba(120,174,224,.15);border-radius:10px;padding:12px 18px;font-family:'DM Mono',monospace;font-size:.7rem;color:var(--muted);margin-top:20px;line-height:1.7}
+.disclaimer strong{color:var(--info)}
 
-    vis = {
-        'alt_bulan_airless':    rx(blok, r'Altitude bulan \(airless\): ([-\d.]+)', cast=float),
-        'alt_matahari_airless': rx(blok, r'Matahari: ([-\d.]+)', cast=float),
-        'elongasi_top':         rx(blok, r'Elongasi \(toposentrik\): ([\d.]+)', cast=float),
-        'arcv':                 rx(blok, r'ARCV \(airless\): ([-\d.]+)', cast=float),
-        'lebar_sabit_menit':    rx(blok, r'Lebar sabit: ([\d.]+)', cast=float),
-        'illumination_pct':     rx(blok, r'Illumination: ([\d.]+)', cast=float),
-    }
+footer{margin-top:64px;text-align:center;font-family:'DM Mono',monospace;font-size:.67rem;color:var(--muted);letter-spacing:.04em;opacity:.45;border-top:1px solid var(--border);padding-top:22px}
+</style>
+</head>
+<body>
+<canvas id="sky"></canvas>
+<div class="page">
 
-    yk = rx(blok, r'Yallop q = [-\d.]+ -> (.+)')
-    ok = rx(blok, r'Odeh V = [-\d.]+ -> (.+)')
-    yallop = {'q': rx(blok, r'Yallop q = ([-\d.]+)', cast=float), 'huruf': yk[0] if yk else None, 'kelas': yk}
-    odeh   = {'v': rx(blok, r'Odeh V = ([-\d.]+)', cast=float),   'huruf': ok[0] if ok else None, 'kelas': ok}
+<header>
+  <svg class="moon-svg" viewBox="0 0 68 68" fill="none">
+    <circle cx="34" cy="34" r="32" stroke="#c8922a" stroke-width="1" opacity=".18"/>
+    <path d="M34 6 C18 6 8 19 8 34 C8 49 18 62 34 62 C22 55 14 45 14 34 C14 23 22 13 34 6Z" fill="#c8922a" opacity=".85"/>
+    <circle cx="44" cy="18" r="2.5" fill="#e8b84b" opacity=".6"/>
+    <circle cx="52" cy="32" r="1.5" fill="#e8b84b" opacity=".38"/>
+    <circle cx="42" cy="44" r="2" fill="#e8b84b" opacity=".5"/>
+  </svg>
+  <h1 class="arabic">&#x647;&#x650;&#x633;&#x064E;&#x627;&#x628; &#x627;&#x644;&#x652;&#x647;&#x650;&#x644;&#x627;&#x644;</h1>
+  <p class="latin-title">Hisab Awal Bulan Hijriyah — Perbandingan Metode</p>
+  <p class="sub">MABIMS 2022 (Kemenag) &middot; Hisab Hakiki Wujudul Hilal (Muhammadiyah)</p>
+</header>
 
-    prob = rx(blok, r'Probabilitas terlihat: ([\d.]+)', cast=float)
-    kv   = rx(blok, r'Kontras hilal vs langit: ([\d.]+)', cast=float)
-    ket  = None
-    if   re.search(r'Hilal sangat mudah',   blok): ket = 'Sangat mudah terlihat'
-    elif re.search(r'Hilal kemungkinan',     blok): ket = 'Kemungkinan terlihat'
-    elif re.search(r'Hilal sangat sulit',    blok): ket = 'Sangat sulit terlihat'
-    elif re.search(r'Hilal hampir mustahil', blok): ket = 'Hampir mustahil terlihat'
+<div class="method-nav">
+  <a class="method-btn mabims" href="mabims.html">
+    <span class="mb-label">Detail Lengkap</span>
+    <span class="mb-name">MABIMS / Kemenag</span>
+    <span class="mb-label" style="color:var(--mabims);opacity:.7">Yallop &middot; Odeh &middot; 13 Lokasi</span>
+  </a>
+  <a class="method-btn muham" href="muhammadiyah.html">
+    <span class="mb-label">Detail Lengkap</span>
+    <span class="mb-name">Muhammadiyah</span>
+    <span class="mb-label" style="color:var(--muham);opacity:.7">Hisab Hakiki Wujudul Hilal</span>
+  </a>
+</div>
 
-    multilokasi  = parse_multilokasi_mabims(blok)
-    lolos_mabims = multilokasi is not None
-    am = re.search(r'awal bulan = (\d{4}-\d{2}-\d{2})', blok)
+<div class="ctrl">
+  <span class="lbl">Pilih Tahun Hijriah</span>
+  <div class="qy-row" id="qy-row"><span style="font-family:'DM Mono',monospace;font-size:.72rem;color:var(--muted)">Memuat...</span></div>
+  <span class="lbl" style="margin-top:8px">Manual</span>
+  <div class="inp-row">
+    <input type="number" id="yr-inp" class="yr-inp" placeholder="1446" min="1400" max="1500">
+    <button class="btn-go" onclick="go()">Bandingkan &#9789;</button>
+  </div>
+</div>
 
-    return {
-        'tanggal': tanggal, 'maghrib': maghrib, 'maghrib_utc': maghrib_utc, 'best_time': best_time,
-        'mabims_jakarta': mabims, 'borderline': borderline, 'visibilitas': vis,
-        'yallop': yallop, 'odeh': odeh, 'probabilitas_pct': prob,
-        'kontras': {'nilai': kv, 'keterangan': ket},
-        'multilokasi': multilokasi, 'lolos_mabims': lolos_mabims,
-        'awal_bulan': am.group(1) if am else None,
-        'scan_indonesia': parse_scan(blok),
-    }
+<div class="err-box" id="err-box"></div>
+<div class="loading" id="loading">
+  <div class="cres">
+    <svg viewBox="0 0 52 52" fill="none">
+      <path d="M26 3 A23 23 0 0 1 26 49 A15 15 0 0 0 26 3Z" fill="#c8922a" opacity=".9"/>
+      <circle cx="26" cy="26" r="24" stroke="#c8922a" stroke-width="1.2" opacity=".18" fill="none"/>
+    </svg>
+  </div>
+  <p class="ltxt" id="ltxt">Memuat data...</p>
+</div>
 
-def parse_log_mabims(log, tanggal_result):
-    ijtimak_wib = rx(log, r'Ijtimak: (\d{2}-\d{2}-\d{4} \d{2}:\d{2} WIB)')
-    tgl_newmoon = rx(log, r'tanggal lokal: (\d{4}-\d{2}-\d{2})')
-    ijtimak_info= rx(log, r'Ijtimak (sebelum|sesudah|setelah) maghrib[^\n]*')
+<div class="results" id="results">
+  <div class="res-meta">
+    <span>Tahun <strong id="r-th">&#8212;</strong> H / <strong id="r-m">&#8212;</strong> M</span>
+    <span>&#916;T &asymp; <strong id="r-dt">&#8212;</strong> dtk</span>
+  </div>
 
-    blok_pat = re.compile(
-        r'(Memeriksa maghrib tanggal \d{4}-\d{2}-\d{2}.*?)(?=Memeriksa maghrib tanggal|Perkiraan awal bulan|\Z)',
-        re.DOTALL)
-    hari_list  = [parse_hari_mabims(b.group(1)) for b in blok_pat.finditer(log)]
-    hari_lolos = next((h for h in hari_list if h['lolos_mabims']), None)
-    istikmal_m = re.search(r'istikmal\) = (\d{4}-\d{2}-\d{2})', log, re.IGNORECASE)
-    rk = hari_lolos
-    mj = rk['mabims_jakarta'] if rk else None
-    ml = rk['multilokasi']    if rk else None
+  <div class="tabs">
+    <button class="tab on" onclick="switchTab('cmp',this)">Perbandingan</button>
+    <button class="tab" onclick="switchTab('all',this)">Semua Tahun</button>
+  </div>
 
-    return {
-        'tanggal_awal': str(tanggal_result),
-        'ijtimak_wib': ijtimak_wib, 'ijtimak_tgl_lokal': tgl_newmoon, 'ijtimak_posisi': ijtimak_info,
-        'hari_diperiksa': hari_list, 'hari_lolos': hari_lolos,
-        'istikmal': istikmal_m.group(1) if istikmal_m else None,
-        'scan_indonesia': hari_lolos['scan_indonesia'] if hari_lolos else None,
-        'mabims_lolos': hari_lolos is not None,
-        'ringkas': {
-            'tanggal': str(tanggal_result), 'ijtimak': ijtimak_wib,
-            'maghrib':      rk['maghrib']                          if rk else None,
-            'best_time':    rk['best_time']                        if rk else None,
-            'mabims_label': mj['label']                            if mj else None,
-            'alt':          mj['alt']                              if mj else None,
-            'alt_ok':       mj['alt_ok']                           if mj else None,
-            'elong_geo':    mj['elong_geo']                        if mj else None,
-            'elong_ok':     mj['elong_ok']                         if mj else None,
-            'umur':         mj['umur']                             if mj else None,
-            'arcv':         rk['visibilitas']['arcv']              if rk else None,
-            'elongasi_top': rk['visibilitas']['elongasi_top']      if rk else None,
-            'lebar_sabit':  rk['visibilitas']['lebar_sabit_menit'] if rk else None,
-            'illumination': rk['visibilitas']['illumination_pct']  if rk else None,
-            'yallop_q':     rk['yallop']['q']                      if rk else None,
-            'yallop_klas':  rk['yallop']['kelas']                  if rk else None,
-            'odeh_v':       rk['odeh']['v']                        if rk else None,
-            'odeh_klas':    rk['odeh']['kelas']                    if rk else None,
-            'prob':         rk['probabilitas_pct']                 if rk else None,
-            'kontras':      rk['kontras']                          if rk else None,
-            'n_lokasi_lolos': ml['n_lokasi']                       if ml else 0,
-            'lokasi_lolos':   ml['lokasi']                         if ml else [],
-        },
-    }
+  <div class="panel on" id="panel-cmp">
+    <!-- Selisih banner -->
+    <div class="selisih-banner" id="selisih-banner"></div>
+    <!-- Comparison cards -->
+    <div class="cmp-grid" id="cmp-grid"></div>
+  </div>
 
+  <div class="panel" id="panel-all"></div>
 
-# ═══════════════════════════════════════════════════════
-# PARSER MUHAMMADIYAH (hitung_muhammadiyah.py)
-# ═══════════════════════════════════════════════════════
-def parse_log_muhammadiyah(data_dict, tanggal_result):
-    """
-    hitung_muhammadiyah.py sudah return structured dict langsung,
-    jadi kita tidak perlu parse log — tinggal reformat sedikit.
-    """
-    rk = data_dict.get('ringkas', {})
-    return {
-        'tanggal_awal':      data_dict.get('tanggal_awal', str(tanggal_result)),
-        'ijtimak_wib':       data_dict.get('ijtimak_wib'),
-        'ijtimak_tgl_lokal': data_dict.get('ijtimak_tgl_lokal'),
-        'ijtimak_posisi':    data_dict.get('ijtimak_posisi'),
-        'wujudul_lolos':     data_dict.get('wujudul_lolos', False),
-        'istikmal':          data_dict.get('istikmal', False),
-        'hari_diperiksa':    data_dict.get('hari_diperiksa', []),
-        'scan_indonesia':    data_dict.get('scan_indonesia'),
-        'ringkas': {
-            'tanggal':        data_dict.get('tanggal_awal', str(tanggal_result)),
-            'ijtimak':        rk.get('ijtimak'),
-            'maghrib':        rk.get('maghrib'),
-            'moonset':        rk.get('moonset'),
-            'best_time':      rk.get('best_time'),
-            'umur_jam':       rk.get('umur_jam'),
-            'alt_jakarta':    rk.get('alt_jakarta'),
-            'syarat_ijtimak': rk.get('syarat_ijtimak'),
-            'syarat_alt':     rk.get('syarat_alt'),
-            'arcv':           rk.get('arcv'),
-            'lebar_sabit':    rk.get('lebar_sabit'),
-            'illumination':   rk.get('illumination'),
-            'n_lokasi_lolos': rk.get('n_lokasi_lolos', 0),
-            'lokasi_lolos':   (data_dict.get('hari_diperiksa') or [{}])[-1].get('multilokasi', {}).get('lokasi', [])
-                              if data_dict.get('wujudul_lolos') else [],
-        },
-    }
+  <div class="disclaimer">
+    <strong>Catatan:</strong> Ini adalah perbandingan hisab astronomi.
+    MABIMS menggunakan kriteria altitude &ge;3&deg; dan elongasi &ge;6.4&deg; (multi-lokasi 13 titik).
+    Muhammadiyah menggunakan Hisab Hakiki Wujudul Hilal: ijtimak sebelum maghrib dan bulan di atas ufuk.
+    Keputusan resmi masing-masing organisasi dapat berbeda dari hasil hisab ini.
+  </div>
+</div>
 
+<footer>
+  Ephemeris DE440 &middot; Skyfield &middot; Data precomputed &middot; Tanpa server<br>
+  MABIMS 2022 + Hisab Hakiki Wujudul Hilal &middot; 13 Titik Representatif Indonesia
+</footer>
+</div>
 
-# ═══════════════════════════════════════════════════════
-# HITUNG SATU TAHUN
-# ═══════════════════════════════════════════════════════
-def hitung_tahun(tahun):
-    from hijridate import Hijri
-    tahun_m = Hijri(tahun, 1, 1).to_gregorian().year
-    delta_t = round(B_mabims.delta_t_approx(tahun_m), 1)
+<script>
+(function(){
+  var c=document.getElementById('sky'),ctx=c.getContext('2d'),s=[];
+  function rsz(){c.width=innerWidth;c.height=innerHeight}
+  function init(){s=[];var n=Math.floor(c.width*c.height/5200);for(var i=0;i<n;i++)s.push({x:Math.random()*c.width,y:Math.random()*c.height,r:Math.random()*1.1+.2,a:Math.random(),da:(Math.random()*.004+.001)*(Math.random()<.5?1:-1)})}
+  function draw(){ctx.clearRect(0,0,c.width,c.height);for(var i=0;i<s.length;i++){var p=s[i];p.a=Math.max(.1,Math.min(.88,p.a+p.da));if(p.a<=.1||p.a>=.88)p.da*=-1;ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);ctx.fillStyle='rgba(220,210,190,'+p.a*.42+')';ctx.fill()}requestAnimationFrame(draw)}
+  rsz();init();draw();window.addEventListener('resize',function(){rsz();init()});
+})();
 
-    # ── MABIMS ──
-    earth_m = B_mabims.eph['earth']
-    topos_m = B_mabims.wgs84.latlon(B_mabims.LATITUDE, B_mabims.LONGITUDE, elevation_m=B_mabims.ELEVATION)
-    lokasi_m = earth_m + topos_m
+function e(s){return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}
+function f(v,d,u){if(v===null||v===undefined)return '&#8212;';return (+v).toFixed(d||2)+(u?' '+u:'')}
+function fDate(s){if(!s)return '&#8212;';return new Date(s+'T12:00:00').toLocaleDateString('id-ID',{weekday:'long',day:'numeric',month:'long',year:'numeric'})}
+function fShort(s){if(!s)return '&#8212;';return new Date(s+'T12:00:00').toLocaleDateString('id-ID',{day:'numeric',month:'short',year:'numeric'})}
 
-    hasil_mabims = {}
-    for bulan, key in [(9, 'ramadan'), (10, 'syawal')]:
-        buf = io.StringIO()
-        with contextlib.redirect_stdout(buf):
-            tgl = B_mabims.hitung_awal_bulan_hijriah(tahun, bulan, B_mabims.ts, B_mabims.eph, topos_m, lokasi_m)
-        hasil_mabims[key] = parse_log_mabims(buf.getvalue(), tgl)
+function selisihHari(a,b){
+  if(!a||!b)return null;
+  var da=new Date(a+'T12:00:00'),db=new Date(b+'T12:00:00');
+  return Math.round((da-db)/(1000*60*60*24));
+}
 
-    # ── MUHAMMADIYAH ──
-    earth_u = B_muham.eph['earth']
-    topos_u = B_muham.wgs84.latlon(B_muham.LATITUDE, B_muham.LONGITUDE, elevation_m=B_muham.ELEVATION)
-    lokasi_u = earth_u + topos_u
+var IDX=null,CUR=null;
 
-    hasil_muham = {}
-    for bulan, key in [(9, 'ramadan'), (10, 'syawal')]:
-        buf = io.StringIO()
-        with contextlib.redirect_stdout(buf):
-            data = B_muham.hitung_awal_bulan_hijriah(tahun, bulan, B_muham.ts, B_muham.eph, topos_u, lokasi_u)
-        hasil_muham[key] = parse_log_muhammadiyah(data, data.get('tanggal_awal'))
+async function loadIdx(){
+  try{
+    var r=await fetch('data/index.json');
+    if(!r.ok)throw 0;
+    IDX=await r.json();
+    renderQY();renderAll();
+  }catch(x){
+    document.getElementById('qy-row').innerHTML='<span style="font-family:\'DM Mono\',monospace;font-size:.72rem;color:var(--muted)">Masukkan tahun manual</span>';
+  }
+}
 
-    return {
-        'tahun':             tahun,
-        'tahun_masehi':      tahun_m,
-        'delta_t':           delta_t,
-        'n_lokasi_evaluasi': len(B_mabims.LOKASI_INDONESIA),
-        'lokasi_ref': {
-            'lat': B_mabims.LATITUDE, 'lon': B_mabims.LONGITUDE,
-            'elevasi': B_mabims.ELEVATION, 'tz': 'WIB (UTC+7)',
-        },
-        'mabims':        hasil_mabims,
-        'muhammadiyah':  hasil_muham,
-        'generated_at':  datetime.now().isoformat(),
-    }
+function renderQY(){
+  var w=document.getElementById('qy-row');w.innerHTML='';
+  if(!IDX)return;
+  IDX.tahun_tersedia.forEach(function(t){
+    var b=document.createElement('button');
+    b.className='btn-yr';b.textContent=t+' H';b.setAttribute('data-t',t);
+    b.onclick=function(){go(t)};w.appendChild(b);
+  });
+}
 
+function dotB(v){
+  if(v===true)return '<span class="dot ok"></span>';
+  if(v===false)return '<span class="dot fail"></span>';
+  return '<span class="dot na"></span>';
+}
 
-# ═══════════════════════════════════════════════════════
-# MAIN
-# ═══════════════════════════════════════════════════════
-def main():
-    ap = argparse.ArgumentParser()
-    ap.add_argument('--tahun',  nargs='+', type=int)
-    ap.add_argument('--dari',   type=int, default=1444)
-    ap.add_argument('--sampai', type=int, default=1450)
-    ap.add_argument('--output', type=str, default='data')
-    args = ap.parse_args()
+function renderAll(){
+  var p=document.getElementById('panel-all');
+  if(!IDX||!IDX.data.length){p.innerHTML='';return}
+  var rows=IDX.data.map(function(row){
+    var sr=selisihHari(row.mabims.ramadan_tanggal, row.muhammadiyah.ramadan_tanggal);
+    var ss=selisihHari(row.mabims.syawal_tanggal,  row.muhammadiyah.syawal_tanggal);
+    function sBadge(s){if(s===null)return '';var cls=s===0?'s0':Math.abs(s)===1?'s1':'s2';return '<span class="selisih-badge '+cls+'">'+(s>0?'+':'')+s+' hr</span>'}
+    return '<tr>'
+      +'<td><a onclick="go('+row.tahun+')">'+row.tahun+'</a></td>'
+      +'<td>'+row.tahun_masehi+'</td>'
+      +'<td class="mabims-c">'+fShort(row.mabims.ramadan_tanggal)+dotB(row.mabims.ramadan_lolos)+'</td>'
+      +'<td class="muham-c">'+fShort(row.muhammadiyah.ramadan_tanggal)+dotB(row.muhammadiyah.ramadan_lolos)+sBadge(sr)+'</td>'
+      +'<td class="mabims-c">'+fShort(row.mabims.syawal_tanggal)+dotB(row.mabims.syawal_lolos)+'</td>'
+      +'<td class="muham-c">'+fShort(row.muhammadiyah.syawal_tanggal)+dotB(row.muhammadiyah.syawal_lolos)+sBadge(ss)+'</td>'
+      +'</tr>';
+  }).join('');
+  p.innerHTML='<div class="idx-wrap"><table>'
+    +'<thead><tr>'
+    +'<th>Tahun H</th><th>M</th>'
+    +'<th class="mabims-h">1 Ramadan (MABIMS)</th><th class="muham-h">1 Ramadan (Muham)</th>'
+    +'<th class="mabims-h">1 Syawal (MABIMS)</th><th class="muham-h">1 Syawal (Muham)</th>'
+    +'</tr></thead><tbody>'+rows+'</tbody></table></div>';
+}
 
-    tahun_list = sorted(args.tahun) if args.tahun else list(range(args.dari, args.sampai + 1))
-    out_dir = Path(args.output)
-    out_dir.mkdir(exist_ok=True)
+async function go(arg){
+  var inp=document.getElementById('yr-inp');
+  var t=arg||parseInt(inp.value);
+  if(!t||t<1400||t>1500){showErr('Tahun Hijriah harus 1400-1500');return}
+  document.querySelectorAll('.btn-yr').forEach(function(b){b.classList.remove('on')});
+  var ab=document.querySelector('.btn-yr[data-t="'+t+'"]');if(ab)ab.classList.add('on');
+  if(!arg)inp.value=t;
+  hide();setState('loading','Memuat '+t+' H...');
+  try{
+    var r=await fetch('data/'+t+'.json');
+    if(!r.ok)throw new Error('Data '+t+' H belum ada.\nJalankan: python generate_json.py --tahun '+t);
+    CUR=await r.json();
+    render();
+  }catch(ex){setState('error',ex.message)}
+}
 
-    print(f"Menghitung {len(tahun_list)} tahun: {tahun_list[0]}-{tahun_list[-1]} H")
-    print(f"Output -> {out_dir.resolve()}\n" + "-"*60)
+function render(){
+  hide();
+  var masehi=CUR.mabims&&CUR.mabims.ramadan&&CUR.mabims.ramadan.ringkas&&CUR.mabims.ramadan.ringkas.tanggal
+    ?new Date(CUR.mabims.ramadan.ringkas.tanggal+'T12:00:00').getFullYear():CUR.tahun_masehi;
+  document.getElementById('r-th').textContent=CUR.tahun;
+  document.getElementById('r-m').textContent=masehi;
+  document.getElementById('r-dt').textContent=CUR.delta_t;
 
-    idx_rows, failed = [], []
-    for i, tahun in enumerate(tahun_list, 1):
-        print(f"[{i:02d}/{len(tahun_list)}] {tahun} H ...", end=' ', flush=True)
-        try:
-            data = hitung_tahun(tahun)
-            with open(out_dir / f"{tahun}.json", 'w', encoding='utf-8') as f:
-                json.dump(data, f, ensure_ascii=False, indent=2)
+  renderSelisih();
+  renderCards();
+  document.getElementById('results').classList.add('on');
+  switchTab('cmp',document.querySelector('.tab.on'));
+  document.getElementById('results').scrollIntoView({behavior:'smooth',block:'start'});
+}
 
-            rm = data['mabims']['ramadan']['ringkas']
-            sm = data['mabims']['syawal']['ringkas']
-            ru = data['muhammadiyah']['ramadan']['ringkas']
-            su = data['muhammadiyah']['syawal']['ringkas']
+function renderSelisih(){
+  var mb_r=CUR.mabims&&CUR.mabims.ramadan&&CUR.mabims.ramadan.ringkas;
+  var mb_s=CUR.mabims&&CUR.mabims.syawal&&CUR.mabims.syawal.ringkas;
+  var mu_r=CUR.muhammadiyah&&CUR.muhammadiyah.ramadan&&CUR.muhammadiyah.ramadan.ringkas;
+  var mu_s=CUR.muhammadiyah&&CUR.muhammadiyah.syawal&&CUR.muhammadiyah.syawal.ringkas;
 
-            print(f"OK  MABIMS: R={rm['tanggal']} S={sm['tanggal']} | "
-                  f"Muham: R={ru['tanggal']} S={su['tanggal']}")
+  var sr=selisihHari(mb_r&&mb_r.tanggal, mu_r&&mu_r.tanggal);
+  var ss=selisihHari(mb_s&&mb_s.tanggal, mu_s&&mu_s.tanggal);
 
-            idx_rows.append({
-                'tahun': tahun, 'tahun_masehi': data['tahun_masehi'],
-                'mabims': {
-                    'ramadan_tanggal': rm['tanggal'], 'ramadan_lolos': data['mabims']['ramadan']['mabims_lolos'],
-                    'syawal_tanggal':  sm['tanggal'], 'syawal_lolos':  data['mabims']['syawal']['mabims_lolos'],
-                    'ramadan_prob': rm.get('prob'), 'syawal_prob': sm.get('prob'),
-                },
-                'muhammadiyah': {
-                    'ramadan_tanggal': ru['tanggal'], 'ramadan_lolos': data['muhammadiyah']['ramadan']['wujudul_lolos'],
-                    'syawal_tanggal':  su['tanggal'], 'syawal_lolos':  data['muhammadiyah']['syawal']['wujudul_lolos'],
-                    'ramadan_n_lok': ru.get('n_lokasi_lolos', 0),
-                    'syawal_n_lok':  su.get('n_lokasi_lolos', 0),
-                },
-            })
-        except Exception as ex:
-            import traceback; traceback.print_exc()
-            print(f"GAGAL: {ex}")
-            failed.append(tahun)
+  function selisihHtml(s,label){
+    if(s===null)return '<div class="sb-item"><span class="sb-label">'+label+'</span><span class="sb-val">&#8212;</span></div>';
+    var cls=s===0?'same':Math.abs(s)===1?'diff1':'diff2';
+    var txt=s===0?'Sama':(s>0?'MABIMS +'+s+' hari':'Muham +'+Math.abs(s)+' hari');
+    return '<div class="sb-item"><span class="sb-label">'+label+'</span><span class="sb-val '+cls+'">'+txt+'</span></div>';
+  }
 
-    with open(out_dir / 'index.json', 'w', encoding='utf-8') as f:
-        json.dump({'tahun_tersedia': [r['tahun'] for r in idx_rows],
-                   'data': idx_rows, 'generated_at': datetime.now().isoformat()},
-                  f, ensure_ascii=False, indent=2)
+  document.getElementById('selisih-banner').innerHTML=
+    '<div class="sb-title">Selisih Penetapan</div>'
+    +'<div class="sb-grid">'
+    +selisihHtml(sr,'1 Ramadan')
+    +selisihHtml(ss,'1 Syawal')
+    +'</div>';
+}
 
-    print(f"\n{'─'*60}")
-    print(f"Selesai: {len(idx_rows)} OK, {len(failed)} gagal" + (f" {failed}" if failed else ""))
+function renderCards(){
+  var mb_r=CUR.mabims&&CUR.mabims.ramadan;
+  var mb_s=CUR.mabims&&CUR.mabims.syawal;
+  var mu_r=CUR.muhammadiyah&&CUR.muhammadiyah.ramadan;
+  var mu_s=CUR.muhammadiyah&&CUR.muhammadiyah.syawal;
 
-if __name__ == '__main__':
-    main()
+  document.getElementById('cmp-grid').innerHTML=
+    buildMethodCard('mabims','MABIMS / Kemenag','Kriteria: alt &ge;3&deg;, elong &ge;6.4&deg; (multi-lokasi)',mb_r,mb_s,'mabims')
+    +buildMethodCard('muham','Muhammadiyah','Hisab Hakiki Wujudul Hilal',mu_r,mu_s,'muhammadiyah');
+}
+
+function buildMethodCard(cls,name,desc,dataR,dataS,page){
+  var rkR=dataR&&dataR.ringkas||{};
+  var rkS=dataS&&dataS.ringkas||{};
+  var lolosR=dataR&&(dataR.mabims_lolos||dataR.wujudul_lolos);
+  var lolosS=dataS&&(dataS.mabims_lolos||dataS.wujudul_lolos);
+  var isMabims=(cls==='mabims');
+
+  // chips Ramadan
+  var chipsR='';
+  if(isMabims){
+    chipsR=[
+      {l:'Alt Jkt',v:f(rkR.alt,2,'&deg;'),ok2:rkR.alt_ok},
+      {l:'Elong',  v:f(rkR.elong_geo,2,'&deg;'),ok2:rkR.elong_ok},
+      {l:'Lokasi', v:(rkR.n_lokasi_lolos||0)+' lok',ok2:null},
+      {l:'Yallop', v:f(rkR.yallop_q,2),ok2:null},
+      {l:'Prob',   v:f(rkR.prob,0,'%'),ok2:null},
+    ].map(function(c){return '<div class="mchip '+(c.ok2===true?'ok':c.ok2===false?'fail':'')+'"><span class="mcl">'+c.l+'</span><span class="mcv">'+c.v+'</span></div>'}).join('');
+  } else {
+    chipsR=[
+      {l:'Alt Jkt',  v:f(rkR.alt_jakarta,3,'&deg;'),ok2:rkR.syarat_alt},
+      {l:'Ijtimak',  v:rkR.syarat_ijtimak?'Sebelum mgh':'Setelah mgh',ok2:rkR.syarat_ijtimak},
+      {l:'Lokasi',   v:(rkR.n_lokasi_lolos||0)+' lok',ok2:null},
+    ].map(function(c){return '<div class="mchip '+(c.ok2===true?'ok':c.ok2===false?'fail':'')+'"><span class="mcl">'+c.l+'</span><span class="mcv">'+c.v+'</span></div>'}).join('');
+  }
+
+  return '<div class="mcard '+cls+'">'
+    +'<div class="mc-head">'
+    +'<div class="mc-org">'+e(name)+'</div>'
+    +'<div class="mc-name">'+(lolosR?'&#10003;':'&#10007;')+' Ramadan &nbsp;&nbsp; '+(lolosS?'&#10003;':'&#10007;')+' Syawal</div>'
+    +'<div class="mc-desc">'+desc+'</div>'
+    +'</div>'
+    +'<div class="mc-dates">'
+    +'<div class="mc-date"><div class="mc-dlbl">1 Ramadan '+CUR.tahun+' H</div><div class="mc-dval">'+fDate(rkR.tanggal)+'</div><div class="mc-dsub">'+e(rkR.ijtimak||'')+'</div></div>'
+    +'<div class="mc-date"><div class="mc-dlbl">1 Syawal '+CUR.tahun+' H</div><div class="mc-dval">'+fDate(rkS.tanggal)+'</div><div class="mc-dsub">'+e(rkS.ijtimak||'')+'</div></div>'
+    +'</div>'
+    +'<div class="mc-params"><div class="mc-ptitle">Parameter Ramadan</div><div class="mini-chips">'+chipsR+'</div></div>'
+    +'<a class="mc-link" href="'+page+'.html?t='+CUR.tahun+'">Lihat detail lengkap &#8594;</a>'
+    +'</div>';
+}
+
+function switchTab(name,btn){
+  document.querySelectorAll('.tab').forEach(function(t){t.classList.remove('on')});
+  document.querySelectorAll('.panel').forEach(function(p){p.classList.remove('on')});
+  if(btn)btn.classList.add('on');
+  var p=document.getElementById('panel-'+name);if(p)p.classList.add('on');
+}
+
+function hide(){
+  document.getElementById('loading').classList.remove('on');
+  document.getElementById('results').classList.remove('on');
+  var eb=document.getElementById('err-box');eb.classList.remove('on');eb.style.display='none';
+}
+function setState(s,msg){
+  hide();
+  if(s==='loading'){document.getElementById('ltxt').textContent=msg;document.getElementById('loading').classList.add('on')}
+  else if(s==='error'){var b=document.getElementById('err-box');b.style.display='block';b.innerHTML='&#9888; '+e(msg).replace(/\n/g,'<br>');b.classList.add('on')}
+}
+function showErr(msg){setState('error',msg)}
+
+document.getElementById('yr-inp').addEventListener('keydown',function(ev){if(ev.key==='Enter')go()});
+loadIdx();
+
+// Auto-load tahun dari URL param jika ada
+var urlP=new URLSearchParams(window.location.search);
+var urlT=urlP.get('t');
+if(urlT)go(parseInt(urlT));
+</script>
+</body>
+</html>
