@@ -143,8 +143,40 @@ h1.arabic{font-family:'Amiri',serif;font-size:2.6rem;color:var(--gold-lit);lette
 .selisih-badge.s1{background:rgba(224,196,120,.12);color:var(--warn)}
 .selisih-badge.s2{background:rgba(224,120,120,.12);color:var(--err)}
 
-/* disclaimer */
-.disclaimer{background:rgba(120,174,224,.05);border:1px solid rgba(120,174,224,.15);border-radius:10px;padding:12px 18px;font-family:'DM Mono',monospace;font-size:.7rem;color:var(--muted);margin-top:20px;line-height:1.7}
+/* benchmark */
+.bm-section{margin-bottom:24px}
+.bm-summary{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:20px}
+@media(max-width:560px){.bm-summary{grid-template-columns:1fr}}
+.bm-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:18px 20px}
+.bm-card.mabims-c{border-top:3px solid var(--mabims)}
+.bm-card.muham-c{border-top:3px solid var(--muham)}
+.bm-org{font-family:'DM Mono',monospace;font-size:.63rem;text-transform:uppercase;letter-spacing:.1em;margin-bottom:10px}
+.bm-card.mabims-c .bm-org{color:var(--mabims)}
+.bm-card.muham-c  .bm-org{color:var(--muham)}
+.bm-pct{font-family:'DM Mono',monospace;font-size:2.2rem;font-weight:500;color:var(--gold-lit);margin-bottom:4px}
+.bm-sub{font-family:'DM Mono',monospace;font-size:.7rem;color:var(--muted);margin-bottom:12px}
+.bm-bars{display:flex;flex-direction:column;gap:6px}
+.bm-bar-row{display:flex;align-items:center;gap:10px}
+.bm-bar-lbl{font-family:'DM Mono',monospace;font-size:.62rem;color:var(--muted);width:60px;flex-shrink:0}
+.bm-track{flex:1;height:5px;background:var(--bg2);border-radius:3px;overflow:hidden;border:1px solid var(--border)}
+.bm-fill{height:100%;border-radius:3px;transition:width .7s ease}
+.bm-fill.match{background:var(--ok)}
+.bm-fill.near{background:var(--warn)}
+.bm-fill.miss{background:var(--err)}
+.bm-bar-val{font-family:'DM Mono',monospace;font-size:.62rem;width:36px;text-align:right;flex-shrink:0}
+.bm-bar-val.match{color:var(--ok)}.bm-bar-val.near{color:var(--warn)}.bm-bar-val.miss{color:var(--err)}
+
+/* benchmark tabel */
+.bm-table-wrap{background:var(--card);border:1px solid var(--border);border-radius:12px;overflow:hidden;overflow-x:auto;margin-top:4px}
+.bm-table-wrap table{width:100%;border-collapse:collapse;font-family:'DM Mono',monospace;font-size:.71rem;min-width:680px}
+.bm-table-wrap th{padding:8px 12px;text-align:left;font-size:.58rem;text-transform:uppercase;letter-spacing:.09em;color:var(--muted);border-bottom:1px solid var(--border);background:var(--bg2);font-weight:400}
+.bm-table-wrap th.mh{color:var(--mabims)}.bm-table-wrap th.muh{color:var(--muham)}
+.bm-table-wrap td{padding:8px 12px;border-bottom:1px solid var(--border);color:var(--text)}
+.bm-table-wrap tr:last-child td{border-bottom:none}
+.bm-table-wrap tr:hover td{background:var(--bg2)}
+.st-match{color:var(--ok)}.st-near{color:var(--warn)}.st-miss{color:var(--err)}.st-err{color:var(--muted)}
+.bm-note{font-family:'DM Mono',monospace;font-size:.67rem;color:var(--muted);margin-top:12px;line-height:1.6}
+.bm-note strong{color:var(--info)}border:1px solid rgba(120,174,224,.15);border-radius:10px;padding:12px 18px;font-family:'DM Mono',monospace;font-size:.7rem;color:var(--muted);margin-top:20px;line-height:1.7}
 .disclaimer strong{color:var(--info)}
 
 footer{margin-top:64px;text-align:center;font-family:'DM Mono',monospace;font-size:.67rem;color:var(--muted);letter-spacing:.04em;opacity:.45;border-top:1px solid var(--border);padding-top:22px}
@@ -210,6 +242,7 @@ footer{margin-top:64px;text-align:center;font-family:'DM Mono',monospace;font-si
   <div class="tabs">
     <button class="tab on" onclick="switchTab('cmp',this)">Perbandingan</button>
     <button class="tab" onclick="switchTab('all',this)">Semua Tahun</button>
+    <button class="tab" onclick="switchTab('bm',this)">Akurasi Historis</button>
   </div>
 
   <div class="panel on" id="panel-cmp">
@@ -220,6 +253,7 @@ footer{margin-top:64px;text-align:center;font-family:'DM Mono',monospace;font-si
   </div>
 
   <div class="panel" id="panel-all"></div>
+  <div class="panel" id="panel-bm"><p style="font-family:'DM Mono',monospace;font-size:.78rem;color:var(--muted);padding:20px 0">Memuat data benchmark...</p></div>
 
   <div class="disclaimer">
     <strong>Catatan:</strong> Ini adalah perbandingan hisab astronomi.
@@ -435,11 +469,124 @@ function showErr(msg){setState('error',msg)}
 
 document.getElementById('yr-inp').addEventListener('keydown',function(ev){if(ev.key==='Enter')go()});
 loadIdx();
+loadBenchmark();
 
 // Auto-load tahun dari URL param jika ada
 var urlP=new URLSearchParams(window.location.search);
 var urlT=urlP.get('t');
 if(urlT)go(parseInt(urlT));
+
+// ── Benchmark ────────────────────────────────────────────────────
+var BM=null;
+
+async function loadBenchmark(){
+  try{
+    var r=await fetch('data/benchmark.json');
+    if(!r.ok)throw new Error('benchmark.json tidak ditemukan');
+    BM=await r.json();
+    renderBenchmark();
+  }catch(ex){
+    document.getElementById('panel-bm').innerHTML=
+      '<div style="font-family:\'DM Mono\',monospace;font-size:.78rem;color:var(--muted);padding:20px 0">'
+      +'benchmark.json belum ada.<br>Jalankan: <span style="color:var(--gold)">python generate_benchmark.py</span><br>'
+      +'Lalu salin <span style="color:var(--gold)">data/benchmark.json</span> ke folder site/data/'
+      +'</div>';
+  }
+}
+
+function fmtD(s){
+  if(!s)return '&#8212;';
+  var d=new Date(s+'T12:00:00');
+  return d.toLocaleDateString('id-ID',{day:'numeric',month:'short',year:'numeric'});
+}
+
+function stHtml(st,sel){
+  if(st==='match') return '<span class="st-match">&#10003; Match</span>';
+  if(st==='near')  return '<span class="st-near">'+(sel>0?'+':'')+sel+' hr</span>';
+  if(st==='miss')  return '<span class="st-miss">'+(sel>0?'+':'')+sel+' hr</span>';
+  return '<span class="st-err">Error</span>';
+}
+
+function barRow(lbl,pct,cls){
+  return '<div class="bm-bar-row">'
+    +'<span class="bm-bar-lbl">'+lbl+'</span>'
+    +'<div class="bm-track"><div class="bm-fill '+cls+'" style="width:'+Math.min(100,pct||0)+'%"></div></div>'
+    +'<span class="bm-bar-val '+cls+'">'+f(pct,1,'%')+'</span>'
+    +'</div>';
+}
+
+function renderBenchmark(){
+  if(!BM)return;
+  var s=BM.summary;
+
+  function bmCard(cls,org,key){
+    var r=s[key+'_ramadan']||{};
+    var sy=s[key+'_syawal']||{};
+    var ov=s[key+'_overall'];
+    var matchR=r.match_pct||0,matchS=sy.match_pct||0;
+    var nearR=r.near_pct||0,nearS=sy.near_pct||0;
+    var missR=100-matchR-nearR,missS=100-matchS-nearS;
+    return '<div class="bm-card '+cls+'">'
+      +'<div class="bm-org">'+org+'</div>'
+      +'<div class="bm-pct">'+f(ov,1)+'%</div>'
+      +'<div class="bm-sub">akurasi overall ('+BM.n_tahun+' tahun, '+BM.tahun_range[0]+'–'+BM.tahun_range[1]+' H)</div>'
+      +'<div class="bm-bars">'
+      +barRow('R Match',matchR,'match')
+      +barRow('R Near',nearR,'near')
+      +barRow('R Miss',missR,'miss')
+      +barRow('S Match',matchS,'match')
+      +barRow('S Near',nearS,'near')
+      +barRow('S Miss',missS,'miss')
+      +'</div></div>';
+  }
+
+  var rows=BM.rows.map(function(r){
+    var mb=r.mabims,mu=r.muhammadiyah;
+    return '<tr>'
+      +'<td>'+r.tahun_hijri+'</td>'
+      +'<td>'+r.tahun_masehi+'</td>'
+      +'<td class="mh">'+fmtD(mb.ramadan_real)+'</td>'
+      +'<td>'+fmtD(mb.ramadan_hitung)+'</td>'
+      +'<td>'+stHtml(mb.ramadan_status,mb.ramadan_selisih)+'</td>'
+      +'<td class="mh">'+fmtD(mb.syawal_real)+'</td>'
+      +'<td>'+fmtD(mb.syawal_hitung)+'</td>'
+      +'<td>'+stHtml(mb.syawal_status,mb.syawal_selisih)+'</td>'
+      +'<td class="muh">'+fmtD(mu.ramadan_real)+'</td>'
+      +'<td>'+fmtD(mu.ramadan_hitung)+'</td>'
+      +'<td>'+stHtml(mu.ramadan_status,mu.ramadan_selisih)+'</td>'
+      +'<td class="muh">'+fmtD(mu.syawal_real)+'</td>'
+      +'<td>'+fmtD(mu.syawal_hitung)+'</td>'
+      +'<td>'+stHtml(mu.syawal_status,mu.syawal_selisih)+'</td>'
+      +'</tr>';
+  }).join('');
+
+  document.getElementById('panel-bm').innerHTML=
+    '<div class="bm-section">'
+    +'<div class="bm-summary">'
+    +bmCard('mabims-c','MABIMS / Kemenag','mabims')
+    +bmCard('muham-c','Muhammadiyah','muhammadiyah')
+    +'</div>'
+    +'<div class="bm-table-wrap"><table>'
+    +'<thead><tr>'
+    +'<th>H</th><th>M</th>'
+    +'<th class="mh">Real-R</th><th class="mh">Hitung-R</th><th class="mh">St</th>'
+    +'<th class="mh">Real-S</th><th class="mh">Hitung-S</th><th class="mh">St</th>'
+    +'<th class="muh">Real-R</th><th class="muh">Hitung-R</th><th class="muh">St</th>'
+    +'<th class="muh">Real-S</th><th class="muh">Hitung-S</th><th class="muh">St</th>'
+    +'</tr>'
+    +'<tr>'
+    +'<th colspan="2"></th>'
+    +'<th colspan="6" class="mh">MABIMS vs Pemerintah</th>'
+    +'<th colspan="6" class="muh">Muhammadiyah vs Real</th>'
+    +'</tr></thead>'
+    +'<tbody>'+rows+'</tbody></table></div>'
+    +'<div class="bm-note">'
+    +'<strong>Keterangan:</strong> Match = sama persis &nbsp;|&nbsp; '
+    +'Near = beda 1 hari &nbsp;|&nbsp; Miss = beda &gt;1 hari<br>'
+    +'Data real: Pemerintah RI (Sidang Isbat) &amp; Muhammadiyah (Majelis Tarjih).'
+    +'</div>'
+    +'</div>';
+}
 </script>
 </body>
 </html>
