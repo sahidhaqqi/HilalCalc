@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Hisab MABIMS — Detail Lengkap</title>
 <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Crimson+Pro:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
 :root{
@@ -114,6 +115,7 @@ h1.arabic{font-family:'Amiri',serif;font-size:2.3rem;color:var(--gold-lit);lette
 .no-lokasi{font-family:'DM Mono',monospace;font-size:.72rem;color:var(--muted)}
 .scan-section{background:var(--card2);border:1px solid var(--border);border-radius:10px;padding:14px 18px;margin-top:10px}
 .scan-dots{display:flex;flex-wrap:wrap;gap:4px;margin-top:8px}
+.map-wrap{height:240px;border-radius:8px;overflow:hidden;margin-top:10px;border:1px solid var(--border)}
 .scan-dot{font-family:'DM Mono',monospace;font-size:.62rem;background:rgba(90,206,160,.07);border:1px solid rgba(90,206,160,.18);color:var(--ok);border-radius:4px;padding:2px 6px}
 .days-section{margin-top:14px}
 .day-block{background:var(--card2);border:1px solid var(--border);border-radius:10px;margin-bottom:8px;overflow:hidden}
@@ -289,11 +291,14 @@ function buildMonth(d,name,ar,tahun){
     ?'<div class="kota-list">'+ml.map(function(k){return '<div class="kota-item"><div class="kota-nama">&#10003; '+e(k.nama)+'</div><div class="kota-params">alt <span>'+f(k.alt,2)+'&deg;</span> elong <span>'+f(k.elong,2)+'&deg;</span> umur <span>'+f(k.umur,1)+' jam</span> lag <span>'+f(k.lag_menit,0)+' mnt</span></div></div>'}).join('')+'</div>'
     :'<div class="no-lokasi">Tidak ada lokasi yang memenuhi MABIMS</div>';
   var sc=hl&&hl.scan_indonesia||d.scan_indonesia;
-  var scanHtml='';
-  if(sc&&sc.n_titik_grid>0){
-    var dots=(sc.titik_sampel||[]).map(function(p){return '<div class="scan-dot">'+p.lat+'&deg;,'+p.lon+'&deg;</div>'}).join('');
-    scanHtml='<div class="scan-section"><div class="param-title" style="margin-bottom:6px">Scan Grid: <strong style="color:var(--gold)">'+sc.n_titik_grid+'</strong> titik Yallop &ge; D</div><div class="scan-dots">'+dots+'</div></div>';
-  }
+  var mapId='map-'+Math.random().toString(36).slice(2,6);
+  var lolosNama=(rk.lokasi_lolos||[]).map(function(k){return k.nama});
+  var scanPts=sc?sc.titik_sampel||[]:[];
+  var scanHtml='<div class="scan-section">'
+    +'<div class="param-title" style="margin-bottom:6px">Peta Visibilitas Indonesia — <strong style="color:var(--ok)">'+(rk.n_lokasi_lolos||0)+'</strong> lolos &nbsp;<strong style="color:var(--err)">'+(13-(rk.n_lokasi_lolos||0))+'</strong> tidak &nbsp;|&nbsp; Grid Yallop &ge;D: <strong style="color:var(--gold)">'+(sc?sc.n_titik_grid:0)+'</strong> titik</div>'
+    +'<div id="'+mapId+'" class="map-wrap"></div>'
+    +'</div>';
+  setTimeout(function(){initMapMabims(mapId,lolosNama,scanPts)},100);
   var kontrasRow='';
   if(rk.kontras&&rk.kontras.nilai)kontrasRow='<div class="kontras-row"><span class="t-lbl">Kontras</span>&nbsp;&nbsp;<span class="kval"><span>'+f(rk.kontras.nilai,4)+'</span>'+e(rk.kontras.keterangan||'')+'</span></div>';
 
@@ -367,6 +372,49 @@ function showErr(msg){setState('error',msg)}
 document.getElementById('yr-inp').addEventListener('keydown',function(ev){if(ev.key==='Enter')go()});
 loadIdx();
 var urlP=new URLSearchParams(window.location.search);var urlT=urlP.get('t');if(urlT)go(parseInt(urlT));
+
+var KOTA_INDO=[
+  {nama:"Sabang",lat:5.8943,lon:95.3184},
+  {nama:"Medan",lat:3.5952,lon:98.6722},
+  {nama:"Padang",lat:-0.9471,lon:100.4172},
+  {nama:"Jakarta",lat:-6.2088,lon:106.8456},
+  {nama:"Bandung",lat:-6.9175,lon:107.6191},
+  {nama:"Surabaya",lat:-7.2575,lon:112.7521},
+  {nama:"Banjarmasin",lat:-3.3194,lon:114.5928},
+  {nama:"Balikpapan",lat:-1.2379,lon:116.8529},
+  {nama:"Makassar",lat:-5.1477,lon:119.4327},
+  {nama:"Manado",lat:1.4748,lon:124.8421},
+  {nama:"Kupang",lat:-10.1772,lon:123.607},
+  {nama:"Ambon",lat:-3.655,lon:128.1908},
+  {nama:"Jayapura",lat:-2.5337,lon:140.7181},
+];
+
+var _maps={};
+function initMapMabims(id,lolosNama,scanPts){
+  var el=document.getElementById(id);
+  if(!el||!window.L)return;
+  if(_maps[id]){_maps[id].remove()}
+  var m=L.map(id,{zoomControl:true,scrollWheelZoom:false}).setView([-2,118],4);
+  _maps[id]=m;
+  L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png',{attribution:'&copy; CartoDB',maxZoom:10}).addTo(m);
+
+  // Grid scan (titik kuning kecil = Yallop lolos)
+  scanPts.forEach(function(p){
+    L.circleMarker([p.lat,p.lon],{radius:3,color:'#c8922a',fillColor:'#c8922a',fillOpacity:.35,weight:1}).addTo(m);
+  });
+
+  // 13 kota representatif
+  KOTA_INDO.forEach(function(k){
+    var ok=lolosNama.indexOf(k.nama)>=0;
+    L.circleMarker([k.lat,k.lon],{
+      radius:8,
+      color:ok?'#5acea0':'#e07878',
+      fillColor:ok?'#5acea0':'#e07878',
+      fillOpacity:.85,weight:2
+    }).addTo(m).bindTooltip(k.nama+(ok?' ✓ MABIMS':' ✗ Gagal'),{direction:'top',className:'leaflet-tooltip'});
+  });
+}
 </script>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 </body>
 </html>
