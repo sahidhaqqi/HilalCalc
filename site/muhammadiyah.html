@@ -290,14 +290,20 @@ function buildMonth(d,name,ar,tahun){
     :'<div class="no-lokasi">Tidak ada lokasi yang memenuhi Wujudul Hilal</div>';
 
   var sc=d.scan_indonesia;
-  var mapId='map-'+Math.random().toString(36).slice(2,6);
-  var lolosNama=(ml.lokasi||[]).map(function(k){return k.nama});
+  var mapId='map-'+name.toLowerCase()+'-'+CUR.tahun;
   var scanPts=sc?sc.titik_sampel||[]:[];
-  var scanHtml='<div class="scan-section">'
-    +'<div class="syarat-title" style="margin-bottom:6px">Peta Wujudul Hilal Indonesia — <strong style="color:var(--ok)">'+(ml.n_lokasi||0)+'</strong> wujud &nbsp;<strong style="color:var(--err)">'+(13-(ml.n_lokasi||0))+'</strong> tidak &nbsp;|&nbsp; Grid alt&gt;0&deg;: <strong style="color:var(--gold)">'+(sc?sc.n_titik_grid:0)+'</strong> titik</div>'
-    +'<div id="'+mapId+'" class="map-wrap"></div>'
+  // Pass full lokasi data untuk popup detail
+  var lolosData=ml.lokasi||[];
+  var lolosNama=lolosData.map(function(k){return k.nama});
+
+  var scanHtml='<div class="scan-section" style="margin-top:16px">'
+    +'<div class="syarat-title" style="margin-bottom:8px">Peta Wujudul Hilal Indonesia &mdash; '
+    +'<strong style="color:var(--ok)">'+(ml.n_lokasi||0)+'</strong> wujud &nbsp;'
+    +'<strong style="color:var(--err)">'+(13-(ml.n_lokasi||0))+'</strong> tidak &nbsp;|&nbsp; '
+    +'Grid alt&gt;0&deg;: <strong style="color:var(--gold)">'+(sc?sc.n_titik_grid:0)+'</strong> titik</div>'
+    +'<div id="'+mapId+'" class="map-wrap" style="height:280px"></div>'
     +'</div>';
-  setTimeout(function(){initMapMuham(mapId,lolosNama,scanPts)},100);
+  setTimeout(function(){initMapMuham(mapId,lolosData,lolosNama,scanPts)},200);
 
   return '<div class="month-grid">'
     +'<div class="sum-card '+(ok?'ok':'fail')+'">'
@@ -312,8 +318,9 @@ function buildMonth(d,name,ar,tahun){
     +syaratHtml
     +bonusHtml
     +'</div>'
-    +'<div><div class="multi-section"><div class="multi-title">&#9679; Multi-Lokasi Nasional</div><div class="multi-stat"><strong>'+(ml.n_lokasi||0)+'</strong> lokasi wujudul hilal</div>'+kotaHtml+'</div>'+scanHtml+'</div>'
+    +'<div><div class="multi-section"><div class="multi-title">&#9679; Multi-Lokasi Nasional</div><div class="multi-stat"><strong>'+(ml.n_lokasi||0)+'</strong> lokasi wujudul hilal</div>'+kotaHtml+'</div></div>'
     +'</div>'
+    +scanHtml
     +buildDays(d.hari_diperiksa||[]);
 }
 
@@ -353,7 +360,18 @@ function buildDays(days){
 }
 
 function toggleDay(id){var b=document.getElementById('btn'+id);var body=document.getElementById(id);b.classList.toggle('open');body.classList.toggle('open')}
-function switchTab(name,btn){document.querySelectorAll('.tab').forEach(function(t){t.classList.remove('on')});document.querySelectorAll('.panel').forEach(function(p){p.classList.remove('on')});if(btn)btn.classList.add('on');var p=document.getElementById('panel-'+name);if(p)p.classList.add('on')}
+function switchTab(name,btn){
+  document.querySelectorAll('.tab').forEach(function(t){t.classList.remove('on')});
+  document.querySelectorAll('.panel').forEach(function(p){p.classList.remove('on')});
+  if(btn)btn.classList.add('on');
+  var p=document.getElementById('panel-'+name);if(p)p.classList.add('on');
+  // Invalidate semua peta setelah tab muncul
+  setTimeout(function(){
+    Object.keys(_maps).forEach(function(id){
+      try{_maps[id].invalidateSize();}catch(e){}
+    });
+  },50);
+}
 function hide(){document.getElementById('loading').classList.remove('on');document.getElementById('results').classList.remove('on');var eb=document.getElementById('err-box');eb.classList.remove('on');eb.style.display='none'}
 function setState(s,msg){hide();if(s==='loading'){document.getElementById('ltxt').textContent=msg;document.getElementById('loading').classList.add('on')}else if(s==='error'){var b=document.getElementById('err-box');b.style.display='block';b.innerHTML='&#9888; '+e(msg).replace(/\n/g,'<br>');b.classList.add('on')}}
 function showErr(msg){setState('error',msg)}
@@ -378,28 +396,44 @@ var KOTA_INDO=[
 ];
 
 var _maps={};
-function initMapMuham(id,lolosNama,scanPts){
+function initMapMuham(id,lolosData,lolosNama,scanPts){
   var el=document.getElementById(id);
   if(!el||!window.L)return;
-  if(_maps[id]){_maps[id].remove()}
+  if(_maps[id]){_maps[id].remove();delete _maps[id];}
   var m=L.map(id,{zoomControl:true,scrollWheelZoom:false}).setView([-2,118],4);
   _maps[id]=m;
   L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png',{attribution:'&copy; CartoDB',maxZoom:10}).addTo(m);
 
   // Grid scan (titik kuning kecil = alt > 0°)
   scanPts.forEach(function(p){
-    L.circleMarker([p.lat,p.lon],{radius:3,color:'#c8922a',fillColor:'#c8922a',fillOpacity:.35,weight:1}).addTo(m);
+    L.circleMarker([p.lat,p.lon],{radius:3,color:'#c8922a',fillColor:'#c8922a',fillOpacity:.4,weight:1}).addTo(m);
   });
+
+  // Build lookup dari lolosData
+  var lolosMap={};
+  (lolosData||[]).forEach(function(k){lolosMap[k.nama]=k;});
 
   // 13 kota representatif
   KOTA_INDO.forEach(function(k){
     var ok=lolosNama.indexOf(k.nama)>=0;
+    var data=lolosMap[k.nama]||{};
+    var popupHtml='<div style="font-family:monospace;font-size:12px;line-height:1.8;min-width:160px">'
+      +'<strong style="color:'+(ok?'#5acea0':'#e07878')+';">'+(ok?'✓':'✗')+' '+k.nama+'</strong><br>'
+      +'<span style="color:#aaa">Status:</span> '+(ok?'Wujudul Hilal':'Belum Wujud')+'<br>'
+      +(ok?'<span style="color:#aaa">Altitude:</span> '+(data.alt!==undefined?data.alt.toFixed(3)+'°':'—')+'<br>':'')
+      +(ok&&data.elong_geo!==undefined?'<span style="color:#aaa">Elongasi:</span> '+data.elong_geo.toFixed(2)+'°<br>':'')
+      +(ok&&data.umur_jam!==undefined?'<span style="color:#aaa">Umur:</span> '+data.umur_jam.toFixed(1)+' jam<br>':'')
+      +(ok&&data.lag_menit!==undefined?'<span style="color:#aaa">Lag:</span> '+data.lag_menit.toFixed(0)+' menit<br>':'')
+      +(ok&&data.maghrib_utc?'<span style="color:#aaa">Maghrib:</span> '+data.maghrib_utc+' UTC':'')
+      +'</div>';
     L.circleMarker([k.lat,k.lon],{
-      radius:8,
+      radius:9,
       color:ok?'#5acea0':'#e07878',
       fillColor:ok?'#5acea0':'#e07878',
       fillOpacity:.85,weight:2
-    }).addTo(m).bindTooltip(k.nama+(ok?' ✓ Wujud':' ✗ Belum'),{direction:'top',className:'leaflet-tooltip'});
+    }).addTo(m)
+      .bindTooltip(k.nama,{direction:'top',permanent:false})
+      .bindPopup(popupHtml,{maxWidth:220});
   });
 }
 </script>

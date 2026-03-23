@@ -291,14 +291,19 @@ function buildMonth(d,name,ar,tahun){
     ?'<div class="kota-list">'+ml.map(function(k){return '<div class="kota-item"><div class="kota-nama">&#10003; '+e(k.nama)+'</div><div class="kota-params">alt <span>'+f(k.alt,2)+'&deg;</span> elong <span>'+f(k.elong,2)+'&deg;</span> umur <span>'+f(k.umur,1)+' jam</span> lag <span>'+f(k.lag_menit,0)+' mnt</span></div></div>'}).join('')+'</div>'
     :'<div class="no-lokasi">Tidak ada lokasi yang memenuhi MABIMS</div>';
   var sc=hl&&hl.scan_indonesia||d.scan_indonesia;
-  var mapId='map-'+Math.random().toString(36).slice(2,6);
-  var lolosNama=(rk.lokasi_lolos||[]).map(function(k){return k.nama});
+  var mapId='map-'+name.toLowerCase()+'-'+CUR.tahun;
+  var lolosData=rk.lokasi_lolos||[];
+  var lolosNama=lolosData.map(function(k){return k.nama});
   var scanPts=sc?sc.titik_sampel||[]:[];
-  var scanHtml='<div class="scan-section">'
-    +'<div class="param-title" style="margin-bottom:6px">Peta Visibilitas Indonesia — <strong style="color:var(--ok)">'+(rk.n_lokasi_lolos||0)+'</strong> lolos &nbsp;<strong style="color:var(--err)">'+(13-(rk.n_lokasi_lolos||0))+'</strong> tidak &nbsp;|&nbsp; Grid Yallop &ge;D: <strong style="color:var(--gold)">'+(sc?sc.n_titik_grid:0)+'</strong> titik</div>'
-    +'<div id="'+mapId+'" class="map-wrap"></div>'
+
+  var scanHtml='<div class="scan-section" style="margin-top:16px">'
+    +'<div class="param-title" style="margin-bottom:8px">Peta Visibilitas Indonesia &mdash; '
+    +'<strong style="color:var(--ok)">'+(rk.n_lokasi_lolos||0)+'</strong> lolos MABIMS &nbsp;'
+    +'<strong style="color:var(--err)">'+(13-(rk.n_lokasi_lolos||0))+'</strong> tidak &nbsp;|&nbsp; '
+    +'Grid Yallop &ge;D: <strong style="color:var(--gold)">'+(sc?sc.n_titik_grid:0)+'</strong> titik</div>'
+    +'<div id="'+mapId+'" class="map-wrap" style="height:280px"></div>'
     +'</div>';
-  setTimeout(function(){initMapMabims(mapId,lolosNama,scanPts)},100);
+  setTimeout(function(){initMapMabims(mapId,lolosData,lolosNama,scanPts)},200);
   var kontrasRow='';
   if(rk.kontras&&rk.kontras.nilai)kontrasRow='<div class="kontras-row"><span class="t-lbl">Kontras</span>&nbsp;&nbsp;<span class="kval"><span>'+f(rk.kontras.nilai,4)+'</span>'+e(rk.kontras.keterangan||'')+'</span></div>';
 
@@ -319,8 +324,9 @@ function buildMonth(d,name,ar,tahun){
     +'</div></div>'
     +'<div class="prob-row"><div class="prob-top"><span class="prob-lbl">Probabilitas Terlihat</span><span class="prob-num">'+f(prob,1,'%')+'</span></div><div class="track"><div class="fill" style="width:'+Math.min(100,Math.max(0,prob))+'%"></div></div></div>'
     +kontrasRow+'</div>'
-    +'<div><div class="multi-section"><div class="multi-title">&#9679; Multi-Lokasi Nasional</div><div class="multi-stat"><strong>'+(rk.n_lokasi_lolos||0)+'</strong> lokasi memenuhi MABIMS</div>'+kotaHtml+'</div>'+scanHtml+'</div>'
+    +'<div><div class="multi-section"><div class="multi-title">&#9679; Multi-Lokasi Nasional</div><div class="multi-stat"><strong>'+(rk.n_lokasi_lolos||0)+'</strong> lokasi memenuhi MABIMS</div>'+kotaHtml+'</div></div>'
     +'</div>'
+    +scanHtml
     +buildDays(d.hari_diperiksa||[]);
 }
 
@@ -365,7 +371,15 @@ function buildDays(days){
 }
 
 function toggleDay(id){var b=document.getElementById('btn'+id);var body=document.getElementById(id);b.classList.toggle('open');body.classList.toggle('open')}
-function switchTab(name,btn){document.querySelectorAll('.tab').forEach(function(t){t.classList.remove('on')});document.querySelectorAll('.panel').forEach(function(p){p.classList.remove('on')});if(btn)btn.classList.add('on');var p=document.getElementById('panel-'+name);if(p)p.classList.add('on')}
+function switchTab(name,btn){
+  document.querySelectorAll('.tab').forEach(function(t){t.classList.remove('on')});
+  document.querySelectorAll('.panel').forEach(function(p){p.classList.remove('on')});
+  if(btn)btn.classList.add('on');
+  var p=document.getElementById('panel-'+name);if(p)p.classList.add('on');
+  setTimeout(function(){
+    Object.keys(_maps).forEach(function(id){try{_maps[id].invalidateSize();}catch(e){}});
+  },50);
+}
 function hide(){document.getElementById('loading').classList.remove('on');document.getElementById('results').classList.remove('on');var eb=document.getElementById('err-box');eb.classList.remove('on');eb.style.display='none'}
 function setState(s,msg){hide();if(s==='loading'){document.getElementById('ltxt').textContent=msg;document.getElementById('loading').classList.add('on')}else if(s==='error'){var b=document.getElementById('err-box');b.style.display='block';b.innerHTML='&#9888; '+e(msg).replace(/\n/g,'<br>');b.classList.add('on')}}
 function showErr(msg){setState('error',msg)}
@@ -390,28 +404,46 @@ var KOTA_INDO=[
 ];
 
 var _maps={};
-function initMapMabims(id,lolosNama,scanPts){
+function initMapMabims(id,lolosData,lolosNama,scanPts){
   var el=document.getElementById(id);
   if(!el||!window.L)return;
-  if(_maps[id]){_maps[id].remove()}
+  if(_maps[id]){_maps[id].remove();delete _maps[id];}
   var m=L.map(id,{zoomControl:true,scrollWheelZoom:false}).setView([-2,118],4);
   _maps[id]=m;
   L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png',{attribution:'&copy; CartoDB',maxZoom:10}).addTo(m);
 
-  // Grid scan (titik kuning kecil = Yallop lolos)
+  // Grid Yallop (titik kuning kecil)
   scanPts.forEach(function(p){
-    L.circleMarker([p.lat,p.lon],{radius:3,color:'#c8922a',fillColor:'#c8922a',fillOpacity:.35,weight:1}).addTo(m);
+    L.circleMarker([p.lat,p.lon],{radius:3,color:'#c8922a',fillColor:'#c8922a',fillOpacity:.4,weight:1}).addTo(m);
   });
+
+  // Build lookup dari lolosData
+  var lolosMap={};
+  (lolosData||[]).forEach(function(k){lolosMap[k.nama]=k;});
 
   // 13 kota representatif
   KOTA_INDO.forEach(function(k){
     var ok=lolosNama.indexOf(k.nama)>=0;
+    var data=lolosMap[k.nama]||{};
+    var popupHtml='<div style="font-family:monospace;font-size:12px;line-height:1.8;min-width:160px">'
+      +'<strong style="color:'+(ok?'#5acea0':'#e07878')+';">'+(ok?'✓':'✗')+' '+k.nama+'</strong><br>'
+      +'<span style="color:#aaa">MABIMS:</span> '+(ok?'Lolos':'Gagal')+'<br>'
+      +(ok&&data.alt!==undefined?'<span style="color:#aaa">Altitude:</span> '+data.alt.toFixed(2)+'°<br>':'')
+      +(ok&&data.az!==undefined?'<span style="color:#aaa">Azimuth:</span> '+data.az.toFixed(1)+'°<br>':'')
+      +(ok&&data.elong!==undefined?'<span style="color:#aaa">Elongasi:</span> '+data.elong.toFixed(2)+'°<br>':'')
+      +(ok&&data.umur!==undefined?'<span style="color:#aaa">Umur:</span> '+data.umur.toFixed(1)+' jam<br>':'')
+      +(ok&&data.lag_menit!==undefined?'<span style="color:#aaa">Lag:</span> '+data.lag_menit.toFixed(0)+' menit<br>':'')
+      +(ok&&data.maghrib_utc?'<span style="color:#aaa">Maghrib:</span> '+data.maghrib_utc+' UTC<br>':'')
+      +(ok&&data.moonset_utc?'<span style="color:#aaa">Moonset:</span> '+data.moonset_utc+' UTC':'')
+      +'</div>';
     L.circleMarker([k.lat,k.lon],{
-      radius:8,
+      radius:9,
       color:ok?'#5acea0':'#e07878',
       fillColor:ok?'#5acea0':'#e07878',
       fillOpacity:.85,weight:2
-    }).addTo(m).bindTooltip(k.nama+(ok?' ✓ MABIMS':' ✗ Gagal'),{direction:'top',className:'leaflet-tooltip'});
+    }).addTo(m)
+      .bindTooltip(k.nama,{direction:'top',permanent:false})
+      .bindPopup(popupHtml,{maxWidth:220});
   });
 }
 </script>
