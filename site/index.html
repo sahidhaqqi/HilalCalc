@@ -143,7 +143,44 @@ h1.arabic{font-family:'Amiri',serif;font-size:2.6rem;color:var(--gold-lit);lette
 .selisih-badge.s1{background:rgba(224,196,120,.12);color:var(--warn)}
 .selisih-badge.s2{background:rgba(224,120,120,.12);color:var(--err)}
 
-/* benchmark */
+/* about */
+.about-section{display:flex;flex-direction:column;gap:20px;padding-top:4px}
+.about-card{background:var(--card);border:1px solid var(--border);border-radius:14px;overflow:hidden}
+.about-card-head{padding:18px 22px 14px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:14px}
+.about-icon{width:36px;height:36px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0}
+.about-icon.blue{background:rgba(120,174,224,.12);color:var(--mabims)}
+.about-icon.purple{background:rgba(167,139,250,.12);color:var(--muham)}
+.about-icon.gold{background:rgba(200,146,42,.12);color:var(--gold-lit)}
+.about-icon.green{background:rgba(90,206,160,.12);color:var(--ok)}
+.about-icon.gray{background:rgba(200,200,200,.08);color:var(--muted)}
+.about-title{font-family:'Amiri',serif;font-size:1.2rem;color:var(--text)}
+.about-subtitle{font-family:'DM Mono',monospace;font-size:.65rem;color:var(--muted);letter-spacing:.08em;margin-top:2px}
+.about-body{padding:18px 22px;font-size:.96rem;color:var(--text);line-height:1.8}
+.about-body p{margin-bottom:12px}
+.about-body p:last-child{margin-bottom:0}
+.about-body strong{color:var(--gold-lit);font-weight:500}
+.about-body .hl-blue{color:var(--mabims)}
+.about-body .hl-purple{color:var(--muham)}
+.about-body .hl-ok{color:var(--ok)}
+.about-body .hl-warn{color:var(--warn)}
+.about-body .hl-gold{color:var(--gold-lit)}
+
+.istilah-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:4px}
+@media(max-width:580px){.istilah-grid{grid-template-columns:1fr}}
+.istilah-item{background:var(--bg2);border:1px solid var(--border);border-radius:9px;padding:12px 16px}
+.istilah-term{font-family:'DM Mono',monospace;font-size:.74rem;color:var(--gold-lit);margin-bottom:4px;letter-spacing:.04em}
+.istilah-def{font-size:.88rem;color:var(--text);line-height:1.6}
+
+.kriteria-table{width:100%;border-collapse:collapse;margin-top:8px;font-size:.88rem}
+.kriteria-table th{font-family:'DM Mono',monospace;font-size:.62rem;text-transform:uppercase;letter-spacing:.09em;color:var(--muted);padding:8px 14px;border-bottom:1px solid var(--border);text-align:left;font-weight:400}
+.kriteria-table td{padding:9px 14px;border-bottom:1px solid var(--border);color:var(--text);vertical-align:top}
+.kriteria-table tr:last-child td{border-bottom:none}
+.kriteria-table tr:hover td{background:var(--bg2)}
+
+.faq-item{border-bottom:1px solid var(--border);padding:14px 22px}
+.faq-item:last-child{border-bottom:none}
+.faq-q{font-family:'DM Mono',monospace;font-size:.78rem;color:var(--gold-lit);margin-bottom:6px}
+.faq-a{font-size:.9rem;color:var(--text);line-height:1.7}
 .bm-section{margin-bottom:24px}
 .bm-summary{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:20px}
 @media(max-width:560px){.bm-summary{grid-template-columns:1fr}}
@@ -243,6 +280,7 @@ footer{margin-top:64px;text-align:center;font-family:'DM Mono',monospace;font-si
     <button class="tab on" onclick="switchTab('cmp',this)">Perbandingan</button>
     <button class="tab" onclick="switchTab('all',this)">Semua Tahun</button>
     <button class="tab" onclick="switchTab('bm',this)">Akurasi Historis</button>
+    <button class="tab" onclick="switchTab('about',this)">Tentang</button>
   </div>
 
   <div class="panel on" id="panel-cmp">
@@ -254,6 +292,7 @@ footer{margin-top:64px;text-align:center;font-family:'DM Mono',monospace;font-si
 
   <div class="panel" id="panel-all"></div>
   <div class="panel" id="panel-bm"><p style="font-family:'DM Mono',monospace;font-size:.78rem;color:var(--muted);padding:20px 0">Memuat data benchmark...</p></div>
+  <div class="panel" id="panel-about"></div>
 
   <div class="disclaimer">
     <strong>Catatan:</strong> Ini adalah perbandingan hisab astronomi.
@@ -470,11 +509,190 @@ function showErr(msg){setState('error',msg)}
 document.getElementById('yr-inp').addEventListener('keydown',function(ev){if(ev.key==='Enter')go()});
 loadIdx();
 loadBenchmark();
+renderAbout();
 
 // Auto-load tahun dari URL param jika ada
 var urlP=new URLSearchParams(window.location.search);
 var urlT=urlP.get('t');
 if(urlT)go(parseInt(urlT));
+
+// ── About ─────────────────────────────────────────────────────────
+function renderAbout(){
+  document.getElementById('panel-about').innerHTML=`
+<div class="about-section">
+
+  <!-- Kenapa bisa beda -->
+  <div class="about-card">
+    <div class="about-card-head">
+      <div class="about-icon gray">?</div>
+      <div><div class="about-title">Kenapa Awal Ramadan & Lebaran Bisa Berbeda?</div>
+      <div class="about-subtitle">Pertanyaan paling sering ditanyakan</div></div>
+    </div>
+    <div class="about-body">
+      <p>Setiap tahun, kita sering mendengar bahwa Muhammadiyah menetapkan awal Ramadan atau Lebaran <strong>berbeda satu hari</strong> dari Pemerintah dan NU. Ini bukan karena ada yang salah — melainkan karena mereka menggunakan <strong>metode yang berbeda</strong>.</p>
+      <p>Ada dua pendekatan utama: <span class="hl-blue">Hisab</span> (perhitungan astronomi matematis) dan <span class="hl-ok">Rukyat</span> (pengamatan langsung hilal). Muhammadiyah murni menggunakan hisab. Pemerintah & NU menggabungkan hisab sebagai patokan dan rukyat sebagai konfirmasi.</p>
+      <p>Website ini memvisualisasikan <strong>hasil hisab astronomi</strong> dari dua metode utama yang digunakan di Indonesia, sehingga perbedaannya bisa dipahami secara ilmiah.</p>
+    </div>
+  </div>
+
+  <!-- MABIMS -->
+  <div class="about-card">
+    <div class="about-card-head">
+      <div class="about-icon blue">&#9790;</div>
+      <div><div class="about-title">Metode MABIMS (Kemenag / Pemerintah RI)</div>
+      <div class="about-subtitle">Kriteria Visibilitas Hilal — digunakan sejak 2022</div></div>
+    </div>
+    <div class="about-body">
+      <p><strong>MABIMS</strong> adalah singkatan dari <em>Menteri Agama Brunei, Indonesia, Malaysia, dan Singapura</em> — empat negara yang menyepakati kriteria bersama untuk penentuan awal bulan Hijriyah.</p>
+      <p>Sejak 2022, Indonesia menggunakan <strong>Neo MABIMS</strong> dengan dua syarat wajib yang harus terpenuhi <em>sekaligus</em> saat maghrib:</p>
+      <table class="kriteria-table">
+        <tr><th>Syarat</th><th>Nilai</th><th>Artinya</th></tr>
+        <tr><td><span class="hl-blue">Altitude hilal</span></td><td>&ge; 3°</td><td>Bulan minimal 3 derajat di atas ufuk saat matahari terbenam</td></tr>
+        <tr><td><span class="hl-blue">Elongasi geosentris</span></td><td>&ge; 6,4°</td><td>Jarak sudut bulan ke matahari (diukur dari pusat Bumi) minimal 6,4 derajat</td></tr>
+      </table>
+      <p style="margin-top:12px">Jika <em>salah satu</em> syarat tidak terpenuhi, dilakukan <strong>istikmal</strong> — bulan digenapkan menjadi 30 hari.</p>
+      <p>Website ini mengevaluasi MABIMS di <strong>13 kota representatif</strong> seluruh Indonesia. Awal bulan ditetapkan jika <em>minimal satu kota</em> memenuhi kedua syarat tersebut — mencerminkan pendekatan Sidang Isbat yang menerima laporan rukyat dari seluruh wilayah.</p>
+    </div>
+  </div>
+
+  <!-- Muhammadiyah -->
+  <div class="about-card">
+    <div class="about-card-head">
+      <div class="about-icon purple">&#9789;</div>
+      <div><div class="about-title">Metode Muhammadiyah (Hisab Hakiki Wujudul Hilal)</div>
+      <div class="about-subtitle">Tidak mempertimbangkan apakah hilal bisa dilihat</div></div>
+    </div>
+    <div class="about-body">
+      <p>Muhammadiyah menggunakan metode <strong>Hisab Hakiki Wujudul Hilal</strong> — sebuah pendekatan yang hanya mempertimbangkan <em>apakah bulan sudah berada di atas ufuk</em>, tanpa mempersoalkan apakah hilal bisa terlihat secara fisik.</p>
+      <p>Tiga syarat harus terpenuhi <em>sekaligus</em>:</p>
+      <table class="kriteria-table">
+        <tr><th>Syarat</th><th>Nilai</th><th>Artinya</th></tr>
+        <tr><td><span class="hl-purple">Ijtimak sudah terjadi</span></td><td>—</td><td>Konjungsi bulan-matahari sudah terjadi (fase bulan baru)</td></tr>
+        <tr><td><span class="hl-purple">Ijtimak sebelum maghrib</span></td><td>—</td><td>Konjungsi terjadi sebelum matahari terbenam di lokasi tersebut</td></tr>
+        <tr><td><span class="hl-purple">Bulan di atas ufuk</span></td><td>&gt; 0°</td><td>Saat maghrib, piringan atas bulan sudah melewati garis ufuk</td></tr>
+      </table>
+      <p style="margin-top:12px">Metode ini cenderung menetapkan awal bulan <strong>lebih awal</strong> dari MABIMS karena tidak mensyaratkan hilal terlihat jelas — bahkan 0,001° di atas ufuk sudah dianggap cukup.</p>
+      <p>Inilah alasan utama mengapa Muhammadiyah seringkali Lebaran <em>sehari lebih cepat</em> dari Pemerintah.</p>
+    </div>
+  </div>
+
+  <!-- Yallop & Odeh -->
+  <div class="about-card">
+    <div class="about-card-head">
+      <div class="about-icon gold">&#9733;</div>
+      <div><div class="about-title">Kriteria Yallop & Odeh (Visibilitas Hilal)</div>
+      <div class="about-subtitle">Digunakan sebagai info tambahan di halaman MABIMS</div></div>
+    </div>
+    <div class="about-body">
+      <p>Selain MABIMS, website ini juga menampilkan dua kriteria visibilitas internasional sebagai referensi ilmiah:</p>
+      <table class="kriteria-table">
+        <tr><th>Kriteria</th><th>Parameter</th><th>Kelas</th></tr>
+        <tr><td><strong>Yallop (1998)</strong><br><span style="font-size:.8rem;color:var(--muted)">B.D. Yallop, Royal Greenwich Observatory</span></td><td>q = (ARCV &minus; a(W)) / 10</td>
+        <td>
+          <span class="hl-ok">A</span>: Mudah dilihat mata telanjang<br>
+          <span class="hl-ok">B</span>: Terlihat kondisi sempurna<br>
+          <span class="hl-warn">C</span>: Perlu alat bantu<br>
+          <span class="hl-warn">D</span>: Perlu teleskop<br>
+          <span style="color:var(--err)">E</span>: Tidak terlihat
+        </td></tr>
+        <tr><td><strong>Odeh (2006)</strong><br><span style="font-size:.8rem;color:var(--muted)">Mohammad Sh. Odeh, ICOP</span></td><td>V = ARCV &minus; f(W)</td>
+        <td>
+          <span class="hl-ok">A</span>: Mudah (mata telanjang)<br>
+          <span class="hl-ok">B</span>: Dengan alat bantu / naked eye<br>
+          <span class="hl-warn">C</span>: Hanya dengan teleskop<br>
+          <span style="color:var(--err)">D</span>: Tidak terlihat
+        </td></tr>
+      </table>
+      <p style="margin-top:12px">Kedua kriteria ini tidak digunakan untuk mengambil keputusan awal bulan dalam konteks Indonesia — namun berguna untuk memahami <em>seberapa mudah</em> hilal bisa diamati pada malam tersebut.</p>
+    </div>
+  </div>
+
+  <!-- Glosarium -->
+  <div class="about-card">
+    <div class="about-card-head">
+      <div class="about-icon green">A</div>
+      <div><div class="about-title">Glosarium Istilah Astronomi</div>
+      <div class="about-subtitle">Penjelasan sederhana untuk orang awam</div></div>
+    </div>
+    <div class="about-body">
+      <div class="istilah-grid">
+        <div class="istilah-item">
+          <div class="istilah-term">Hilal</div>
+          <div class="istilah-def">Bulan sabit muda yang muncul pertama kali setelah konjungsi (ijtimak). Kemunculannya menandai awal bulan baru dalam kalender Hijriyah.</div>
+        </div>
+        <div class="istilah-item">
+          <div class="istilah-term">Ijtimak (Konjungsi)</div>
+          <div class="istilah-def">Momen ketika Bulan berada tepat di antara Bumi dan Matahari (fase bulan baru). Ini adalah "titik nol" sebelum hilal mulai terbentuk.</div>
+        </div>
+        <div class="istilah-item">
+          <div class="istilah-term">Altitude Hilal</div>
+          <div class="istilah-def">Ketinggian bulan di atas garis cakrawala (ufuk) saat matahari terbenam, diukur dalam derajat. Semakin tinggi, semakin mudah terlihat.</div>
+        </div>
+        <div class="istilah-item">
+          <div class="istilah-term">Elongasi</div>
+          <div class="istilah-def">Jarak sudut antara bulan dan matahari. Semakin besar elongasi, semakin terang hilal dan semakin mudah diamati.</div>
+        </div>
+        <div class="istilah-item">
+          <div class="istilah-term">ARCV</div>
+          <div class="istilah-def">Arc of Vision — selisih ketinggian bulan dengan matahari (airless, tanpa refraksi atmosfer). Parameter utama dalam rumus Yallop dan Odeh.</div>
+        </div>
+        <div class="istilah-item">
+          <div class="istilah-term">Lebar Sabit (W)</div>
+          <div class="istilah-def">Lebar cahaya bulan yang tersinari, diukur dalam menit busur. Hilal yang baru lahir lebarnya sangat tipis (&lt;1 menit busur).</div>
+        </div>
+        <div class="istilah-item">
+          <div class="istilah-term">Umur Bulan</div>
+          <div class="istilah-def">Selisih waktu antara ijtimak dan saat maghrib, dalam jam. Semakin lama umur bulan, biasanya semakin mudah hilal terlihat.</div>
+        </div>
+        <div class="istilah-item">
+          <div class="istilah-term">Lag Time</div>
+          <div class="istilah-def">Selisih waktu terbenam bulan dan matahari dalam menit. Semakin panjang lag time, semakin lama jendela pengamatan hilal setelah maghrib.</div>
+        </div>
+        <div class="istilah-item">
+          <div class="istilah-term">Best Time</div>
+          <div class="istilah-def">Waktu optimal untuk mengamati hilal — dihitung pada 4/9 × lag time setelah maghrib, saat kontras hilal vs langit senja terbaik.</div>
+        </div>
+        <div class="istilah-item">
+          <div class="istilah-term">Illuminasi</div>
+          <div class="istilah-def">Persentase piringan bulan yang mendapat sinar matahari. Saat ijtimak ≈ 0%, sehari setelah ijtimak biasanya 1–3%.</div>
+        </div>
+        <div class="istilah-item">
+          <div class="istilah-term">Istikmal</div>
+          <div class="istilah-def">Penggenapan bulan menjadi 30 hari ketika syarat penampakan hilal tidak terpenuhi. Bulan Hijriyah bisa 29 atau 30 hari.</div>
+        </div>
+        <div class="istilah-item">
+          <div class="istilah-term">Ephemeris (DE440)</div>
+          <div class="istilah-def">Tabel posisi benda langit yang sangat akurat dari NASA/JPL. Website ini menggunakan DE440 — ephemeris paling akurat saat ini untuk tata surya bagian dalam.</div>
+        </div>
+        <div class="istilah-item">
+          <div class="istilah-term">Delta-T (&#916;T)</div>
+          <div class="istilah-def">Selisih antara Terrestrial Time (TT) dan Universal Time (UT). Perlu dikoreksi karena rotasi Bumi sedikit melambat dari waktu ke waktu.</div>
+        </div>
+        <div class="istilah-item">
+          <div class="istilah-term">Refraksi Atmosfer</div>
+          <div class="istilah-def">Pembelokkan cahaya oleh atmosfer Bumi. Membuat benda langit terlihat sedikit lebih tinggi dari posisi sebenarnya — efeknya sekitar +0,5° di dekat ufuk.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Tentang website -->
+  <div class="about-card">
+    <div class="about-card-head">
+      <div class="about-icon gray">&#9432;</div>
+      <div><div class="about-title">Tentang Website Ini</div>
+      <div class="about-subtitle">Sumber kode & data</div></div>
+    </div>
+    <div class="about-body">
+      <p>Website ini menghitung posisi bulan menggunakan library astronomi <strong>Skyfield</strong> (Python) dengan ephemeris <strong>DE440</strong> dari NASA/JPL — standar akurasi tertinggi yang tersedia untuk perhitungan posisi bulan dan matahari.</p>
+      <p>Evaluasi dilakukan di <strong>13 titik representatif Indonesia</strong>: Sabang, Medan, Padang, Jakarta, Bandung, Surabaya, Banjarmasin, Balikpapan, Makassar, Manado, Kupang, Ambon, dan Jayapura.</p>
+      <p>Data disimpan sebagai file JSON statis dan ditampilkan tanpa server — seluruh perhitungan dilakukan di laptop, hasilnya di-<em>precompute</em> lalu di-deploy ke Cloudflare Pages.</p>
+      <p><strong>Penting:</strong> Hasil hisab ini adalah <em>simulasi astronomi</em>. Keputusan resmi awal Ramadan dan Lebaran mengikuti <strong>Sidang Isbat Kemenag RI</strong> (untuk pemerintah) dan <strong>Majelis Tarjih Muhammadiyah</strong> (untuk Muhammadiyah).</p>
+    </div>
+  </div>
+
+</div>`;
+}
 
 // ── Benchmark ────────────────────────────────────────────────────
 var BM=null;
